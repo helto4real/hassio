@@ -1,0 +1,36 @@
+
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr # Wheather
+    monitored_conditions:
+      - temperature
+      - symbol
+
+group:
+  # För givare och väder    
+  climate:
+    name: Klimat
+    view: no
+    entities:
+      - sensor.ute_temperature
+      - sensor.ute_humidity
+      - sun.sun
+      - sensor.yr_symbol
+
+script:
+  announce_weather:
+    sequence:
+      - service: script.notify_weather
+        data_template: !include ../../extras/weatherstatus.yaml
+  
+  notify_weather: 
+    sequence:   
+      - service: script.notify
+        data_template: 
+          say: "1"
+          title: "Nuvarande väder i matfors"
+          message: 'följande väder råder i matfors just nu, {{weather_text}} med en temperatur på {{ states("sensor.ute_temperature")|round(0) }} grader'

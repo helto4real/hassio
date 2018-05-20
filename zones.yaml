@@ -1,0 +1,23 @@
+- zone_spv:
+  name: SPV
+  latitude: 62.388466
+  longitude: 17.295939
+  radius: 200
+  icon: mdi:briefcase
+
+- zone_sjukhuset:
+  name: Sjukhuset
+  latitude: 62.408067
+  longitude: 17.305611
+  radius: 300
+  icon: mdi:hospital    
+
+- zone_birsta:
+  name: Birsta
+  latitude: 62.443331
+  longitude: 17.330839
+  radius: 700
+  icon: mdi:cart    
+
+
+ 

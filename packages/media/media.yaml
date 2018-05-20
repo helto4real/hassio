@@ -1,0 +1,72 @@
+# Chrome casts
+media_player:
+  - platform: cast
+    host: !secret gc1
+  - platform: cast
+    host: !secret gc2
+  - platform: cast
+    host: !secret gc3
+  - platform: cast
+    host: !secret gc4
+  - platform: cast
+    host: !secret gc5
+# Harmony multi
+remote:
+  - platform: harmony
+    name: TVRoom
+    host: !secret harmony
+    activity: Plattan pa TV
+
+group:
+  # Remote controls
+  remotes:
+    name: Fjärrkontroller
+    view: no
+    entities:
+      - remote.tvroom  
+
+  # Media spelare
+  media_players:
+    name: Media spelare
+    view: no
+    entities:
+      - media_player.google_assist
+      - media_player.tv_nere
+      - media_player.tv_uppe
+      - media_player.melkers_tv
+      - media_player.kitchen
+
+automation:
+  - alias: "Chromcast TV Nere playing"
+    trigger:
+      - platform: state
+        entity_id: media_player.tv_nere
+        to: 'playing'
+    action:
+      - service_template: >
+          {%- if is_state('remote.tvroom', 'off') -%}
+            remote.turn_on
+          {%- endif -%}
+        entity_id: remote.tvroom
+        data:
+          activity: Plattan pa TV
+
+  - alias: "Turn off TV-Nere if idle"
+    trigger:
+      - platform: state
+        entity_id: media_player.tv_nere
+        to: 'Idle'
+        for: '00:05:00'
+    action:
+      - service: homeassistant.off
+        entity_id: remote.tvroom
+
+  - alias: "Turn off TV-Nere if off"
+    trigger:
+      - platform: state
+        entity_id: media_player.tv_nere
+        to: 'Off'
+        for: '00:05:00'
+    action:
+      - service: homeassistant.off
+        entity_id: remote.tvroom

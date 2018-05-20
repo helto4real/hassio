@@ -1,0 +1,47 @@
+say: '{{say}}'
+
+who: >
+  {% if tell == 'th' %} notify.th
+  {% elif tell == 'eh' %} notify.eh
+  {% elif tell == 'mh' %} notify.mh
+  {% elif tell == 'sh' %} notify.sh
+  {% else %} {{tell}} {% endif %}
+
+media_player: >
+  {% if now().hour < 7 and now().hour > 20 %} media_player.google_assist
+  {% else %} media_player.google_assist {% endif %}
+
+title: >
+  {% if title is defined %}
+    {{title}}
+  {% else %}
+    "Message from homeassistant"
+  {% endif %}
+
+message: >
+  {%- macro greeting() -%}
+    {% if now().strftime('%H')|int < 12 and now().strftime('%H')|int > 6 %}
+      {% set greeting = ["Hej, " , "God morgon, " , "Hallå! "] %}
+    {% elif now().strftime('%H')|int >= 12 and now().strftime('%H')|int < 17 %}
+      {% set greeting = ["Hejsan! " , "God eftermiddag, " , "Hej där, "] %}
+    {% else %}
+      {% set greeting = ["Hej, " , "God kväll, " , "Hallå! "] %}
+    {% endif %}
+    {{ greeting|random }}
+  {%- endmacro -%}
+
+  {%- macro inform() -%}
+    {{ ["Jag vill bara informera att ", "Jag vill bara att du ska veta att ",
+      "Du ville att jag ska informera att ", "Jag tänkte att det kan vara bra om du vet att "]|random }}
+  {%- endmacro -%}
+
+  {# ************************************* #}
+  {#  ******** Build the message ********  #}
+  {# ************************************* #}
+
+  {{ [greeting(), inform()] | random }}
+
+  {% if message is defined %}
+    {{message}} 
+  {% endif %}  
+  

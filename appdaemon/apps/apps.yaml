@@ -1,0 +1,3 @@
+app_sr_play_program:
+  module: sr_play_program
+  class: play_program

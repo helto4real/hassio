@@ -1,0 +1,137 @@
+# Vyer
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.climate
+    - group.uteclimate
+    - group.upper_floor
+    - group.lower_floor
+    - group.outside
+    - group.trackers
+    - group.people_status
+    - sensor.tomas_alarm
+    - input_select.house_mode_select
+    - sensor.house_mode
+    - group.frysar_temperatur
+#    - input_datetime.dateimte_time_to_turn_of_lights
+media_view:
+  view: yes
+  icon: mdi:television
+  entities:
+    - group.media_players
+    - group.remotes
+    - switch.switch8 # Melkers tv
+
+system_view:
+  view: yes
+  icon: mdi:pi-box
+  entities:
+      - group.system_metrix
+
+tracker_view:
+  view: yes
+  icon: mdi:cellphone-wireless
+  entities:
+    - group.tomas_devices
+    - group.elins_devices
+
+ligths_view:
+  view: yes
+  icon: mdi:lightbulb-outline
+  entities:
+    - switch.switch1
+    - switch.switch2
+    - switch.switch3
+    - switch.switch4
+    - switch.switch5
+    - switch.switch6
+    - switch.switch7
+    - switch.switch8
+    - switch.switch10
+    - light.tvrummet_nere  
+
+uteclimate:
+  name: Klimat ute
+  view: no
+  icon: mdi:temperature-celsius
+  entities:
+    - sensor.utetemp_temperature
+    - sensor.utetemp_humidity
+
+# Våningar och rum
+upper_floor:
+  name: Övervåning
+  view: no
+  entities:
+    - group.room_tomas
+    - group.room_sally
+    - group.room_vardagsrum_uppe
+    - group.room_koket
+    - binary_sensor.tradfri_motion_sensor_
+
+lower_floor:
+  name: Undervåning
+  view: no
+  entities:
+    - group.room_tvnere
+    - binary_sensor.sensor_tvrummet_2
+outside:
+  name: Ute
+  view: no
+  entities:
+    - switch.switch9outdoor
+room_tvnere:
+  name: TV rummet nere
+  view: no
+  entities:
+    - light.tvrummet_nere 
+    - switch.switch10
+
+frysar_temperatur:
+  name: Temperatur frysar
+  view: no
+  icon: mdi:fridge
+  entities:
+    - sensor.frysnere_temperature  #Frys nere
+    - sensor.frysuppe_temperature  #Frys uppe
+
+room_tomas:
+  name: Tomas rum
+  view: no
+  entities:
+    - switch.switch1
+room_sally:
+  name: Sallys rum
+  view: no
+  entities:
+    - switch.switch2
+room_vardagsrum_uppe:
+  name: Vardagsrummet uppe
+  view: no
+  entities:
+    - switch.switch3 #Höger
+    - switch.switch4 #Vänster
+    - switch.switch5 #Hallen
+    - light.halluppe #Hall uppe
+
+room_koket:
+  name: Köket
+  view: no
+  entities:
+    - switch.switch6 #Köksbordet
+    - switch.switch7 #Lilla fönstret
+
+tomas_devices:
+  name: Tomas hemma
+  view: no
+  entities:
+    - device_tracker.phone_tomas_tasker
+    - device_tracker.tomass8
+
+elins_devices:
+  name: Elin hemma
+  view: no
+  entities:
+    - device_tracker.elin_s8
+    - device_tracker.elinss8  

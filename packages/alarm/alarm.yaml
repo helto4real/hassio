@@ -1,0 +1,18 @@
+
+sensor:
+  - platform: google_home_alarm
+    host: 
+      - !secret tomas_gh_mini
+    name: tomas_alarm
+
+automation:
+  alias: "Om alarm kör wakeup skriptet"
+  trigger:
+    - platform: state
+      entity_id: sensor.tomas_alarm
+      from: "off"
+      to: "on"
+  action:
+    - delay: '00:00:15'
+    - service: script.wake_up
+    

@@ -1,0 +1,209 @@
+
+- alias: Mark person as just arrived
+  trigger:
+    - platform: state
+      entity_id: device_tracker.tomass8
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 5 # change back to 10
+    - platform: state
+      entity_id: device_tracker.elinss8
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 5 # change back to 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.phone_tomas_wifi' %}
+            input_select.tomas_status_dropdown
+          {% else %}
+            input_select.elin_status_dropdown
+          {% endif %}
+        option: >
+          {% if trigger.entity_id == 'device_tracker.tomass8' %}
+            {% if states.input_select.tomas_status_dropdown.state == 'Just Left' %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% else %}
+            {% if states.input_select.elin_status_dropdown.state == 'Just Left' %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% endif %}
+
+- alias: Mark person as home
+  trigger:
+    - platform: state
+      entity_id: input_select.tomas_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10 # change back to 10
+    - platform: state
+      entity_id: input_select.elin_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10 # change back to 10
+    - platform: state
+      entity_id: input_select.tomas_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.elin_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.tomas_status_dropdown' %}
+            input_select.tomas_status_dropdown
+          {% else %}
+            input_select.elin_status_dropdown
+          {% endif %}
+        option: Home
+
+- alias: Mark person as just left
+  trigger:
+    - platform: state
+      entity_id: device_tracker.tomass8
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 1 
+    - platform: state
+      entity_id: device_tracker.elinss8
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 1   
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.tomass8' %}
+            input_select.tomas_status_dropdown
+          {% else %}
+            input_select.elin_status_dropdown
+          {% endif %}
+        option: Just Left
+
+- alias: Mark person as away
+  trigger:
+    - platform: state
+      entity_id: input_select.tomas_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10 # change back to 10 minutes
+    - platform: state
+      entity_id: input_select.elin_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10 # change back to 10 minutes
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.tomas_status_dropdown' %}
+            input_select.tomas_status_dropdown
+          {% else %}
+            input_select.elin_status_dropdown
+          {% endif %}
+        option: Away
+
+- alias: Mark person as extended away
+  trigger:
+    - platform: state
+      entity_id: input_select.tomas_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.elin_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.tomas_status_dropdown' %}
+            input_select.tomas_status_dropdown
+          {% else %}
+            input_select.elin_status_dropdown
+          {% endif %}
+        option: Extended Away
+
+- alias: Send message on away-home notice
+  trigger:
+    - platform: state
+      entity_id: input_select.tomas_status_dropdown #, input_select.elin_status_dropdown
+  action:
+    service: script.notify
+    data_template:
+      tell: th
+      title: "{{trigger.to_state.attributes.friendly_name}} status"
+      message: "{{trigger.to_state.attributes.friendly_name}} har status {{trigger.to_state.state}}"    
+
+#binary_sensor.tradfri_motion_sensor_
+- alias: Turn on light when there is movement in the hall
+  trigger:
+    platform: state
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    to: 'on'
+  condition: 
+    - condition: state
+      entity_id: 'sensor.house_mode'
+      state: 'Natt'
+  action:
+      service: light.turn_on
+      entity_id: light.halluppe
+
+- alias: Turn off light when there is no movement in the hall
+  trigger:
+    platform: state
+    entity_id: binary_sensor.tradfri_motion_sensor_
+    to: 'off'
+    for:
+      minutes: 20
+  condition: 
+    - condition: state
+      entity_id: 'sensor.house_mode'
+      state: 'Natt'
+  action:
+    service: light.turn_off
+    entity_id: light.halluppe
+
+
+- alias: Turn on light when there is movement in TV-rummet nere
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_tvrummet_2
+    to: 'on'
+  condition: 
+    - condition: state
+      entity_id: 'sensor.house_mode'
+      state: 'Natt'
+  action:
+      service: light.turn_on
+      entity_id: light.tvrummet_nere
+
+- alias: Turn off light when there is no movement in TV-rummet nere
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_tvrummet_2
+    to: 'off'
+    for:
+      minutes: 20
+  condition: 
+    - condition: state
+      entity_id: 'sensor.house_mode'
+      state: 'Natt'
+  action:
+    service: light.turn_off
+    entity_id: light.tvrummet_nere

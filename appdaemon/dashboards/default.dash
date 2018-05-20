@@ -1,0 +1,69 @@
+##
+## Main arguments, all optional
+##
+title: Default panel
+widget_dimensions: [160, 120]
+widget_margins: [5, 5]
+columns: 6
+global_parameters:
+    use_comma: 0
+    precision: 0
+    use_hass_icon: 1
+
+
+layout:
+    - device_tracker.elin_s8, device_tracker.phone_tomas_tasker, device_tracker.sally_s7, device_tracker.melker_s7
+    - clock(3x2), outside_temperature
+    - outside_humidity
+    - next_alarm(3x1), mode_night
+clock:
+    widget_type: clock
+    widget_style: "font-size: 120%"
+    time_style: "color: orange; font-size: 580%"
+    date_style: "font-size: 200%"    
+    date_format_country: "sv"
+    time_format: "24hr"
+    date_format_options:
+      weekday: "short"
+      day: "numeric"
+      month: "numeric"
+      hour: "numeric"
+
+outside_temperature:
+    widget_type: sensor
+    title: Temperatur ute
+    units: "&deg;C"
+    precision: 0
+    entity: sensor.ute_temperature
+
+outside_humidity:
+    widget_type: sensor
+    title: Luftfuktighet ute
+    units: "%"
+    precision: 0
+    entity: sensor.ute_humidity
+
+next_alarm:
+    widget_type: sensor
+    #title: Alarm Tomas
+    sub_entity: sensor.tomas_alarm
+    sub_entity_to_entity_attribute: "Next alarm"
+    unit_style: "color: gray; font-size: 10%;"
+    value_style: "color: gray; font-size: 10%;"
+    text_style: "color: orange; font-size: 200%; margin-top: 5px;"
+
+mode_night:
+    widget_type: mode
+    entity: input_select.house_mode_select
+    mode: "Natt"
+    title: "Natt mode"
+    script: "script.setnightmode"
+    icon_on: mdi-sleep
+    icon_off: mdi-sleep
+    icon_style_inactive: "color: #ea4b82; font-size: 600%; text-align: center; margin-top: -20px"
+    icon_style_active: "color: #aaaaaa; font-size: 600%; text-align: center; margin-top: -20px"
+    
+
+ 
+
+

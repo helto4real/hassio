@@ -1,0 +1,75 @@
+sensor:
+  - platform: template
+    sensors:
+      tomas_status:
+        value_template: '{{ states.input_select.tomas_status_dropdown.state }}'
+        friendly_name: 'Tomas'
+  - platform: template
+    sensors:
+      elin_status:
+        value_template: '{{ states.input_select.elin_status_dropdown.state }}'
+        friendly_name: 'Elin'
+  - platform: template
+    sensors:
+      sally_status:
+        value_template: '{{ states.input_select.sally_status_dropdown.state }}'
+        friendly_name: 'Sally'
+
+input_select:
+  tomas_status_dropdown:
+    name: Tomas
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+  elin_status_dropdown:
+    name: Elin
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+  sally_status_dropdown:
+    name: Sally
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+
+group:
+
+  #trackers
+  trackers:
+    name: Familjen tillgänglig (trackers)
+    view: no
+    entities:
+      - device_tracker.phone_tomas_tasker
+      - device_tracker.elin_s8
+      - device_tracker.sally_s7
+      - device_tracker.melker_s7
+
+  people_status:
+    name: Familjen tillgänglig (wifi)
+    entities:
+      - sensor.tomas_status
+      - sensor.elin_status
+      - sensor.sally_status
+
+# For tracking
+device_tracker:
+  - platform: owntracks_http
+    max_gps_accuracy: 100
+  - platform: nmap_tracker
+    hosts:
+      !secret devices_tracked
+    track_new_devices: no
+    interval_seconds: 15
+    consider_home: 180

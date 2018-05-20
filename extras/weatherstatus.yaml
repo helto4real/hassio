@@ -1,0 +1,47 @@
+# My text2speech from yr.no symbol
+weather_text: >
+  {% if states.sensor.yr_symbol.state == '1' %}
+    "vackert och klart väder"
+  {% elif states.sensor.yr_symbol.state == '2' %}
+    "vackert väder med lätt molninghet"
+  {% elif states.sensor.yr_symbol.state == '3' %}
+    "delvis molnigt väder"
+  {% elif states.sensor.yr_symbol.state == '4' %}
+    "molnigt väder"
+  {% elif states.sensor.yr_symbol.state == '5' %}
+    "sol med regnbyar"
+  {% elif states.sensor.yr_symbol.state == '6' %}
+    "regnbyar med inslag av åska"
+  {% elif states.sensor.yr_symbol.state == '7' %}
+    "byar med snöblandat regn"
+  {% elif states.sensor.yr_symbol.state == '8' %}
+    "sol med snöbyar"
+  {% elif states.sensor.yr_symbol.state == '9' %}
+    "ihållande regn"
+  {% elif states.sensor.yr_symbol.state == '10' %}
+    "kraftigt ihållande regn"
+  {% elif states.sensor.yr_symbol.state == '11' %}
+    "kraftigt ihållande regn och åska"
+  {% elif states.sensor.yr_symbol.state == '12' %}
+    "ihållande snöblandat regn"
+  {% elif states.sensor.yr_symbol.state == '13' %}
+    "snö"
+  {% elif states.sensor.yr_symbol.state == '14' %}
+    "snö och åska, så konstigt va"
+  {% elif states.sensor.yr_symbol.state == '15' %}
+    "dimma så var försiktig"
+  {% elif states.sensor.yr_symbol.state == '20' %}
+    "byar av snöblandad regn och åska"
+  {% elif states.sensor.yr_symbol.state == '21' %}
+    "Snöbyar med inslag av åska"
+  {% elif states.sensor.yr_symbol.state == '22' %}
+    "Regn med blixtar och åska"
+  {% elif states.sensor.yr_symbol.state > '22' and states.sensor.yr_symbol.state < '35' %}
+    "tokväder med åska, nederbörd"
+  {% elif states.sensor.yr_symbol.state > '39' and states.sensor.yr_symbol.state < '50' %}
+    "tokväder med snö"
+  {% elif states.sensor.yr_symbol.state == '50' %}
+    "kraftigt snöfall, var försiktig och stanna hemma om du kan"
+  {% else %}
+    "Känner inte igen symbolen!"
+  {% endif %}

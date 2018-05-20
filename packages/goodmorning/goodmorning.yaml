@@ -1,0 +1,34 @@
+
+script:
+  wake_up:
+    sequence:
+#      - service: media_player.volume_set
+#        data_template:
+#          entity_id: '{{ media_player }}'
+#          volume_level: >
+#            {% if now().hour < 6 and now().hour > 23 %}
+#              0.3
+#            {% elif now().hour > 5 and now().hour < 9 %}
+#              0.5
+#            {% else %}
+#              0.5
+#            {% endif %}                       
+#      - service: media_player.volume_mute
+#        data_template:
+#          entity_id: '{{ media_player }}'
+#          is_volume_muted: false      
+      - service: tts.google_say
+        data_template:
+          entity_id: 'media_player.google_assist'
+          message: "God morgon Tomas, hoppas du får en fin dag!"
+          cache: false
+      - delay: '00:00:10'
+      - service: script.morning_annoucement
+  morning_annoucement:
+    sequence:
+      - service: script.announce_weather
+      - delay: '00:00:15'
+      - event: APP_SR_PLAY_PROGRAM
+        event_data:
+          program_id: "4540"
+          entity_id: "media_player.google_assist"

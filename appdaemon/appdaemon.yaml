@@ -1,0 +1,12 @@
+appdaemon:
+  api_key: !secret appdaemon_key
+  threads: 10
+  plugins:
+    HASS:
+      type: hass
+      ha_url: !secret hassiourl
+      ha_key: !secret home_assistant_key
+
+hadashboard:
+  dash_url: !secret secreturl
+  dash_dir: /config/daemon/dashboards
