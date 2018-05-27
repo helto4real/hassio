@@ -33,4 +33,4 @@ script:
         data_template: 
           say: "1"
           title: "Nuvarande väder i matfors"
-          message: 'följande väder råder i matfors just nu, {{weather_text}} med en temperatur på {{ states("sensor.ute_temperature")|round(0) }} grader'
+          message: 'följande väder råder i matfors just nu, {{weather_text}} med en temperatur på {{ states.sensor.utetemp_temperature.state|round(0) }} grader'

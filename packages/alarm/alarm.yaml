@@ -2,7 +2,7 @@
 sensor:
   - platform: google_home_alarm
     host: 
-      - !secret tomas_gh_mini
+      !secret tomas_gh_mini
     name: tomas_alarm
 
 automation:

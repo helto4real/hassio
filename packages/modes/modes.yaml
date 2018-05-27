@@ -76,8 +76,8 @@ automation:
     condition:
       condition: time
       weekday:
-        - fri
         - sat
+        - sun
     action:
       - service: input_select.select_option
         data_template:

@@ -9,6 +9,11 @@ from urllib.request import urlopen
 import json
 import voluptuous as vol
 
+import logging
+import sys
+
+_LOGGER = logging.getLogger(__name__)
+
 DEFAULT_NAME = 'Google home alarm sensor'
 ATTR_NEXT_ALARM = 'Next alarm'
 TXT_NOT_SET = 'Not set'
@@ -71,6 +76,7 @@ class gh_alarm_sensor(Entity):
     def findNextAlarmFromGoogleHomeDevice(self, deviceIp):
  
         try:
+            #_LOGGER.warn("http://{}:8008/setup/assistant/alarms".format(deviceIp))
             response = urlopen("http://"+deviceIp+":8008/setup/assistant/alarms")
         
             data = response.read().decode('utf-8')
@@ -86,11 +92,13 @@ class gh_alarm_sensor(Entity):
                         currentAlarm = timeForAlarm
             return currentAlarm
         except:
+            _LOGGER.warn("Error reading:" + sys.exc_info()[0])
             pass
         
         return None
     
     def update(self):
+        
         # First handle the alarm by checking the last known alarm time.
         # Last know alarm time handles the state so we dont miss an alarm
         # if you turn off the alarm before the device is pulled 
