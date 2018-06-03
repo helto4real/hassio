@@ -92,9 +92,9 @@ sensor:
           - Temperature
 
 rfxtrx:
-  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1Y0NJGR-if00-port0
+  device: /dev/ttyUSB1 #/dev/serial/by-id/usb-RFXCOM_RFXtrx433_A138UEXZ-if00-port0
 
-
+                            
 switch:
   platform: rfxtrx
   automatic_add: True

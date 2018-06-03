@@ -105,7 +105,8 @@ class gh_alarm_sensor(Entity):
         if self._last_known_time_for_alarm is not None and self._last_known_time_for_alarm < datetime.datetime.now():
             #time expired and it is alarming
             diff = datetime.datetime.now() - self._last_known_time_for_alarm
-            if diff.seconds<60: # We set state "on" for one minute
+            
+            if diff.days == 0 and diff.seconds<60: # We set state "on" for one minute
                 if (self._state == STATE_ON ):
                     return
                 else:
