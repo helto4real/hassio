@@ -1,5 +1,5 @@
 # Tomas home assistant configuration
-This is my home assistant setup. Please feel free to use what ever you want. Some of the stuff are in swedish but trying to comment etc. in egnlish.
+This is my home assistant setup. Please feel free to use what ever you want. Some of the stuff are in swedish but trying to comment etc. in english.
 
 ## My gear
 - Raspberry PI 3B+ with raspbian 
