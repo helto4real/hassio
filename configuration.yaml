@@ -154,6 +154,10 @@ google_assistant:
 
 hassio:    
 
+mqtt:
+  broker: 192.168.1.5
+  username: !secret mqtt_user
+  password: !secret mqtt_password
 # Cloud
 #cloud:
 

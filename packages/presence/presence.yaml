@@ -14,6 +14,29 @@ sensor:
       sally_status:
         value_template: '{{ states.input_select.sally_status_dropdown.state }}'
         friendly_name: 'Sally'
+  - platform: template
+    sensors:
+      tomas_device_tracker:
+        value_template: >-
+          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.phone_tomas_tasker", "home") or is_state("device_tracker.tomass8", "home") %}
+            Hemma
+          {% else %}
+          {% if is_state("device_tracker.phone_tomas_tasker", "not_home") %}
+            Borta
+          {% else %} {{ states("device_tracker.phone_tomas_tasker") }}
+          {% endif %}
+          {% endif %}
+        icon_template: >-
+          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.phone_tomas_tasker", "home") or is_state("device_tracker.tomass8", "home") %}
+            mdi:home-circle
+          {% else %}
+          {% if is_state("device_tracker.phone_tomas_tasker", "not_home") %}
+            mdi:close-circle-outline
+          {% else %}
+            {% set zone = states.device_tracker.phone_tomas_tasker.state %}
+            {{ states.zone[zone].attributes.icon }}
+          {% endif %}
+          {% endif %}
 
 input_select:
   tomas_status_dropdown:
@@ -47,22 +70,46 @@ input_select:
 group:
 
   #trackers
-  trackers:
-    name: Familjen tillgänglig (trackers)
-    view: no
-    entities:
-      - device_tracker.phone_tomas_tasker
-      - device_tracker.elin_s8
-      - device_tracker.sally_s7
-      - device_tracker.melker_s7
+#  trackers:
+#    name: Familjen tillgänglig (trackers)
+#    view: no
+#    entities:
+#      - device_tracker.phone_tomas_tasker
+#      - device_tracker.elin_s8
+#      - device_tracker.sally_s7
+#      - device_tracker.melker_s7
 
   people_status:
-    name: Familjen tillgänglig (wifi)
+    name: Familjen hemmastatus
     entities:
       - sensor.tomas_status
       - sensor.elin_status
       - sensor.sally_status
 
+  tomas_devices:
+    name: Tomas hemma
+    view: no
+    entities:
+      - device_tracker.tomas_phone_bt
+      - device_tracker.phone_tomas_tasker
+      - device_tracker.tomass8      
+
+
+  elins_devices:
+    name: Elin hemma
+    view: no
+    entities:
+      - device_tracker.elins_phone_bt
+      - device_tracker.elin_s8
+      - device_tracker.elinss8  
+
+  presence:
+    name: Familjens devicestatus
+    view: no
+    icon: mdi:home-account
+    entities:
+      - group.tomas_devices
+      - group.elins_devices
 # For tracking
 device_tracker:
   - platform: owntracks_http
@@ -73,3 +120,8 @@ device_tracker:
     track_new_devices: no
     interval_seconds: 15
     consider_home: 180
+  - platform: mqtt
+    devices:
+      tomas_phone_bt: 'hassio/bt/device_tracker/tomas_s8'
+      elins_phone_bt: 'hassio/bt/device_tracker/elins_s8'
+      

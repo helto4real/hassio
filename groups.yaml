@@ -8,12 +8,14 @@ default_view:
     - group.upper_floor
     - group.lower_floor
     - group.outside
-    - group.trackers
+#    - group.trackers
     - group.people_status
     - sensor.tomas_alarm
     - input_select.house_mode_select
     - sensor.house_mode
     - group.frysar_temperatur
+    - group.presence
+    - sensor.tomas_device_tracker
 #    - input_datetime.dateimte_time_to_turn_of_lights
 media_view:
   view: yes
@@ -122,16 +124,4 @@ room_koket:
     - switch.switch6 #Köksbordet
     - switch.switch7 #Lilla fönstret
 
-tomas_devices:
-  name: Tomas hemma
-  view: no
-  entities:
-    - device_tracker.phone_tomas_tasker
-    - device_tracker.tomass8
 
-elins_devices:
-  name: Elin hemma
-  view: no
-  entities:
-    - device_tracker.elin_s8
-    - device_tracker.elinss8  
