@@ -36,6 +36,13 @@ device_tracker.tomass8:
   friendly_name: Tomas mobil wifi
   entity_picture: /local/tomas.jpg
 group.tomas_devices:
+  friendly_name: Tomas mobil
+  entity_picture: /local/tomas.jpg
+device_tracker.tomas_phone_bt:
+  friendly_name: Tomas mobil BT
+  entity_picture: /local/tomas.jpg
+device_tracker.tomasgps:
+  friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
 
 sensor.elin_status:
@@ -44,6 +51,10 @@ device_tracker.elinss8:
   friendly_name: Elins mobil wifi
   entity_picture: /local/elin.jpg
 group.elins_devices:
+  friendly_name: Elins mobil
+  entity_picture: /local/elin.jpg
+device_tracker.elins_phone_bt:
+  friendly_name: Elins mobil BT
   entity_picture: /local/elin.jpg
 
 sensor.sally_status:

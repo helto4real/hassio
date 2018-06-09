@@ -19,5 +19,9 @@
   radius: 700
   icon: mdi:cart    
 
-
- 
+- zone_matfors_skola:
+  name: Matfors Skola
+  latitude: 62.347147
+  longitude: 17.018588
+  radius: 200
+  icon: mdi:school

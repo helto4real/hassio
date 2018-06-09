@@ -1,9 +1,3 @@
-#Duck dns
-#duckdns:
-#  domain: ha-hellstrom
-#  access_token: 84f27be9-d7b7-4a29-814e-78349bbd3d6c
-
-
 sensor:
   - platform: systemmonitor
     resources:
@@ -12,10 +6,7 @@ sensor:
       - type: memory_use_percent
       - type: processor_use
       - type: since_last_boot
-      - type: network_in
-        arg: eth0
-      - type: network_out
-        arg: eth0
+
 
 group:
   system_metrix:
@@ -27,6 +18,4 @@ group:
       - sensor.memory_use_percent
       - sensor.since_last_boot
       - sensor.ha_uptime
-      - sensor.network_in_eth0
-      - sensor.network_out_eth0
       - sensor.cpu

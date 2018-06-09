@@ -12,7 +12,7 @@ global_parameters:
 
 
 layout:
-    - device_tracker.elin_s8, device_tracker.phone_tomas_tasker, device_tracker.sally_s7, device_tracker.melker_s7
+    - device_tracker.elin_s8, device_tracker.tomasgps, device_tracker.sally_s7, device_tracker.melker_s7
     - clock(3x2), outside_temperature
     - outside_humidity
     - next_alarm(3x1), mode_night
@@ -34,14 +34,14 @@ outside_temperature:
     title: Temperatur ute
     units: "&deg;C"
     precision: 0
-    entity: sensor.ute_temperature
+    entity: sensor.utetemp_temperature
 
 outside_humidity:
     widget_type: sensor
     title: Luftfuktighet ute
     units: "%"
     precision: 0
-    entity: sensor.ute_humidity
+    entity: sensor.utetemp_humidity
 
 next_alarm:
     widget_type: sensor

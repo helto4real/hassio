@@ -18,22 +18,22 @@ sensor:
     sensors:
       tomas_device_tracker:
         value_template: >-
-          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.phone_tomas_tasker", "home") or is_state("device_tracker.tomass8", "home") %}
+          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.tomasgps", "home") or is_state("device_tracker.tomass8", "home") %}
             Hemma
           {% else %}
-          {% if is_state("device_tracker.phone_tomas_tasker", "not_home") %}
+          {% if is_state("device_tracker.tomasgps", "not_home") %}
             Borta
-          {% else %} {{ states("device_tracker.phone_tomas_tasker") }}
+          {% else %} {{ states("device_tracker.tomasgps") }}
           {% endif %}
           {% endif %}
         icon_template: >-
-          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.phone_tomas_tasker", "home") or is_state("device_tracker.tomass8", "home") %}
+          {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.tomasgps", "home") or is_state("device_tracker.tomass8", "home") %}
             mdi:home-circle
           {% else %}
-          {% if is_state("device_tracker.phone_tomas_tasker", "not_home") %}
+          {% if is_state("device_tracker.tomasgps", "not_home") %}
             mdi:close-circle-outline
           {% else %}
-            {% set zone = states.device_tracker.phone_tomas_tasker.state %}
+            {% set zone = states.device_tracker.tomasgps.state %}
             {{ states.zone[zone].attributes.icon }}
           {% endif %}
           {% endif %}
@@ -47,6 +47,10 @@ input_select:
       - Just Left
       - Away
       - Extended Away
+      - SPV
+      - Sjukhuset
+      - Birsta
+      - Matfors Skola
     initial: Home
   elin_status_dropdown:
     name: Elin
@@ -56,6 +60,9 @@ input_select:
       - Just Left
       - Away
       - Extended Away
+      - SPV
+      - Sjukhuset
+      - Birsta
     initial: Home
   sally_status_dropdown:
     name: Sally
@@ -67,6 +74,30 @@ input_select:
       - Extended Away
     initial: Home
 
+#zone_spv
+#zone_sjukhuset
+#zone_birsta
+
+#automation:
+#  - alias: "Enter Zone"
+#    trigger:
+#      - platform: zone
+#        entity_id: device_tracker.tomasgps, device_tracker.elin_s8
+#        zone: zone.home
+#        event: enter
+#    action:
+#    - service: input_select.select_option
+#      data_template:
+#          entity_id: >
+#            {% if trigger.entity_id == 'device_tracker.tomasgps' %}
+#              input_select.tomas_status_dropdown
+#            {% else %}
+#              input_select.elin_status_dropdown
+#            {% endif %}
+#          option: >
+#           {{trigger.zone.attributes.friendly_name}}
+
+
 group:
 
   #trackers
@@ -74,7 +105,7 @@ group:
 #    name: Familjen tillgänglig (trackers)
 #    view: no
 #    entities:
-#      - device_tracker.phone_tomas_tasker
+#      - device_tracker.tomasgps
 #      - device_tracker.elin_s8
 #      - device_tracker.sally_s7
 #      - device_tracker.melker_s7
@@ -91,7 +122,7 @@ group:
     view: no
     entities:
       - device_tracker.tomas_phone_bt
-      - device_tracker.phone_tomas_tasker
+      - device_tracker.tomasgps
       - device_tracker.tomass8      
 
 
@@ -124,4 +155,5 @@ device_tracker:
     devices:
       tomas_phone_bt: 'hassio/bt/device_tracker/tomas_s8'
       elins_phone_bt: 'hassio/bt/device_tracker/elins_s8'
-      
+  - platform: gpslogger
+    password: !secret gpslogger_password      
