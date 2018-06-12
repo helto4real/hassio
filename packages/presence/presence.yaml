@@ -153,8 +153,6 @@ group:
       - group.elins_devices
 # For tracking
 device_tracker:
-  - platform: owntracks_http
-    max_gps_accuracy: 100
   - platform: nmap_tracker
     hosts:
       !secret devices_tracked
