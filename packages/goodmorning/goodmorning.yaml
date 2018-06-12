@@ -1,22 +1,10 @@
-
+# This script triggers the morning anouncement
+# 1. Say good morning
+# 2. Tell todays weather status from yr.no and temperature from sensor outside
+# 3. Send event that start to case latest news from Swedish radio, see appdeamon/sr_play_program to see how it works
 script:
   wake_up:
     sequence:
-#      - service: media_player.volume_set
-#        data_template:
-#          entity_id: '{{ media_player }}'
-#          volume_level: >
-#            {% if now().hour < 6 and now().hour > 23 %}
-#              0.3
-#            {% elif now().hour > 5 and now().hour < 9 %}
-#              0.5
-#            {% else %}
-#              0.5
-#            {% endif %}                       
-#      - service: media_player.volume_mute
-#        data_template:
-#          entity_id: '{{ media_player }}'
-#          is_volume_muted: false      
       - service: tts.google_say
         data_template:
           entity_id: 'media_player.google_assist'

@@ -84,10 +84,6 @@ automation:
     trigger:
       - platform: state
         entity_id: device_tracker.tomasgps, device_tracker.elingps
-#      - platform: zone
-#        entity_id: device_tracker.tomasgps, device_tracker.elingps
-#        zone: zone.home
-#        event: enter
     condition:
       condition: template
       value_template: "{{ trigger.to_state != 'home'}}"
