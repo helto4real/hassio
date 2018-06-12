@@ -52,8 +52,6 @@ recorder:
       - climate
       - device_tracker
     entities:
-      - switch.switch_1_lb
-      - switch.switch_1_rb
       - input_select.house_mode_select
       - media_player.melkers_tv
       # tracking

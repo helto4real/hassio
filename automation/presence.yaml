@@ -5,14 +5,10 @@
       entity_id: group.tomas_devices
       from: 'not_home'
       to: 'home'
-      for:
-        minutes: 5 # change back to 10
     - platform: state
       entity_id: group.elins_devices
       from: 'not_home'
       to: 'home'
-      for:
-        minutes: 5 # change back to 10
   action:
     - service: input_select.select_option
       data_template:
@@ -37,13 +33,8 @@
             {% endif %}
           {% endif %}
 
-- alias: Mark person as home
+- alias: Mark Elin as home
   trigger:
-    - platform: state
-      entity_id: input_select.tomas_status_dropdown
-      to: 'Just Arrived'
-      for:
-        minutes: 10 # change back to 10
     - platform: state
       entity_id: input_select.elin_status_dropdown
       to: 'Just Arrived'
@@ -51,20 +42,25 @@
         minutes: 10 # change back to 10
     - platform: state
       entity_id: input_select.tomas_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10 # change back to 10        
+    - platform: state
+      entity_id: input_select.elin_status_dropdown
       from: 'Just Left'
       to: 'Just Arrived'
     - platform: state
-      entity_id: input_select.elin_status_dropdown
+      entity_id: input_select.tomas_status_dropdown
       from: 'Just Left'
       to: 'Just Arrived'
   action:
     - service: input_select.select_option
       data_template:
         entity_id: >
-          {% if trigger.entity_id == 'input_select.tomas_status_dropdown' %}
-            input_select.tomas_status_dropdown
-          {% else %}
+          {% if trigger.entity_id == 'input_select.elin_status_dropdown' %}
             input_select.elin_status_dropdown
+          {% else %}
+              input_select.tomas_status_dropdown
           {% endif %}
         option: Home
 
@@ -74,14 +70,10 @@
       entity_id: group.tomas_devices
       from: 'home'
       to: 'not_home'
-      for:
-        minutes: 10 
     - platform: state
       entity_id: group.elins_devices
       from: 'home'
       to: 'not_home'
-      for:
-        minutes: 10   
   action:
     - service: input_select.select_option
       data_template:
@@ -99,12 +91,12 @@
       entity_id: input_select.tomas_status_dropdown
       to: 'Just Left'
       for:
-        minutes: 10 # change back to 10 minutes
+        minutes: 1 # change back to 10 minutes
     - platform: state
       entity_id: input_select.elin_status_dropdown
       to: 'Just Left'
       for:
-        minutes: 10 # change back to 10 minutes
+        minutes: 1 # change back to 10 minutes
   action:
     - service: input_select.select_option
       data_template:

@@ -12,7 +12,7 @@ global_parameters:
 
 
 layout:
-    - device_tracker.elin_s8, device_tracker.tomasgps, device_tracker.sally_s7, device_tracker.melker_s7
+    - device_tracker.elingps, device_tracker.tomasgps, device_tracker.sally_s7, device_tracker.melkergps
     - clock(3x2), outside_temperature
     - outside_humidity
     - next_alarm(3x1), mode_night

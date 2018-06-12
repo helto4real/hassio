@@ -4,8 +4,8 @@
   trigger:
     platform: zone
     entity_id: 
-      - device_tracker.elin_s8
-      - device_tracker.melker_s7
+      - device_tracker.elingps
+      - device_tracker.melkergps
       - device_tracker.sally_s7
       - device_tracker.tomasgps
     zone: zone.home
@@ -21,8 +21,8 @@
   trigger:
     platform: zone
     entity_id: 
-      - device_tracker.elin_s8
-      - device_tracker.melker_s7
+      - device_tracker.elingps
+      - device_tracker.melkergps
       - device_tracker.sally_s7
       - device_tracker.tomasgps
     zone: zone.home

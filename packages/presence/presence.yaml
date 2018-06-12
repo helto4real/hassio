@@ -3,20 +3,21 @@ sensor:
     sensors:
       tomas_status:
         value_template: '{{ states.input_select.tomas_status_dropdown.state }}'
-        friendly_name: 'Tomas'
+        friendly_name: 'Tomas presence sensor'
   - platform: template
     sensors:
       elin_status:
         value_template: '{{ states.input_select.elin_status_dropdown.state }}'
-        friendly_name: 'Elin'
+        friendly_name: 'Elin  presence sensor'
   - platform: template
     sensors:
       sally_status:
         value_template: '{{ states.input_select.sally_status_dropdown.state }}'
-        friendly_name: 'Sally'
+        friendly_name: 'Sally presence sensor'
   - platform: template
     sensors:
       tomas_device_tracker:
+        friendly_name: 'Tomas presence sensor 2'
         value_template: >-
           {% if is_state("device_tracker.tomas_phone_bt", "home") or is_state("device_tracker.tomasgps", "home") or is_state("device_tracker.tomass8", "home") %}
             Hemma
@@ -78,42 +79,38 @@ input_select:
 #zone_sjukhuset
 #zone_birsta
 
-#automation:
-#  - alias: "Enter Zone"
-#    trigger:
+automation:
+  - alias: "Enter Zone"
+    trigger:
+      - platform: state
+        entity_id: device_tracker.tomasgps, device_tracker.elingps
 #      - platform: zone
-#        entity_id: device_tracker.tomasgps, device_tracker.elin_s8
+#        entity_id: device_tracker.tomasgps, device_tracker.elingps
 #        zone: zone.home
 #        event: enter
-#    action:
-#    - service: input_select.select_option
-#      data_template:
-#          entity_id: >
-#            {% if trigger.entity_id == 'device_tracker.tomasgps' %}
-#              input_select.tomas_status_dropdown
-#            {% else %}
-#              input_select.elin_status_dropdown
-#            {% endif %}
-#          option: >
-#           {{trigger.zone.attributes.friendly_name}}
+    condition:
+      condition: template
+      value_template: "{{ trigger.to_state != 'home'}}"
+    action:
+    - service: input_select.select_option
+      data_template:
+          entity_id: >
+            {% if trigger.entity_id == 'device_tracker.tomasgps' %}
+              input_select.tomas_status_dropdown
+            {% else %}
+              input_select.elin_status_dropdown
+            {% endif %}
+          option: >
+           {{ trigger.to_state.state | title }}
 
 
 group:
-
-  #trackers
-#  trackers:
-#    name: Familjen tillgänglig (trackers)
-#    view: no
-#    entities:
-#      - device_tracker.tomasgps
-#      - device_tracker.elin_s8
-#      - device_tracker.sally_s7
-#      - device_tracker.melker_s7
 
   people_status:
     name: Familjen hemmastatus
     entities:
       - sensor.tomas_status
+      - sensor.tomas_device_tracker
       - sensor.elin_status
       - sensor.sally_status
 
@@ -131,8 +128,21 @@ group:
     view: no
     entities:
       - device_tracker.elins_phone_bt
-      - device_tracker.elin_s8
+      - device_tracker.elingps
       - device_tracker.elinss8  
+
+  melkers_devices:
+    name: Melker hemma
+    view: no
+    entities:
+      - device_tracker.melkergps
+      - device_tracker.samsunggalaxys7
+
+  sallys_devices:
+    name: Melker hemma
+    view: no
+    entities:
+#      - device_tracker.sallygps
 
   presence:
     name: Familjens devicestatus

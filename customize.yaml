@@ -24,19 +24,24 @@ switch.switch7:
 switch.switch8:
   friendly_name: Melkers TV swtich
   icon: mdi:google-chrome
+
+switch.switch9outdoor:
+  friendly_name: Switch farstukvist
+
 switch.switch10: 
   friendly_name: Lampor vägg TV-rummet nere
   icon: mdi:lightbulb
 light.tvrummet_nere:
   friendly_name: Lampor fönster TV-rummet nere
-  
+
+# Tomas devices  
 sensor.tomas_status:
-  entity_picture: /local/tomas.jpg
-device_tracker.tomass8:
-  friendly_name: Tomas mobil wifi
   entity_picture: /local/tomas.jpg
 group.tomas_devices:
   friendly_name: Tomas mobil
+  entity_picture: /local/tomas.jpg
+device_tracker.tomass8:
+  friendly_name: Tomas mobil wifi
   entity_picture: /local/tomas.jpg
 device_tracker.tomas_phone_bt:
   friendly_name: Tomas mobil BT
@@ -45,18 +50,25 @@ device_tracker.tomasgps:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
 
+# Elins devices
+group.elins_devices:
+  friendly_name: Elins mobil
+  entity_picture: /local/elin.jpg
 sensor.elin_status:
   entity_picture: /local/elin.jpg
 device_tracker.elinss8:
   friendly_name: Elins mobil wifi
   entity_picture: /local/elin.jpg
-group.elins_devices:
-  friendly_name: Elins mobil
-  entity_picture: /local/elin.jpg
 device_tracker.elins_phone_bt:
   friendly_name: Elins mobil BT
   entity_picture: /local/elin.jpg
+device_tracker.elingps:
+  friendly_name: Elins mobil GPS
+  entity_picture: /local/elin.jpg
 
+group.sallys_devices:
+  friendly_name: Sallys mobil
+  entity_picture: /local/sally.jpg
 sensor.sally_status:
   entity_picture: /local/sally.jpg
 device_tracker.galaxys6edge:
@@ -71,10 +83,16 @@ binary_sensor.sensor_tvrummet_2:
   friendly_name: Rörelsedetektor TV-rummet nere
 
 sensor.167_temperature:  #Frys nere
-  friendly_name: Frys nere temperatur
+  friendly_name: Temperatur frysbox
 sensor.151_temperature:  #Frys uppe
-  friendly_name: Frys uppe temperatur
+  friendly_name: Temperatur frys kök
    
+sensor.utetemp_temperature:
+  friendly_name: Temperatur ute
+sensor.utetemp_humidity:
+  friendly_name: Luftfuktighet ute
+  
+
 configurator.deconz:
   hidden: true
   homebridge_hidden: true
