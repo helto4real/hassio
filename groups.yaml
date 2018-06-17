@@ -116,7 +116,7 @@ room_vardagsrum_uppe:
     - switch.switch3 #Höger
     - switch.switch4 #Vänster
     - switch.switch5 #Hallen
-    - light.halluppe #Hall uppe
+    - light.hallenuppe #Hall uppe
 
 room_koket:
   name: Köket
