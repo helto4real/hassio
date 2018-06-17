@@ -71,14 +71,32 @@ group.sallys_devices:
   entity_picture: /local/sally.jpg
 sensor.sally_status:
   entity_picture: /local/sally.jpg
-device_tracker.galaxys6edge:
+device_tracker.huawei_p20_pro2d36a29977:
   friendly_name: Sallys mobil wifi
   entity_picture: /local/sally.jpg
- 
-binary_sensor.tradfri_motion_sensor_:
+
+device_tracker.sallygps:
+  friendly_name: Sallys mobil GPS
+  entity_picture: /local/sally.jpg
+
+
+group.melkers_devices:
+  friendly_name: Melkers mobil
+  entity_picture: /local/melker.jpg
+sensor.melker_status:
+  entity_picture: /local/melker.jpg
+device_tracker.samsunggalaxys7:
+  friendly_name: Melkers mobil wifi
+  entity_picture: /local/melker.jpg
+
+device_tracker.melkergps:
+  friendly_name: Melker mobil GPS
+  entity_picture: /local/melker.jpg
+
+binary_sensor.rorelsesensor_uppe:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
-binary_sensor.sensor_tvrummet_2:
+binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
 

@@ -37,6 +37,8 @@ tracker_view:
   entities:
     - group.tomas_devices
     - group.elins_devices
+    - group.sallys_devices
+    - group.melkers_devices
 
 ligths_view:
   view: yes
@@ -70,14 +72,14 @@ upper_floor:
     - group.room_sally
     - group.room_vardagsrum_uppe
     - group.room_koket
-    - binary_sensor.tradfri_motion_sensor_
+    - binary_sensor.rorelsesensor_uppe
 
 lower_floor:
   name: Undervåning
   view: no
   entities:
     - group.room_tvnere
-    - binary_sensor.sensor_tvrummet_2
+    - binary_sensor.rorelsesensor_nere
 outside:
   name: Ute
   view: no

@@ -60,7 +60,7 @@
           {% if trigger.entity_id == 'input_select.elin_status_dropdown' %}
             input_select.elin_status_dropdown
           {% else %}
-              input_select.tomas_status_dropdown
+            input_select.tomas_status_dropdown
           {% endif %}
         option: Home
 
@@ -91,12 +91,12 @@
       entity_id: input_select.tomas_status_dropdown
       to: 'Just Left'
       for:
-        minutes: 1 # change back to 10 minutes
+        minutes: 10 # change back to 10 minutes
     - platform: state
       entity_id: input_select.elin_status_dropdown
       to: 'Just Left'
       for:
-        minutes: 1 # change back to 10 minutes
+        minutes: 10 # change back to 10 minutes
   action:
     - service: input_select.select_option
       data_template:
@@ -134,7 +134,7 @@
 - alias: Send message on away-home notice Tomas
   trigger:
     - platform: state
-      entity_id: input_select.tomas_status_dropdown #, input_select.elin_status_dropdown
+      entity_id: sensor.tomas_status #, input_select.elin_status_dropdown
   action:
     service: script.notify
     data_template:
@@ -145,7 +145,7 @@
 - alias: Send message on away-home notice Elin
   trigger:
     - platform: state
-      entity_id: input_select.elin_status_dropdown #, input_select.elin_status_dropdown
+      entity_id: sensor.elin_status #, input_select.elin_status_dropdown
   action:
     service: script.notify
     data_template:
@@ -153,11 +153,11 @@
       title: "{{trigger.to_state.attributes.friendly_name}} status"
       message: "{{trigger.to_state.attributes.friendly_name}} har status {{trigger.to_state.state}}"    
 
-#binary_sensor.tradfri_motion_sensor_
+#binary_sensor.rorelsesensor_uppe
 - alias: Turn on light when there is movement in the hall
   trigger:
     platform: state
-    entity_id: binary_sensor.tradfri_motion_sensor_
+    entity_id: binary_sensor.rorelsesensor_uppe
     to: 'on'
   condition: 
     - condition: state
@@ -170,7 +170,7 @@
 - alias: Turn off light when there is no movement in the hall
   trigger:
     platform: state
-    entity_id: binary_sensor.tradfri_motion_sensor_
+    entity_id: binary_sensor.rorelsesensor_uppe
     to: 'off'
     for:
       minutes: 20
@@ -186,7 +186,7 @@
 - alias: Turn on light when there is movement in TV-rummet nere
   trigger:
     platform: state
-    entity_id: binary_sensor.sensor_tvrummet_2
+    entity_id: binary_sensor.rorelsesensor_nere
     to: 'on'
   condition: 
     - condition: state
@@ -199,7 +199,7 @@
 - alias: Turn off light when there is no movement in TV-rummet nere
   trigger:
     platform: state
-    entity_id: binary_sensor.sensor_tvrummet_2
+    entity_id: binary_sensor.rorelsesensor_nere
     to: 'off'
     for:
       minutes: 20

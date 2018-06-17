@@ -16,6 +16,11 @@ sensor:
         friendly_name: 'Sally presence sensor'
   - platform: template
     sensors:
+      melker_status:
+        value_template: '{{ states.input_select.melker_status_dropdown.state }}'
+        friendly_name: 'Melker presence sensor'
+  - platform: template
+    sensors:
       tomas_device_tracker:
         friendly_name: 'Tomas presence sensor 2'
         value_template: >-
@@ -64,6 +69,7 @@ input_select:
       - SPV
       - Sjukhuset
       - Birsta
+      - Matfors Skola
     initial: Home
   sally_status_dropdown:
     name: Sally
@@ -73,8 +79,25 @@ input_select:
       - Just Left
       - Away
       - Extended Away
+      - SPV
+      - Sjukhuset
+      - Birsta
+      - Matfors Skola
     initial: Home
 
+  melker_status_dropdown:
+    name: Melker
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+      - SPV
+      - Sjukhuset
+      - Birsta
+      - Matfors Skola
+    initial: Home
 #zone_spv
 #zone_sjukhuset
 #zone_birsta
@@ -109,6 +132,7 @@ group:
       - sensor.tomas_device_tracker
       - sensor.elin_status
       - sensor.sally_status
+      - sensor.melker_status
 
   tomas_devices:
     name: Tomas hemma
@@ -135,10 +159,11 @@ group:
       - device_tracker.samsunggalaxys7
 
   sallys_devices:
-    name: Melker hemma
+    name: Sally hemma
     view: no
     entities:
-#      - device_tracker.sallygps
+      - device_tracker.sallygps
+      - device_tracker.huawei_p20_pro2d36a29977
 
   presence:
     name: Familjens devicestatus
@@ -147,6 +172,9 @@ group:
     entities:
       - group.tomas_devices
       - group.elins_devices
+      - group.sallys_devices
+      - group.melkers_devices
+
 # For tracking
 device_tracker:
   - platform: nmap_tracker
