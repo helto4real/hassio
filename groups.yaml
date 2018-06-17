@@ -8,7 +8,6 @@ default_view:
     - group.upper_floor
     - group.lower_floor
     - group.outside
-#    - group.trackers
     - group.people_status
     - sensor.tomas_alarm
     - input_select.house_mode_select
