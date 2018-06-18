@@ -20,7 +20,8 @@ media_view:
   view: yes
   icon: mdi:television
   entities:
-    - group.media_players
+    - group.googlehomes
+    - group.chromecasts
     - group.remotes
     - switch.switch8 # Melkers tv
 

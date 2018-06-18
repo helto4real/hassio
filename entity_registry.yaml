@@ -30,7 +30,7 @@ media_player.tv_uppe:
   name:
   platform: cast
   unique_id: 087998a3-d700-5ef6-4c17-97b112370b87
-media_player.google_assist:
+media_player.tvroom:
   name:
   platform: cast
   unique_id: ea7fc10d-4791-d881-2ef4-960c69b5c33c
@@ -42,3 +42,15 @@ media_player.melkers_tv:
   name:
   platform: cast
   unique_id: 3d6c7ea6-0692-51a5-18c7-7172b909c585
+media_player.vardagsrum:
+  name:
+  platform: cast
+  unique_id: b40b57c2-787b-a1aa-4322-eb924cd8795e
+media_player.sovrum:
+  name:
+  platform: cast
+  unique_id: 7cdca68b-2882-5019-b7cc-cf587fa9465b
+media_player.house:
+  name:
+  platform: cast
+  unique_id: e5194bc4-ae25-4f70-b489-f06e8f9fac23

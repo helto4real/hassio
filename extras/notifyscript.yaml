@@ -8,8 +8,8 @@ who: >
   {% else %} {{tell}} {% endif %}
 
 media_player: >
-  {% if now().hour < 7 and now().hour > 20 %} media_player.google_assist
-  {% else %} media_player.google_assist {% endif %}
+  {% if now().hour < 7 and now().hour > 20 %} media_player.sovrum
+  {% else %} media_player.sovrum {% endif %}
 
 title: >
   {% if title is defined %}
@@ -31,8 +31,8 @@ message: >
   {%- endmacro -%}
 
   {%- macro inform() -%}
-    {{ ["Jag vill bara informera att ", "Jag vill bara att du ska veta att ",
-      "Du ville att jag ska informera att ", "Jag tänkte att det kan vara bra om du vet att "]|random }}
+    {{ ["Jag vill bara informera att ", "Det är så att ",
+      "Du ville att jag ska informera att ", "För din information så "]|random }}
   {%- endmacro -%}
 
   {# ************************************* #}
