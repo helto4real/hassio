@@ -18,9 +18,11 @@ packages/alarm/secrets.yaml
 !packages/goodmorning
 !packages/media
 !packages/modes
+!packages/nightlights
 !packages/notifications
 !packages/presence
 !packages/system
+!packages/wallswitches
 !www
 !light
 !custom_components

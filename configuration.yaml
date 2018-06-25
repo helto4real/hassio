@@ -167,7 +167,4 @@ input_datetime:
       has_time: true
 
 zone: !include zones.yaml
-#scene: !include scenes.yaml
 group: !include groups.yaml
-automation: !include_dir_merge_list automation
-script: !include scripts.yaml
