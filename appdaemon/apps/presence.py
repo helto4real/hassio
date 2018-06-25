@@ -27,6 +27,8 @@ import globals
 #
 #   Check https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/ as inspiration
 #
+# CHECK README FOR HOW TO PROPERLY SETUP TRIGGERS!!!
+#
 
 class a_better_presence(hass.Hass):
 

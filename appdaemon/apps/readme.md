@@ -19,7 +19,7 @@ Away->Just arrived->Away
 ```
 
 Now I can trigger a welcome message on just arrived but it will not trigger if I was temporarily Just left and got Home again.
-You can easily customize the state names in globals.py
+
 ### Group functionality
 You will have to have your devices in a group. Recommed one gps, like owtracks or gpstracker, one bluetooth and one wifi like nmap. 3 devices like this gives the best result imo. 
 
@@ -36,4 +36,28 @@ app_presence_tomas:
   timer: 600                            # timeout in seconds from just arrived to home and just left to away
   entity_picture: /local/tomas.jpg      # custom entity picture (optional)
   group_devices: group.tomas_devices    # The group that contains the trackked devices
+```
+
+## Configuring triggers on states
+
+You will have to use the condition like below not to make the trigger fire 
+when you reboot the device or hass
+
+Example below sends a message through script when state changes except when from_state is nothing wich is the case when it starts.
+
+```
+automation:
+  - alias: Send message on away-home notice Tomas
+    trigger:
+      - platform: state
+        entity_id: sensor.presence_tomas 
+    condition:
+      - condition: template
+        value_template: "{{ trigger.from_state != None }}"
+    action:
+      service: script.notify
+      data_template:
+        tell: th
+        title: "Tomas status {{trigger.to_state.state}}"
+        message: "Tomas has changed status for tracker {{trigger.to_state.state}}"    
 ```
