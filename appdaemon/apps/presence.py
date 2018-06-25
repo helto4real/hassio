@@ -37,9 +37,18 @@ class a_better_presence(hass.Hass):
         self.devices = self.get_state( self.args["group_devices"], attribute="all" )['attributes']['entity_id']
         self.sensorname = "sensor.{}".format(self.args["name"])
         self.timeout = int(self.args["timer"])
+        
+        # for setting different attributes we get from gps enabled device in group (tested with gpstracker)
         self.enity_picture = None
         if "entity_picture" in self.args:
             self.enity_picture = self.args["entity_picture"]
+        
+        self.longitude = None
+        self.latitude = None
+        self.battery = None
+        self.speed = None
+        self.source_type = None
+
         self.get_device_states()
         
         self._last_state_before_timer = "unknown"            # Tracks state before timer 
@@ -72,6 +81,17 @@ class a_better_presence(hass.Hass):
 
         if self.enity_picture != None:
             attributes['entity_picture'] = self.enity_picture
+        if self.source_type != None:
+            attributes['source_type'] = self.source_type
+        if self.longitude != None:
+            attributes['longitude'] = self.longitude
+        if self.latitude != None:
+            attributes['latitude'] = self.latitude
+        if self.battery != None:
+            attributes['battery'] = self.battery
+        if self.longitude != None:
+            attributes['speed'] = self.speed
+
 
         self.set_state(self.sensorname, state=state_to_set, attributes=attributes)
 
@@ -92,7 +112,26 @@ class a_better_presence(hass.Hass):
         if new_state != old_state:
             self.log("{} changed status from {} to {}".format(entity, old_state, new_state))
             self.refresh_presence_state()
+    # Parse and set gps device attributes
+    def set_gps_attributes(self, attributes):
+        
+        if 'latitude' in attributes:
+            self.latitude = attributes['latitude']
+        if 'source_type' in attributes:
+            self.source_type = attributes['source_type']
+        if 'longitude' in attributes:
+            self.longitude = attributes['longitude']
+        if 'speed' in attributes:
+            self.speed = attributes['speed']
+        if 'battery' in attributes:
+            self.battery = attributes['battery']
 
+    # Returns true if device attributes is a gps device else false
+    def is_gps_device(self, attributes):
+        if 'source_type' in attributes and attributes['source_type']=='gps' and 'latitude' in attributes :
+            return True
+        else:
+            return False
 
     # Gets the group state of all devices. one device state is home, the groupstate is home
     # if gps device is in a zone, the state is the zone name else away     
@@ -103,10 +142,15 @@ class a_better_presence(hass.Hass):
             state = self.device_states[device_name]
             if state['state'] == 'home':
                 group_state = 'home'
-                break
+                if self.is_gps_device(state['attributes']):
+                    self.set_gps_attributes(state['attributes']) 
             else:
-                if state['attributes']['source_type']=='gps' and 'latitude' in state['attributes'] and state['state']!="not_home":
-                    group_state = state['state']
+                if self.is_gps_device(state['attributes']):
+                    if group_state != 'home' and state['state']!="not_home":
+                        group_state = state['state']
+                
+                    self.set_gps_attributes(state['attributes'])    
+                    
 
         return group_state
 

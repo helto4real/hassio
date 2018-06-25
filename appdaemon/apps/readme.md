@@ -19,14 +19,14 @@ Away->Just arrived->Away
 ```
 
 Now I can trigger a welcome message on just arrived but it will not trigger if I was temporarily Just left and got Home again.
-
 You can easily customize the state names in globals.py
-
 ### Group functionality
 You will have to have your devices in a group. Recommed one gps, like owtracks or gpstracker, one bluetooth and one wifi like nmap. 3 devices like this gives the best result imo. 
 
 The logic is: If any of the devices is home the group is home and if none of the devices is home the group is away.
 
+### Tracking of gps coordinates
+The sensor will have the same tracking coordinates as the gps device in group. Make sure you only have one gps device!!!
 ## Cofigure in apps.yaml
 ```
 app_presence_tomas:
@@ -34,5 +34,6 @@ app_presence_tomas:
   class: a_better_presence
   name: presence_tomas                  # name of the device in Hass
   timer: 600                            # timeout in seconds from just arrived to home and just left to away
+  entity_picture: /local/tomas.jpg      # custom entity picture (optional)
   group_devices: group.tomas_devices    # The group that contains the trackked devices
 ```
