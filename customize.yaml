@@ -35,8 +35,6 @@ light.tvrummet_nere:
   friendly_name: Lampor fönster TV-rummet nere
 
 # Tomas devices  
-sensor.tomas_status:
-  entity_picture: /local/tomas.jpg
 group.tomas_devices:
   friendly_name: Tomas mobil
   entity_picture: /local/tomas.jpg
@@ -49,15 +47,13 @@ device_tracker.tomas_phone_bt:
 device_tracker.tomasgps:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
-sensor.presence_elin:
-  friendly_name: Tomas mobil GPS
-  entity_picture: /local/tomas.jpg
 sensor.presence_tomas:
   friendly_name: Tomas tracker
   entity_picture: /local/tomas.jpg
+
 # Elins devices
- 
-sensor.elin_status:
+group.elins_devices:
+  friendly_name: Elins mobil
   entity_picture: /local/elin.jpg
 device_tracker.elinss8:
   friendly_name: Elins mobil wifi
@@ -68,8 +64,8 @@ device_tracker.elins_phone_bt:
 device_tracker.elingps:
   friendly_name: Elins mobil GPS
   entity_picture: /local/elin.jpg
-group.elins_devices:
-  friendly_name: Elins tracker
+sensor.presence_elin:
+  friendly_name: Elin tracker
   entity_picture: /local/elin.jpg
 
 group.sallys_devices:

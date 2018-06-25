@@ -20,6 +20,8 @@ Away->Just arrived->Away
 
 Now I can trigger a welcome message on just arrived but it will not trigger if I was temporarily Just left and got Home again.
 
+You can easily customize the state names in globals.py
+
 ### Group functionality
 You will have to have your devices in a group. Recommed one gps, like owtracks or gpstracker, one bluetooth and one wifi like nmap. 3 devices like this gives the best result imo. 
 

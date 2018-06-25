@@ -8,13 +8,13 @@ default_view:
     - group.upper_floor
     - group.lower_floor
     - group.outside
-    - group.people_status
     - sensor.tomas_alarm
     - input_select.house_mode_select
     - sensor.house_mode
     - group.frysar_temperatur
     - group.presence
-    - sensor.tomas_device_tracker
+    - group.people_status
+    
 #    - input_datetime.dateimte_time_to_turn_of_lights
 media_view:
   view: yes

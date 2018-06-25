@@ -67,19 +67,10 @@ automation:
       service: script.notify
       data_template:
         tell: th
-        title: "{{trigger.to_state.attributes.friendly_name}} status"
-        message: "{{trigger.to_state.attributes.friendly_name}} har status {{trigger.to_state.state}}"    
+        title: "Tomas status {{trigger.to_state.state}}"
+        message: "Tomas har ändrat tracking status till {{trigger.to_state.state}}"    
 
-#- alias: Send message on away-home notice Elin
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.elin_status #, input_select.elin_status_dropdown
-#  action:
-#    service: script.notify
-#    data_template:
-#      tell: th
-#      title: "{{trigger.to_state.attributes.friendly_name}} status"
-#      message: "{{trigger.to_state.attributes.friendly_name}} har status {{trigger.to_state.state}}"    
+   
 
 
 # For tracking
