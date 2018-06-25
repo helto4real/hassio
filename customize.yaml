@@ -49,11 +49,14 @@ device_tracker.tomas_phone_bt:
 device_tracker.tomasgps:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
-
+sensor.presence_elin:
+  friendly_name: Tomas mobil GPS
+  entity_picture: /local/tomas.jpg
+sensor.presence_tomas:
+  friendly_name: Tomas tracker
+  entity_picture: /local/tomas.jpg
 # Elins devices
-group.elins_devices:
-  friendly_name: Elins mobil
-  entity_picture: /local/elin.jpg
+ 
 sensor.elin_status:
   entity_picture: /local/elin.jpg
 device_tracker.elinss8:
@@ -64,6 +67,9 @@ device_tracker.elins_phone_bt:
   entity_picture: /local/elin.jpg
 device_tracker.elingps:
   friendly_name: Elins mobil GPS
+  entity_picture: /local/elin.jpg
+group.elins_devices:
+  friendly_name: Elins tracker
   entity_picture: /local/elin.jpg
 
 group.sallys_devices:
