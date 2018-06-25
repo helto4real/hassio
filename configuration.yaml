@@ -55,8 +55,9 @@ recorder:
       - input_select.house_mode_select
       - media_player.melkers_tv
       # tracking
-      - sensor.tomas_status
-      - sensor.elin_status
+      - sensor.presence_elin
+      - sensor.presence_tomas
+
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity

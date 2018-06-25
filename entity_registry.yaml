@@ -1,56 +1,70 @@
 binary_sensor.rorelsesensor_nere:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:2f:54-01-1000
 binary_sensor.rorelsesensor_uppe:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
 light.tvrummet_hoger:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:86:06:19-01
 light.hallenuppe:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:c9:82:b8-01
 light.tvrummet_vanster:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:d4:31:5a-01
 sensor.daylight:
+  config_entry_id:
   name:
   platform: deconz
   unique_id: 00:21:2e:ff:ff:02:2d:8f-01
-media_player.tv_nere:
-  name:
-  platform: cast
-  unique_id: 94ca05ce-0d02-d84c-f6a0-a6744f843b58
 media_player.tv_uppe:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
   name:
   platform: cast
   unique_id: 087998a3-d700-5ef6-4c17-97b112370b87
-media_player.tvroom:
-  name:
-  platform: cast
-  unique_id: ea7fc10d-4791-d881-2ef4-960c69b5c33c
-media_player.kitchen:
-  name:
-  platform: cast
-  unique_id: 970fe191-3b8e-03dc-ca4d-c3a6a81b4d97
 media_player.melkers_tv:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
   name:
   platform: cast
   unique_id: 3d6c7ea6-0692-51a5-18c7-7172b909c585
-media_player.vardagsrum:
+media_player.tv_nere:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
   name:
   platform: cast
-  unique_id: b40b57c2-787b-a1aa-4322-eb924cd8795e
+  unique_id: 94ca05ce-0d02-d84c-f6a0-a6744f843b58
+media_player.tv_rummet_gh:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
+  name:
+  platform: cast
+  unique_id: ea7fc10d-4791-d881-2ef4-960c69b5c33c
 media_player.sovrum:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
   name:
   platform: cast
   unique_id: 7cdca68b-2882-5019-b7cc-cf587fa9465b
+media_player.vardagsrum:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
+  name:
+  platform: cast
+  unique_id: b40b57c2-787b-a1aa-4322-eb924cd8795e
 media_player.house:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
   name:
   platform: cast
   unique_id: e5194bc4-ae25-4f70-b489-f06e8f9fac23
+media_player.kitchen:
+  config_entry_id: e716b2017d1542c9afe2e994d94b620b
+  name:
+  platform: cast
+  unique_id: 970fe191-3b8e-03dc-ca4d-c3a6a81b4d97

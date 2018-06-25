@@ -1,19 +1,4 @@
-# Chrome casts
-media_player:
-  - platform: cast
-    host: !secret gc1
-  - platform: cast
-    host: !secret gc2
-  - platform: cast
-    host: !secret gc3
-  - platform: cast
-    host: !secret gc4
-  - platform: cast
-    host: !secret gc5
-  - platform: cast
-    host: !secret gc6
-  - platform: cast
-    host: !secret gc7
+
 # Harmony multi
 remote:
   - platform: harmony
@@ -37,6 +22,7 @@ group:
       - media_player.house
       - media_player.kitchen
       - media_player.sovrum
+      - media_player.vardagsrum
       - media_player.tvroom
 
   chromecasts:
@@ -66,7 +52,7 @@ automation:
     trigger:
       - platform: state
         entity_id: media_player.tv_nere
-        to: 'Idle'
+        to: 'idle'
         for: '00:05:00'
     action:
       - service: homeassistant.off
@@ -76,7 +62,7 @@ automation:
     trigger:
       - platform: state
         entity_id: media_player.tv_nere
-        to: 'Off'
+        to: 'off'
         for: '00:05:00'
     action:
       - service: homeassistant.off
