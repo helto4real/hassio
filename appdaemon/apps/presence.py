@@ -14,6 +14,7 @@ import globals
 #   class: a_better_presence
 #   name: presence_tomas                  # name of the device in Hass
 #   timer: 10                             # timeout in seconds from just arrived to home and just left to away
+#   entity_picture: /local/tomas.jpg      # Entity picture (optional)
 #   group_devices: group.tomas_devices    # The group that contains the trackked devices
 #
 # Standard states:
@@ -36,6 +37,9 @@ class a_better_presence(hass.Hass):
         self.devices = self.get_state( self.args["group_devices"], attribute="all" )['attributes']['entity_id']
         self.sensorname = "sensor.{}".format(self.args["name"])
         self.timeout = int(self.args["timer"])
+        self.enity_picture = None
+        if "entity_picture" in self.args:
+            self.enity_picture = self.args["entity_picture"]
         self.get_device_states()
         
         self._last_state_before_timer = "unknown"            # Tracks state before timer 
@@ -57,12 +61,17 @@ class a_better_presence(hass.Hass):
 
     # Sets sensor state to given state, uses the global
     # names for known states
-    def set_sensor_state(self, state, attributes):
+    def set_sensor_state(self, state):
         state_to_set = "Unknown"
         if state in globals.presence_state:
             state_to_set = globals.presence_state[state]
         else:
             state_to_set = state
+
+        attributes = {}
+
+        if self.enity_picture != None:
+            attributes['entity_picture'] = self.enity_picture
 
         self.set_state(self.sensorname, state=state_to_set, attributes=attributes)
 
@@ -111,29 +120,29 @@ class a_better_presence(hass.Hass):
         
         if group_state != "home" and self._last_away_home_state=="home":
             # We just left
-            self.set_sensor_state("just_left", '')
+            self.set_sensor_state("just_left")
             self._last_state_before_timer = group_state #used to get real state after timer
             self.set_timer()
         elif group_state == "home":
             # Just arrived
             if self._last_away_home_state != "just_left":
-                self.set_sensor_state("just_arrived", '')
+                self.set_sensor_state("just_arrived")
                 self._last_state_before_timer = group_state #used to get real state after timer
                 self.set_timer()
             elif self._last_away_home_state != "just_arrived":
                 self.cancel_timer()
-                self.set_sensor_state("home", '')
+                self.set_sensor_state("home")
                 self._last_state_before_timer = group_state #used to get real state after timer
         else:
             self.cancel_timer() #Cancel just in case its in just_left or just_arrived
-            self.set_sensor_state(group_state, '')
+            self.set_sensor_state(group_state)
             self._last_away_home_state = group_state
         
         
     #initialization of state when everything starts up    
     def init_presence_state(self):
         group_state = self.get_group_state()
-        self.set_sensor_state(group_state, '')
+        self.set_sensor_state(group_state)
 
     # Set timer
     def set_timer(self):
@@ -154,6 +163,6 @@ class a_better_presence(hass.Hass):
     # if just arrived, set to home else just left set to the real state
     def on_timer(self):
         if self.state == globals.presence_state["just_arrived"]:
-            self.set_sensor_state("home", '')
+            self.set_sensor_state("home")
         elif self.state == globals.presence_state["just_left"]:
-            self.set_sensor_state(self._last_state_before_timer, '') #make sure we set the real state 
+            self.set_sensor_state(self._last_state_before_timer) #make sure we set the real state 

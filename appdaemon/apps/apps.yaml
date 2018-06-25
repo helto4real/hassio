@@ -6,6 +6,7 @@ global_modules: globals
 #  class: a_better_presence
 #  name: presence_tomas                  # name of the device in Hass
 #  timer: 600                            # timeout in seconds from just arrived to home and just left to away
+#  entity_picture: /local/tomas.jpg      # Entity picture (optional)
 #  group_devices: group.tomas_devices    # The group that contains the trackked devices
 
 
