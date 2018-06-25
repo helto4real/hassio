@@ -91,8 +91,7 @@ automation:
       entity_id: sensor.house_mode
       to: "Natt"
     action:
-      - service: scene.turn_on
-        entity_id: scene.Natt
+      - service: script.set_house_mode_night
 
   - alias: "Trigger 'Dag'"
     trigger:
@@ -100,8 +99,7 @@ automation:
       entity_id: sensor.house_mode
       to: "Dag"
     action:
-      - service: scene.turn_on
-        entity_id: scene.Dag
+      - service: script.set_house_mode_day
 
   - alias: "Trigger 'Kväll'"
     trigger:
@@ -109,8 +107,7 @@ automation:
       entity_id: sensor.house_mode
       to: "Kväll"
     action:
-      - service: scene.turn_on
-        entity_id: scene.Kvall
+      - service: script.set_house_mode_evening
 
   - alias: "Trigger 'Morgon'"
     trigger:
@@ -118,77 +115,61 @@ automation:
       entity_id: sensor.house_mode
       to: "Morgon"
     action:
-      - service: scene.turn_on
-        entity_id: scene.Morgon
-scene:
-  # Daytime all switches / lights should be off
-  - name: Dag
-    entities:
-      #övervåningen
-      group.room_tomas: 
-        state: off
-      group.room_sally:
-        state: off
-      group.room_vardagsrum_uppe:
-        state: off
-      group.room_koket:
-        state: off
-      # Undervångingen
-      group.room_tvnere:
-        state: off
-
-  # Night all switches / lights should be off
-  - name: Natt
-    entities:
-      #övervåningen
-      group.room_tomas: 
-        state: off
-      group.room_sally:
-        state: off
-      group.room_vardagsrum_uppe:
-        state: off
-      group.room_koket:
-        state: off
-      # Undervångingen
-      group.room_tvnere:
-        state: off
-
-  # Morning all switches / lights should be off
-  - name: Morgon
-    entities:
-      #övervåningen
-      group.room_tomas: 
-        state: off
-      group.room_sally:
-        state: off
-      group.room_vardagsrum_uppe:
-        state: off
-      group.room_koket:
-        state: off
-      # Undervångingen
-      group.room_tvnere:
-        state: off
-
-  # Evening all floors should be lit (based on sunset)
-  - name: Kväll
-    entities:
-      #övervåningen
-      group.room_tomas: 
-        state: on
-      group.room_sally:
-        state: on
-      group.room_vardagsrum_uppe:
-        state: on
-      group.room_koket:
-        state: on
-      # Undervångingen
-      group.room_tvnere:
-        state: on
+      - service: script.set_house_mode_morning
 
 script:
+  set_house_mode_night:
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          # Övervåningen
+          - group.room_tomas
+          - group.room_sally
+          - group.room_vardagsrum_uppe
+          - group.room_koket
+          # Undervångingen
+          - group.room_tvnere
+
+  set_house_mode_evening:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id:
+          # Övervåningen
+          - group.room_tomas
+          - group.room_sally
+          - group.room_vardagsrum_uppe
+          - group.room_koket
+          # Undervångingen
+          - group.room_tvnere  
+  
+  set_house_mode_day:
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          # Övervåningen
+          - group.room_tomas
+          - group.room_sally
+          - group.room_vardagsrum_uppe
+          - group.room_koket
+          # Undervångingen
+          - group.room_tvnere  
+
+  set_house_mode_morning:
+    sequence:
+      - service: homeassistant.turn_off
+        entity_id:
+          # Övervåningen
+          - group.room_tomas
+          - group.room_sally
+          - group.room_vardagsrum_uppe
+          - group.room_koket
+          # Undervångingen
+          - group.room_tvnere  
+   
   setnightmode:
     sequence:
       - service: input_select.select_option
         data_template:
           entity_id: input_select.house_mode_select
-          option:  "Natt"
+          option:  "Natt"          
+
