@@ -15,7 +15,7 @@ default_view:
     - group.presence
     - group.people_status
     
-#    - input_datetime.dateimte_time_to_turn_of_lights
+
 media_view:
   view: yes
   icon: mdi:television

@@ -107,17 +107,11 @@ google_assistant:
 hassio:    
 
 mqtt:
-  broker: 192.168.1.5
+  broker: !secret mqqtt_broker
   username: !secret mqtt_user
   password: !secret mqtt_password
-# Cloud
-#cloud:
 
-input_datetime:
-  dateimte_time_to_turn_of_lights:
-      name: Släcktid för hela huset
-      has_date: false
-      has_time: true
+#cloud:
 
 zone: !include zones.yaml
 group: !include groups.yaml
