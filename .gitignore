@@ -16,6 +16,7 @@ appdaemon/secrets.yaml
 packages/alarm/secrets.yaml
 !packages/environment
 !packages/goodmorning
+!packages/google
 !packages/media
 !packages/modes
 !packages/nightlights

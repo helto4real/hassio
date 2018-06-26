@@ -1,0 +1,14 @@
+dialogflow:
+
+intent_script:
+  Temperature:
+    speech:
+      text: The temperature at home is {{ states('sensor.utetemp_temperature') }} degrees
+  Turn_on:
+    speech:
+      text: Turning on {{ rooms }} 
+    #action:
+    #  - service_template: >
+    #        homeassistant.turn_on
+    #    data_template:
+    #      entity_id: "group.{{ rooms | replace(' ', '_') }}"

@@ -85,25 +85,6 @@ tts:
     cache: false
     time_memory: 600
 
-google_assistant:
-  project_id: hellstroms-home
-  client_id: !secret google_assistant_id
-  access_token: !secret google_assistant_token
-  expose_by_default: false
-  entity_config:
-    group.room_tomas:
-      name: Thomas room
-      expose: true
-    group.room_tvnere:
-      name: Tv room
-      expose: true
-    group.room_vardagsrum_uppe:
-      name: Living room
-      expose: true
-    group.room_koket:
-      name: Kitchen
-      expose: true    
-
 hassio:    
 
 mqtt:
