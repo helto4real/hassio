@@ -21,6 +21,7 @@ packages/alarm/secrets.yaml
 !packages/nightlights
 !packages/notifications
 !packages/presence
+!packages/rfxtrx
 !packages/system
 !packages/wallswitches
 !www
