@@ -1,14 +1,28 @@
 global_modules: globals
+app_presence_tomas:
+  module: presence
+  class: a_better_presence
+  name: presence_tomas                  # name of the device in Hass
+  timer: 600                            # timeout in seconds from just arrived to home and just left to away
+  entity_picture: /local/tomas.jpg      # Entity picture (optional)
+  group_devices: group.tomas_devices    # The group that contains the trackked devices
 
-# Is removed due to developent on pc
-#app_presence_tomas:
-#  module: presence
-#  class: a_better_presence
-#  name: presence_tomas                  # name of the device in Hass
-#  timer: 600                            # timeout in seconds from just arrived to home and just left to away
-#  entity_picture: /local/tomas.jpg      # Entity picture (optional)
-#  group_devices: group.tomas_devices    # The group that contains the trackked devices
 
+app_presence_elin:
+  module: presence
+  class: a_better_presence
+  name: presence_elin
+  entity_picture: /local/elin.jpg
+  timer: 600
+  group_devices: group.elins_devices
+
+app_presence_test:
+  module: presence
+  class: a_better_presence
+  name: presence_test
+  entity_picture: /local/elin.jpg
+  timer: 10 
+  group_devices: group.test_devices
 
 app_sr_play_program:
   module: sr_play_program

@@ -39,7 +39,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-#discovery: # Set this on to discover new devices. I have it off to make system more responsive
+discovery: # Set this on to discover new devices. I have it off to make system more responsive
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -96,8 +96,8 @@ rfxtrx:
                             
 switch:
   platform: rfxtrx
-  automatic_add: True
-  signal_repetitions: 2
+  automatic_add: False
+  signal_repetitions: 4
   devices:
     0b11000402bc0cfe01010f70:
       name: testswitch

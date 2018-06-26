@@ -53,7 +53,7 @@ ligths_view:
     - switch.switch7
     - switch.switch8
     - switch.switch10
-    - light.tvrummet_nere  
+    - light.tvrummet_fonster  
 
 uteclimate:
   name: Klimat ute
@@ -89,7 +89,7 @@ room_tvnere:
   name: TV rummet nere
   view: no
   entities:
-    - light.tvrummet_nere 
+    - light.tvrummet_fonster 
     - switch.switch10
 
 frysar_temperatur:

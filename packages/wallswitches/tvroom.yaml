@@ -8,7 +8,7 @@ automation:
         to: "on"
     action:
       - service: light.turn_on
-        entity_id: light.tvrummet_nere
+        entity_id:  light.tvrummet_fonster
 
   - alias: "Switch Släck lampor nere i fönstret"
     trigger:
@@ -18,7 +18,7 @@ automation:
         to: "off"
     action:
       - service: light.turn_off
-        entity_id: light.tvrummet_nere
+        entity_id: light.tvrummet_fonster
 
   - alias: "Switch Turn on TV"
     trigger:

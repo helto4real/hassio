@@ -31,7 +31,7 @@ switch.switch9outdoor:
 switch.switch10: 
   friendly_name: Lampor vägg TV-rummet nere
   icon: mdi:lightbulb
-light.tvrummet_nere:
+light.tvrummet_fonster:
   friendly_name: Lampor fönster TV-rummet nere
 
 # Tomas devices  
