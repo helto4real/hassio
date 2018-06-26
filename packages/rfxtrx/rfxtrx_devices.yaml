@@ -1,5 +1,5 @@
 rfxtrx:
-  device: /dev/ttyUSB1 #/dev/serial/by-id/usb-RFXCOM_RFXtrx433_A138UEXZ-if00-port0
+  device: /dev/ttyUSB.RFX  #/dev/serial/by-id/usb-RFXCOM_RFXtrx433_A138UEXZ-if00-port0
 
 sensor:
   - platform: rfxtrx

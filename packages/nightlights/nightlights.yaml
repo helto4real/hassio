@@ -40,7 +40,7 @@ automation:
         state: 'Natt'
     action:
         service: light.turn_on
-        entity_id: light.tvrummet_fonster
+        entity_id: light.tvnere_fonster
 
   - alias: Turn off light when there is no movement in TV-rummet nere
     trigger:
@@ -55,4 +55,4 @@ automation:
         state: 'Natt'
     action:
       service: light.turn_off
-      entity_id: light.tvrummet_fonster
+      entity_id: light.tvnere_fonster
