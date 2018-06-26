@@ -52,6 +52,8 @@ sudo docker run -d \
     --name=deconz \
     --net=host \
     --restart=always \
+    -e DECONZ_WEB_PORT=8080 \
+    -e DECONZ_WS_PORT=8443 \
     -v /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ \
     --device=/dev/ttyUSB.CON:/dev/ttyUSB0 \
     marthoc/deconz
