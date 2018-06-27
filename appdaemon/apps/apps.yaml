@@ -6,6 +6,7 @@ app_presence_tomas:
   timer: 600                                  # timeout in seconds from just arrived to home and just left to away
   entity_picture: /local/tomas.jpg            # Entity picture (optional)
   prio_device: device_tracker.tomas_phone_bt  # This device, if home the whole group is always home, like BT devices
+  update_time: 1200                           # Time on seconds how old a state update can be before considered as not_home
   group_devices: group.tomas_devices          # The group that contains the trackked devices
 
 
@@ -16,6 +17,7 @@ app_presence_elin:
   entity_picture: /local/elin.jpg
   timer: 600
   prio_device: device_tracker.elins_phone_bt  
+  update_time: 1200   
   group_devices: group.elins_devices
 
 app_presence_sally:
@@ -24,6 +26,7 @@ app_presence_sally:
   name: presence_sally
   entity_picture: /local/sally.jpg
   timer: 600
+  update_time: 1200   
   group_devices: group.sallys_devices
 
 app_presence_melker:
@@ -32,6 +35,7 @@ app_presence_melker:
   name: presence_melker
   entity_picture: /local/melker.jpg
   timer: 600
+  update_time: 1200   
   group_devices: group.melkers_devices
 
 app_presence_test:
@@ -40,6 +44,7 @@ app_presence_test:
   name: presence_test
   entity_picture: /local/elin.jpg
   timer: 10 
+  update_time: 1200   
   group_devices: group.test_devices
 
 app_sr_play_program:
