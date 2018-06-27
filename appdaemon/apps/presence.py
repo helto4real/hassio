@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 import threading
+import  datetime
 import globals
 ###############################################################################
 # A better presence sensor function
@@ -45,6 +46,17 @@ class a_better_presence(hass.Hass):
         if "entity_picture" in self.args:
             self.enity_picture = self.args["entity_picture"]
         
+        # for skipping last updated control and always will render Home when home
+        self.prio_device = None
+        if "prio_device" in self.args:
+            self.prio_device = self.args["prio_device"]
+        
+        # min age of the update time to be considered as home if older it is not valid and considered as not_home
+        # Default to 10 minutes
+        self.update_time = 600 
+        if "update_time" in self.args:
+            self.prio_device = self.args["update_time"]
+
         self.longitude = None
         self.latitude = None
         self.battery = None
@@ -62,14 +74,32 @@ class a_better_presence(hass.Hass):
         self._timer = None
         self.init_presence_state()
 
+    # Assumes format dateTtime.microsecods+00:00 , feels like ugly code but what the hell
+    def parse_date_time_string(self, datetimestring:str):
+        lenToUTC = len(datetimestring)-6
+        strToParse = datetimestring[:lenToUTC]+datetimestring[lenToUTC:lenToUTC+3]+datetimestring[lenToUTC+4:]
+        return datetime.datetime.strptime(strToParse, '%Y-%m-%dT%H:%M:%S.%f%z')
+
+    # Returns true if the last updated is not older than now-time_in_seconds or the attribute missing
+    def is_updated_within_time(self, device_state):
+        
+        if 'last_updated' in device_state: # and 'last_changed' in device_state:
+            dtLastUpdated = self.parse_date_time_string(device_state['last_updated'])
+            diff = datetime.datetime.now(datetime.timezone.utc) - dtLastUpdated
+            
+            if diff.days == 0 and diff.seconds< self.update_time: 
+                return True
+            else:
+                return False
+
+        return True
+
     # gets the current device states and put the values devicestates dictionary
     def get_device_states(self):
         self.device_states = {}
         for device in self.devices:
             device_state = self.get_state(device, attribute="all")
             self.device_states[device]=device_state
-
-
     # Sets sensor state to given state, uses the global
     # names for known states
     def set_sensor_state(self, state):
@@ -135,7 +165,8 @@ class a_better_presence(hass.Hass):
         else:
             return False
 
-    # Gets the group state of all devices. one device state is home, the groupstate is home
+    # Gets the group state of all devices. if prio_device is home, all group is homne
+    # else only devices that are recently updated that can be considered as home
     # if gps device is in a zone, the state is the zone name else away     
     def get_group_state(self):
         group_state = 'away'
@@ -143,9 +174,20 @@ class a_better_presence(hass.Hass):
         for device_name in self.devices:
             state = self.device_states[device_name]
             if state['state'] == 'home':
-                group_state = 'home'
-                if self.is_gps_device(state['attributes']):
-                    self.set_gps_attributes(state['attributes']) 
+                if device_name == self.prio_device:
+               #     self.log("PrioDevice is Home:{}".format(device_name))
+                    # we have a prioritzed device
+                    group_state = 'home'
+                    if self.is_gps_device(state['attributes']):
+                        self.set_gps_attributes(state['attributes']) 
+                else:
+                    if self.is_updated_within_time(state): 
+                        group_state = 'home'
+                        if self.is_gps_device(state['attributes']):
+                            self.set_gps_attributes(state['attributes']) 
+                    else:
+                        self.log("Warning: {} is updatetime is too old: {}".format(device_name, state['last_updated']))
+                        
             else:
                 if self.is_gps_device(state['attributes']):
                     if group_state != 'home' and state['state']!="not_home":
