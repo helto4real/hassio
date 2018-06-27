@@ -16,6 +16,22 @@ app_presence_elin:
   timer: 600
   group_devices: group.elins_devices
 
+app_presence_sally:
+  module: presence
+  class: a_better_presence
+  name: presence_sally
+  entity_picture: /local/sally.jpg
+  timer: 600
+  group_devices: group.sallys_devices
+
+app_presence_melker:
+  module: presence
+  class: a_better_presence
+  name: presence_melker
+  entity_picture: /local/melker.jpg
+  timer: 600
+  group_devices: group.melkers_devices
+
 app_presence_test:
   module: presence
   class: a_better_presence
