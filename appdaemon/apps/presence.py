@@ -70,7 +70,7 @@ class a_better_presence(hass.Hass):
         self.state = "unknown"                               # Actual state of the sensor
         
         self.listen_state(self.devicestate, 'device_tracker', attribute="all")
-        
+        self.run_minutely(self.check_old_states, datetime.time(0, 0, 0))
         self._timer = None
         self.init_presence_state()
 
@@ -129,6 +129,9 @@ class a_better_presence(hass.Hass):
 
         self.state = state_to_set
         self._last_away_home_state = state
+
+    def check_old_states(self, kwargs):
+        self.refresh_presence_state()
 
     # Callback funktion for all device state changes
     def devicestate(self, entity, attribute, old, new, kwargs):
