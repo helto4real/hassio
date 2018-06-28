@@ -1,9 +1,9 @@
 automation:
-  #binary_sensor.rorelsesensor_uppe
+  #binary_sensor.rorelsesensor_uppe_2
   - alias: Turn on light when there is movement in the hall
     trigger:
       platform: state
-      entity_id: binary_sensor.rorelsesensor_uppe
+      entity_id: binary_sensor.rorelsesensor_uppe_2
       to: 'on'
     condition: 
       - condition: state
@@ -16,7 +16,7 @@ automation:
   - alias: Turn off light when there is no movement in the hall
     trigger:
       platform: state
-      entity_id: binary_sensor.rorelsesensor_uppe
+      entity_id: binary_sensor.rorelsesensor_uppe_2
       to: 'off'
       for:
         minutes: 20
@@ -32,7 +32,7 @@ automation:
   - alias: Turn on light when there is movement in TV-rummet nere
     trigger:
       platform: state
-      entity_id: binary_sensor.rorelsesensor_nere
+      entity_id: binary_sensor.rorelsesensor_nere_2
       to: 'on'
     condition: 
       - condition: state
@@ -45,7 +45,7 @@ automation:
   - alias: Turn off light when there is no movement in TV-rummet nere
     trigger:
       platform: state
-      entity_id: binary_sensor.rorelsesensor_nere
+      entity_id: binary_sensor.rorelsesensor_nere_2
       to: 'off'
       for:
         minutes: 20

@@ -58,20 +58,20 @@ group:
       - device_tracker.sallygps
       - device_tracker.huawei_p20_pro2d36a29977
 
-#automation:
-#  - alias: Send message on away-home notice Tomas
-#    trigger:
- #     - platform: state
-#        entity_id: sensor.presence_tomas 
- #   condition:
- ##     - condition: template
- #       value_template: "{{ trigger.from_state != None }}"
-  #  action:
-  #    service: script.notify
-  #    data_template:
-  #      tell: th
-  #      title: "Tomas status {{trigger.to_state.state}}"
-  #      message: "Tomas har ändrat tracking status till {{trigger.to_state.state}}"    
+automation:
+  - alias: Send message on away-home notice Tomas
+    trigger:
+      - platform: state
+        entity_id: sensor.presence_tomas 
+    condition:
+      - condition: template
+        value_template: "{{ trigger.from_state != None and trigger.from_state.state != trigger.to_state.state }}"
+    action:
+      service: script.notify
+      data_template:
+        tell: th
+        title: "Tomas status {{trigger.to_state.state}}"
+        message: "Tomas har ändrat tracking status till {{trigger.to_state.state}} from state {{trigger.from_state.state}}"    
 
 # For tracking
 device_tracker:

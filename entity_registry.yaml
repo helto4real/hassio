@@ -58,22 +58,22 @@ media_player.kitchen:
   name:
   platform: cast
   unique_id: 970fe191-3b8e-03dc-ca4d-c3a6a81b4d97
-binary_sensor.rorelsesensor_uppe:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
-  name:
-  platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-0006
-binary_sensor.rorelsesensor_nere:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
-  name:
-  platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:2f:54-01-0006
 binary_sensor.rorelsesensor_uppe_2:
   config_entry_id: 341f299a70bc43a49a9e06846815b8c4
   name:
   platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
+  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-0006
 binary_sensor.rorelsesensor_nere_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:2f:54-01-0006
+binary_sensor.rorelsesensor_uppe_2_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
+binary_sensor.rorelsesensor_nere_2_2:
   config_entry_id: 341f299a70bc43a49a9e06846815b8c4
   name:
   platform: deconz

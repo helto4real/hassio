@@ -1,6 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 import threading
 import  datetime
+import time
 import globals
 ###############################################################################
 # A better presence sensor function
@@ -100,9 +101,16 @@ class a_better_presence(hass.Hass):
         for device in self.devices:
             device_state = self.get_state(device, attribute="all")
             self.device_states[device]=device_state
+
+    def datetime_from_utc_to_local(self, utc_datetime):
+        now_timestamp = time.time()
+        offset = datetime.datetime.fromtimestamp(now_timestamp) - datetime.datetime.utcfromtimestamp(now_timestamp)
+        return utc_datetime + offset
+
     # Sets sensor state to given state, uses the global
     # names for known states
     def set_sensor_state(self, state):
+        
         state_to_set = "Unknown"
         if state in globals.presence_state:
             state_to_set = globals.presence_state[state]
@@ -123,14 +131,32 @@ class a_better_presence(hass.Hass):
             attributes['battery'] = self.battery
         if self.longitude != None:
             attributes['speed'] = self.speed
+        
+        attribute_device_update_time = ""
+        for device in self.devices:
+            device_state = self.device_states[device]
+            if 'last_updated' in device_state:
+                dtLastUpdated = self.parse_date_time_string(device_state['last_updated'])
+                attribute_device_update_time += "'{}':'{}',".format(device, self.datetime_from_utc_to_local(dtLastUpdated).strftime("%Y-%m-%d %H:%M"))
+            else:
+                attribute_device_update_time += "'{}':'{}',".format(device, "Unknown")
 
+        attribute_device_update_time = '{'+attribute_device_update_time[:len(attribute_device_update_time)-1]+'}'
 
+        attributes['device_update_time'] =attribute_device_update_time
+       
         self.set_state(self.sensorname, state=state_to_set, attributes=attributes)
 
         self.state = state_to_set
         self._last_away_home_state = state
 
     def check_old_states(self, kwargs):
+         
+        for device_name in self.devices:
+            newstate = self.get_state(entity=device_name, attribute="all")
+            self.device_states[device_name]=newstate
+            #self.log(newstate)
+        
         self.refresh_presence_state()
 
     # Callback funktion for all device state changes
@@ -183,7 +209,6 @@ class a_better_presence(hass.Hass):
                     group_state = 'home'
                     if self.is_gps_device(state['attributes']):
                         self.set_gps_attributes(state['attributes']) 
-                    return group_state
                 else:
                     if self.is_updated_within_time(state): 
                         group_state = 'home'
@@ -196,7 +221,6 @@ class a_better_presence(hass.Hass):
                 if self.is_gps_device(state['attributes']):
                     if group_state != 'home' and state['state']!="not_home":
                         group_state = state['state']
-                
                     self.set_gps_attributes(state['attributes'])    
                     
 
@@ -206,7 +230,7 @@ class a_better_presence(hass.Hass):
     # any device is 'home', then the sensor state is 'home' 
     def refresh_presence_state(self):
         group_state = self.get_group_state()
-
+        
         if self._last_away_home_state == group_state:
             return # Nothing more to do, same state
         
