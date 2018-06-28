@@ -68,3 +68,13 @@ binary_sensor.rorelsesensor_nere:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:2f:54-01-0006
+binary_sensor.rorelsesensor_uppe_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
+binary_sensor.rorelsesensor_nere_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:2f:54-01-1000

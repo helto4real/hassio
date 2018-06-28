@@ -35,7 +35,7 @@ app_presence_tomas:
   name: presence_tomas                        # name of the device in Hass
   timer: 600                                  # timeout in seconds from just arrived to home and just left to away
   entity_picture: /local/tomas.jpg            # Entity picture (optional)
-  prio_device: device_tracker.tomas_phone_bt  # This device, if home the whole group is always home, like BT devices
+  prio_device: device_tracker.tomas_s8        # This device, if home the whole group is always home, like BT devices
   update_time: 1200                           # Time (20 mins) how old a state update can be before considered as not_home
   group_devices: group.tomas_devices          # The group that contains the trackked devices
 

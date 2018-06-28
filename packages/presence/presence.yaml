@@ -24,14 +24,14 @@ group:
     name: Test hemma
     view: no
     entities:
-      - device_tracker.tomas_phone_bt
+      - device_tracker.tomas_s8
       - device_tracker.testgps
 
   tomas_devices:
     name: Tomas hemma
     view: no
     entities:
-      - device_tracker.tomas_phone_bt
+      - device_tracker.tomas_s8 #Bluetooth
       - device_tracker.tomasgps
       - device_tracker.tomass8      
 
@@ -40,7 +40,7 @@ group:
     name: Elin hemma
     view: no
     entities:
-      - device_tracker.elins_phone_bt
+      - device_tracker.elins_s8
       - device_tracker.elingps
       - device_tracker.elinss8  
 
@@ -83,8 +83,8 @@ device_tracker:
     consider_home: 180
 #  - platform: mqtt
 #    devices:
-#      tomas_phone_bt: 'hassio/bt/device_tracker/tomas_s8'
-#      elins_phone_bt: 'hassio/bt/device_tracker/elins_s8'
+#      tomas_s8: 'hassio/bt/device_tracker/tomas_s8'
+#      tomas_s8: 'hassio/bt/device_tracker/elins_s8'
   - platform: gpslogger
     password: !secret gpslogger_password      
   - platform: bluetooth_tracker

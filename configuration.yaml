@@ -57,6 +57,8 @@ recorder:
       # tracking
       - sensor.presence_elin
       - sensor.presence_tomas
+      - device_tracker.tomas_s8
+      - device_tracker.tomas_s8
 
       # sensors of interest
       - sensor.utetemp_temperature

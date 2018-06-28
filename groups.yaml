@@ -39,6 +39,7 @@ tracker_view:
     - group.elins_devices
     - group.sallys_devices
     - group.melkers_devices
+    - group.people_status
 
 ligths_view:
   view: yes

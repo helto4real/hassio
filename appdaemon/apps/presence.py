@@ -173,12 +173,12 @@ class a_better_presence(hass.Hass):
     # if gps device is in a zone, the state is the zone name else away     
     def get_group_state(self):
         group_state = 'away'
-        self.log("'{}' is the priodevice".format(self.prio_device))
+        #self.log("'{}' is the priodevice".format(self.prio_device))
         for device_name in self.devices:
             state = self.device_states[device_name]
             if state['state'] == 'home':
                 if device_name == self.prio_device:
-                    self.log("PrioDevice is Home: {}".format(device_name))
+                    #self.log("PrioDevice is Home: {}".format(device_name))
                     # we have a prioritzed device
                     group_state = 'home'
                     if self.is_gps_device(state['attributes']):
@@ -222,11 +222,9 @@ class a_better_presence(hass.Hass):
                 self._last_state_before_timer = group_state #used to get real state after timer
                 self.set_timer()
             elif self._last_away_home_state != "just_arrived":
-                self.cancel_timer()
                 self.set_sensor_state("home")
                 self._last_state_before_timer = group_state #used to get real state after timer
         else:
-            self.cancel_timer() #Cancel just in case its in just_left or just_arrived
             self.set_sensor_state(group_state)
             self._last_away_home_state = group_state
         
@@ -238,7 +236,6 @@ class a_better_presence(hass.Hass):
 
     # Set timer
     def set_timer(self):
-        
         if self._timer != None:
             self._timer.cancel()
             
@@ -254,6 +251,7 @@ class a_better_presence(hass.Hass):
     # Gets called when timeout
     # if just arrived, set to home else just left set to the real state
     def on_timer(self):
+#        self.log("ON TIMER: state={}".format(self.state))
         if self.state == globals.presence_state["just_arrived"]:
             self.set_sensor_state("home")
         elif self.state == globals.presence_state["just_left"]:
