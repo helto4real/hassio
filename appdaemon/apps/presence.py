@@ -55,7 +55,7 @@ class a_better_presence(hass.Hass):
         # Default to 10 minutes
         self.update_time = 600 
         if "update_time" in self.args:
-            self.prio_device = self.args["update_time"]
+            self.update_time = self.args["update_time"]
 
         self.longitude = None
         self.latitude = None
@@ -173,16 +173,17 @@ class a_better_presence(hass.Hass):
     # if gps device is in a zone, the state is the zone name else away     
     def get_group_state(self):
         group_state = 'away'
-        
+        self.log("'{}' is the priodevice".format(self.prio_device))
         for device_name in self.devices:
             state = self.device_states[device_name]
             if state['state'] == 'home':
                 if device_name == self.prio_device:
-               #     self.log("PrioDevice is Home:{}".format(device_name))
+                    self.log("PrioDevice is Home: {}".format(device_name))
                     # we have a prioritzed device
                     group_state = 'home'
                     if self.is_gps_device(state['attributes']):
                         self.set_gps_attributes(state['attributes']) 
+                    return group_state
                 else:
                     if self.is_updated_within_time(state): 
                         group_state = 'home'
