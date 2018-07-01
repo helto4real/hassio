@@ -98,10 +98,10 @@ device_tracker.melkergps:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
 
-binary_sensor.rorelsesensor_uppe_2:
+binary_sensor.rorelsesensor_uppe:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
-binary_sensor.rorelsesensor_nere_2:
+binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
 
@@ -114,7 +114,15 @@ sensor.utetemp_temperature:
   friendly_name: Temperatur ute
 sensor.utetemp_humidity:
   friendly_name: Luftfuktighet ute
-  
+
+sensor.temp_sovrum_nere:
+  friendly_name: Temperatur sovrum nere
+sensor.temp_vardagsrum_uppe:
+  friendly_name: Temperatur vardagsrum uppe
+binary_sensor.ytterdorr_uppe:
+  icon: mdi:door
+  friendly_name: Ytterdörr uppe
+
 
 configurator.deconz:
   hidden: true

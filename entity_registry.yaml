@@ -58,23 +58,38 @@ media_player.kitchen:
   name:
   platform: cast
   unique_id: 970fe191-3b8e-03dc-ca4d-c3a6a81b4d97
-binary_sensor.rorelsesensor_uppe_2:
+binary_sensor.ytterdorr_uppe:
   config_entry_id: 341f299a70bc43a49a9e06846815b8c4
   name:
   platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-0006
-binary_sensor.rorelsesensor_nere_2:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
-  name:
-  platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:2f:54-01-0006
-binary_sensor.rorelsesensor_uppe_2_2:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
-  name:
-  platform: deconz
-  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
-binary_sensor.rorelsesensor_nere_2_2:
+  unique_id: 00:15:8d:00:02:0b:7d:f4-01-0006
+binary_sensor.rorelsesensor_nere:
   config_entry_id: 341f299a70bc43a49a9e06846815b8c4
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:2f:54-01-1000
+binary_sensor.rorelsesensor_uppe:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-1000
+sensor.temp_sovrum_nere:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:c0:97:b4-01-0402
+sensor.temp_sovrum_nere_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:c0:97:b4-01-0405
+sensor.temp_vardagsrum_uppe:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:b8:f3:3c-01-0402
+sensor.temp_vardagsrum_uppe_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:b8:f3:3c-01-0405

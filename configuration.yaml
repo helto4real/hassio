@@ -65,6 +65,9 @@ recorder:
       - sensor.utetemp_humidity
       - sensor.frysnere_temperature  #Frys nere
       - sensor.frysuppe_temperature  #Frys uppe
+      - sensor.temp_sovrum_nere
+      - sensor.temp_vardagsrum_uppe
+      - binary_sensor.ytterdorr_uppe
 
 #logger: 
 #  default: info

@@ -73,14 +73,17 @@ upper_floor:
     - group.room_sally
     - group.room_vardagsrum_uppe
     - group.room_koket
-    - binary_sensor.rorelsesensor_uppe_2
+    - sensor.temp_vardagsrum_uppe
+    - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.ytterdorr_uppe
 
 lower_floor:
   name: Undervåning
   view: no
   entities:
     - group.room_tvnere
-    - binary_sensor.rorelsesensor_nere_2
+    - binary_sensor.rorelsesensor_nere
+    - sensor.temp_sovrum_nere
 outside:
   name: Ute
   view: no
