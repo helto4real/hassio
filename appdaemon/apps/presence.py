@@ -72,7 +72,7 @@ class a_better_presence(hass.Hass):
         
         self.listen_state(self.devicestate, 'device_tracker', attribute="all")
         self.run_minutely(self.check_old_states, datetime.time(0, 0, 0))
-        self._timer = None
+        self._timer = datetime.datetime.max
         self.init_presence_state()
 
     # Assumes format dateTtime.microsecods+00:00 , feels like ugly code but what the hell
@@ -146,7 +146,7 @@ class a_better_presence(hass.Hass):
         attributes['device_update_time'] =attribute_device_update_time
        
         self.set_state(self.sensorname, state=state_to_set, attributes=attributes)
-
+        self.log("SET STATE = {}".format(state_to_set))
         self.state = state_to_set
         self._last_away_home_state = state
 
@@ -223,7 +223,7 @@ class a_better_presence(hass.Hass):
                         group_state = state['state']
                     self.set_gps_attributes(state['attributes'])    
                     
-
+        self.log("{} has groupstate {}".format(self.sensorname, group_state))
         return group_state
 
     # presence state is set depending on state of the tracked devices
@@ -234,6 +234,14 @@ class a_better_presence(hass.Hass):
         if self._last_away_home_state == group_state:
             return # Nothing more to do, same state
         
+        if self.is_timer_set():
+            if self.is_timer_running():
+                self.log("TIMER SET BUT NOT TIMEOUT YET")
+                return
+            else:
+                self.on_timer()
+                return
+
         if group_state != "home" and self._last_away_home_state=="home":
             # We just left
             self.set_sensor_state("just_left")
@@ -260,23 +268,34 @@ class a_better_presence(hass.Hass):
 
     # Set timer
     def set_timer(self):
-        if self._timer != None:
-            self._timer.cancel()
-            
-        self._timer = threading.Timer(self.timeout, self.on_timer)
-        self._timer.start()
+        self.log("SETTING TIMER")
+        self._timer = datetime.datetime.now()
     
-    # Set timer
-    def cancel_timer(self):
-        if self._timer != None:
-            self._timer.cancel()
-            self._timer = None
-            
+    def is_timer_running(self):
+        if self._timer == datetime.datetime.max:
+            return False
+        
+        diff = datetime.datetime.now()-self._timer
+        self.log("DIFF TIMER {} < {}".format(diff.seconds, self.timeout))
+        if diff.days == 0 and diff.seconds< self.timeout:
+         
+            return True
+
+        self._timer = datetime.datetime.max
+        self.log("TIMER EXPIRED")
+        return False
+    def is_timer_set(self):
+        if self._timer == datetime.datetime.max:
+            return False
+        else:
+            return True
+
     # Gets called when timeout
     # if just arrived, set to home else just left set to the real state
     def on_timer(self):
-#        self.log("ON TIMER: state={}".format(self.state))
+        self.log("ON TIMER: state={}".format(self.state))
         if self.state == globals.presence_state["just_arrived"]:
+            self.log("setting state HOME")
             self.set_sensor_state("home")
         elif self.state == globals.presence_state["just_left"]:
             self.set_sensor_state(self._last_state_before_timer) #make sure we set the real state 

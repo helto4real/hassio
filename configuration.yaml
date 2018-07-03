@@ -94,6 +94,8 @@ hassio:
 
 mqtt:
   broker: !secret mqqtt_broker
+  discovery: true
+  discovery_prefix: homeassistant
   username: !secret mqtt_user
   password: !secret mqtt_password
 
