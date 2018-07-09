@@ -1,18 +1,8 @@
-light.tvrummet_hoger:
-  config_entry_id:
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:86:06:19-01
 light.hallenuppe:
   config_entry_id:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:c9:82:b8-01
-light.tvrummet_vanster:
-  config_entry_id:
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:d4:31:5a-01
 sensor.daylight:
   config_entry_id:
   name:
@@ -93,3 +83,33 @@ sensor.temp_vardagsrum_uppe_2:
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:b8:f3:3c-01-0405
+light.tvrummet_vanster:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:92:a8:56-01
+light.tvrummet_hoger:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:d4:31:5a-01
+sensor.temp_sallysrum:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:c0:9b:01-01-0402
+sensor.temp_sallysrum_2:
+  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:c0:9b:01-01-0405
+binary_sensor.rorelsesensor_nere_2:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:2f:54-01-0006
+binary_sensor.rorelsesensor_uppe_2:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:95:bd:ee-01-0006

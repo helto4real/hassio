@@ -74,9 +74,9 @@ upper_floor:
     - group.room_vardagsrum_uppe
     - group.room_koket
     - sensor.temp_vardagsrum_uppe
+    - sensor.temp_sallysrum
     - binary_sensor.rorelsesensor_uppe
     - binary_sensor.ytterdorr_uppe
-
 lower_floor:
   name: Undervåning
   view: no
