@@ -23,8 +23,10 @@ You can easily customize the state names in globals.py
 ### Group functionality
 You will have to have your devices in a group. Recommed one gps, like owtracks or gpstracker, one bluetooth and one wifi like nmap. 3 devices like this gives the best result imo. 
 
-The logic is: If any of the devices is home and it's state is updated within the [update_time] time it is considered Home. If a [prio_device] is specified that device Home status is prioritized and always will make the sensor be "Home". For an example a bluetooth device will be set to a priority_device. So if BT is home the whole group is home.
+The logic is: If bluetooth or wifi device is 'home' the whole group is considered home. if bluetooth and wifi has been 'not_home' for a considerable time (2h default) and also gps not beeb updated for that long, the group is considered 'not_home' 
 
+### Enity picture
+If any of the devices has a enity_picture then the tracker gets that picture too
 ### Tracking of gps coordinates
 The sensor will have the same tracking coordinates as the gps device in group. Make sure you only have one gps device!!!
 ## Cofigure in apps.yaml
@@ -32,12 +34,10 @@ The sensor will have the same tracking coordinates as the gps device in group. M
 app_presence_tomas:
   module: presence
   class: a_better_presence
-  name: presence_tomas                        # name of the device in Hass
-  timer: 600                                  # timeout in seconds from just arrived to home and just left to away
-  entity_picture: /local/tomas.jpg            # Entity picture (optional)
-  prio_device: device_tracker.tomas_s8        # This device, if home the whole group is always home, like BT devices
-  update_time: 1200                           # Time (20 mins) how old a state update can be before considered as not_home
-  group_devices: group.tomas_devices          # The group that contains the trackked devices
+  name: presence_tomas                # name of the device in Hass
+  timer: 600                          # timeout in seconds from just arrived to home and just left to away
+  update_time: 7200                   # Time (2hrs) how old a state update can be before considered as not_home
+  group_devices: group.tomas_devices  # The group that contains the trackked devices
 
 ```
 
