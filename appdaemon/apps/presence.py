@@ -15,8 +15,7 @@ import globals
 #   module: presence
 #   class: a_better_presence
 #   name: presence_tomas                  # name of the device in Hass
-#   timer: 10                             # timeout in seconds from just arrived to home and just left to away
-#   entity_picture: /local/tomas.jpg      # Entity picture (optional)
+#   timer: 600                             # timeout in seconds from just arrived to home and just left to away
 #   group_devices: group.tomas_devices    # The group that contains the trackked devices
 #
 # Standard states:
@@ -24,7 +23,7 @@ import globals
 # - Just arrived (first state that when any of the tracked devices is home)
 # - Just Left (first state when all devices not_home)
 # - Away (when just left for a while)
-# - Extended away (when away for 24 hours)
+# - Extended away (when away for 24 hours not implemented yet)
 # - Any zone except home
 #
 #   Check https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/ as inspiration
@@ -36,266 +35,395 @@ class a_better_presence(hass.Hass):
 
     # Initializer
     def initialize(self):
-        self.log("STARTING APP 'A BETTER presence' for group: {} ".format(self.args["group_devices"]))
+        self.log("STARTING APP 'A BETTER presence2 ' for group: {} ".format(self.args["group_devices"]))
 
-        self.devices = self.get_state( self.args["group_devices"], attribute="all" )['attributes']['entity_id']
+        # Chek mandatory settings
+        if "name" not in self.args:
+            self.log("mandatory setting 'name' is missing quitting...")
+            return
+        if "group_devices" not in self.args:
+            self.log("mandatory setting 'group_devices' is missing quitting...")
+            return
+
+        self.timeout = 600
+        if 'timer' in self.args:
+            self.timeout = int(self.args["timer"])
+
+        self.update_time = 3600
+        if 'update_time' in self.args:
+            self.update_time = int(self.args["update_time"])
+
+        self._timer = None
+
+        # Init variables
         self.sensorname = "sensor.{}".format(self.args["name"])
-        self.timeout = int(self.args["timer"])
-        
-        # for setting different attributes we get from gps enabled device in group (tested with gpstracker)
-        self.enity_picture = None
-        if "entity_picture" in self.args:
-            self.enity_picture = self.args["entity_picture"]
-        
-        # for skipping last updated control and always will render Home when home
-        self.prio_device = None
-        if "prio_device" in self.args:
-            self.prio_device = self.args["prio_device"]
-        
-        # min age of the update time to be considered as home if older it is not valid and considered as not_home
-        # Default to 10 minutes
-        self.update_time = 600 
-        if "update_time" in self.args:
-            self.update_time = self.args["update_time"]
+        self._home_state = None
 
-        self.longitude = None
+        # sensor attributes
+        self.state = None
+        self.last_updated = datetime.datetime.min   # the last updated time
+        self.last_changed = datetime.datetime.min   # the last updated time
+        self.entity_picture = None
+
         self.latitude = None
-        self.battery = None
+        self.longitude = None
         self.speed = None
-        self.source_type = None
+        self.battery = None
 
-        self.get_device_states()
-        
-        self._last_state_before_timer = "unknown"            # Tracks state before timer 
-        self._last_away_home_state = "unknown"               # Tracks group home/away state
-        self.state = "unknown"                               # Actual state of the sensor
+        self._tracked_device_names = self.get_state( self.args["group_devices"], attribute="all" )['attributes']['entity_id']
+        self.tracked_devices = self.get_tracked_devices()
+        self.init_presence_tracker_state()
+        self.print_devices() #debug
+   
         
         self.listen_state(self.devicestate, 'device_tracker', attribute="all")
-        self.run_minutely(self.check_old_states, datetime.time(0, 0, 0))
-        self._timer = datetime.datetime.max
-        self.init_presence_state()
+    
+    def devicestate(self, entity, attribute, old, new, kwargs):
+        
+        if entity not in self._tracked_device_names: #Not device we want
+            return 
+
+        new_device_tracker_state = device_tracker(new, self)
+        
+        self.update_changed_values(new_device_tracker_state, entity)
+        #self.tracked_devices[entity] = new_device_state
+
+    def get_tracked_devices(self):
+        tracked_devices = {}
+       
+        for device_name in self._tracked_device_names:
+            tracked_device = self.get_state(entity=device_name, attribute="all")
+            tracked_devices[device_name] = device_tracker(tracked_device, self)
+          
+        return tracked_devices
+
+    def init_presence_tracker_state(self):
+
+        attributes = {}
+     
+        attributes['source_type'] = "gps"   #default to gps source type  
+        self._home_state = self.get_home_not_home_state_from_group()
+        self.state = self.get_state_from_tracked_devices()
+        # Set the different kinds of attributes that could be set on the presence sensor        
+        for device_name in self._tracked_device_names:
+            current_device = self.tracked_devices[device_name]
+            
+            if current_device.entity_picture != None and 'entity_picture' not in attributes:
+                attributes['entity_picture'] = current_device.entity_picture
+
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                if current_device.latitude != None and 'latitude' not in attributes:
+                    attributes['latitude'] = current_device.latitude
+
+                if current_device.longitude != None and 'longitude' not in attributes:
+                    attributes['longitude'] = current_device.longitude
+            
+                if current_device.speed != None and 'speed' not in attributes:
+                    attributes['speed'] = current_device.speed
+
+                if current_device.battery != None and 'battery' not in attributes:
+                    attributes['battery'] = current_device.battery
+
+            attributes["{}_last_updated".format(device_name)]=local_time_str(current_device.last_updated)
+
+        self.set_state(self.sensorname, state=self.state, attributes=attributes)
+
+    # Important to only update changed values so the tracker will behave
+    # correctly when using it for state changes etc.
+    def update_changed_values(self, updated_device, device_name):
+        current_device = self.tracked_devices[device_name]
+        updated_attributes = {}
+
+        updated_device.print_changes(current_device)
+
+        if updated_device.state != None and updated_device.state != current_device.state:
+            current_device.state = updated_device.state
+
+        if updated_device.last_updated != None and updated_device.last_updated != current_device.last_updated:
+            current_device.last_updated = updated_device.last_updated
+
+        if updated_device.last_changed != None and updated_device.last_changed != current_device.last_changed:
+            current_device.last_changed = updated_device.last_changed
+
+        if updated_device.source_type != None and updated_device.source_type != current_device.source_type:
+            current_device.source_type = updated_device.source_type
+
+        if updated_device.entity_picture != None and updated_device.entity_picture != current_device.entity_picture:
+            current_device.entity_picture = updated_device.entity_picture
+            updated_attributes['entity_picture'] = self.entity_picture
+
+        if updated_device.latitude != None and updated_device.latitude != current_device.latitude:
+            current_device.latitude = updated_device.latitude
+            # set sensor gps attribute if 'gps' source type
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                self.latitude = current_device.latitude
+                updated_attributes['latitude'] = self.latitude
+
+        if updated_device.longitude != None and updated_device.longitude != current_device.longitude:
+            current_device.longitude = updated_device.longitude
+            # set sensor gps attribute if 'gps' source type
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                self.longitude = current_device.longitude
+                updated_attributes['longitude'] = self.longitude
+            
+        if updated_device.speed != None and updated_device.speed != current_device.speed:
+            current_device.speed = updated_device.speed
+            # set sensor gps attribute if 'gps' source type
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                self.speed = current_device.speed
+                updated_attributes['speed'] = self.speed
+
+        if updated_device.battery != None and updated_device.battery != current_device.battery:
+            current_device.battery = updated_device.battery
+            # set sensor gps attribute if 'gps' source type
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                self.battery = current_device.battery
+                updated_attributes['battery'] = self.battery
+
+        new_state = self.get_state_from_tracked_devices()
+
+        if new_state != self.state:
+            updated_attributes["{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
+            self.set_state(self.sensorname, state=new_state, attributes=updated_attributes)
+        else:
+            updated_attributes["{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
+            self.set_state(self.sensorname, attributes=updated_attributes)
+        
+        self.state = new_state
+
+    def print_devices(self):
+        for device_name in self._tracked_device_names:
+            self.tracked_devices[device_name].print()
+
+    # Wifi and bluetooth home state always reports home for group
+    # gps can be xxx seconds old to be counted (implements later)
+    def get_home_not_home_state_from_group(self):
+        initial_home_state = 'not_home'
+        gps_device = None
+        router_device = None
+        bluetooth_device = None
+
+        for device_name in self._tracked_device_names:
+            current_device = self.tracked_devices[device_name]
+            if current_device.source_type != None:
+                if current_device.source_type == 'bluetooth':
+                    bluetooth_device = current_device
+                elif current_device.source_type == 'router':
+                    router_device = current_device
+                elif current_device.source_type == 'gps': 
+                    gps_device = current_device
+                else:
+                    self.log("UNKNOWN DEVICE: {}".format(current_device.source_type))  
+                    if current_device.state == 'home':
+                        initial_home_state = 'home'
+
+        # Always report home if wifi or bluetooth reports 'home'
+        if (bluetooth_device != None and bluetooth_device.state == 'home'):
+            return 'home'  
+        if (router_device != None and router_device.state == 'home'):
+            return 'home'
+
+        #if we reach here nether of the bluetooth or router is home  
+        if (gps_device != None and gps_device.state == 'home'):
+            if bluetooth_device!=None and self.is_updated_within_time(bluetooth_device.last_updated):  
+                return 'home'
+            if router_device!=None and self.is_updated_within_time(router_device.last_updated):
+                return 'home'
+            if self.is_updated_within_time(gps_device.last_updated):
+                return 'home' #even if BT and wifi is not present within time the gps are
+
+        return initial_home_state
+
+    # Returns true if the last updated is not older than now-time_in_seconds or the attribute missing
+    def is_updated_within_time(self, last_updated):
+        
+        diff = datetime.datetime.now(datetime.timezone.utc) - last_updated
+        if diff.days == 0 and diff.seconds< self.update_time: 
+            return True
+        else:
+            return False
+
+
+    # Gets the state from the gps device
+    def get_gps_state(self):
+        for device_name in self._tracked_device_names:
+            current_device = self.tracked_devices[device_name]
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                return current_device.state
+        
+        return None
+
+    def get_state_from_tracked_devices(self):
+        
+        if self._timer != None: # We have a timer running so we wait to update new state
+            return self.state
+
+        new_home_state = self.get_home_not_home_state_from_group()
+
+        if self._home_state != new_home_state: # e.i changed from home/not_home to home/not_home
+            self._home_state = new_home_state
+            if new_home_state == 'home':
+                if self.state != globals.presence_state["just_left"]:
+                    self.set_timer()
+                    return globals.presence_state["just_arrived"]
+                else:
+                    return globals.presence_state["home"]
+                
+            else:
+                if self.state != globals.presence_state["just_arrived"]:
+                    self.set_timer()
+                    return globals.presence_state["just_left"]
+                else:
+                    return globals.presence_state["away"]
+        else:
+            if new_home_state == 'not_home':
+                # find gps state if same and group is not home
+                # so we can get the 
+                gps_state = self.get_gps_state()
+                if gps_state != None:
+                    if gps_state == 'not_home' or gps_state == 'home': # if home then too old return away anyway
+                        return globals.presence_state["away"]
+                    else:
+                        return gps_state
+            else:
+                return globals.presence_state["home"]
+
+        return self.state #set to current one as default
+    
+    # Set timer
+    def set_timer(self):
+        
+        if self._timer != None:
+            return
+
+        self._timer = threading.Timer(self.timeout, self.on_timer)
+        self._timer.start()
+   
+    def on_timer(self):
+        self._timer = None
+        current_state = self.get_state_from_tracked_devices()
+
+        if current_state != self.state:
+            self.log("ON TIMER CHANGED STATE FROM {} TO {}".format(self.state, current_state))
+            self.state = current_state
+            self.set_state(self.sensorname, state=self.state)
+
+
+# Information in         
+class device_tracker:
+    def __init__(self, hass_device_state, app):
+        
+        self._app = app
+
+        # standard object 
+        self.name = hass_device_state['entity_id']  # name of the device , device_tracker.name  
+        self.state = hass_device_state['state']     # name of the device , device_tracker.name  
+        self.last_updated = datetime.datetime.min   # the last updated time
+        self.last_changed = datetime.datetime.min   # the last updated time
+        self.entity_picture = None
+
+        # standard attributes
+        self.source_type = None                     # i.e. gps, router etc.        
+        
+        # gps attributes
+        self.latitude = None
+        self.longitude = None
+        self.speed = None
+        self.battery = None
+
+        if 'last_updated' in hass_device_state:
+            self.last_updated = self._parse_date_time_string(hass_device_state['last_updated'])
+
+        if 'last_changed' in hass_device_state:
+            self.last_changed = self._parse_date_time_string(hass_device_state['last_changed'])
+
+        self._read_attributes(hass_device_state)
+
+    def _read_attributes(self, hass_device_state):
+        if 'attributes' not in hass_device_state:
+            return                                  # No attributes weird but true
+        attr = hass_device_state['attributes']    
+        
+        if 'source_type' in attr:
+            self.source_type = attr['source_type']
+        
+        if 'entity_picture' in attr:
+            self.entity_picture = attr['entity_picture']
+
+        # gps attributes
+
+        if 'latitude' in attr:
+            self.latitude = attr['latitude']
+        if 'longitude' in attr:
+            self.longitude = attr['longitude']
+        if 'speed' in attr:
+            self.speed = attr['speed']
+        if 'battery' in attr:
+            self.battery = attr['battery']
+
+    def print(self):
+        self._app.log("------------------------------------------")
+        self._app.log("TRACKED DEVICE:   {}".format(self.name))
+        self._app.log("state:            {}".format(self.state))
+        self._app.log("last_updated:     {}".format(local_time_str(self.last_updated)))
+        self._app.log("last_changed:     {}".format(local_time_str(self.last_changed)))
+
+        if (self.source_type != None):
+            self._app.log("source_type:      {}".format(self.source_type))
+ 
+        if (self.entity_picture != None):
+            self._app.log("entity_picture:      {}".format(self.entity_picture))
+        #gps
+        if (self.latitude != None):
+            self._app.log("latitude:         {}".format(self.latitude))
+        if (self.longitude != None):
+            self._app.log("longitude:        {}".format(self.longitude))
+        if (self.speed != None):
+            self._app.log("speed:            {}".format(self.speed))
+        if (self.battery != None):
+            self._app.log("battery:          {}".format(self.battery))
+
+    def print_changes(self, old_device_state):
+        self._app.log("------------------------------------------")
+        self._app.log("CHANGED DEVICE:   {}".format(self.name))
+
+        if (self.source_type != None):  # Always pring sourcetype for clearity in logs
+            self._app.log("source_type:      {}".format(self.source_type))
+
+        if (self.state != old_device_state.state):
+            self._app.log("state:            {}".format(self.state))
+        
+        if (self.entity_picture != None and self.entity_picture != old_device_state.entity_picture):  
+            self._app.log("entity_picture:      {}".format(self.entity_picture))
+
+        if (self.last_updated != None and self.last_updated != old_device_state.last_updated):
+            self._app.log("last_updated:     {}".format(local_time_str(self.last_updated)))
+        
+        if (self.last_changed != None and self.last_changed != old_device_state.last_changed):
+            self._app.log("last_changed:     {}".format(local_time_str(self.last_changed)))
+
+
+        if (self.latitude != None and self.latitude != old_device_state.latitude):
+            self._app.log("latitude:         {}".format(self.latitude))
+        if (self.longitude != None and self.longitude != old_device_state.longitude):
+            self._app.log("longitude:        {}".format(self.longitude))
+        if (self.speed != None and self.speed != old_device_state.speed):
+            self._app.log("speed:            {}".format(self.speed))
+        if (self.battery != None and self.battery != old_device_state.battery):
+            self._app.log("battery:          {}".format(self.battery))
 
     # Assumes format dateTtime.microsecods+00:00 , feels like ugly code but what the hell
-    def parse_date_time_string(self, datetimestring:str):
+    def _parse_date_time_string(self, datetimestring:str):
         lenToUTC = len(datetimestring)-6
         strToParse = datetimestring[:lenToUTC]+datetimestring[lenToUTC:lenToUTC+3]+datetimestring[lenToUTC+4:]
         return datetime.datetime.strptime(strToParse, '%Y-%m-%dT%H:%M:%S.%f%z')
 
-    # Returns true if the last updated is not older than now-time_in_seconds or the attribute missing
-    def is_updated_within_time(self, device_state):
-        
-        if 'last_updated' in device_state: # and 'last_changed' in device_state:
-            dtLastUpdated = self.parse_date_time_string(device_state['last_updated'])
-            diff = datetime.datetime.now(datetime.timezone.utc) - dtLastUpdated
-            
-            if diff.days == 0 and diff.seconds< self.update_time: 
-                return True
-            else:
-                return False
+####
+# Common functions
 
-        return True
-
-    # gets the current device states and put the values devicestates dictionary
-    def get_device_states(self):
-        self.device_states = {}
-        for device in self.devices:
-            device_state = self.get_state(device, attribute="all")
-            self.device_states[device]=device_state
-
-    def datetime_from_utc_to_local(self, utc_datetime):
-        now_timestamp = time.time()
-        offset = datetime.datetime.fromtimestamp(now_timestamp) - datetime.datetime.utcfromtimestamp(now_timestamp)
-        return utc_datetime + offset
-
-    # Sets sensor state to given state, uses the global
-    # names for known states
-    def set_sensor_state(self, state):
-        
-        state_to_set = "Unknown"
-        if state in globals.presence_state:
-            state_to_set = globals.presence_state[state]
-        else:
-            state_to_set = state
-
-        attributes = {}
-
-        if self.enity_picture != None:
-            attributes['entity_picture'] = self.enity_picture
-        if self.source_type != None:
-            attributes['source_type'] = self.source_type
-        if self.longitude != None:
-            attributes['longitude'] = self.longitude
-        if self.latitude != None:
-            attributes['latitude'] = self.latitude
-        if self.battery != None:
-            attributes['battery'] = self.battery
-        if self.longitude != None:
-            attributes['speed'] = self.speed
-        
-        attribute_device_update_time = ""
-        for device in self.devices:
-            device_state = self.device_states[device]
-            if 'last_updated' in device_state:
-                dtLastUpdated = self.parse_date_time_string(device_state['last_updated'])
-                attribute_device_update_time += "'{}':'{}',".format(device, self.datetime_from_utc_to_local(dtLastUpdated).strftime("%Y-%m-%d %H:%M"))
-            else:
-                attribute_device_update_time += "'{}':'{}',".format(device, "Unknown")
-
-        attribute_device_update_time = '{'+attribute_device_update_time[:len(attribute_device_update_time)-1]+'}'
-
-        attributes['device_update_time'] =attribute_device_update_time
-       
-        self.set_state(self.sensorname, state=state_to_set, attributes=attributes)
-        self.log("SET STATE = {}".format(state_to_set))
-        self.state = state_to_set
-        self._last_away_home_state = state
-
-    def check_old_states(self, kwargs):
-         
-        for device_name in self.devices:
-            newstate = self.get_state(entity=device_name, attribute="all")
-            self.device_states[device_name]=newstate
-            #self.log(newstate)
-        
-        self.refresh_presence_state()
-
-    # Callback funktion for all device state changes
-    def devicestate(self, entity, attribute, old, new, kwargs):
-        
-        if entity not in self.devices: #Not device we want
-            return 
-
-        new_state = new['state']
-        old_state = old['state']
-
-        #self.log(new)                      #enable if you want to debugprint stateobject
-        self.device_states[entity]=new
-        if new_state != old_state:
-            self.log("{} changed status from {} to {}".format(entity, old_state, new_state))
-            self.refresh_presence_state()
-    # Parse and set gps device attributes
-    def set_gps_attributes(self, attributes):
-        
-        if 'latitude' in attributes:
-            self.latitude = attributes['latitude']
-        if 'source_type' in attributes:
-            self.source_type = attributes['source_type']
-        if 'longitude' in attributes:
-            self.longitude = attributes['longitude']
-        if 'speed' in attributes:
-            self.speed = attributes['speed']
-        if 'battery' in attributes:
-            self.battery = attributes['battery']
-
-    # Returns true if device attributes is a gps device else false
-    def is_gps_device(self, attributes):
-        if 'source_type' in attributes and attributes['source_type']=='gps' and 'latitude' in attributes :
-            return True
-        else:
-            return False
-
-    # Gets the group state of all devices. if prio_device is home, all group is homne
-    # else only devices that are recently updated that can be considered as home
-    # if gps device is in a zone, the state is the zone name else away     
-    def get_group_state(self):
-        group_state = 'away'
-        #self.log("'{}' is the priodevice".format(self.prio_device))
-        for device_name in self.devices:
-            state = self.device_states[device_name]
-            if state['state'] == 'home':
-                if device_name == self.prio_device:
-                    #self.log("PrioDevice is Home: {}".format(device_name))
-                    # we have a prioritzed device
-                    group_state = 'home'
-                    if self.is_gps_device(state['attributes']):
-                        self.set_gps_attributes(state['attributes']) 
-                else:
-                    if self.is_updated_within_time(state): 
-                        group_state = 'home'
-                        if self.is_gps_device(state['attributes']):
-                            self.set_gps_attributes(state['attributes']) 
-                    else:
-                        self.log("Warning: {} is updatetime is too old: {}".format(device_name, state['last_updated']))
-                        
-            else:
-                if self.is_gps_device(state['attributes']):
-                    if group_state != 'home' and state['state']!="not_home":
-                        group_state = state['state']
-                    self.set_gps_attributes(state['attributes'])    
-                    
-        self.log("{} has groupstate {}".format(self.sensorname, group_state))
-        return group_state
-
-    # presence state is set depending on state of the tracked devices
-    # any device is 'home', then the sensor state is 'home' 
-    def refresh_presence_state(self):
-        group_state = self.get_group_state()
-        
-        if self._last_away_home_state == group_state:
-            return # Nothing more to do, same state
-        
-        if self.is_timer_set():
-            if self.is_timer_running():
-                self.log("TIMER SET BUT NOT TIMEOUT YET")
-                return
-            else:
-                self.on_timer()
-                return
-
-        if group_state != "home" and self._last_away_home_state=="home":
-            # We just left
-            self.set_sensor_state("just_left")
-            self._last_state_before_timer = group_state #used to get real state after timer
-            self.set_timer()
-        elif group_state == "home":
-            # Just arrived
-            if self._last_away_home_state != "just_left":
-                self.set_sensor_state("just_arrived")
-                self._last_state_before_timer = group_state #used to get real state after timer
-                self.set_timer()
-            elif self._last_away_home_state != "just_arrived":
-                self.set_sensor_state("home")
-                self._last_state_before_timer = group_state #used to get real state after timer
-        else:
-            self.set_sensor_state(group_state)
-            self._last_away_home_state = group_state
-        
-        
-    #initialization of state when everything starts up    
-    def init_presence_state(self):
-        group_state = self.get_group_state()
-        self.set_sensor_state(group_state)
-
-    # Set timer
-    def set_timer(self):
-        self.log("SETTING TIMER")
-        self._timer = datetime.datetime.now()
-    
-    def is_timer_running(self):
-        if self._timer == datetime.datetime.max:
-            return False
-        
-        diff = datetime.datetime.now()-self._timer
-        self.log("DIFF TIMER {} < {}".format(diff.seconds, self.timeout))
-        if diff.days == 0 and diff.seconds< self.timeout:
-         
-            return True
-
-        self._timer = datetime.datetime.max
-        self.log("TIMER EXPIRED")
-        return False
-    def is_timer_set(self):
-        if self._timer == datetime.datetime.max:
-            return False
-        else:
-            return True
-
-    # Gets called when timeout
-    # if just arrived, set to home else just left set to the real state
-    def on_timer(self):
-        self.log("ON TIMER: state={}".format(self.state))
-        if self.state == globals.presence_state["just_arrived"]:
-            self.log("setting state HOME")
-            self.set_sensor_state("home")
-        elif self.state == globals.presence_state["just_left"]:
-            self.set_sensor_state(self._last_state_before_timer) #make sure we set the real state 
+# converts to local time for printing
+def local_time_str(utc_datetime):
+    now_timestamp = time.time()
+    offset = datetime.datetime.fromtimestamp(now_timestamp) - datetime.datetime.utcfromtimestamp(now_timestamp)
+    local_datetime = utc_datetime + offset
+    return local_datetime.strftime("%Y-%m-%d %H:%M")

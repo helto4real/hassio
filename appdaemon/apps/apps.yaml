@@ -2,41 +2,35 @@ global_modules: globals
 app_presence_tomas:
   module: presence
   class: a_better_presence
-  name: presence_tomas                        # name of the device in Hass
-  timer: 600                                  # timeout in seconds from just arrived to home and just left to away
-  entity_picture: /local/tomas.jpg            # Entity picture (optional)
-  prio_device: device_tracker.tomas_s8        # This device, if home the whole group is always home, like BT devices
-  update_time: 1200                           # Time on seconds how old a state update can be before considered as not_home
-  group_devices: group.tomas_devices          # The group that contains the trackked devices
+  name: presence_tomas                         # name of the device in Hass
+  timer: 600                                   # timeout in seconds from just arrived to home and just left to away (10 min)
+  update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
+  group_devices: group.tomas_devices           # The group that contains the tracked devices
 
-
+ 
 app_presence_elin:
   module: presence
   class: a_better_presence
   name: presence_elin
-  entity_picture: /local/elin.jpg
   timer: 600
-  prio_device: device_tracker.elins_s8  
-  update_time: 1200   
+  update_time: 7200
   group_devices: group.elins_devices
 
-#app_presence_sally:
-#  module: presence
-#  class: a_better_presence
-#  name: presence_sally
-#  entity_picture: /local/sally.jpg
-#  timer: 600
-#  update_time: 1200   
-#  group_devices: group.sallys_devices
+app_presence_sally:
+  module: presence
+  class: a_better_presence
+  name: presence_sally
+  timer: 600
+  update_time: 7200   
+  group_devices: group.sallys_devices
 
-#app_presence_melker:
-#  module: presence
-#  class: a_better_presence
-#  name: presence_melker
-#  entity_picture: /local/melker.jpg
-#  timer: 600
-#  update_time: 1200   
-#  group_devices: group.melkers_devices
+app_presence_melker:
+  module: presence
+  class: a_better_presence
+  name: presence_melker
+  timer: 600
+  update_time: 7200   
+  group_devices: group.melkers_devices
 
 #app_presence_test:
 #  module: presence
