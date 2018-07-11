@@ -1,0 +1,33 @@
+---
+# Sallys room
+room_sally:
+  module: area
+  class: Area
+  ambient_ligts:
+    - switch.switch2  
+
+# Livingroom
+room_livingroom:
+  module: area
+  class: Area
+  ambient_ligts:
+    - switch.switch3 #Right
+    - switch.switch4 #Left
+    - switch.switch5 #Hallway
+    - light.hallenuppe #Light Hallway   
+
+# Kitchen
+room_kitchen:
+  module: area
+  class: Area
+  ambient_ligts:
+    - switch.switch6 #Köksbordet
+    - switch.switch7 #Lilla fönstret 
+
+# TV room downstairs
+room_tvroom:        
+  module: area
+  class: Area
+  ambient_ligts:
+    - light.tvnere_fonster #windows lights
+    - switch.switch10 #wall lights

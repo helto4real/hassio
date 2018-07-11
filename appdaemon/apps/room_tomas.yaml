@@ -1,0 +1,6 @@
+---
+room_tomas:
+  module: room_tomas
+  class: TomasRoom
+  ambient_ligts:
+    - switch.switch1  

@@ -1,0 +1,67 @@
+title: My Awesome Home
+
+views:
+    # View tab title.
+  - title: Example
+    # Optional unique id for direct access /lovelace/${id}
+    id: example
+    # Each view can have a different theme applied.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+        # The filter card will filter entities for their state
+      - type: entity-filter
+        entities:
+          - device_tracker.tomasgps
+          - device_tracker.elingps
+        state_filter:
+          - 'home'
+        card_config:
+          type: glance
+          title: People that are home
+
+        # The picture entity card will represent an entity with a picture
+      - type: picture-entity
+        image: https://www.home-assistant.io/images/default-social.png
+        entity: light.hallenuppe
+
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Second view
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Example
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - light.tvnere_fonster
+          - light.tvrummet_hoger
+          - light.tvrummet_vanster
+          - switch.switch1
+          - switch.switch2
+            
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.
+  
+  - icon: mdi:google-maps
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Karta
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: map
+        # Title of the entities card
+        title: My map
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - sensor.presence_sally
+          - sensor.presence_tomas
+          - sensor.presence_elin
+          - sensor.presence_melker
+            

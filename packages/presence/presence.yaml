@@ -88,5 +88,8 @@ device_tracker:
   - platform: gpslogger
     password: !secret gpslogger_password      
   - platform: bluetooth_tracker
+  - platform: google_maps
+    username: !secret gu 
+    password: !secret gp
 
   
