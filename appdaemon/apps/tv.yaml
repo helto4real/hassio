@@ -1,0 +1,8 @@
+---
+tv_downstairs:
+  module: tv
+  class: Tv
+  remote: remote.tvroom
+  media_player: media_player.tv_nere
+  properties:
+    delay_before_turn_off_tv: 20  #20 minutes before tv is shut down when idle or off
