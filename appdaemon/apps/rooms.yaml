@@ -5,6 +5,8 @@ room_sally:
   class: Area
   ambient_ligts:
     - switch.switch2  
+  dependencies:
+    - house_status
 
 # Livingroom
 room_livingroom:
@@ -29,7 +31,9 @@ room_kitchen:
   ambient_ligts:
     - switch.switch6 #Köksbordet
     - switch.switch7 #Lilla fönstret 
-
+  dependencies:
+    - house_status
+    
 # TV room downstairs
 room_tvroom:        
   module: area

@@ -10,6 +10,8 @@ presence_state["extended_away"] = "Extended away"
 
 class GlobalEvents(Enum):
     HOUSE_MODE_CHANGED = 'HOUSE_MODE_CHANGED'
+    MOTION_DETECTED = 'MOTION_DETECTED'
+    MOTION_OFF = 'MOTION_OFF'
 
 class HouseModes(Enum):
     morning = 'Morgon'

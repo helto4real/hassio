@@ -5,7 +5,10 @@ from typing import Tuple, Union
 """
 A class that are the base class of all rooms and areas where devices are present.
 
-Define _ambient_lights that will turn_off/turn_on depending on house state.
+- Define ambient_lights and they will turn_off/turn_on depending on house state.
+- Define motion sensors and nightlights and it will turn on at night when motion
+  and turn off after a time without motion. Event MOTION_DETECTED/MOTION_OFF 
+  will be sent with room and entity
 
 Inherit from this class and override default beahviour for specific needs in specific rooms
 
@@ -17,7 +20,14 @@ class Area(Base):
         self._ambient_lights = self.args.get('ambient_ligts', {})
         self._night_lights = self.args.get('night_lights', {})
         self._motion_sensors = self.args.get('motion_sensors', {})
-        self._min_time_motion = 10*60
+        self._min_time_motion = 0
+        self._min_time_nightlights = 10*60
+
+        if 'min_time_motion' in self.properties:
+            _min_time_motion = int(self.properties['min_time_motion'])*60
+
+        if 'min_time_nightlights' in self.properties:
+            _min_time_nightlights = int(self.properties['min_time_nightlights'])*60
 
         self.listen_event(
             self.__on_house_home_changed,
@@ -44,43 +54,28 @@ class Area(Base):
                 old='on',
                 duration=self._min_time_motion)
 
-    def __on_house_home_changed(
-        self, event_name: str, data: dict, kwargs: dict) -> None:
-        newMode = HouseModes(data['new'])
-        oldMode = HouseModes(data['old'])
+            # listen to motion off for nightlight function
+            self.listen_state(
+                self.__nightlight_off,
+                motion_sensor,
+                new='off',
+                old='on',
+                duration=self._min_time_nightlights)
 
-        if newMode == HouseModes.day:
-            self.on_housemode_day(oldMode)
-        elif newMode == HouseModes.evening:
-            self.on_housemode_evening(oldMode)
-        elif newMode == HouseModes.night:
-            self.on_housemode_night(oldMode)
-        elif newMode == HouseModes.morning:
-            self.on_housemode_morning(oldMode)
-
-    def __on_motion(
-        self, entity: Union[str, dict], attribute: str, old: dict,
-        new: dict, kwargs: dict) -> None:
-        """called when house mode changes"""
-
-        self.on_motion_detected(entity)    
-    
-    def __off_motion(
-        self, entity: Union[str, dict], attribute: str, old: dict,
-        new: dict, kwargs: dict) -> None:
-        """called when house mode changes"""
-        
-        self.off_motion_detected(entity)    
-
-    def on_motion_detected(self, entity:str)->None:
-        self.log("house_state={} and night_ligt_stateus={}".format(self.house_status.is_night(), self._night_light_on))
+    def motion_on_detected(self, entity:str)->None:
+        """called when motion detected in area"""
         if self.house_status.is_night()==False or self._night_light_on == True:
             return
         for night_light in self._night_lights:
             self.turn_on(night_light)
         self._night_light_on = True
 
-    def off_motion_detected(self, entity:str)->None:
+    def motion_off_detected(self, entity:str)->None:
+        """called when motion off in area"""
+        
+
+    def nightlights_off_detected(self, entity:str)->None:
+        """called when nighlights are off in area"""
         if self._night_light_on == False:
             return
         for night_light in self._night_lights:
@@ -113,3 +108,51 @@ class Area(Base):
 
         for light in self._ambient_lights:
             self.turn_off(light)    
+
+    '''
+    
+    Callback functions from hass. 
+    
+    '''
+    def __on_house_home_changed(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        newMode = HouseModes(data['new'])
+        oldMode = HouseModes(data['old'])
+
+        if newMode == HouseModes.day:
+            self.on_housemode_day(oldMode)
+        elif newMode == HouseModes.evening:
+            self.on_housemode_evening(oldMode)
+        elif newMode == HouseModes.night:
+            self.on_housemode_night(oldMode)
+        elif newMode == HouseModes.morning:
+            self.on_housemode_morning(oldMode)
+
+    def __on_motion(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback when motion detected in area"""
+        self.fire_event(
+            GlobalEvents.MOTION_DETECTED.value, 
+            entity=entity,
+            area=self.name) 
+            
+        self.motion_on_detected(entity)    
+    
+    def __off_motion(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback motion off in area"""
+        self.fire_event(
+            GlobalEvents.MOTION_OFF.value, 
+            entity=entity,
+            area=self.name)
+                 
+        self.motion_off_detected(entity)    
+
+    def __nightlight_off(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback nightlight off in area"""
+        
+        self.nightlights_off_detected(entity)

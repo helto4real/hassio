@@ -1,45 +1,4 @@
 global_modules: globals
-app_presence_tomas:
-  module: presence
-  class: a_better_presence
-  name: presence_tomas                         # name of the device in Hass
-  timer: 600                                   # timeout in seconds from just arrived to home and just left to away (10 min)
-  update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
-  group_devices: group.tomas_devices           # The group that contains the tracked devices
-
- 
-app_presence_elin:
-  module: presence
-  class: a_better_presence
-  name: presence_elin
-  timer: 600
-  update_time: 7200
-  group_devices: group.elins_devices
-
-app_presence_sally:
-  module: presence
-  class: a_better_presence
-  name: presence_sally
-  timer: 600
-  update_time: 7200   
-  group_devices: group.sallys_devices
-
-app_presence_melker:
-  module: presence
-  class: a_better_presence
-  name: presence_melker
-  timer: 600
-  update_time: 7200   
-  group_devices: group.melkers_devices
-
-#app_presence_test:
-#  module: presence
-#  class: a_better_presence
-#  name: presence_test
-#  entity_picture: /local/elin.jpg
-#  timer: 80 
-#  update_time: 1200   
-#  group_devices: group.test_devices
 
 app_sr_play_program:
   module: sr_play_program
