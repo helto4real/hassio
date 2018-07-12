@@ -15,6 +15,12 @@ room_livingroom:
     - switch.switch4 #Left
     - switch.switch5 #Hallway
     - light.hallenuppe #Light Hallway   
+  night_lights:
+    - light.hallenuppe #Light Hallway   
+  motion_sensors:
+    - binary_sensor.rorelsesensor_uppe
+  dependencies:
+    - house_status
 
 # Kitchen
 room_kitchen:
@@ -31,3 +37,10 @@ room_tvroom:
   ambient_ligts:
     - light.tvnere_fonster #windows lights
     - switch.switch10 #wall lights
+  night_lights:
+    - light.tvnere_fonster 
+  motion_sensors:
+    - binary_sensor.rorelsesensor_nere_2  # A bug makes the sensor rename sometimes
+    - binary_sensor.rorelsesensor_nere
+  dependencies:
+    - house_status

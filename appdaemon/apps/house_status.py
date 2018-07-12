@@ -16,12 +16,15 @@ class HouseStatusManager(App):
     _late_night_time = datetime.datetime.strptime("00:15:00", "%H:%M:%S")
     _day_time = datetime.datetime.strptime("10:00:00", "%H:%M:%S")
 
+    _current_state:HouseModes = HouseModes.day
+
     HOUSE_MODE_SELECT = 'input_select.house_mode_select'
 
     def initialize(self) -> None:
         """Initialize."""
         super().initialize()
-        
+        _current_state = HouseModes(self.get_state(self.HOUSE_MODE_SELECT))
+
         if 'sunrise_offset' in self.properties:
             _offset_sunrise = int(self.properties['sunrise_offset'])*60
  
@@ -77,7 +80,12 @@ class HouseStatusManager(App):
         self.log("Next sunset is: {}".format(self.sunset()))
         self.log("Next sunrise is: {}".format(self.sunrise()))
 
-
+    def is_night(self)->bool:
+        if self.get_state(self.HOUSE_MODE_SELECT) == HouseModes.night.value:
+            return True
+        else:
+            return False
+    
     def __on_day_time(self, kwargs: dict) -> None:
         """Time to set the house mode to day."""
         
@@ -98,7 +106,8 @@ class HouseStatusManager(App):
 
         new_mode = HouseModes(new['state']).value
         old_mode = HouseModes(old['state']).value
-        
+        self._current_state = HouseModes(new_mode)
+
         self.fire_event(
             GlobalEvents.HOUSE_MODE_CHANGED.value, 
             old=old_mode, 
