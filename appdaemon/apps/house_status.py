@@ -81,12 +81,16 @@ class HouseStatusManager(App):
         self.log("Next sunrise is: {}".format(self.sunrise()))
 
     def is_night(self)->bool:
-       # if self.get_state(self.HOUSE_MODE_SELECT) == HouseModes.night.value:
+        """returns True if night else False"""
         if self._current_state == HouseModes.night:
             return True
         else:
             return False
     
+    @property
+    def current_state(self)->HouseModes:
+        return self._current_state
+
     def __on_day_time(self, kwargs: dict) -> None:
         """Time to set the house mode to day."""
         

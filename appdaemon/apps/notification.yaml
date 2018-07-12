@@ -1,0 +1,6 @@
+---
+notification_manager:
+  module: notification
+  class: NotificationManager
+  dependencies:
+    - house_status
