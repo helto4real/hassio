@@ -17,7 +17,8 @@ class NotificationManager(Base):
     def initialize(self) -> None:
         """Initialize."""
         super().initialize() # Always call base class
-        
+        self.greeting('Tomas', title="Title", message="kalle")
+
     def notify(self, person:str, title:str='', message:str='')->None:
         """Notify using a persons notifiers"""
         for notifier in PEOPLE[person]['notifiers']:
@@ -25,8 +26,11 @@ class NotificationManager(Base):
     
     def greeting(self, person:str, title:str='', message:str='')->None:
         """Adds a greeting phrase to the message before sending it"""
-        greeting = "{} {}, {} {}".format(self.__start_greeting(), person, self.__start_inform(), message)
-        self.notify(person, title, greeting)
+        
+        self.notify(person, title, self.greeting_text(person, message))
+
+    def greeting_text(self, person:str, message:str)->None:
+        return "{} {}, {} {}".format(self.__start_greeting(), person, self.__start_inform(), message)
 
     def __start_greeting(self)->str:
         """Greeting phrase"""

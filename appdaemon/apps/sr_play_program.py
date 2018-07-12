@@ -23,7 +23,7 @@ class play_program(hass.Hass):
 
     url = jsonData['episode']['broadcast']['broadcastfiles'][0]['url']
     
-    self.log("URL: "+url)
+    self.log("URL: " + url)
 
     self.call_service("media_player/play_media", entity_id=entityId, media_content_type="audio/m4a", media_content_id=url)
     
