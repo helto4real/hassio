@@ -17,7 +17,7 @@ class TTSManager(Base):
     def initialize(self) -> None:
         """Initialize."""
         super().initialize() # Always call base class
-
+      
     def _calculate_ending_duration_cb(self, kwargs: dict) -> None:
         """Calculate how long the TTS should play before calling cleanup code."""
         media_player = kwargs['media_player']
@@ -57,6 +57,11 @@ class TTSManager(Base):
         """Speak the provided text through the media player"""
 
         # Todo: implement logic to pause on-going media etc. and save state
+
+        self.call_service(
+            'media_player/volume_set',
+            entity_id=str(media_player),
+            volume_level='0.6')
 
         self.log('Speaking over TTS: {0}'.format(text))
 

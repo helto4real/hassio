@@ -17,7 +17,6 @@ class NotificationManager(Base):
     def initialize(self) -> None:
         """Initialize."""
         super().initialize() # Always call base class
-        self.greeting('Tomas', title="Title", message="kalle")
 
     def notify(self, person:str, title:str='', message:str='')->None:
         """Notify using a persons notifiers"""
