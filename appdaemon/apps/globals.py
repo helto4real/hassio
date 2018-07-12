@@ -23,7 +23,8 @@ class GlobalEvents(Enum):
     MOTION_DETECTED = 'MOTION_DETECTED'
     MOTION_OFF = 'MOTION_OFF'
     APP_SR_PLAY_PROGRAM = 'APP_SR_PLAY_PROGRAM'
-
+    ALARM_CLOCK_ALARM = 'ALARM_CLOCK_ALARM'
+    
 class HouseModes(Enum):
     morning = 'Morgon'
     day = 'Dag'

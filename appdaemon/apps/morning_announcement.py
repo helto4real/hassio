@@ -21,7 +21,9 @@ class MorningAnnouncement(Base):
         self._tts_device = self.args['tts_device']
         self._temp_device = self.args['temp_device']
 
-        self.do_morning_announcement()
+        self.listen_event(
+            self.__on_alarm,
+            GlobalEvents.ALARM_CLOCK_ALARM.value)
 
     def do_morning_announcement(self):
         """do the announcement"""
@@ -37,7 +39,7 @@ class MorningAnnouncement(Base):
         
         self.tts_manager.speak("Det är {} i Matfors just nu med en temperatur på {} grader".format(get_yr_weather_text_from_symbol(yr_symbol), temp))
 
-        self.run_in(self._stream_swedish_news, 10)       
+        self.run_in(self._stream_swedish_news, 12)       
                
 
     def _stream_swedish_news(self, kwargs: dict) -> None:
@@ -47,3 +49,10 @@ class MorningAnnouncement(Base):
             program_id='4540', # dagens eko, swedish news
             entity_id=self._tts_device
         )
+
+    def __on_alarm(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        self.run_in(self.__delayed_announcement, 40, media_player=media_player)  
+
+    def __delayed_announcement(self, kwargs: dict) -> None:
+        self.do_morning_announcement()

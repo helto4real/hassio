@@ -118,12 +118,12 @@ class HouseStatusManager(App):
             old=old_mode, 
             new=new_mode)
     
-    def __on_sunrise(self, kwargs: dict):
+    def __on_sunrise(self, kwargs: dict)->None:
         """called when sunrise plus offset"""
         self.log("SUNRISE EVENT")
         self.set_state(self.HOUSE_MODE_SELECT, state=HouseModes.morning.value)
 
-    def __on_sunset(self, kwargs: dict):
+    def __on_sunset(self, kwargs: dict)->None:
         """called when sunset plus offset"""
         self.log("SUNSET EVENT")
         self.set_state(self.HOUSE_MODE_SELECT, state=HouseModes.evening.value)
