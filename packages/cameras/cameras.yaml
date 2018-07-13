@@ -1,0 +1,34 @@
+camera:
+  - platform: ffmpeg
+    name: kamera_uppe
+    input: -rtsp_transport tcp -i rtsp://192.168.1.12:8554/unicast
+
+ffmpeg:
+
+group:
+  cameras:
+    view: yes
+    name: Kameror
+    icon: mdi:camera
+    entities:
+      - camera.kamera_uppe
+      - group.kamera_uppe
+
+  kamera_uppe:
+    entities:
+      - camera.kamera_uppe
+      - switch.kamera_uppe_h264_rtsp_server
+      - switch.kamera_uppe_mjpeg_rtsp_server
+      - sensor.kamera_uppe
+      - device_tracker.kamera_uppe
+      - sensor.kamera_uppe_light_sensor
+      - switch.kamera_uppe_ir_filter
+      - switch.kamera_uppe_ir_led
+      - switch.kamera_uppe_night_mode
+      - switch.kamera_uppe_night_mode_auto
+      - switch.kamera_uppe_blue_led
+      - switch.kamera_uppe_yellow_led
+      - switch.kamera_uppe_motion_detection
+      - switch.kamera_uppe_motion_tracking
+      - camera.kamera_uppe_motion_snapshot
+      - binary_sensor.kamera_uppe_motion_sensor      

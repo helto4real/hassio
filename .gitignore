@@ -1,42 +1,19 @@
-*
-!*.yaml
-!*.jpg
-!*.md
-!*.py
-!*.dash
-!automation
-!extras
-!python_scripts
-!appdaemon
-!appdaemon/apps
-!appdaemon/apps/alarm
-!appdaemon/apps/common
-!appdaemon/apps/environment
-!appdaemon/apps/notification
-!appdaemon/apps/rooms
-!appdaemon/apps/tts
-!appdaemon/dashboards
-appdaemon/secrets.yaml
-!packages
-!packages/alarm
-packages/alarm/secrets.yaml
-!packages/environment
-!packages/goodmorning
-!packages/google
-!packages/media
-!packages/modes
-!packages/nightlights
-!packages/notifications
-!packages/presence
-!packages/rfxtrx
-!packages/system
-!packages/wallswitches
-!www
-!light
-!custom_components
-!custom_components/sensor
-!.gitignore
 secrets.yaml
+
+# file types
+*.json
+*.log
+*.pyc
+*.conf
+*.db
+
+# specific folders
+.*
+ssh
+
+# specific files
 known_devices.yaml
+
+
 
 

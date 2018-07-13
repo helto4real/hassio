@@ -1,0 +1,5 @@
+input_boolean:
+  good_night_house:
+    name: Good night house
+    initial: off
+    icon: mdi:power-sleep
