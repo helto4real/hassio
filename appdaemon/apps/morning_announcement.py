@@ -52,7 +52,7 @@ class MorningAnnouncement(Base):
 
     def __on_alarm(
         self, event_name: str, data: dict, kwargs: dict) -> None:
-        self.run_in(self.__delayed_announcement, 40, media_player=media_player)  
+        self.run_in(self.__delayed_announcement, 40)  
 
     def __delayed_announcement(self, kwargs: dict) -> None:
         self.do_morning_announcement()

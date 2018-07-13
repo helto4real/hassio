@@ -41,7 +41,7 @@ class Alarm(App):
                 self.log("ALARM RUNNING!")
 
         next_alarm = self.__findNextAlarmFromGoogleHomeDevice()
-        if next_alarm==datetime.datetime.max: # or next_alarm < (datetime.datetime.now()-datetime.timedelta(minutes=2)):
+        if next_alarm==datetime.datetime.max or next_alarm < (datetime.datetime.now()-datetime.timedelta(minutes=2)):
             self.__set_sensor_alarm('off')
             self._last_known_time_for_alarm = datetime.datetime.min
             return
@@ -71,7 +71,7 @@ class Alarm(App):
                 for item in jsonData['alarm']:
                     test = int(item['fire_time'])
                     timeForAlarm = datetime.datetime.fromtimestamp(test/1000)
-                    if timeForAlarm > (datetime.datetime.now()-datetime.timedelta(minutes=2)) and timeForAlarm < currentAlarm:
+                    if timeForAlarm < currentAlarm: #timeForAlarm > (datetime.datetime.now()-datetime.timedelta(minutes=2)) and 
                         currentAlarm = timeForAlarm
             
         except:
