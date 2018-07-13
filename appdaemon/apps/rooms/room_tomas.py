@@ -34,9 +34,13 @@ class TomasRoom(Area):
         # todo override hehaviour
 
     def off_motion_detected(self, entity:str)->None:
-        super().on_motion_detected(entity)
+        super().off_motion_detected(entity)
         # todo override hehaviour
 
     def nightlights_off_detected(self, entity:str)->None:
-        super().on_motion_detected(entity)
+        super().nightlights_off_detected(entity)
+        # todo override hehaviour
+
+    def on_lightswich_state_changed(self, entity: str, old: str, new: str)->None:
+        super().on_lightswich_state_changed(entity, old, new)
         # todo override hehaviour

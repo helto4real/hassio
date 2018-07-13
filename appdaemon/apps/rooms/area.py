@@ -7,7 +7,7 @@ A class that are the base class of all rooms and areas where devices are present
 
 - Define ambient_lights and they will turn_off/turn_on depending on house state.
 - Define motion sensors and nightlights and it will turn on at night when motion
-  and turn off after a time without motion. Event MOTION_DETECTED/MOTION_OFF 
+  and turn off after a time without motion. Event EV_MOTION_DETECTED/EV_MOTION_OFF 
   will be sent with room and entity
 
 Inherit from this class and override default beahviour for specific needs in specific rooms
@@ -20,24 +20,21 @@ class Area(Base):
         self._ambient_lights = self.args.get('ambient_ligts', {})
         self._night_lights = self.args.get('night_lights', {})
         self._motion_sensors = self.args.get('motion_sensors', {})
-        self._min_time_motion = 0
-        self._min_time_nightlights = 10*60
+        self._light_switches = self.args.get('light_switches', {})
 
-        if 'min_time_motion' in self.properties:
-            _min_time_motion = int(self.properties['min_time_motion'])*60
-
-        if 'min_time_nightlights' in self.properties:
-            _min_time_nightlights = int(self.properties['min_time_nightlights'])*60
+        self._min_time_motion = int(self.properties.get('min_time_motion', 10))*60
+        self._min_time_nightlights = int(self.properties.get('min_time_nightlights', 0))*60
 
         self.listen_event(
             self.__on_house_home_changed,
-            GlobalEvents.HOUSE_MODE_CHANGED.value)
+            GlobalEvents.EV_HOUSE_MODE_CHANGED.value)
 
         self._night_light_on = False
 
         self.__init_motion_sensors()
+        self.__init_light_switches()
 
-    def __init_motion_sensors(self):
+    def __init_motion_sensors(self)->None:
         for motion_sensor in self._motion_sensors:
             # listen to motion
             self.listen_state(
@@ -61,6 +58,13 @@ class Area(Base):
                 new='off',
                 old='on',
                 duration=self._min_time_nightlights)
+
+    def __init_light_switches(self)->None:
+        for light_switch in self._light_switches:
+            # listen to motion
+            self.listen_state(
+                self.__on_lightswich_state_changed,
+                light_switch)
 
     def motion_on_detected(self, entity:str)->None:
         """called when motion detected in area"""
@@ -94,6 +98,9 @@ class Area(Base):
 
     def on_housemode_night(self, old: HouseModes) -> None:
         self.__turn_off_ambient()
+
+    def on_lightswich_state_changed(self, entity: str, old: str, new: str)->None:
+       return
 
     def __turn_on_ambient(self)->None:
         if len(self._ambient_lights) == 0:
@@ -133,7 +140,7 @@ class Area(Base):
         new: dict, kwargs: dict) -> None:
         """callback when motion detected in area"""
         self.fire_event(
-            GlobalEvents.MOTION_DETECTED.value, 
+            GlobalEvents.EV_MOTION_DETECTED.value, 
             entity=entity,
             area=self.name) 
             
@@ -144,11 +151,19 @@ class Area(Base):
         new: dict, kwargs: dict) -> None:
         """callback motion off in area"""
         self.fire_event(
-            GlobalEvents.MOTION_OFF.value, 
+            GlobalEvents.EV_MOTION_OFF.value, 
             entity=entity,
             area=self.name)
                  
         self.motion_off_detected(entity)    
+
+    def __on_lightswich_state_changed(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback motion off in area"""
+        self.log("LIGHTSWITCH {} STATE: {}".format(entity, new))    
+
+        self.on_lightswich_state_changed(entity, old, new)
 
     def __nightlight_off(
         self, entity: Union[str, dict], attribute: str, old: dict,

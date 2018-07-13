@@ -23,7 +23,7 @@ class MorningAnnouncement(Base):
 
         self.listen_event(
             self.__on_alarm,
-            GlobalEvents.ALARM_CLOCK_ALARM.value)
+            GlobalEvents.EV_ALARM_CLOCK_ALARM.value)
 
     def do_morning_announcement(self):
         """do the announcement"""
@@ -45,7 +45,7 @@ class MorningAnnouncement(Base):
     def _stream_swedish_news(self, kwargs: dict) -> None:
         
         self.fire_event(
-            GlobalEvents.APP_SR_PLAY_PROGRAM.value,
+            GlobalEvents.CMD_SR_PLAY_PROGRAM.value,
             program_id='4540', # dagens eko, swedish news
             entity_id=self._tts_device
         )

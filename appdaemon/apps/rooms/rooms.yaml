@@ -36,8 +36,8 @@ room_kitchen:
     
 # TV room downstairs
 room_tvroom:        
-  module: area
-  class: Area
+  module: room_tvroom
+  class: TVRoom
   ambient_ligts:
     - light.tvnere_fonster #windows lights
     - switch.switch10 #wall lights
@@ -46,5 +46,15 @@ room_tvroom:
   motion_sensors:
     - binary_sensor.rorelsesensor_nere_2  # A bug makes the sensor rename sometimes
     - binary_sensor.rorelsesensor_nere
+  light_switches:
+    - switch.switch_1_lb
+    - switch.switch_1_rb
+  remote: remote.tvroom 
   dependencies:
     - house_status
+
+  room_tomas:
+    module: room_tomas
+    class: TomasRoom
+    ambient_ligts:
+      - switch.switch1  

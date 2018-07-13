@@ -1,4 +1,5 @@
 from base import Base
+from base import GlobalEvents
 from globals import PEOPLE
 from globals import HouseModes
 import secrets
@@ -17,6 +18,15 @@ class NotificationManager(Base):
     def initialize(self) -> None:
         """Initialize."""
         super().initialize() # Always call base class
+
+        self.listen_event(
+            self.__on_cmd_notify,
+            GlobalEvents.CMD_NOTIFY.value)
+
+        self.listen_event(
+            self.__on_cmd_notify_greet,
+            GlobalEvents.CMD_NOTIFY_GREET.value)
+
 
     def notify(self, person:str, title:str='', message:str='')->None:
         """Notify using a persons notifiers"""
@@ -55,3 +65,22 @@ class NotificationManager(Base):
                 'du ville att jag skulle informera att' #I want to inform that
             ]
         )
+
+    def __on_cmd_notify(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        """notify command"""
+        person =  data.get("person", '')
+        title =  data.get("title", '')        
+        message =  data.get("message", '')
+
+        self.notify(person, title, message)
+
+    def __on_cmd_notify_greet(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        """notify command"""
+        person =  data.get("person", '')
+        title =  data.get("title", '')        
+        message =  data.get("message", '')
+
+        self.greeting(person, title, message)
+

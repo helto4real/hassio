@@ -36,7 +36,7 @@ class Alarm(App):
             if diff.days == 0 and diff.seconds<60: # We set state "on" for one minute
                 #send event
                 self.fire_event(
-                    GlobalEvents.ALARM_CLOCK_ALARM.value
+                    GlobalEvents.EV_ALARM_CLOCK_ALARM.value
                 )
                 self.log("ALARM RUNNING!")
 

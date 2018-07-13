@@ -10,10 +10,10 @@ import json
 class play_program(hass.Hass):
 
   def initialize(self):
-     self.log("APP_SR_PROGRAM setting upp listen to event APP_SR_PLAY_PROGRAM ")
-     self.listen_event(self.my_callback, event = 'APP_SR_PLAY_PROGRAM')
+     self.log("APP_SR_PROGRAM setting upp listen to event CMD_SR_PLAY_PROGRAM ")
+     self.listen_event(self.my_callback, event = 'CMD_SR_PLAY_PROGRAM')
   
-  def my_callback(self, APP_SR_PLAY_PROGRAM, data, kwargs):
+  def my_callback(self, CMD_SR_PLAY_PROGRAM, data, kwargs):
     programId = data.get('program_id') #"4540"
     entityId = data.get('entity_id')
 

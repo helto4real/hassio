@@ -6,36 +6,16 @@ notify:
 script:
   notify:
     sequence:
-      - service: script.message
-        data_template: !include ../../extras/notifyscript.yaml
-  
-  message:
-    sequence:
-      - service: script.text
-        data_template:
-          who: '{{ who }}'
+      - event: CMD_NOTIFY
+        event_data_template:
+          person: '{{ person }}'
           title: '{{ title }}'
           message: '{{ message }}'        
-      - service: script.announce
-        data_template:
-          say: '{{ say }}'
-          media_player: '{{ media_player }}'
-          message: '{{ message }}'
-  text:
+  
+  notify_greet:
     sequence:
-      - condition: template
-        value_template: "{{ who | length > 0 }}"
-      - service_template: '{{ who }}'
-        data_template:
-          title: "{{ title | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}"
-          message: "{{ message | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}"
-  announce:
-    sequence:
-      - condition: template
-        value_template: "{{ say | length > 0 }}"
-      - service: tts.google_say
-        data_template:
-          entity_id: '{{ media_player }}'
-          message: "{{ message | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}"
-          cache: false
-         
+      - event: CMD_NOTIFY_GREET
+        event_data_template:
+          person: '{{ person }}'
+          title: '{{ title }}'
+          message: '{{ message }}'    

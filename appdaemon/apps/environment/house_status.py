@@ -114,7 +114,7 @@ class HouseStatusManager(App):
         self._current_state = HouseModes(new_mode)
 
         self.fire_event(
-            GlobalEvents.HOUSE_MODE_CHANGED.value, 
+            GlobalEvents.EV_HOUSE_MODE_CHANGED.value, 
             old=old_mode, 
             new=new_mode)
     

@@ -3,13 +3,13 @@
 Application that stream from Swedish Radio latest program with program id = xxx
 I use it to stream latest news from "Ekot" 
 
-send event "APP_SR_PLAY_PROGRAM"
+send event "CMD_SR_PLAY_PROGRAM"
 
 ```
 script:
     stream_ekot:
         sequence:
-        - event: APP_SR_PLAY_PROGRAM
+        - event: CMD_SR_PLAY_PROGRAM
             event_data:
             program_id: "4540"
             entity_id: "media_player.sovrum"
