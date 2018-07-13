@@ -57,8 +57,16 @@ room_tvroom:
   dependencies:
     - house_status
 
-  room_tomas:
-    module: room_tomas
-    class: TomasRoom
-    ambient_ligts:
-      - switch.switch1  
+room_tomas:
+  module: room_tomas
+  class: TomasRoom
+  ambient_ligts:
+    - switch.switch1  
+
+room_melker:
+  module: room_melker
+  class: MelkersRoom
+  properties:
+    tv_switch: 'switch.switch8' # Melkers tv
+    time_to_turn_off_tv: '12:46:00'
+    minutes_before_turn_on_switch: 1
