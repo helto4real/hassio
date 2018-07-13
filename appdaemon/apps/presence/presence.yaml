@@ -3,6 +3,7 @@ app_presence_tomas:
   module: presence
   class: a_better_presence
   name: presence_tomas                         # name of the device in Hass
+  friendly_name: 'Tomas tracker'                # display name
   timer: 600                                   # timeout in seconds from just arrived to home and just left to away (10 min)
   update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
   group_devices: group.tomas_devices           # The group that contains the tracked devices
@@ -12,6 +13,7 @@ app_presence_elin:
   module: presence
   class: a_better_presence
   name: presence_elin
+  friendly_name: 'Elins tracker'
   timer: 600
   update_time: 7200
   group_devices: group.elins_devices
@@ -20,6 +22,7 @@ app_presence_sally:
   module: presence
   class: a_better_presence
   name: presence_sally
+  friendly_name: 'Sallys tracker'
   timer: 600
   update_time: 7200   
   group_devices: group.sallys_devices
@@ -28,6 +31,7 @@ app_presence_melker:
   module: presence
   class: a_better_presence
   name: presence_melker
+  friendly_name: 'Melkers tracker'
   timer: 600
   update_time: 7200   
   group_devices: group.melkers_devices

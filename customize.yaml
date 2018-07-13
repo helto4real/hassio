@@ -48,9 +48,9 @@ device_tracker.tomas_s8:
 device_tracker.tomasgps:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
+
 sensor.presence_tomas:
   friendly_name: Tomas tracker
-  entity_picture: /local/tomas.jpg
 
 # Elins devices
 group.elins_devices:
@@ -105,9 +105,9 @@ binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
 
-sensor.167_temperature:  #Frys nere
+sensor.frysnere_temperature:  #Frys nere
   friendly_name: Temperatur frysbox
-sensor.151_temperature:  #Frys uppe
+sensor.frysuppe_temperature:  #Frys uppe
   friendly_name: Temperatur frys kök
    
 sensor.utetemp_temperature:
@@ -119,6 +119,8 @@ sensor.temp_sovrum_nere:
   friendly_name: Temperatur sovrum nere
 sensor.temp_vardagsrum_uppe:
   friendly_name: Temperatur vardagsrum uppe
+sensor.temp_sallysrum:
+  friendly_name: Temperatur Sallys rum
 binary_sensor.ytterdorr_uppe:
   icon: mdi:door
   friendly_name: Ytterdörr uppe

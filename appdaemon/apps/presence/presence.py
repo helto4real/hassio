@@ -55,6 +55,7 @@ class a_better_presence(hass.Hass):
         self._home_state = None
 
         # sensor attributes
+        self.friendly_name = self.args.get('friendly_name', str)
         self.state = None
         self.last_updated = datetime.datetime.min   # the last updated time
         self.last_changed = datetime.datetime.min   # the last updated time
@@ -94,7 +95,10 @@ class a_better_presence(hass.Hass):
     def init_presence_tracker_state(self)->None:
 
         attributes = {}
-     
+
+        if len(self.friendly_name) > 0:
+            attributes['friendly_name'] = self.friendly_name
+
         attributes['source_type'] = "gps"   #default to gps source type  
         self._home_state = self.get_home_not_home_state_from_group()
         self.state = self.get_state_from_tracked_devices()
@@ -367,6 +371,7 @@ class device_tracker:
  
         if (self.entity_picture != None):
             self._app.log("entity_picture:      {}".format(self.entity_picture))
+
         #gps
         if (self.latitude != None):
             self._app.log("latitude:         {}".format(self.latitude))
