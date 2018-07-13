@@ -1,0 +1,7 @@
+---
+room_tomas:
+  module: light_manager
+  class: LightManager
+  remote_buttons_ambient_light:
+    - 'switch.remote_1_b1'      # Add more remotes if needed  
+

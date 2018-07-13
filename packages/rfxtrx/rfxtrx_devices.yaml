@@ -46,4 +46,10 @@ switch:
       name: switch_1_lb
     0b110010018ce3620c000070:
       name: switch_1_rb
-
+    # Telldus small remote 1
+    0b1100100294734610010f40:
+      name: remote_1_b1
+    0b11001c029473460f010f60:
+      name: remote_1_b2
+    0b110022029473460e010f60:
+      name: remote_1_b3

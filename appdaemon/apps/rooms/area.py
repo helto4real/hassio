@@ -29,10 +29,20 @@ class Area(Base):
             self.__on_house_home_changed,
             GlobalEvents.EV_HOUSE_MODE_CHANGED.value)
 
+        self.listen_event(
+            self.__on_cmd_ambient_lights_on,
+            GlobalEvents.CMD_AMBIENT_LIGHTS_ON.value)
+
+        self.listen_event(
+            self.__on_cmd_ambient_lights_off,
+            GlobalEvents.CMD_AMBIENT_LIGHTS_OFF.value)
+
         self._night_light_on = False
 
         self.__init_motion_sensors()
         self.__init_light_switches()
+
+        
 
     def __init_motion_sensors(self)->None:
         for motion_sensor in self._motion_sensors:
@@ -135,6 +145,16 @@ class Area(Base):
         elif newMode == HouseModes.morning:
             self.on_housemode_morning(oldMode)
 
+    def __on_cmd_ambient_lights_on(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        """turn on ambient ligts if event is fired"""
+        self.__turn_on_ambient()
+
+    def __on_cmd_ambient_lights_off(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+        """turn off ambient ligts if event is fired"""
+        self.__turn_off_ambient()
+        
     def __on_motion(
         self, entity: Union[str, dict], attribute: str, old: dict,
         new: dict, kwargs: dict) -> None:

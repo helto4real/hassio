@@ -40,7 +40,11 @@ class GlobalEvents(Enum):
     CMD_NOTIFY = 'CMD_NOTIFY'
     # send notification with greeting
     CMD_NOTIFY_GREET = 'CMD_NOTIFY_GREET'
-
+    # turn on ambient lights
+    CMD_AMBIENT_LIGHTS_ON = 'CMD_AMBIENT_LIGHTS_ON'
+    # turn off ambient lights
+    CMD_AMBIENT_LIGHTS_OFF = 'CMD_AMBIENT_LIGTS_OFF'
+    
 class HouseModes(Enum):
     morning = 'Morgon'
     day = 'Dag'
