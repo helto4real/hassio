@@ -34,10 +34,10 @@ import globals
 class a_better_presence(hass.Hass):
 
     # Initializer
-    def initialize(self):
+    def initialize(self)->None:
         self.log("STARTING APP 'A BETTER presence2 ' for group: {} ".format(self.args["group_devices"]))
 
-        # Chek mandatory settings
+        # Check mandatory settings
         if "name" not in self.args:
             self.log("mandatory setting 'name' is missing quitting...")
             return
@@ -45,17 +45,12 @@ class a_better_presence(hass.Hass):
             self.log("mandatory setting 'group_devices' is missing quitting...")
             return
 
-        self.timeout = 600
-        if 'timer' in self.args:
-            self.timeout = int(self.args["timer"])
-
-        self.update_time = 3600
-        if 'update_time' in self.args:
-            self.update_time = int(self.args["update_time"])
+        # Get the settings
+        self.timeout = int(self.args.get("timer", 600))
+        self.update_time = int(self.args.get("update_time", 3600))
 
         self._timer = None
 
-        # Init variables
         self.sensorname = "sensor.{}".format(self.args["name"])
         self._home_state = None
 
@@ -78,7 +73,7 @@ class a_better_presence(hass.Hass):
         
         self.listen_state(self.devicestate, 'device_tracker', attribute="all")
     
-    def devicestate(self, entity, attribute, old, new, kwargs):
+    def devicestate(self, entity, attribute, old, new, kwargs)->None:
         
         if entity not in self._tracked_device_names: #Not device we want
             return 
@@ -86,9 +81,8 @@ class a_better_presence(hass.Hass):
         new_device_tracker_state = device_tracker(new, self)
         
         self.update_changed_values(new_device_tracker_state, entity)
-        #self.tracked_devices[entity] = new_device_state
 
-    def get_tracked_devices(self):
+    def get_tracked_devices(self)->{}:
         tracked_devices = {}
        
         for device_name in self._tracked_device_names:
@@ -97,7 +91,7 @@ class a_better_presence(hass.Hass):
           
         return tracked_devices
 
-    def init_presence_tracker_state(self):
+    def init_presence_tracker_state(self)->None:
 
         attributes = {}
      
@@ -197,7 +191,7 @@ class a_better_presence(hass.Hass):
 
     # Wifi and bluetooth home state always reports home for group
     # gps can be xxx seconds old to be counted (implements later)
-    def get_home_not_home_state_from_group(self):
+    def get_home_not_home_state_from_group(self)->str:
         initial_home_state = 'not_home'
         gps_device = None
         router_device = None
@@ -235,7 +229,7 @@ class a_better_presence(hass.Hass):
         return initial_home_state
 
     # Returns true if the last updated is not older than now-time_in_seconds or the attribute missing
-    def is_updated_within_time(self, last_updated):
+    def is_updated_within_time(self, last_updated)->bool:
         
         diff = datetime.datetime.now(datetime.timezone.utc) - last_updated
         if diff.days == 0 and diff.seconds< self.update_time: 
@@ -291,7 +285,7 @@ class a_better_presence(hass.Hass):
         return self.state #set to current one as default
     
     # Set timer
-    def set_timer(self):
+    def set_timer(self)->None:
         
         if self._timer != None:
             return
@@ -299,7 +293,7 @@ class a_better_presence(hass.Hass):
         self._timer = threading.Timer(self.timeout, self.on_timer)
         self._timer.start()
    
-    def on_timer(self):
+    def on_timer(self)->None:
         self._timer = None
         current_state = self.get_state_from_tracked_devices()
 

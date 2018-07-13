@@ -23,10 +23,7 @@ class Tv(Base):
 
         self._remote = self.args.get('remote', str)
         self._media_player = self.args.get('media_player', str)
-        
-        self._delay_before_turn_off_tv = 20*60 #defaults to 20 minutes
-        if 'delay_before_turn_off_tv' in self.properties:
-            self._delay_before_turn_off_tv = int(self.properties['delay_before_turn_off_tv'])*60
+        self._delay_before_turn_off_tv = int(self.properties.get('delay_before_turn_off_tv', 20))*60
             
         self.listen_state(
             self.__on_media_player_play, 

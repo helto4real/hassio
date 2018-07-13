@@ -19,7 +19,7 @@ class MelkersRoom(Area):
         self._time_to_turn_off_tv = datetime.datetime.strptime(self.properties['time_to_turn_off_tv'], "%H:%M:%S") 
 
         
-        # Set callback when it is nighttime on days when go to bed late
+        # run every night to turn off his tv 
         self.run_daily(
             self.__on_time_for_turn_off_tv,
             self._time_to_turn_off_tv.time()

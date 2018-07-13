@@ -77,7 +77,7 @@ class NotificationManager(Base):
 
     def __on_cmd_notify_greet(
         self, event_name: str, data: dict, kwargs: dict) -> None:
-        """notify command"""
+        """notify greet command"""
         person =  data.get("person", '')
         title =  data.get("title", '')        
         message =  data.get("message", '')

@@ -1,5 +1,10 @@
 from enum import Enum
 
+"""
+Global definitions that are used everywhere in my automations for easy access
+
+"""
+
 presence_state = {}
 # Change this if you want to change the display name
 presence_state["home"] = "Home"

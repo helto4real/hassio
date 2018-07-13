@@ -1,6 +1,10 @@
 import datetime
 from typing import Callable
 
+"""
+    Schedule helper functions, like run on specific days / weekdays and weekends
+    
+"""
 
 def run_on_days(
         hass, callback: Callable[..., None], day_list: list,

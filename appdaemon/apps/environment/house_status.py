@@ -5,7 +5,16 @@ from globals import GlobalEvents, HouseModes
 from scheduler import run_on_days
 import datetime
 
-
+"""
+    Handles the status of the house, alot of the automations are depending on the
+    status. More statuses to follow. 
+        - Morning  (Sunrise plus offset)
+        - Day      (Specific time)
+        - Evening  (Sunset plus offset)
+        - Night    (Specific time, different on weekdays and weekends)
+        - Guest    (to be implemented, guest mode)
+        - All off  (to be implemented, no automation)
+"""
 class HouseStatusManager(App):
 
     
@@ -25,20 +34,12 @@ class HouseStatusManager(App):
         super().initialize()
         _current_state = HouseModes(self.get_state(self.HOUSE_MODE_SELECT))
 
-        if 'sunrise_offset' in self.properties:
-            _offset_sunrise = int(self.properties['sunrise_offset'])*60
- 
-        if 'sunset_offset' in self.properties:
-            _offset_sunset = int(self.properties['sunset_offset'])*60
+        _offset_sunrise = int(self.properties.get('sunrise_offset', 0))*60
+        _offset_sunset = int(self.properties.get('sunset_offset', 0))*60
 
-        if 'early_night_time' in self.properties:
-            _early_night_time = datetime.datetime.strptime(self.properties['early_night_time'], "%H:%M:%S")
-   
-        if 'late_night_time' in self.properties:
-            _late_night_time = datetime.datetime.strptime(self.properties['late_night_time'], "%H:%M:%S")
-
-        if 'day_time' in self.properties:
-            _day_time = datetime.datetime.strptime(self.properties['day_time'], "%H:%M:%S")
+        _early_night_time = datetime.datetime.strptime(self.properties['early_night_time'], "%H:%M:%S")
+        _late_night_time = datetime.datetime.strptime(self.properties['late_night_time'], "%H:%M:%S")
+        _day_time = datetime.datetime.strptime(self.properties['day_time'], "%H:%M:%S")
 
         self._early_nights = self.args.get('early_nights', {})
         self._late_nights = self.args.get('late_nights', {})

@@ -6,10 +6,10 @@ import json
 import voluptuous as vol
 
 """
-Class Alarm checks the google home device after alarm
+Class Alarm checks the google home device if alarm set and sends event if alarm alarming
 
 Following features are implemented:
-
+- Checks if alarm is set and creates sensor for next alarm time
 - Checks alarm if ran
 - Sends EVENT 
 
@@ -41,15 +41,13 @@ class Alarm(App):
                 self.log("ALARM RUNNING!")
 
         next_alarm = self.__findNextAlarmFromGoogleHomeDevice()
-        if next_alarm==datetime.datetime.max or next_alarm < (datetime.datetime.now()-datetime.timedelta(minutes=2)):
+        if next_alarm==datetime.datetime.max:
             self.__set_sensor_alarm('off')
             self._last_known_time_for_alarm = datetime.datetime.min
             return
         else:
             self.__set_sensor_alarm('on', "{}".format(next_alarm))
             self._last_known_time_for_alarm = next_alarm
-
-
 
     def __set_sensor_alarm(self, state:str, next_alarm:str='Not set')->None:
         attributes = {}
@@ -59,7 +57,6 @@ class Alarm(App):
  
     def __findNextAlarmFromGoogleHomeDevice(self)->datetime.datetime:
         try:
-            #_LOGGER.warn("http://{}:8008/setup/assistant/alarms".format(deviceIp))
             response = urlopen("http://{}:8008/setup/assistant/alarms".format(self._gh_device_ip))
 
             data = response.read().decode('utf-8')
@@ -69,9 +66,11 @@ class Alarm(App):
 
             if len(jsonData['alarm']) > 0:
                 for item in jsonData['alarm']:
-                    test = int(item['fire_time'])
-                    timeForAlarm = datetime.datetime.fromtimestamp(test/1000)
-                    if timeForAlarm < currentAlarm: #timeForAlarm > (datetime.datetime.now()-datetime.timedelta(minutes=2)) and 
+                    fire_time = int(item['fire_time'])
+                    status = int(item["status"])
+                    self.log("STATUS = {}".format(status))
+                    timeForAlarm = datetime.datetime.fromtimestamp(fire_time/1000)
+                    if timeForAlarm < currentAlarm and status >= 1 : #timeForAlarm > (datetime.datetime.now()-datetime.timedelta(minutes=2)) and 
                         currentAlarm = timeForAlarm
             
         except:

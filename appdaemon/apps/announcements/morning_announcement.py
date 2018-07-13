@@ -9,7 +9,7 @@ Following features are implemented:
 
 - Greeting
 - Current weather
-- Current temperature outsider from sensor
+- Current temperature outside from sensor
 - Streaming of latest swedish radio EKO (news)
 
 """
@@ -33,17 +33,16 @@ class MorningAnnouncement(Base):
         self.run_in(self._speak_weather, 6)       
 
     def _speak_weather(self, kwargs: dict) -> None:
-        
+        """speak the weather from yr.no symbol sensor"""
         yr_symbol = self.get_state('sensor.yr_symbol')
         temp = int(round(float(self.get_state(self._temp_device)), 0))
         
         self.tts_manager.speak("Det är {} i Matfors just nu med en temperatur på {} grader".format(get_yr_weather_text_from_symbol(yr_symbol), temp))
 
         self.run_in(self._stream_swedish_news, 12)       
-               
 
     def _stream_swedish_news(self, kwargs: dict) -> None:
-        
+        """end with stream the latest news and the morning wakeup is complete :) """
         self.fire_event(
             GlobalEvents.CMD_SR_PLAY_PROGRAM.value,
             program_id='4540', # dagens eko, swedish news
@@ -52,7 +51,9 @@ class MorningAnnouncement(Base):
 
     def __on_alarm(
         self, event_name: str, data: dict, kwargs: dict) -> None:
+        """When alarm is running, make an announcement after 40 seconds"""
         self.run_in(self.__delayed_announcement, 40)  
 
     def __delayed_announcement(self, kwargs: dict) -> None:
+        """Delayed announcement callback"""
         self.do_morning_announcement()

@@ -53,7 +53,6 @@ room_tvroom:
     toggle_tv_switch: switch.switch_1_lb
     toggle_window_ligts_switch: switch.switch_1_rb
     remote: remote.tvroom 
-  
   dependencies:
     - house_status
 
@@ -68,5 +67,5 @@ room_melker:
   class: MelkersRoom
   properties:
     tv_switch: 'switch.switch8' # Melkers tv
-    time_to_turn_off_tv: '12:46:00'
+    time_to_turn_off_tv: '18:32:00'
     minutes_before_turn_on_switch: 1
