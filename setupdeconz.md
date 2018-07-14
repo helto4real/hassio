@@ -18,8 +18,8 @@ E: ID_VENDOR_ID=0403
 E: ID_MODEL_ID=6015
 
 ->/bin/udevadm info --name=/dev/ttyUSB0 | grep SERIAL_SHORT
-E: ID_SERIAL_SHORT=01234567
-``
+E: ID_SERIAL_SHORT=ABC01234
+```
 
 ```
 ->lsusb
