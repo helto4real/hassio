@@ -9,6 +9,17 @@ http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/
 
 **First find out what device id you have for your serial devices**
 
+If you know which device you want to get details about, run
+```
+->/bin/udevadm info --name=/dev/ttyUSB0 | grep ID_VENDOR
+E: ID_VENDOR_ID=0403
+
+->/bin/udevadm info --name=/dev/ttyUSB0 | grep ID_MODEL_ID
+E: ID_MODEL_ID=6015
+
+->/bin/udevadm info --name=/dev/ttyUSB0 | grep SERIAL_SHORT
+E: ID_SERIAL_SHORT=01234567
+``
 
 ```
 ->lsusb
