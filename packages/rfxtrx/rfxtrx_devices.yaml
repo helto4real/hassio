@@ -31,13 +31,13 @@ switch:
     0b11000534bc0cfe06010f70:
       name: switch4_tomas_fan
     0b11000152bc0cfe01010f70:
-      name: switch5
+      name: switch5_melkers_fan
     0b11000226bc0cfe05010f70:
       name: switch6
     0b11000693bc0cfe02010f70:
       name: switch7
     0b11000172bc0cfe02010f70:
-      name: switch8
+      name: switch8_melkers_tv
     0b11000467bc0cfe04010f70:
       name: switch9outdoor
     0b11000555bc0cfe07010f70:

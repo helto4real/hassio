@@ -15,6 +15,16 @@ default_view:
     - group.frysar_temperatur
     - group.people_status
     
+room_view:
+  view: yes
+  icon: mdi:home-circle
+  entities:
+    - group.room_koket
+    - group.room_vardagsrum_uppe
+    - group.room_sally
+    - group.room_tomas
+    - group.room_tvnere
+    - group.room_melker
 
 media_view:
   view: yes
@@ -23,7 +33,7 @@ media_view:
     - group.googlehomes
     - group.chromecasts
     - group.remotes
-    - switch.switch8 # Melkers tv
+    - switch.switch8_melkers_tv 
 
 system_view:
   view: yes
@@ -82,6 +92,7 @@ lower_floor:
   view: no
   entities:
     - group.room_tvnere
+    - group.room_melker
     - binary_sensor.rorelsesensor_nere
     - binary_sensor.rorelsesensor_nere_2 #Bug that creates two instances 
     - sensor.temp_sovrum_nere
@@ -96,6 +107,8 @@ room_tvnere:
   entities:
     - light.tvnere_fonster 
     - switch.switch10
+    - binary_sensor.rorelsesensor_nere
+    - binary_sensor.rorelsesensor_nere_2 #Bug that creates two instances 
 
 frysar_temperatur:
   name: Temperatur frysar
@@ -110,6 +123,14 @@ room_tomas:
   view: no
   entities:
     - switch.switch1
+    - switch.switch4_tomas_fan
+    - binary_sensor.rorelsesensor_tomas_rum
+room_melker: 
+  name: Melkers rum
+  view: no
+  entities:
+    - switch.switch5_melkers_fan
+    - switch.switch8_melkers_tv # Melkers tv
 room_sally:
   name: Sallys rum
   view: no
@@ -120,8 +141,9 @@ room_vardagsrum_uppe:
   view: no
   entities:
     - light.vardagsrummet
-    - switch.switch5 #Hallen
-    - light.hallenuppe #Hall uppe
+    - light.hallen #Hallway
+    - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.ytterdorr_uppe
 
 room_koket:
   name: Köket

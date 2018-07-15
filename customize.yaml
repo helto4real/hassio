@@ -12,17 +12,18 @@ switch.switch3:
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
   icon: mdi:fan
-switch.switch5:
-  friendly_name: Lampaor hallen
-  icon: mdi:lightbulb
+switch.switch5_melkers_fan:
+  friendly_name: Melkers fläkt
+  icon: mdi:fan
 switch.switch6:
   friendly_name: Lampa köksbord
   icon: mdi:lightbulb
 switch.switch7:
   friendly_name: Lampa kök lilla fönster
   icon: mdi:lightbulb
-switch.switch8:
-  friendly_name: Melkers TV swtich
+
+switch.switch8_melkers_tv:
+  friendly_name: Melkers TV switch
   icon: mdi:google-chrome
 
 switch.switch9outdoor:
@@ -36,7 +37,8 @@ light.tvnere_fonster:
   
 light.vardagsrummet:
   friendly_name: Lampor fönster vardagsrummet
-
+light.hallen:
+  friendly_name: Lampor hallen
 # Tomas devices  
 group.tomas_devices:
   friendly_name: Tomas mobil
@@ -106,6 +108,10 @@ binary_sensor.rorelsesensor_uppe:
 binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
+
+binary_sensor.rorelsesensor_tomas_rum:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor Tomas rum
 
 sensor.frysnere_temperature:  #Frys nere
   friendly_name: Temperatur frysbox

@@ -11,6 +11,10 @@ Important to keep the "super()...." to make default area behaviour work
 class TomasRoom(Area):
     def initialize(self) -> None:
         super().initialize()
+
+        self._fan = self.args.get('fan', str)
+
+        self._fan_on = self.get_state(self._fan)
         # todo override behaviour
 
     def on_housemode_day(self, old: HouseModes) -> None:
@@ -30,12 +34,14 @@ class TomasRoom(Area):
         # todo override behaviour
 
     def motion_on_detected(self, entity:str)->None:
-        super().on_motion_detected(entity)
-        # todo override hehaviour
-
-    def off_motion_detected(self, entity:str)->None:
-        super().off_motion_detected(entity)
-        # todo override hehaviour
+        super().motion_on_detected(entity)
+        
+        self.turn_on(self._fan)
+        
+    def motion_off_detected(self, entity:str)->None:
+        super().motion_off_detected(entity)
+        
+        self.turn_off(self._fan)
 
     def nightlights_off_detected(self, entity:str)->None:
         super().nightlights_off_detected(entity)

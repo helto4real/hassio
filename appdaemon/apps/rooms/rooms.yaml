@@ -13,11 +13,10 @@ room_livingroom:
   module: area
   class: Area
   ambient_ligts:
-    - light.vardagsrummet
-    - switch.switch5 #Hallway
-    - light.hallenuppe #Light Hallway   
+    - light.vardagsrummet # Windows lights in the livingroom
+    - light.hallen   # Light hallway
   night_lights:
-    - light.hallenuppe #Light Hallway   
+    - light.hallenuppe #Light Hallway one lamp  
   motion_sensors:
     - binary_sensor.rorelsesensor_uppe
   dependencies:
@@ -59,7 +58,14 @@ room_tomas:
   module: room_tomas
   class: TomasRoom
   ambient_ligts:
-    - switch.switch1  
+    - switch.switch1
+  motion_sensors:
+    - binary_sensor.rorelsesensor_tomas_rum
+  fan: switch.switch4_tomas_fan
+  properties:
+    min_time_motion: 10
+  dependencies:
+    - house_status
 
 room_melker:
   module: room_melker
@@ -68,3 +74,5 @@ room_melker:
     tv_switch: 'switch.switch8' # Melkers tv
     time_to_turn_off_tv: '01:32:00'
     minutes_before_turn_on_switch: 5
+  dependencies:
+    - house_status

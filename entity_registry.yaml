@@ -123,3 +123,13 @@ light.vardagsrummet_hoger:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:72:39:32-01
+light.hallenuppe_dorren:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:71:cb:db-01
+binary_sensor.rorelsesensor_tomas_rum:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:6b:6f:95-01-0006
