@@ -51,7 +51,7 @@ class Tv(Base):
         """called when media player changes state to 'idle' or 'off'"""
         #Turn off tv when been idle or off for an amout of time
         self.log("INACTIVITY TV, from state {} to {}".format(old, new))
-        if self.__is_media_playing(self) == False:              # Added check cause sometimes it turns off when playing
+        if self.__is_media_playing() == False:              # Added check cause sometimes it turns off when playing
             self.log("Media is playing, it is still active!!")
             return
 
@@ -87,7 +87,7 @@ class Tv(Base):
     def __turn_off_tv(self)->None:
         self.turn_off(entity_id=self._remote)
     
-    def __is_media_playing(self):
+    def __is_media_playing(self)->bool:
         if self.get_state(self._remote) == 'playing':
             return True
         else:

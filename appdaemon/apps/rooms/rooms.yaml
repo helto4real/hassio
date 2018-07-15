@@ -13,8 +13,7 @@ room_livingroom:
   module: area
   class: Area
   ambient_ligts:
-    - switch.switch3 #Right
-    - switch.switch4 #Left
+    - light.vardagsrummet
     - switch.switch5 #Hallway
     - light.hallenuppe #Light Hallway   
   night_lights:
@@ -67,5 +66,5 @@ room_melker:
   class: MelkersRoom
   properties:
     tv_switch: 'switch.switch8' # Melkers tv
-    time_to_turn_off_tv: '18:32:00'
-    minutes_before_turn_on_switch: 1
+    time_to_turn_off_tv: '01:32:00'
+    minutes_before_turn_on_switch: 5

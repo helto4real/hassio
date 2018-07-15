@@ -302,7 +302,7 @@ class a_better_presence(hass.Hass):
         current_state = self.get_state_from_tracked_devices()
 
         if current_state != self.state:
-            self.log("ON TIMER CHANGED STATE FROM {} TO {}".format(self.state, current_state))
+     #       self.log("ON TIMER CHANGED STATE FROM {} TO {}".format(self.state, current_state))
             self.state = current_state
             self.set_state(self.sensorname, state=self.state)
 

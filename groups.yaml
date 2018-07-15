@@ -48,7 +48,7 @@ ligths_view:
     - switch.switch1
     - switch.switch2
     - switch.switch3
-    - switch.switch4
+    - switch.switch4_tomas_fan
     - switch.switch5
     - switch.switch6
     - switch.switch7
@@ -119,8 +119,7 @@ room_vardagsrum_uppe:
   name: Vardagsrummet uppe
   view: no
   entities:
-    - switch.switch3 #Höger
-    - switch.switch4 #Vänster
+    - light.vardagsrummet
     - switch.switch5 #Hallen
     - light.hallenuppe #Hall uppe
 

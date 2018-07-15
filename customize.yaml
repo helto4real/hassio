@@ -9,9 +9,9 @@ switch.switch2:
 switch.switch3:
   friendly_name: Lampor uppe höger
   icon: mdi:lightbulb
-switch.switch4:
-  friendly_name: Lampa uppe vänster
-  icon: mdi:lightbulb
+switch.switch4_tomas_fan:
+  friendly_name: Tomas fläkt
+  icon: mdi:fan
 switch.switch5:
   friendly_name: Lampaor hallen
   icon: mdi:lightbulb
@@ -32,8 +32,10 @@ switch.switch10:
   friendly_name: Lampor vägg TV-rummet nere
   icon: mdi:lightbulb
 light.tvnere_fonster:
-
   friendly_name: Lampor fönster TV-rummet nere
+  
+light.vardagsrummet:
+  friendly_name: Lampor fönster vardagsrummet
 
 # Tomas devices  
 group.tomas_devices:

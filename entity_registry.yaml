@@ -108,3 +108,18 @@ binary_sensor.rorelsesensor_nere_2:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:2f:54-01-1000
+light.vardagsrummet_vanster:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:0b:57:ff:fe:14:6d:79-01
+light.vardagsrumet_mitten:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:78:d0:95-01
+light.vardagsrummet_hoger:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:72:39:32-01

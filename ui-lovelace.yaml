@@ -1,54 +1,54 @@
-title: My Awesome Home
+resources:
+  - url: /local/picture-entity-status.js
+    type: module
+
+title: Hellströms home
+
 
 views:
     # View tab title.
-  - title: Example
+  - title: Information
     # Optional unique id for direct access /lovelace/${id}
-    id: example
-    # Each view can have a different theme applied.
-    theme: dark-mode
-    # The cards to show on this view.
+    id: info
+    icon: mdi:information-outline
     cards:
-        # The filter card will filter entities for their state
-      - type: entity-filter
-        entities:
-          - device_tracker.tomasgps
-          - device_tracker.elingps
-        state_filter:
-          - 'home'
-        card_config:
-          type: glance
-          title: People that are home
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+            - type: custom:picture-entity-status
+              entity: sensor.presence_tomas
+              image: /local/tomas_presence_away.jpg
+              state_image:
+                Home: /local/tomas_presence.jpg
+                Just arrived: /local/tomas_presence.jpg
+              name: 'Tomas'
+              style: '#name { display: none;}'
+            - type: picture-entity
+              entity: sensor.presence_elin
+              image: /local/elin_presence_away.jpg
+              state_image:
+                Home: /local/elin_presence.jpg
+                Just arrived: /local/elin_presence.jpg
+              name: 'Elin'
 
-        # The picture entity card will represent an entity with a picture
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.hallenuppe
-
-    # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:home-assistant
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
-    cards:
-        # Entities card will take a list of entities and show their state.
-      - type: entities
-        # Title of the entities card
-        title: Example
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
-        entities:
-          - light.tvnere_fonster
-          - light.tvrummet_hoger
-          - light.tvrummet_vanster
-          - switch.switch1
-          - switch.switch2
-            
-        # The markdown card will render markdown text.
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
-  
+        - type: horizontal-stack
+          cards:
+            - type: picture-entity
+              entity: sensor.presence_sally
+              image: /local/sally_presence_away.jpg
+              state_image:
+                Home: /local/sally_presence.jpg
+                Just arrived: /local/tomas_presence.jpg
+              name: 'Sally'
+            - type: picture-entity
+              entity: sensor.presence_melker
+              image: /local/melker_presence_away.jpg
+              state_image:
+                Home: /local/melker_presence.jpg
+                Just arrived: /local/melker_presence.jpg
+              name: 'Melker'
+     
   - icon: mdi:google-maps
     # Title of the view. Will be used as the tooltip for tab icon
     title: Karta
