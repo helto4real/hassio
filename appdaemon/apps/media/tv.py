@@ -50,6 +50,7 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when media player changes state to 'idle' or 'off'"""
         #Turn off tv when been idle or off for an amout of time
+        self.log("Turning off TV due to inactivity")
         self.__turn_off_tv()
 
     def __on_media_player_play(
@@ -65,7 +66,7 @@ class Tv(Base):
         # turn on tv
         self.__turn_on_tv()
         # wait 10 seconds and play again
-        self.run_in(self.__delay_play, 10)
+        self.run_in(self.__delay_play, 15)
 
     def __pause(self)->None:
         self.call_service('media_player/media_pause', entity_id=self._media_player)
