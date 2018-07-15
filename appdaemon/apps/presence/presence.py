@@ -360,6 +360,7 @@ class device_tracker:
             self.battery = attr['battery']
 
     def print(self):
+        return # remove to debug changes
         self._app.log("------------------------------------------")
         self._app.log("TRACKED DEVICE:   {}".format(self.name))
         self._app.log("state:            {}".format(self.state))
@@ -383,6 +384,7 @@ class device_tracker:
             self._app.log("battery:          {}".format(self.battery))
 
     def print_changes(self, old_device_state):
+        return # remove to debug changes
         self._app.log("------------------------------------------")
         self._app.log("CHANGED DEVICE:   {}".format(self.name))
 
