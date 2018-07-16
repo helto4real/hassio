@@ -28,7 +28,7 @@ class MorningAnnouncement(Base):
     def do_morning_announcement(self):
         """do the announcement"""
         # we do all these tts sessions non blocking calls
-        self.tts_manager.speak("God morgon Tomas, hoppas du får en fin dag")
+        self.tts_manager.speak("God morgon Tomas, hoppas du får en fin dag", media_player=self._tts_device)
 
         self.run_in(self._speak_weather, 6)       
 
@@ -37,7 +37,7 @@ class MorningAnnouncement(Base):
         yr_symbol = self.get_state('sensor.yr_symbol')
         temp = int(round(float(self.get_state(self._temp_device)), 0))
         
-        self.tts_manager.speak("Det är {} i Matfors just nu med en temperatur på {} grader".format(get_yr_weather_text_from_symbol(yr_symbol), temp))
+        self.tts_manager.speak("Det är {} i Matfors just nu med en temperatur på {} grader".format(get_yr_weather_text_from_symbol(yr_symbol), temp), media_player=self._tts_device)
 
         self.run_in(self._stream_swedish_news, 12)       
 
