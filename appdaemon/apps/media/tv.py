@@ -71,7 +71,7 @@ class Tv(Base):
         # turn on tv
         self.__turn_on_tv()
         # wait 10 seconds and play again
-        self.run_in(self.__delay_play, 15)
+        self.run_in(self.__delay_play, 20)
 
     def __pause(self)->None:
         self.call_service('media_player/media_pause', entity_id=self._media_player)
@@ -88,7 +88,7 @@ class Tv(Base):
         self.turn_off(entity_id=self._remote)
     
     def __is_media_playing(self)->bool:
-        if self.get_state(self._remote) == 'playing':
+        if self.get_state(self._media_player) == 'playing':
             return True
         else:
             return False
