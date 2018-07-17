@@ -133,7 +133,6 @@ binary_sensor.ytterdorr_uppe:
   icon: mdi:door
   friendly_name: Ytterdörr uppe
 
-
 configurator.deconz:
   hidden: true
   homebridge_hidden: true

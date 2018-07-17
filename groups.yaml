@@ -40,6 +40,7 @@ system_view:
   icon: mdi:pi-box
   entities:
       - group.system_metrix
+      - group.low_battery_sensors
 
 tracker_view:
   view: yes
