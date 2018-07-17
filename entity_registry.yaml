@@ -128,19 +128,13 @@ light.hallenuppe_dorren:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:71:cb:db-01
-binary_sensor.rorelsesensor_tomas_rum:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:6b:6f:95-01-0006
-binary_sensor.rorelsesensor_tomas_rum_2:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:6b:6f:95-01-1000
-
 switch.computer_tomas:
   config_entry_id:
   name:
   platform: computer
   unique_id: 74:d0:2b:9f:39:2e-cp
+binary_sensor.rorelsesensor_tomas_rum:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:6b:6f:95-01-1000

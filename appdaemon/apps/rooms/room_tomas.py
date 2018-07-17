@@ -1,5 +1,6 @@
 from area import Area
 from globals import GlobalEvents, HouseModes
+from typing import Tuple, Union
 
 '''
 A specific superclass of Area as an example of how you could 
@@ -7,13 +8,30 @@ superclass Area and work on your own room details
 
 Important to keep the "super()...." to make default area behaviour work
 
+- turn on/off computer depending on motion and time
+
 '''
 class TomasRoom(Area):
     def initialize(self) -> None:
         super().initialize()
 
         self._fan = self.args.get('fan', str)
+        self._computer = self.args.get('computer', str)
 
+        for motion_sensor in self._motion_sensors:
+        # Set the turn off computer function
+            self.listen_state(
+                    self.__off_motion_for_computer,
+                    motion_sensor,
+                    new='off',
+                    old='on',
+                    duration=30*60)
+            
+            self.listen_state(
+                    self.__on_motion_for_computer,
+                    motion_sensor,
+                    new='on',
+                    old='off')
        
         # todo override behaviour
 
@@ -50,3 +68,20 @@ class TomasRoom(Area):
     def on_lightswich_state_changed(self, entity: str, old: str, new: str)->None:
         super().on_lightswich_state_changed(entity, old, new)
         # todo override hehaviour
+
+    def __on_motion_for_computer(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback when motion detected in area"""
+        if self.get_state(self._computer) == 'on':
+            return # Already on
+        self.turn_on(self._computer)
+    def __off_motion_for_computer(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+        """callback motion off in area"""
+        if self.get_state(self._computer) == 'off':
+            return
+        self.turn_off(self._computer)
+        
+            

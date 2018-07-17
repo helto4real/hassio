@@ -4,7 +4,8 @@ from urllib.request import urlopen
 import uuid
 import struct, socket
 import voluptuous as vol
-import datetime
+import datetime, time
+import threading
 
 """
 Custom switch to controll on/off of your computer. 
@@ -60,6 +61,11 @@ class ComputerSwitch(SwitchDevice):
 
         self._time_to_check = datetime.datetime.min
         self._wol = wakeonlan
+
+        # Make workerthread since we can have blocking timing
+        self.worker_thread = threading.Thread(target=self.__thread_start)
+        self.worker_thread.start()
+
     @property
     def should_poll(self):
         """Return the polling state."""
@@ -93,18 +99,9 @@ class ComputerSwitch(SwitchDevice):
         """Return the state of the switch."""
         return self._state
 
-    def update(self):
-        """Update setting state."""
+#    def update(self):
+#        """Update setting state."""
 
-        diff = datetime.datetime.now() - self._time_to_check
-        if diff.days == 0 and diff.seconds<30:
-            return # not ready to update state yet, aim for about once a minute
-        self._time_to_check = datetime.datetime.now()
-
-        if self.__computer_is_on():
-            self._state = 'on'
-        else:
-            self._state = 'off'
 
 
     def turn_on(self, **kwargs):
@@ -112,7 +109,6 @@ class ComputerSwitch(SwitchDevice):
         if self.__computer_is_on():
             return #Already awake
 
-        self._time_to_check = datetime.datetime.min # make sure it reads status next update
         self._state = 'on'
         self.__turn_on_computer()
 
@@ -122,11 +118,19 @@ class ComputerSwitch(SwitchDevice):
 
         if self.__computer_is_on()==False:
             return #Already awake
-        self._time_to_check = datetime.datetime.min
+ 
         self._state = 'off'
         self.__turn_off_computer()
     
         # todo fix the code here later to call the webservice to hibernate computer
+
+    def __thread_start(self):
+        while True:
+            if self.__computer_is_on():
+                self._state = 'on'
+            else:
+                self._state = 'off'
+            time.sleep(15)
 
     def __computer_is_on(self)->bool:
         try:

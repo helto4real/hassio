@@ -62,6 +62,7 @@ room_tomas:
   motion_sensors:
     - binary_sensor.rorelsesensor_tomas_rum
   fan: switch.switch4_tomas_fan
+  computer: switch.computer_tomas
   properties:
     min_time_motion: 10
   dependencies:
