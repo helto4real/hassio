@@ -10,11 +10,11 @@ switch:
   - platform: computer
     entities:
       tomas:
-          mac: '74:d0:2b:9f:39:2e'
-          ip: '192.168.1.114'
-      melker:
-          mac: '74:d0:2b:9f:39:2e'
-          ip: '192.168.1.111'
+          mac: !secret tomas_pc_mac
+          ip: !secret tomas_pc_ip 
+ #     melker:
+ #         mac: !secret melkers_pc_mac
+ #         ip: !secret melkers_pc_ip 
 
 group:
   # Remote controls

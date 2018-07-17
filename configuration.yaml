@@ -69,7 +69,8 @@ recorder:
       - sensor.temp_vardagsrum_uppe
       - binary_sensor.ytterdorr_uppe
 
-#logger: 
+#logger:
+#  default: debug
 #  default: info
 # Enables support for tracking state changes over time
 history:

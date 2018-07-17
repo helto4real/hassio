@@ -4,55 +4,62 @@ from urllib.request import urlopen
 import uuid
 import struct, socket
 import voluptuous as vol
+import datetime
+
+"""
+Custom switch to controll on/off of your computer. 
+Following features:
+
+- turns on computer using wake-on-lan (hass implementation)
+- turns off computer using the component, sleep-on-lan see https://github.com/SR-G/sleep-on-lan
+
+configure: with the mac and ip of the computer
+
+switch:
+  - platform: computer
+    entities:
+      name1:
+          mac: '14:30:2b:1f:39:2e'
+          ip: '192.168.0.2'
+      name2:
+          mac: '64:d1:22:9f:34:1e'
+          ip: '192.168.0.2'
+"""
 
 _LOGGER = logging.getLogger(__name__)
 
-# PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-#     vol.Optional('entities', default={}): {
-#         cv.string: vol.Schema({
-#             vol.Required(CONF_NAME): cv.string,
-#             vol.Optional(CONF_FIRE_EVENT, default=False): cv.boolean,
-#         })
-#     },
-#     vol.Optional(CONF_AUTOMATIC_ADD, default=False):  cv.boolean,
-#     vol.Optional(CONF_SIGNAL_REPETITIONS, default=DEFAULT_SIGNAL_REPETITIONS):
-#         vol.Coerce(int),
-# })
-
+REQUIREMENTS = ['wakeonlan==1.0.0']
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the ZigBee switch platform."""
-    _LOGGER.info("TEST MESSAGE")
-    _LOGGER.info(config)
     entities = config.get('entities', {})
-    _LOGGER.info("Ent: {}".format(entities))
     devices = []
 
     for entity in entities:
-        _LOGGER.info("Adding device : {} ({},{})".format(entity, entities[entity]['ip'], entities[entity]['mac']))
         devices.append(ComputerSwitch(hass, entity, entities[entity]['ip'], entities[entity]['mac']))
-
+    
     add_devices(devices)
 
 class ComputerSwitch(SwitchDevice):
-    """Representation of a ZigBee Digital Out device."""
+    """Representation of a computer device (on/off)."""
     def __init__(self, hass, name:str, ip:str, mac:str):
-        """Initialize the AdsSwitch entity."""
+        """Initialize the ComputerSwitch entity."""
+        # use wakeonlan package
+        import wakeonlan
 
-        self._name = "switch.{}".format(name)
+        self._name = "computer_{}".format(name)
         self._ip = ip
         self._mac = mac
-        _LOGGER.info("INIT DEVICE {}".format(self._name))
+       
+        _LOGGER.info("INIT DEVICE {} with ip {} and mac {}".format(self._name, self._ip, self._mac))
 
-        if self.__computer_is_awake():
-            _LOGGER.info("STATE ON FOR DEVICE {}".format(self._name))
+        if self.__computer_is_on():
             self._state = 'on'
-            self._target_state = True
         else:
-            _LOGGER.info("STATE OFF FOR DEVICE {}".format(self._name))
             self._state = 'off'
-            self._target_state = False
-        
+
+        self._time_to_check = datetime.datetime.min
+        self._wol = wakeonlan
     @property
     def should_poll(self):
         """Return the polling state."""
@@ -61,17 +68,25 @@ class ComputerSwitch(SwitchDevice):
     @property
     def unique_id(self):
         """Return the unique ID of the device."""
-        return "{}-cp".format(self.mac)
+        return "{}-cp".format(self._mac)
 
     @property
     def name(self):
         """Return the name of the entity."""
         return self._name
-    
+
+    @property
+    def icon(self):
+        """Return the icon of the entity."""
+        return 'mdi:laptop'
+
     @property
     def is_on(self):
         """Return true if the device is on."""
-        return self.__computer_is_awake()
+        if self._state == 'on':
+            return True
+        else:
+            return False
 
     @property
     def state(self):
@@ -80,33 +95,53 @@ class ComputerSwitch(SwitchDevice):
 
     def update(self):
         """Update setting state."""
-        _LOGGER.debug("GETING STATE FOR {}".format(self._name))
 
-        if self.__computer_is_awake():
+        diff = datetime.datetime.now() - self._time_to_check
+        if diff.days == 0 and diff.seconds<30:
+            return # not ready to update state yet, aim for about once a minute
+        self._time_to_check = datetime.datetime.now()
+
+        if self.__computer_is_on():
             self._state = 'on'
         else:
             self._state = 'off'
 
 
     def turn_on(self, **kwargs):
-        """Turn the switch on."""
-        _LOGGER.info("TURN ON THE {}".format(self._name))
-        self._target_state = True
+        """Turn the computer on."""
+        if self.__computer_is_on():
+            return #Already awake
 
-        # todo fix the code here later to call wake on lan
+        self._time_to_check = datetime.datetime.min # make sure it reads status next update
+        self._state = 'on'
+        self.__turn_on_computer()
+
 
     def turn_off(self, **kwargs):
-        """Turn the switch off."""
-        _LOGGER.info("TURN OFF THE {}".format(self._name))
-        self._target_state = False
+        """Turn the computer off."""
 
+        if self.__computer_is_on()==False:
+            return #Already awake
+        self._time_to_check = datetime.datetime.min
+        self._state = 'off'
+        self.__turn_off_computer()
+    
         # todo fix the code here later to call the webservice to hibernate computer
 
-    def __computer_is_awake(self)->bool:
+    def __computer_is_on(self)->bool:
         try:
-            _LOGGER.info("CHECK AWAKE")
             response = urlopen("http://{}:8009".format(self._ip), timeout=1)
             return True
         except:
-          #  _LOGGER.warn("Error reading:" + sys.exc_info()[0])
-            return False
+            return False #not available som computer is not on
+    
+    def __turn_on_computer(self)->None:
+        
+        # Turn on the computer to wake up on lan
+        self._wol.send_magic_packet(self._mac)
+
+    def __turn_off_computer(self)->None:
+        # Turn off the computer using utility "sleeponlan" https://github.com/SR-G/sleep-on-lan
+        response = urlopen("http://{}:8009/sleep".format(self._ip))
+
+    
