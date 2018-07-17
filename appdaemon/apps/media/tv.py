@@ -50,8 +50,11 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when media player changes state to 'idle' or 'off'"""
         #Turn off tv when been idle or off for an amout of time
+        if old == 'off':
+            return          #Can never be from off
         self.log("INACTIVITY TV, from state {} to {}".format(old, new))
-        if self.__is_media_playing() == False:              # Added check cause sometimes it turns off when playing
+
+        if self.__is_media_playing() == True:              # Added check cause sometimes it turns off when playing
             self.log("Media is playing, it is still active!!")
             return
 

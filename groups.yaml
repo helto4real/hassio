@@ -123,6 +123,7 @@ room_tomas:
   view: no
   entities:
     - switch.switch1
+    - switch.pc_tomas # logical switch to see computer status
     - switch.switch4_tomas_fan
     - binary_sensor.rorelsesensor_tomas_rum
 room_melker: 
@@ -131,6 +132,7 @@ room_melker:
   entities:
     - switch.switch5_melkers_fan
     - switch.switch8_melkers_tv # Melkers tv
+    - switch.pc_melkers # logical switch to see computer status
 room_sally:
   name: Sallys rum
   view: no

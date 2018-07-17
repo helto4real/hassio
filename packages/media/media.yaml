@@ -6,6 +6,16 @@ remote:
     host: !secret harmony
     activity: Plattan pa TV
 
+switch:
+  - platform: computer
+    entities:
+      tomas:
+          mac: '74:d0:2b:9f:39:2e'
+          ip: '192.168.1.114'
+      melker:
+          mac: '74:d0:2b:9f:39:2e'
+          ip: '192.168.1.111'
+
 group:
   # Remote controls
   remotes:
