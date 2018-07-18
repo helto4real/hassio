@@ -27,7 +27,7 @@ switch:
     0b11000329bc0cfe06010f70:
       name: switch2
     0b11000115bc0cfe01010f70:
-      name: switch3           
+      name: switch3 #sovrummet lampa fönster           
     0b11000534bc0cfe06010f70:
       name: switch4_tomas_fan
     0b11000152bc0cfe01010f70:

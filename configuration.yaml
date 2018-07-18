@@ -78,6 +78,49 @@ history:
 # View all events in a logbook
 logbook:
 
+influxdb:
+  
+  username: !secret influx_username
+  password: !secret influx_password
+  include:
+    domains:
+      - climate
+      - device_tracker
+      - sensor
+      - remote 
+      - media_player
+      - input_select  
+      - binary_sensor
+    entities:
+      - input_select.house_mode_select
+      - media_player.melkers_tv
+      - media_player.tv_nere
+      # tracking
+      - sensor.presence_elin
+      - sensor.presence_tomas
+      - sensor.presence_melker
+      - sensor.presence_sally
+      - device_tracker.tomas_s8 # just for reference remove later
+      - device_tracker.tomass8  # just for reference remove later
+      - device_tracker.tomasgps # just for reference remove later
+
+      # sensors of interest
+      - sensor.utetemp_temperature
+      - sensor.utetemp_humidity
+      - sensor.frysnere_temperature  #Frys nere
+      - sensor.frysuppe_temperature  #Frys uppe
+      - sensor.temp_sovrum_nere
+      - sensor.temp_vardagsrum_uppe
+      - sensor.temp_sallysrum
+      - binary_sensor.ytterdorr_uppe
+      - sensor.kamera_uppe_light_sensor
+      - switch.computer_tomas
+      - remote.tvroom 
+      - binary_sensor.rorelsesensor_uppe
+      # nuc stats
+      - sensor.memory_use_percent
+      - sensor.processor_use
+
 # Enables a map showing the location of tracked devices
 map:
 

@@ -123,6 +123,9 @@ class a_better_presence(hass.Hass):
                     attributes['battery'] = current_device.battery
 
             attributes["{}_last_updated".format(device_name)]=local_time_str(current_device.last_updated)
+        
+        if self.state==None:
+            self.state = globals.presence_state["away"] # some bug to check for when not all device_trackers present we assume away
 
         self.set_state(self.sensorname, state=self.state, attributes=attributes)
 

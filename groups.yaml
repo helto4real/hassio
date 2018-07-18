@@ -24,6 +24,7 @@ room_view:
     - group.room_sally
     - group.room_tomas
     - group.room_tvnere
+    - group.room_sovrum
     - group.room_melker
 
 media_view:
@@ -133,11 +134,20 @@ room_melker:
   entities:
     - switch.switch5_melkers_fan
     - switch.switch8_melkers_tv # Melkers tv
+    - binary_sensor.rorelsesensor_melkers_rum
 room_sally:
   name: Sallys rum
   view: no
   entities:
     - switch.switch2
+    - binary_sensor.rorelsesensor_sallys_rum
+
+room_sovrum:
+  name: Sovrummet
+  view: no
+  entities:
+    - switch.switch3
+    - binary_sensor.rorelsesensor_sovrummet
 room_vardagsrum_uppe:
   name: Vardagsrummet uppe
   view: no

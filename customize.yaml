@@ -7,7 +7,7 @@ switch.switch2:
   friendly_name: Lampa Sallys rum
   icon: mdi:lightbulb
 switch.switch3:
-  friendly_name: Lampor uppe höger
+  friendly_name: Lampa sovrum fönster
   icon: mdi:lightbulb
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
@@ -112,7 +112,15 @@ binary_sensor.rorelsesensor_nere:
 binary_sensor.rorelsesensor_tomas_rum:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Tomas rum
-
+binary_sensor.rorelsesensor_sallys_rum:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor Sallys rum
+binary_sensor.rorelsesensor_melkers_rum:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor Melkers rum
+binary_sensor.rorelsesensor_sovrummet:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor sovrummet
 sensor.frysnere_temperature:  #Frys nere
   friendly_name: Temperatur frysbox
 sensor.frysuppe_temperature:  #Frys uppe
