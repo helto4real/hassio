@@ -31,7 +31,16 @@ room_kitchen:
     - switch.switch7 #Lilla fönstret 
   dependencies:
     - house_status
-    
+
+# Kitchen
+room_master_bedroom:
+  module: area
+  class: Area
+  ambient_ligts:
+    - switch.switch3 #window light
+  dependencies:
+    - house_status    
+
 # TV room downstairs
 room_tvroom:        
   module: room_tvroom

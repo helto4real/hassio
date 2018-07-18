@@ -14,6 +14,7 @@ default_view:
     - sensor.house_mode
     - group.frysar_temperatur
     - group.people_status
+    - sensor.occupancy
     
 room_view:
   view: yes

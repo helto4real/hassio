@@ -51,6 +51,8 @@ recorder:
     domains:
       - climate
       - device_tracker
+      - sensor
+      - binary_sensor
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
@@ -68,6 +70,7 @@ recorder:
       - sensor.temp_sovrum_nere
       - sensor.temp_vardagsrum_uppe
       - binary_sensor.ytterdorr_uppe
+      - sensor.occupancy
 
 #logger:
 #  default: debug
@@ -103,7 +106,8 @@ influxdb:
       - device_tracker.tomas_s8 # just for reference remove later
       - device_tracker.tomass8  # just for reference remove later
       - device_tracker.tomasgps # just for reference remove later
-
+      - sensor.occupancy
+      
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
@@ -120,6 +124,7 @@ influxdb:
       # nuc stats
       - sensor.memory_use_percent
       - sensor.processor_use
+      
 
 # Enables a map showing the location of tracked devices
 map:
