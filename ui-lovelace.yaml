@@ -22,32 +22,29 @@ views:
               state_image:
                 Home: /local/tomas_presence.jpg
                 Just arrived: /local/tomas_presence.jpg
-              name: 'Tomas'
+              name: ' '
               style: '#name { display: none;}'
-            - type: picture-entity
+            - type: custom:picture-entity-status
               entity: sensor.presence_elin
               image: /local/elin_presence_away.jpg
               state_image:
                 Home: /local/elin_presence.jpg
                 Just arrived: /local/elin_presence.jpg
-              name: 'Elin'
-
-        - type: horizontal-stack
-          cards:
-            - type: picture-entity
+              name: ' '
+            - type: custom:picture-entity-status
               entity: sensor.presence_sally
               image: /local/sally_presence_away.jpg
               state_image:
                 Home: /local/sally_presence.jpg
                 Just arrived: /local/tomas_presence.jpg
-              name: 'Sally'
-            - type: picture-entity
+              name: ' '
+            - type: custom:picture-entity-status
               entity: sensor.presence_melker
               image: /local/melker_presence_away.jpg
               state_image:
                 Home: /local/melker_presence.jpg
                 Just arrived: /local/melker_presence.jpg
-              name: 'Melker'
+              name: ' '
      
   - icon: mdi:google-maps
     # Title of the view. Will be used as the tooltip for tab icon

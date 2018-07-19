@@ -1,6 +1,7 @@
-import HuiPictureEntityCard from '/@polymer/src/panels/lovelace/cards/hui-picture-entity-card.js';
+import {html} from 'https://unpkg.com/@polymer/polymer/lib/utils/html-tag.js';
 
-//webpack:///./src/panels/lovelace/cards/hui-picture-entity-card.js
+const HuiPictureEntityCard  = customElements.get('hui-picture-entity-card');
+//const html = customElements.get('html');
 class PictureEntityStatus extends HuiPictureEntityCard {
   static get template() {
     return html`
@@ -43,13 +44,17 @@ class PictureEntityStatus extends HuiPictureEntityCard {
           entity="[[_config.entity]]"
         ></hui-image>
         <div class="info" hidden$='[[_computeHideInfo(_config)]]'>
-          <div id="name"></div>
+          <div id="kalle" style="font-size: 35px;">&nbsp;</div>
           <div id="state"></div>
-        </div>
+          <div id="name"></div>
+          <div id="bertil" style="font-size: 5px;" >&nbsp;</div>
+          </div>
       </ha-card>
-    `;
+    `; // 
   }
-
+  setConfig(config) {
+    super.setConfig(config)
+  }
  
 }
 
