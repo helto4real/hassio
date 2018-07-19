@@ -1,5 +1,5 @@
 resources:
-  - url: /local/picture-entity-status.js
+  - url: /local/picture-entity-status.js?v=1.26
     type: module
 
 title: Hellströms home

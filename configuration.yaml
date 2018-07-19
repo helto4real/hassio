@@ -18,7 +18,8 @@ homeassistant:
 
 # Enables the frontend
 frontend:
-
+  javascript_version: latest
+  themes: !include_dir_named themes
 # Enables configuration UI
 config:
 
@@ -50,9 +51,6 @@ recorder:
   include:
     domains:
       - climate
-      - device_tracker
-      - sensor
-      - binary_sensor
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
@@ -87,13 +85,13 @@ influxdb:
   password: !secret influx_password
   include:
     domains:
-      - climate
-      - device_tracker
-      - sensor
-      - remote 
-      - media_player
-      - input_select  
-      - binary_sensor
+#      - climate
+#      - device_tracker
+#      - sensor
+#      - remote 
+#      - media_player
+#      - input_select  
+#      - binary_sensor
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
