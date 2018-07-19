@@ -116,7 +116,7 @@ class PictureEntityStatus extends HTMLElement {
     node.dispatchEvent(event);
     return event;
   }
-  
+
   set hass(hass) {
     const config = this._config;
     const entityState = hass.states[config.entity].state;
@@ -125,7 +125,6 @@ class PictureEntityStatus extends HTMLElement {
  
     var imgUrl = `url(${config.image})`;
     if (entityState !== this._entityState) {
-        console.log(config.state_image);
         for (var key in config.state_image) {
             if (config.state_image.hasOwnProperty(key)) {           
                 if (key == entityState)
