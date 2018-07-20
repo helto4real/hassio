@@ -9,6 +9,16 @@ sensor:
     monitored_conditions:
       - temperature
       - symbol
+  - platform: template
+    sensors:
+      temp_outside:
+          friendly_name: "Temperature outside"
+        #unit_of_measurement: 'degrees'
+          value_template: "{{ states.sensor.utetemp_temperature.state | round(0) }}"
+      hum_outside:
+          friendly_name: "Humidity outside"
+        #unit_of_measurement: 'degrees'
+          value_template: "{{ states.sensor.utetemp_humidity.state | round(0) }}"
 
 group:
   # För givare och väder    
@@ -20,3 +30,4 @@ group:
       - sensor.ute_humidity
       - sun.sun
       - sensor.yr_symbol
+

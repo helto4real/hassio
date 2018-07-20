@@ -122,15 +122,17 @@ binary_sensor.rorelsesensor_sovrummet:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor sovrummet
 sensor.frysnere_temperature:  #Frys nere
-  friendly_name: Temperatur frysbox
+  friendly_name: Temp frysbox
 sensor.frysuppe_temperature:  #Frys uppe
-  friendly_name: Temperatur frys kök
+  friendly_name: Temp frys kök
    
 sensor.utetemp_temperature:
-  friendly_name: Temperatur ute
+  friendly_name: Temp Ute
 sensor.utetemp_humidity:
-  friendly_name: Luftfuktighet ute
-
+  friendly_name: Fukt Ute
+sensor.yr_symbol:
+  friendly_name: Väder
+  
 sensor.temp_sovrum_nere:
   friendly_name: Temperatur sovrum nere
 sensor.temp_vardagsrum_uppe:
@@ -140,6 +142,19 @@ sensor.temp_sallysrum:
 binary_sensor.ytterdorr_uppe:
   icon: mdi:door
   friendly_name: Ytterdörr uppe
+
+media_player.house:
+  icon: mdi:google-home
+media_player.kitchen:
+  icon: mdi:google-home
+media_player.sovrum:
+  icon: mdi:google-home
+media_player.vardagsrum:
+  icon: mdi:google-home
+media_player.tvroom:
+  icon: mdi:google-home
+media_player.tv_rummet_gh:
+  icon: mdi:google-home
 
 configurator.deconz:
   hidden: true
