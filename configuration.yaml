@@ -84,7 +84,7 @@ influxdb:
   username: !secret influx_username
   password: !secret influx_password
   include:
-    domains:
+#    domains:
 #      - climate
 #      - device_tracker
 #      - sensor
@@ -146,6 +146,10 @@ mqtt:
   username: !secret mqtt_user
   password: !secret mqtt_password
 
+#tuya:
+#  username: 54321
+#  password: 12345
+#  country_code: 46
 #cloud:
 
 zone: !include zones.yaml

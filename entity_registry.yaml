@@ -133,18 +133,33 @@ binary_sensor.rorelsesensor_nere:
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:95:2f:54-01-1000
-binary_sensor.rorelsesensor_sovrummet:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:71:50:b5-01-0006
-binary_sensor.rorelsesensor_sallys_rum:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 90:fd:9f:ff:fe:6f:85:f3-01-0006
 binary_sensor.rorelsesensor_melkers_rum:
   config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
-  unique_id: 00:0b:57:ff:fe:f3:60:fc-01-0006
+  unique_id: 00:0b:57:ff:fe:f3:60:fc-01-1000
+binary_sensor.rorelsesensor_sovrummet:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:71:50:b5-01-1000
+binary_sensor.rorelsesensor_sallys_rum:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 90:fd:9f:ff:fe:6f:85:f3-01-1000
+light.osram:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 7c:b0:3e:aa:00:ad:4a:e1-03
+sensor.temperature_15:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:fa:50:22-01-0402
+sensor.humidity_16:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:fa:50:22-01-0405

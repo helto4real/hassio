@@ -1,7 +1,7 @@
 resources:
-  - url: /local/picture-entity-status.js?v=1.27
+  - url: /local/custom_cards/custom-cards.js?v=1.001
     type: module
-
+ 
 title: Hellströms home
 
 
@@ -19,35 +19,31 @@ views:
         #
         - type: horizontal-stack
           cards:
-            - type: custom:picture-entity-status
+            - type: custom:picture-status-element
               entity: sensor.presence_tomas
-              image: /local/tomas_presence_away.jpg
+              image: /local/img/presence/tomas_presence_away.jpg
               state_image:
-                Home: /local/tomas_presence.jpg
-                Just arrived: /local/tomas_presence.jpg
+                Home: /local/img/presence/tomas_presence.jpg
+                Just arrived: /local/img/presence/local/tomas_presence.jpg
               name: ' '
-              style: '#name { display: none;}'
-            - type: custom:picture-entity-status
+            - type: custom:picture-status-element
               entity: sensor.presence_elin
-              image: /local/elin_presence_away.jpg
+              image: /local/img/presence/elin_presence_away.jpg
               state_image:
-                Home: /local/elin_presence.jpg
-                Just arrived: /local/elin_presence.jpg
-              name: ' '
-            - type: custom:picture-entity-status
+                Home: /local/img/presence/elin_presence.jpg
+                Just arrived: /local/img/presence/elin_presence.jpg
+            - type: custom:picture-status-element
               entity: sensor.presence_sally
-              image: /local/sally_presence_away.jpg
+              image: /local/img/presence/sally_presence_away.jpg
               state_image:
-                Home: /local/sally_presence.jpg
-                Just arrived: /local/tomas_presence.jpg
-              name: ' '
-            - type: custom:picture-entity-status
+                Home: /local/img/presence/sally_presence.jpg
+                Just arrived: /local/img/presence/tomas_presence.jpg
+            - type: custom:picture-status-element
               entity: sensor.presence_melker
-              image: /local/melker_presence_away.jpg
+              image: /local/img/presence/melker_presence_away.jpg
               state_image:
-                Home: /local/melker_presence.jpg
-                Just arrived: /local/melker_presence.jpg
-              name: ' '
+                Home: /local/img/presence/melker_presence.jpg
+                Just arrived: /local/img/presence/melker_presence.jpg
         #
         # Temperature and moisture plus current weather icons
         #
@@ -71,11 +67,11 @@ views:
             - type: state-icon
               entity: sensor.yr_symbol
               style:
-                top: 52%
+                top: 50%
                 left: 40%
 
         - type: picture-elements
-          image: /local/img/first_floor.jpg
+          image: /local/img/first_floor2.jpg
           elements:
           #
           # Living room 
@@ -92,16 +88,19 @@ views:
                 left: 48.5%
             - type: state-icon
               entity: light.vardagsrummet_hoger
+              tap_action: toggle
               style:
                 top: 89.45%
                 left: 17.9%
             - type: state-icon
               entity: light.vardagsrumet_mitten
+              tap_action: toggle
               style:
                 top: 89.45%
                 left: 38.2%
             - type: state-icon
               entity: light.vardagsrummet_vanster
+              tap_action: toggle
               style:
                 top: 89.45%
                 left: 60.5%   
@@ -115,6 +114,7 @@ views:
           #
             - type: state-icon
               entity: light.hallenuppe_dorren
+              tap_action: toggle
               style:
                 top: 10.5%
                 left: 55.5%             
@@ -125,6 +125,7 @@ views:
                 left: 55.5%  
             - type: state-icon
               entity: light.hallenuppe
+              tap_action: toggle
               style:
                 top: 27.5%
                 left: 55.5%             
@@ -138,16 +139,19 @@ views:
                 left: 78.5%
             - type: state-icon
               entity: switch.switch1 #tomas room
+              tap_action: toggle
               style:
                 top: 10.5%
                 left: 82.5%  
             - type: state-icon
               entity: switch.computer_tomas #tomas room
+              tap_action: toggle
               style:
                 top: 10.5%
                 left: 92.2% 
             - type: state-icon
               entity: switch.switch4_tomas_fan #tomas room
+              tap_action: toggle
               style:
                 top: 20.5%
                 left: 92.2% 
@@ -161,6 +165,7 @@ views:
                 left: 8.42%
             - type: state-icon
               entity: switch.switch2 #light sallys room window
+              tap_action: toggle
               style:
                 top: 10.5%
                 left: 17.9%       
@@ -169,11 +174,13 @@ views:
           #
             - type: state-icon
               entity: switch.switch6 #window
+              tap_action: toggle
               style:
                 top: 89.45%
                 left: 78.2%  
             - type: state-icon
               entity: switch.switch7 #small windows
+              tap_action: toggle
               style:
                 top: 58.8%
                 left: 92.4% 
@@ -186,13 +193,14 @@ views:
           # Lower floor
           #
         - type: picture-elements
-          image: /local/img/second_floor.jpg
+          image: /local/img/second_floor2.jpg
           elements:
           #
           # Master bedroom 
           #
             - type: state-icon
               entity: switch.switch3 #bedroom light
+              tap_action: toggle
               style:
                 top: 90.2%
                 left: 16.6%
@@ -211,16 +219,19 @@ views:
           #
             - type: state-icon
               entity: light.tvrummet_hoger
+              tap_action: toggle
               style:
                 top: 90.2%
                 left: 47.2%
             - type: state-icon
               entity: light.tvrummet_vanster
+              tap_action: toggle
               style:
                 top: 90.2%
                 left: 57.42%
             - type: state-icon
               entity: switch.switch10 # wall lights
+              tap_action: toggle
               style:
                 top: 50.8%
                 left: 67%
@@ -254,11 +265,13 @@ views:
                 left: 92.4% 
             - type: state-icon
               entity: switch.switch8_melkers_tv # Melkers tv  
+              tap_action: toggle
               style:
                 top: 60.8%
                 left: 92.4%
             - type: state-icon
               entity: switch.switch5_melkers_fan  
+              tap_action: toggle
               style:
                 top: 70.8%
                 left: 92.4%   
