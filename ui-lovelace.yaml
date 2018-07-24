@@ -1,5 +1,5 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.001
+  - url: /local/custom_cards/custom-cards.js?v=1.012
     type: module
  
 title: Hellströms home
@@ -19,28 +19,40 @@ views:
         #
         - type: horizontal-stack
           cards:
-            - type: custom:picture-status-element
+            - type: custom:picture-status-card
               entity: sensor.presence_tomas
               image: /local/img/presence/tomas_presence_away.jpg
+              font_size: 1.1em
+              font_color: white
+              card_height: 90px
               state_image:
                 Home: /local/img/presence/tomas_presence.jpg
                 Just arrived: /local/img/presence/local/tomas_presence.jpg
               name: ' '
-            - type: custom:picture-status-element
+            - type: custom:picture-status-card
               entity: sensor.presence_elin
               image: /local/img/presence/elin_presence_away.jpg
+              font_size: 1.1em
+              font_color: white
+              card_height: 90px
               state_image:
                 Home: /local/img/presence/elin_presence.jpg
                 Just arrived: /local/img/presence/elin_presence.jpg
-            - type: custom:picture-status-element
+            - type: custom:picture-status-card
               entity: sensor.presence_sally
               image: /local/img/presence/sally_presence_away.jpg
+              font_size: 1.1em
+              font_color: white
+              card_height: 90px
               state_image:
                 Home: /local/img/presence/sally_presence.jpg
                 Just arrived: /local/img/presence/tomas_presence.jpg
-            - type: custom:picture-status-element
+            - type: custom:picture-status-card
               entity: sensor.presence_melker
               image: /local/img/presence/melker_presence_away.jpg
+              font_size: 1.1em
+              font_color: white
+              card_height: 90px
               state_image:
                 Home: /local/img/presence/melker_presence.jpg
                 Just arrived: /local/img/presence/melker_presence.jpg
