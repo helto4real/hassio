@@ -22,6 +22,7 @@ views:
             - type: custom:picture-status-card
               entity: sensor.presence_tomas
               image: /local/img/presence/tomas_presence_away.jpg
+             # font_size: 1em
               font_color: white
               card_height: 90px
               state_image:
@@ -52,25 +53,8 @@ views:
               state_image:
                 Home: /local/img/presence/melker_presence.jpg
                 Just arrived: /local/img/presence/melker_presence.jpg
-        - type: horizontal-stack
-          cards:
-            - type: custom:picture-status-card
-              entity: sensor.presence_tomas
-              image: /local/img/presence/tomas_presence_away.jpg
-              font_color: white
-              card_height: 180px
-              state_image:
-                Home: /local/img/presence/tomas_presence.jpg
-                Just arrived: /local/img/presence/local/tomas_presence.jpg
-              name: ' '
-            - type: custom:picture-status-card
-              entity: sensor.presence_elin
-              image: /local/img/presence/elin_presence_away.jpg
-              font_color: white
-              card_height: 180px
-              state_image:
-                Home: /local/img/presence/elin_presence.jpg
-                Just arrived: /local/img/presence/elin_presence.jpg        #
+        
+        #
         # Temperature and moisture plus current weather icons
         #
         - type: picture-elements
@@ -93,7 +77,7 @@ views:
             - type: state-icon
               entity: sensor.yr_symbol
               style:
-                top: 50%
+                top: 51%
                 left: 40%
 
         - type: picture-elements
