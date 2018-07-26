@@ -6,7 +6,11 @@ sensor:
       - type: memory_use_percent
       - type: processor_use
       - type: since_last_boot
-
+      - type: network_out
+        arg: 'wlp2s0'
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
 
 group:
   system_metrix:
@@ -19,3 +23,8 @@ group:
       - sensor.since_last_boot
       - sensor.ha_uptime
       - sensor.cpu
+      - sensor.network_out_wlp2s0
+      - sensor.load_1m
+      - sensor.load_5m
+      - sensor.load_15m
+      

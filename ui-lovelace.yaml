@@ -1,6 +1,10 @@
 resources:
   - url: /local/custom_cards/custom-cards.js?v=1.017
     type: module
+  - url: /local/custom_cards/canvas-gauge-card.js?v=1.022
+    type: module
+  #- url: /local/custom_cards/gauge.min.js?v=001
+  #  type: module
  
 title: Hellströms home
 
@@ -302,3 +306,457 @@ views:
           - sensor.presence_elin
           - sensor.presence_melker
             
+  - icon: mdi:temperature-celsius
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Temeraturer
+    cards:
+      - type: horizontal-stack
+        cards:
+ 
+          - type: custom:canvas-gauge-card
+            entity: sensor.temp_outside
+            name: Ute
+            gauge:
+              type: "linear-gauge"
+              width: 120
+              height: 400
+              units: ""
+              minValue: -40
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              maxValue: 40
+              majorTicks: [
+                  "-40",
+                  "-30",
+                  "-20",
+                  "-10",
+                  "0",
+                  "10",
+                  "20",
+                  "30",
+                  "40"
+              ]
+              minorTicks: 10
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 25,
+                      "to": 40,
+                      "color": "rgba(200, 50, 50, .25)"
+                  },
+                  {
+                      "from": -40,
+                      "to": -10,
+                      "color": "rgba(50, 50, 200, .25)"
+                  }          ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 1
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              barWidth: 5
+              barStrokeWidth: 1
+              colorBarStroke: "#777"
+              colorBarProgress: "#d99"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd" 
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.temp_sallysrum
+            name: Sallys rum
+            gauge:
+              type: "linear-gauge"
+              width: 120
+              height: 400
+              units: ""
+              minValue: 0
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              maxValue: 30
+              majorTicks: [
+                  "0",
+                  "5",
+                  "10",
+                  "15",
+                  "20",
+                  "25",
+                  "30"
+              ]
+              minorTicks: 5
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 25,
+                      "to": 30,
+                      "color": "rgba(200, 50, 50, .15)"
+                  },
+                  {
+                      "from": 0,
+                      "to": 18,
+                      "color": "rgba(50, 50, 200, .15)"
+                  }          ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 1
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              barWidth: 5
+              barStrokeWidth: 1
+              colorBarStroke: "#777"
+              colorBarProgress: "#d99"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd" 
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.temp_vardagsrum_uppe
+            name: Vardagsrummet
+            font_size: '1em'
+            gauge:
+              type: "linear-gauge"
+              width: 120
+              height: 400
+              units: ""
+              minValue: 0
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              maxValue: 30
+              majorTicks: [
+                  "0",
+                  "5",
+                  "10",
+                  "15",
+                  "20",
+                  "25",
+                  "30"
+              ]
+              minorTicks: 5
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 25,
+                      "to": 30,
+                      "color": "rgba(200, 50, 50, .15)"
+                  },
+                  {
+                      "from": 0,
+                      "to": 18,
+                      "color": "rgba(50, 50, 200, .15)"
+                  }          ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 1
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              barWidth: 5
+              barStrokeWidth: 1
+              colorBarStroke: "#777"
+              colorBarProgress: "#d99"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"              
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.temp_sovrum_nere
+            name: Sovrummet
+            gauge:
+              type: "linear-gauge"
+              width: 120
+              height: 400
+              units: ""
+              minValue: 0
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              maxValue: 30
+              majorTicks: [
+                  "0",
+                  "5",
+                  "10",
+                  "15",
+                  "20",
+                  "25",
+                  "30"
+              ]
+              minorTicks: 5
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 25,
+                      "to": 30,
+                      "color": "rgba(200, 50, 50, .15)"
+                  },
+                  {
+                      "from": 0,
+                      "to": 18,
+                      "color": "rgba(50, 50, 200, .15)"
+                  }          ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 1
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              barWidth: 5
+              barStrokeWidth: 1
+              colorBarStroke: "#777"
+              colorBarProgress: "#d99"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"              
+
+  - icon: mdi:gauge-low
+    title: System
+    cards:    
+      - type: horizontal-stack
+        cards:
+          - type: custom:canvas-gauge-card
+            entity: sensor.processor_use
+            name: Processor (%)
+            shadow_height: 10%
+            font_size: 1em
+            gauge:
+              type: "radial-gauge"
+              width: 220
+              height: 220
+              units: "%"
+              minValue: 0
+              maxValue: 100
+              startAngle: 40
+              ticksAngle: 280
+              valueBox: true
+              majorTicks: [
+                  "0",
+                  "10",
+                  "20",
+                  "30",
+                  "40",
+                  "50",
+                  "60",
+                  "70",
+                  "80",
+                  "90",
+                  "100",
+              ]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 80,
+                      "to": 100,
+                      "color": "rgba(200, 50, 50, .75)"
+                  }
+              ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"      
+          - type: custom:canvas-gauge-card
+            entity: sensor.load_1m
+            name: Load (1m)
+            shadow_height: 10%
+            font_size: 1em
+            gauge:
+              type: "radial-gauge"
+              width: 220
+              height: 220
+              units: "%"
+              minValue: 0
+              maxValue: 1
+              startAngle: 40
+              ticksAngle: 280
+              valueBox: true
+              majorTicks: [
+                  "0",
+                  "0.1",
+                  "0.2",
+                  "0.3",
+                  "0.4",
+                  "0.5",
+                  "0.6",
+                  "0.7",
+                  "0.8",
+                  "0.9",
+                  "1",
+              ]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 0.8,
+                      "to": 1,
+                      "color": "rgba(200, 50, 50, .75)"
+                  }
+              ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"      
+      - type: horizontal-stack
+        cards:
+          - type: custom:canvas-gauge-card
+            entity: sensor.memory_use_percent
+            name: Memory (%)
+            shadow_height: 10%
+            font_size: 1em
+            gauge:
+              type: "radial-gauge"
+              width: 220
+              height: 220
+              units: "%"
+              minValue: 0
+              maxValue: 100
+              startAngle: 40
+              ticksAngle: 280
+              valueBox: true
+              majorTicks: [
+                  "0",
+                  "10",
+                  "20",
+                  "30",
+                  "40",
+                  "50",
+                  "60",
+                  "70",
+                  "80",
+                  "90",
+                  "100",
+              ]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 80,
+                      "to": 100,
+                      "color": "rgba(200, 50, 50, .75)"
+                  }
+              ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"      
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.disk_use_percent_home
+            name: Disk (%)
+            shadow_height: 10%
+            font_size: 1em
+            gauge:
+              type: "radial-gauge"
+              width: 220
+              height: 220
+              units: "%"
+              minValue: 0
+              maxValue: 100
+              startAngle: 40
+              ticksAngle: 280
+              valueBox: true
+              majorTicks: [
+                  "0",
+                  "10",
+                  "20",
+                  "30",
+                  "40",
+                  "50",
+                  "60",
+                  "70",
+                  "80",
+                  "90",
+                  "100",
+              ]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [
+                  {
+                      "from": 80,
+                      "to": 100,
+                      "color": "rgba(200, 50, 50, .75)"
+                  }
+              ]
+              colorPlate: "#ddd"
+              borderShadowWidth: 0
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+              colorBorderOuter: "#fff"
+              colorBorderOuterEnd: "#ddd"
+              colorBorderMiddle: "#ddd"
+              colorBorderMiddleEnd: "#ddd"
+              colorBorderInner: "#ddd"
+              colorBorderInnerEnd: "#ddd"      

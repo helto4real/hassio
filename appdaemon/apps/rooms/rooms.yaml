@@ -81,7 +81,7 @@ room_melker:
   module: room_melker
   class: MelkersRoom
   properties:
-    tv_switch: 'switch.switch8' # Melkers tv
+    tv_switch: 'switch.switch8_melkers_tv' # Melkers tv
     time_to_turn_off_tv: '01:32:00'
     minutes_before_turn_on_switch: 5
   dependencies:
