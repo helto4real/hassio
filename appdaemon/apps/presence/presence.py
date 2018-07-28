@@ -217,6 +217,11 @@ class a_better_presence(hass.Hass):
                     self.log("UNKNOWN DEVICE: {}".format(current_device.source_type))  
                     if current_device.state == 'home':
                         initial_home_state = 'home'
+            else:
+                if current_device.name.endswith('_bt'):
+                    bluetooth_device = current_device
+                    bluetooth_device.source_type = 'bluetooth'
+                    self.log("Found bluetooth device {}".format(current_device.name))
 
         # Always report home if wifi or bluetooth reports 'home'
         if (bluetooth_device != None and bluetooth_device.state == 'home'):

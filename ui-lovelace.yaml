@@ -1,7 +1,7 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.021
+  - url: /local/custom_cards/custom-cards.js?v=1.036
     type: module
- 
+   
  
 title: Hellströms home
 
@@ -78,7 +78,7 @@ views:
             - type: state-icon
               entity: sensor.yr_symbol
               style:
-                top: 51%
+                top: 52%
                 left: 40%
 
         - type: picture-elements
@@ -667,3 +667,17 @@ views:
               top: 57.8%
               transform: none
 
+  - icon: mdi:cast
+    title: Media
+    cards:    
+      - type: custom:media-player-card
+        entity: media_player.tv_nere
+        image_folder: '/local/custom_cards/img'
+      - type: custom:media-player-card
+        entity: media_player.tv_uppe
+        image_folder: '/local/custom_cards/img'
+      - type: custom:media-player-card
+        entity: media_player.melkers_tv
+        image_folder: '/local/custom_cards/img'
+
+  

@@ -51,7 +51,6 @@ room_tvroom:
   night_lights:
     - light.tvnere_fonster 
   motion_sensors:
-    - binary_sensor.rorelsesensor_nere_2  # A bug makes the sensor rename sometimes
     - binary_sensor.rorelsesensor_nere
   light_switches:
     - switch.switch_1_lb

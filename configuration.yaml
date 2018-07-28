@@ -57,8 +57,8 @@ recorder:
       # tracking
       - sensor.presence_elin
       - sensor.presence_tomas
-      - device_tracker.tomas_s8
-      - device_tracker.tomas_s8
+      - sensor.tomas_phone_mqtt_bt
+      - sensor.tomas_phone_mqtt_bt
 
       # sensors of interest
       - sensor.utetemp_temperature
@@ -101,7 +101,7 @@ influxdb:
       - sensor.presence_tomas
       - sensor.presence_melker
       - sensor.presence_sally
-      - device_tracker.tomas_s8 # just for reference remove later
+      - sensor.tomas_phone_mqtt_bt # just for reference remove later
       - device_tracker.tomass8  # just for reference remove later
       - device_tracker.tomasgps # just for reference remove later
       - sensor.occupancy

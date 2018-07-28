@@ -25,14 +25,14 @@ group:
     name: Test hemma
     view: no
     entities:
-      - device_tracker.tomas_s8
+      - sensor.tomas_phone_mqtt_bt
       - device_tracker.testgps
 
   tomas_devices:
     name: Tomas hemma
     view: no
     entities:
-      - device_tracker.tomas_s8 #Bluetooth
+      - sensor.tomas_phone_mqtt_bt #Bluetooth
       - device_tracker.tomasgps
       - device_tracker.tomass8      
 
@@ -82,15 +82,30 @@ device_tracker:
     track_new_devices: no
     interval_seconds: 15
     consider_home: 180
+  
+    
 #  - platform: mqtt
 #    devices:
 #      tomas_s8: 'hassio/bt/device_tracker/tomas_s8'
 #      tomas_s8: 'hassio/bt/device_tracker/elins_s8'
   - platform: gpslogger
     password: !secret gpslogger_password      
-  - platform: bluetooth_tracker
+ # - platform: bluetooth_tracker
   #- platform: google_maps
   #  username: !secret gu 
   #  password: !secret gp
+sensor:
+  - platform: mqtt
+    name: tomas_phone_mqtt_bt
+    state_topic: 'test/bluetooth/owner/house/A0:10:81:18:E9:AD'
+    value_template: >
+     {% if float(value_json.confidence) > 0 %}
+      home
+     {% else %}
+      not_home
+     {% endif %}
+    json_attributes:
+      - "confidence"
+    #  - "source_type": 'bluetooth'
 
   

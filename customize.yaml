@@ -46,7 +46,7 @@ group.tomas_devices:
 device_tracker.tomass8:
   friendly_name: Tomas mobil wifi
   entity_picture: /local/tomas.jpg
-device_tracker.tomas_s8:
+sensor.tomas_phone_mqtt_bt:
   friendly_name: Tomas mobil BT
   entity_picture: /local/tomas.jpg
 device_tracker.tomasgps:
