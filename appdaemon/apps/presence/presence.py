@@ -35,7 +35,7 @@ class a_better_presence(hass.Hass):
 
     # Initializer
     def initialize(self)->None:
-        self.log("STARTING APP 'A BETTER presence2 ' for group: {} ".format(self.args["group_devices"]))
+        self.log("STARTING APP 'A BETTER presence ' for group: {} ".format(self.args["group_devices"]))
 
         # Check mandatory settings
         if "name" not in self.args:
@@ -222,7 +222,6 @@ class a_better_presence(hass.Hass):
                 if current_device.name.endswith('_bt'):
                     bluetooth_device = current_device
                     bluetooth_device.source_type = 'bluetooth'
-                    self.log("Found bluetooth device {}".format(current_device.name))
    
         # Always report home if wifi or bluetooth reports 'home'
         if (bluetooth_device != None and bluetooth_device.state == 'home'):
@@ -311,7 +310,6 @@ class a_better_presence(hass.Hass):
         current_state = self.get_state_from_tracked_devices()
 
         if current_state != self.state:
-     #       self.log("ON TIMER CHANGED STATE FROM {} TO {}".format(self.state, current_state))
             self.state = current_state
             self.set_state(self.sensorname, state=self.state)
 
