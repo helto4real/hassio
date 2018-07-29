@@ -20,13 +20,13 @@ group:
       - group.sallys_devices
       - group.melkers_devices
 
-  # After this 
-  test_devices:
-    name: Test hemma
-    view: no
-    entities:
-      - sensor.tomas_phone_mqtt_bt
-      - device_tracker.testgps
+  # # After this 
+  # test_devices:
+  #   name: Test hemma
+  #   view: no
+  #   entities:
+  #     - sensor.tomas_phone_mqtt_bt
+  #     - device_tracker.testgps
 
   tomas_devices:
     name: Tomas hemma
@@ -41,7 +41,7 @@ group:
     name: Elin hemma
     view: no
     entities:
-      - device_tracker.elins_s8
+      - sensor.elin_phone_mqtt_bt
       - device_tracker.elingps
       - device_tracker.elinss8  
 
@@ -50,14 +50,15 @@ group:
     view: no
     entities:
       - device_tracker.melkergps
+      - sensor.melker_phone_mqtt_bt
       - device_tracker.samsunggalaxys7
 
   sallys_devices:
     name: Sally hemma
     view: no
     entities:
-      - device_tracker.sallygps
       - device_tracker.huawei_p20_pro2d36a29977
+      - sensor.sally_phone_mqtt_bt
 
 automation:
   - alias: Send message on away-home notice Tomas
@@ -106,6 +107,40 @@ sensor:
      {% endif %}
     json_attributes:
       - "confidence"
-    #  - "source_type": 'bluetooth'
 
+  - platform: mqtt
+    name: elin_phone_mqtt_bt
+    state_topic: 'test/bluetooth/owner/house/48:27:EA:3E:9F:8F'
+    value_template: >
+     {% if float(value_json.confidence) > 0 %}
+      home
+     {% else %}
+      not_home
+     {% endif %}
+    json_attributes:
+      - "confidence"
+
+  - platform: mqtt
+    name: melker_phone_mqtt_bt
+    state_topic: 'test/bluetooth/owner/house/F8:E6:1A:9A:5C:86'
+    value_template: >
+     {% if float(value_json.confidence) > 0 %}
+      home
+     {% else %}
+      not_home
+     {% endif %}
+    json_attributes:
+      - "confidence"
+
+  - platform: mqtt
+    name: sally_phone_mqtt_bt
+    state_topic: 'test/bluetooth/owner/house/A0:57:E3:15:DE:4E'
+    value_template: >
+     {% if float(value_json.confidence) > 0 %}
+      home
+     {% else %}
+      not_home
+     {% endif %}
+    json_attributes:
+      - "confidence"
   

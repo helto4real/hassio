@@ -61,7 +61,7 @@ group.elins_devices:
   friendly_name: Elins mobil
   entity_picture: /local/elin.jpg
 
-device_tracker.elins_s8:
+sensor.elin_phone_mqtt_bt:
   friendly_name: Elins mobil BT
   entity_picture: /local/elin.jpg
 
@@ -83,11 +83,12 @@ sensor.sally_status:
 device_tracker.huawei_p20_pro2d36a29977:
   friendly_name: Sallys mobil wifi
   entity_picture: /local/sally.jpg
-
 device_tracker.sallygps:
   friendly_name: Sallys mobil GPS
   entity_picture: /local/sally.jpg
-
+sensor.sally_phone_mqtt_bt:
+  friendly_name: Sallys mobil BT
+  entity_picture: /local/sally.jpg
 
 group.melkers_devices:
   friendly_name: Melkers mobil
@@ -97,7 +98,9 @@ sensor.melker_status:
 device_tracker.samsunggalaxys7:
   friendly_name: Melkers mobil wifi
   entity_picture: /local/melker.jpg
-
+sensor.melker_phone_mqtt_bt:
+  friendly_name: Melkers mobil BT
+  entity_picture: /local/melker.jpg
 device_tracker.melkergps:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
