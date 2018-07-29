@@ -1,0 +1,11 @@
+version: '3'
+services:
+  hass_bluetooth:
+    build: .
+    image: helto/bluetooth
+    container_name: hass_bluetooth
+    network_mode: host
+    restart: always    
+    volumes:
+      - /usr/share/hassio/share/hassio_bluetooth:/app 
+

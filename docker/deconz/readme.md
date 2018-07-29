@@ -57,7 +57,7 @@ In my example I use rfxtrx usb too.
 
 Now you can map ttyUSB.CON to ttyUSB0 as the example below... And youre done!
 
-```
+```dockerfile
 
 sudo docker run -d \
     --name=deconz \
@@ -68,5 +68,32 @@ sudo docker run -d \
     -v /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ \
     --device=/dev/ttyUSB.CON:/dev/ttyUSB0 \
     marthoc/deconz
+
+```
+
+or 
+
+use my docker compose file in this folder
+```yaml
+
+version: "2"
+services:
+  deconz:
+    image: marthoc/deconz
+    container_name: deconz
+    network_mode: host
+    restart: always
+    volumes:
+      - /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - /dev/ttyUSB.CON:/dev/ttyUSB0
+    environment:
+      - DECONZ_WEB_PORT=8080
+      - DECONZ_WS_PORT=8443
+      - DEBUG_INFO=1
+      - DEBUG_APS=0
+      - DEBUG_ZCL=0
+      - DEBUG_ZDP=0
+      - DEBUG_OTAU=0
 
 ```

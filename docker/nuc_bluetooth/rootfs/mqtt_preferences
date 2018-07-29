@@ -1,0 +1,5 @@
+mqtt_address="ip"
+mqtt_user="username of your mqtt"
+mqtt_password="password of your mqtt"
+mqtt_topicpath="your/topic/path/bluetooth"
+mqtt_room="room"
