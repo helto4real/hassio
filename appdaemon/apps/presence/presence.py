@@ -70,9 +70,10 @@ class a_better_presence(hass.Hass):
         self.tracked_devices = self.get_tracked_devices()
         self.init_presence_tracker_state()
         self.print_devices() #debug
-   
-        
-        self.listen_state(self.devicestate, 'device_tracker', attribute="all")
+
+        # Listen for state changes for all sensors in the group
+        for sensorDevice in self._tracked_device_names:
+            self.listen_state(self.devicestate, sensorDevice, attribute="all")
     
     def devicestate(self, entity, attribute, old, new, kwargs)->None:
         
@@ -222,7 +223,7 @@ class a_better_presence(hass.Hass):
                     bluetooth_device = current_device
                     bluetooth_device.source_type = 'bluetooth'
                     self.log("Found bluetooth device {}".format(current_device.name))
-
+   
         # Always report home if wifi or bluetooth reports 'home'
         if (bluetooth_device != None and bluetooth_device.state == 'home'):
             return 'home'  
