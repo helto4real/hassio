@@ -10,6 +10,7 @@ occupancy_manager:
     - binary_sensor.rorelsesensor_sovrummet
     - binary_sensor.rorelsesensor_tomas_rum
     - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.rorelsesensor_kok
   presence_sensors:
     - sensor.presence_tomas
     - sensor.presence_elin

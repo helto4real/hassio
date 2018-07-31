@@ -1,10 +1,11 @@
 ---
 # Sallys room
 room_sally:
-  module: area
-  class: Area
+  module: room_sally
+  class: SallysRoom
   ambient_ligts:
     - switch.switch2  
+    - light.sallys_rum_fonster
   dependencies:
     - house_status
 
@@ -27,17 +28,20 @@ room_kitchen:
   module: area
   class: Area
   ambient_ligts:
-    - switch.switch6 #Köksbordet
-    - switch.switch7 #Lilla fönstret 
+    - light.kok
+  night_lights:
+    - light.kok_lilla_fonster 
+  motion_sensors:
+    - binary_sensor.rorelsesensor_kok
   dependencies:
     - house_status
 
-# Kitchen
+# Master bedroom
 room_master_bedroom:
   module: area
   class: Area
   ambient_ligts:
-    - switch.switch3 #window light
+    - light.sovrum_fonster #window light
   dependencies:
     - house_status    
 
@@ -47,7 +51,7 @@ room_tvroom:
   class: TVRoom
   ambient_ligts:
     - light.tvnere_fonster #windows lights
-    - switch.switch10 #wall lights
+    - light.plug1 #wall lights
   night_lights:
     - light.tvnere_fonster 
   motion_sensors:
@@ -66,7 +70,7 @@ room_tomas:
   module: room_tomas
   class: TomasRoom
   ambient_ligts:
-    - switch.switch1
+    - light.tomas_rum_fonster
   motion_sensors:
     - binary_sensor.rorelsesensor_tomas_rum
   fan: switch.switch4_tomas_fan

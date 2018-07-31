@@ -58,7 +58,7 @@ ligths_view:
   view: yes
   icon: mdi:lightbulb-outline
   entities:
-    - switch.switch1
+    - light.tomas_rum_fonster
     - switch.switch2
     - switch.switch3
     - switch.switch4_tomas_fan
@@ -109,9 +109,9 @@ room_tvnere:
   view: no
   entities:
     - light.tvnere_fonster 
-    - switch.switch10
+    - light.plug1
     - binary_sensor.rorelsesensor_nere
-    - binary_sensor.rorelsesensor_nere_2 #Bug that creates two instances 
+
 
 frysar_temperatur:
   name: Temperatur frysar
@@ -125,7 +125,7 @@ room_tomas:
   name: Tomas rum
   view: no
   entities:
-    - switch.switch1
+    - light.tomas_rum_fonster
     - switch.computer_tomas # logical switch to see computer status
     - switch.switch4_tomas_fan
     - binary_sensor.rorelsesensor_tomas_rum
@@ -141,13 +141,14 @@ room_sally:
   view: no
   entities:
     - switch.switch2
+    - light.sallys_rum_fonster
     - binary_sensor.rorelsesensor_sallys_rum
 
 room_sovrum:
   name: Sovrummet
   view: no
   entities:
-    - switch.switch3
+    - light.sovrum
     - binary_sensor.rorelsesensor_sovrummet
 room_vardagsrum_uppe:
   name: Vardagsrummet uppe
@@ -162,7 +163,6 @@ room_koket:
   name: Köket
   view: no
   entities:
-    - switch.switch6 #Köksbordet
-    - switch.switch7 #Lilla fönstret
+    - light.kok
 
 

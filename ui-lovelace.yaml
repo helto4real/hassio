@@ -1,5 +1,5 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.036
+  - url: /local/custom_cards/custom-cards.js?v=1.051
     type: module
    
  
@@ -81,6 +81,18 @@ views:
                 top: 52%
                 left: 40%
 
+        #
+        # House status card
+        #
+        - type: picture-entity
+          entity: input_select.house_mode_select
+          show_info: false
+          state_image:
+            Morgon: '/local/img/housestatus/hs_morning.png'
+            Dag: '/local/img/housestatus/hs_day.png'
+            Kväll: '/local/img/housestatus/hs_evening.png'
+            Natt: '/local/img/housestatus/hs_night.png'
+
         - type: picture-elements
           image: /local/img/first_floor2.jpg
           elements:
@@ -149,7 +161,7 @@ views:
                 top: 44%
                 left: 78.5%
             - type: state-icon
-              entity: switch.switch1 #tomas room
+              entity: light.tomas_rum_fonster #tomas room
               tap_action: toggle
               style:
                 top: 10.5%
@@ -175,22 +187,35 @@ views:
                 top: 44%
                 left: 8.42%
             - type: state-icon
-              entity: switch.switch2 #light sallys room window
+              entity: switch.switch2 #light sallys room led light
               tap_action: toggle
               style:
                 top: 10.5%
-                left: 17.9%       
+                left: 17.9%      
+            - type: state-icon
+              entity: light.sallys_rum_fonster #light sallys room window
+              tap_action: toggle
+              style:
+                top: 10.5%
+                left: 22.9%    
+
+                 
           #
           # kitchen
           #
             - type: state-icon
-              entity: switch.switch6 #window
+              entity: binary_sensor.rorelsesensor_kok #Motion detector
+              style:
+                top: 89.45%
+                left: 70.2%  
+            - type: state-icon
+              entity: light.kok_fonster #window
               tap_action: toggle
               style:
                 top: 89.45%
                 left: 78.2%  
             - type: state-icon
-              entity: switch.switch7 #small windows
+              entity: light.kok_lilla_fonster #small windows
               tap_action: toggle
               style:
                 top: 58.8%
@@ -210,11 +235,17 @@ views:
           # Master bedroom 
           #
             - type: state-icon
-              entity: switch.switch3 #bedroom light
+              entity: light.sovrum_fonster #bedroom light window
               tap_action: toggle
               style:
                 top: 90.2%
                 left: 16.6%
+            - type: state-icon
+              entity: light.sovrum_byra #bedroom light table
+              tap_action: toggle
+              style:
+                top: 75.2%
+                left: 27.6%
             - type: state-icon
               entity: binary_sensor.rorelsesensor_sovrummet
               style:
@@ -241,7 +272,7 @@ views:
                 top: 90.2%
                 left: 57.42%
             - type: state-icon
-              entity: switch.switch10 # wall lights
+              entity: light.plug1 # wall lights
               tap_action: toggle
               style:
                 top: 50.8%
@@ -680,4 +711,117 @@ views:
         entity: media_player.melkers_tv
         image_folder: '/local/custom_cards/img'
 
+  - icon: mdi:gauge-low
+    title: System2
+    cards:    
+      - type: horizontal-stack
+        cards:
+          - type: custom:canvas-gauge-card
+            entity: sensor.processor_use
+            card_height: 62
+            name: 'Processor use'
+            shadow_height: "25%"
+            font_size: 0.9em
+            shadow_bottom: "20"
+            gauge:
+              type: "radial-gauge"
+              width: 110
+              height: 110
+              minValue: 0
+              maxValue: 100
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              majorTicks: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [{"from": 80, "to": 100, "color": "rgba(200, 50, 50, .75)" }]
+              colorPlate: "#ddd"
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.load_1m
+            card_height: 62
+            gauge:
+              type: "radial-gauge"
+              width: 110
+              height: 110
+              minValue: 0
+              maxValue: 100
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              majorTicks: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [{"from": 80, "to": 100, "color": "rgba(200, 50, 50, .75)" }]
+              colorPlate: "#ddd"
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.memory_use_percent
+            card_height: 62
+            gauge:
+              type: "radial-gauge"
+              width: 110
+              height: 110
+              minValue: 0
+              maxValue: 100
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              majorTicks: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [{"from": 80, "to": 100, "color": "rgba(200, 50, 50, .75)" }]
+              colorPlate: "#ddd"
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
+
+
+          - type: custom:canvas-gauge-card
+            entity: sensor.disk_use_percent_home
+            card_height: 62
+            gauge:
+              type: "radial-gauge"
+              width: 110
+              height: 110
+              minValue: 0
+              maxValue: 100
+              startAngle: 90
+              ticksAngle: 180
+              valueBox: false
+              majorTicks: ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+              minorTicks: 2
+              strokeTicks: true
+              highlights: [{"from": 80, "to": 100, "color": "rgba(200, 50, 50, .75)" }]
+              colorPlate: "#ddd"
+              borders: false
+              needleType: "arrow"
+              needleWidth: 2
+              needleCircleSize: 7
+              needleCircleOuter: true
+              needleCircleInner: false
+              animationDuration: 1500
+              animationRule: "linear"
   

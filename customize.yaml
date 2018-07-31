@@ -1,6 +1,6 @@
 group.room_tvnere:
   icon: mdi:lightbulb-outline
-switch.switch1:
+light.tomas_rum_fonster:
   friendly_name: Lampa Tomas rum
   icon: mdi:lightbulb
 switch.switch2:
@@ -15,12 +15,8 @@ switch.switch4_tomas_fan:
 switch.switch5_melkers_fan:
   friendly_name: Melkers fläkt
   icon: mdi:fan
-switch.switch6:
-  friendly_name: Lampa köksbord
-  icon: mdi:lightbulb
-switch.switch7:
-  friendly_name: Lampa kök lilla fönster
-  icon: mdi:lightbulb
+light.kok:
+  friendly_name: Lampor köket
 
 switch.switch8_melkers_tv:
   friendly_name: Melkers TV switch
@@ -122,6 +118,9 @@ binary_sensor.rorelsesensor_melkers_rum:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Melkers rum
 binary_sensor.rorelsesensor_sovrummet:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor sovrummet
+binary_sensor.rorelsesensor_kok:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor sovrummet
 sensor.frysnere_temperature:  #Frys nere

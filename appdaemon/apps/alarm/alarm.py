@@ -68,7 +68,6 @@ class Alarm(App):
                 for item in jsonData['alarm']:
                     fire_time = int(item['fire_time'])
                     status = int(item["status"])
-                    self.log("STATUS = {}".format(status))
                     timeForAlarm = datetime.datetime.fromtimestamp(fire_time/1000)
                     if timeForAlarm < currentAlarm and status >= 1 : #timeForAlarm > (datetime.datetime.now()-datetime.timedelta(minutes=2)) and 
                         currentAlarm = timeForAlarm

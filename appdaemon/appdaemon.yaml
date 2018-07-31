@@ -1,3 +1,4 @@
+
 appdaemon:
   api_key: !secret appdaemon_key
   threads: 10
