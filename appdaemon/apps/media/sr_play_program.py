@@ -20,7 +20,7 @@ class play_program(hass.Hass):
     program_id = data.get('program_id') #"4540"
     entity_id = data.get('entity_id')
 
-    response = urlopen('http://api.sr.se/api/v2/episodes/getlatest?format=json&program_id=' + program_id)
+    response = urlopen('http://api.sr.se/api/v2/episodes/getlatest?format=json&programid=' + program_id)
     data = response.read().decode("utf-8")
     json_data = json.loads(data)
 

@@ -57,8 +57,12 @@ recorder:
       # tracking
       - sensor.presence_elin
       - sensor.presence_tomas
+      - sensor.presence_sally
+      - sensor.presence_melker
+      - sensor.sally_phone_mqtt_bt
+      - sensor.melker_phone_mqtt_bt
       - sensor.tomas_phone_mqtt_bt
-      - sensor.tomas_phone_mqtt_bt
+      - sensor.elin_phone_mqtt_bt
 
       # sensors of interest
       - sensor.utetemp_temperature

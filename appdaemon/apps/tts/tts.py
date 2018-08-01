@@ -38,7 +38,7 @@ class TTSManager(Base):
         media_player = kwargs['media_player']
 
     def _speak_cb(self, kwargs: dict) -> None:
-        """Restore the Sonos to its previous state after speech is done."""
+        """Restore the media player to its previous state after speech is done."""
         media_player = kwargs['media_player']
         text = kwargs['text']
 
@@ -61,13 +61,13 @@ class TTSManager(Base):
         self.call_service(
             'media_player/volume_set',
             entity_id=str(media_player),
-            volume_level='0.6')
+            volume_level='0.9')
 
         self.log('Speaking over TTS: {0}'.format(text))
 
         self.run_in(
             self._speak_cb,
-            3.25,
+            4.25,
             media_player=media_player,
             text=text)
 

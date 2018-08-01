@@ -19,7 +19,6 @@ class MorningAnnouncement(Base):
         """Initialize."""
         super().initialize() # Always call base class
         self._tts_device = self.args['tts_device']
-        self._tts_device_ip = self.args['tts_device_ip']
         self._temp_device = self.args['temp_device']
 
         self.listen_event(
@@ -47,7 +46,7 @@ class MorningAnnouncement(Base):
         self.fire_event(
             GlobalEvents.CMD_SR_PLAY_PROGRAM.value,
             program_id='4540', # dagens eko, swedish news
-            entity_id=self._tts_device_ip
+            entity_id=self._tts_device
         )
 
     def __on_alarm(
