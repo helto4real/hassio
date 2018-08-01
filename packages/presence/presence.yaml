@@ -75,7 +75,22 @@ automation:
         title: "Tomas status {{trigger.to_state.state}}"
         message: "Tomas har ändrat tracking status från state {{trigger.from_state.state}} till state {{trigger.to_state.state}}!"    
 
-# For tracking
+# For aproximity
+proximity:
+  prox_home_elin: 
+    ignored_zones:
+      - sjukhuset
+    devices:
+      - sensor.presence_elin
+    tolerance: 50
+  prox_home_tomas: 
+    ignored_zones:
+      - spv
+    devices:
+      - sensor.presence_tomas
+    tolerance: 50
+
+    # For tracking
 device_tracker:
   - platform: nmap_tracker
     hosts:

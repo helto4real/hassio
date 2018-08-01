@@ -1,0 +1,13 @@
+app_home_from_work:
+  module: proximity
+  class: ProximityManager
+  dir_of_travel: 'towards'
+  distance: 13
+  message: 'En eller båda föräldrarna är på väg hem från jobbet och är hemma om cirka 15 minuter'
+  tts_device: 'media_player.house'
+  devices:
+    - proximity.prox_home_elin
+    - proximity.prox_home_tomas
+  dependencies:
+    - tts_manager
+    - notification_manager
