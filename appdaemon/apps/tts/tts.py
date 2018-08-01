@@ -61,7 +61,7 @@ class TTSManager(Base):
         self.call_service(
             'media_player/volume_set',
             entity_id=str(media_player),
-            volume_level='0.9')
+            volume_level='0.6')
 
         self.log('Speaking over TTS: {0}'.format(text))
 

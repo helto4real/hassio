@@ -178,11 +178,6 @@ light.kok_lilla_fonster:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:8c:80:10-01
-sensor.power_17:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 7c:b0:3e:aa:00:ad:4a:e1-03-0b04
 light.sallys_rum_fonster:
   config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
@@ -203,3 +198,18 @@ binary_sensor.rorelsesensor_kok:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:6f:93:27-01-1000
+sensor.power_17:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 7c:b0:3e:aa:00:ad:4a:e1-03-0b04
+sensor.power_19:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 7c:b0:3e:aa:00:ab:7c:b7-03-0b04
+light.motorvarmare:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 7c:b0:3e:aa:00:ab:7c:b7-03

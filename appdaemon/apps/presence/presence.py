@@ -229,14 +229,10 @@ class a_better_presence(hass.Hass):
         if (router_device != None and router_device.state == 'home'):
             return 'home'
 
-        #if we reach here nether of the bluetooth or router is home  
-        if (gps_device != None and gps_device.state == 'home'):
-            if bluetooth_device!=None and self.is_updated_within_time(bluetooth_device.last_updated):  
-                return 'home'
-            if router_device!=None and self.is_updated_within_time(router_device.last_updated):
-                return 'home'
-            if self.is_updated_within_time(gps_device.last_updated):
-                return 'home' #even if BT and wifi is not present within time the gps are
+        #if we reach here nether of the bluetooth or router is home we only report home if
+        #gps reported value is within time limit else not_home
+        if (gps_device != None and gps_device.state == 'home') and self.is_updated_within_time(gps_device.last_updated):
+            return 'home' #even if BT and wifi is not present within time the gps are
 
         return initial_home_state
 
@@ -255,9 +251,12 @@ class a_better_presence(hass.Hass):
         for device_name in self._tracked_device_names:
             current_device = self.tracked_devices[device_name]
             if current_device.source_type != None and current_device.source_type == 'gps':
-                return current_device.state
-        
-        return None
+                if current_device.state == 'not_home' or current_device.state == 'home': # if home then too old return away anyway
+                    return globals.presence_state["away"]
+                else:
+                    return current_device.state
+
+        return globals.presence_state["away"]
 
     def get_state_from_tracked_devices(self):
         
@@ -266,7 +265,7 @@ class a_better_presence(hass.Hass):
 
         new_home_state = self.get_home_not_home_state_from_group()
 
-        if self._home_state != new_home_state: # e.i changed from home/not_home to home/not_home
+        if  self._home_state != new_home_state: 
             self._home_state = new_home_state
             if new_home_state == 'home':
                 if self.state != globals.presence_state["just_left"]:
@@ -282,15 +281,12 @@ class a_better_presence(hass.Hass):
                 else:
                     return globals.presence_state["away"]
         else:
+            
             if new_home_state == 'not_home':
                 # find gps state if same and group is not home
                 # so we can get the 
-                gps_state = self.get_gps_state()
-                if gps_state != None:
-                    if gps_state == 'not_home' or gps_state == 'home': # if home then too old return away anyway
-                        return globals.presence_state["away"]
-                    else:
-                        return gps_state
+                return self.get_gps_state()
+                
             else:
                 return globals.presence_state["home"]
 
