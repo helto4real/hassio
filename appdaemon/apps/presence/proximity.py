@@ -22,7 +22,7 @@ class ProximityManager(Base):
         self._distance = self.args.get("distance", 0)
         self._message = self.args.get("message", 0)
         self._tts_device = self.args.get("tts_device", str)
-        self._device_is_near:bool = False
+        self._device_is_near = 'unknown'
 
         for device in self._devices:
             self.listen_state(
@@ -39,9 +39,9 @@ class ProximityManager(Base):
         current_distance = int(new['state'])
         current_direction = new['attributes']['dir_of_travel']
         self.log("Distance: {}km, direction: {}".format(current_distance, current_direction))
-        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near == False:
-            self._device_is_near = True
+        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near == 'no':
+            self._device_is_near = 'yes'
             self.tts_manager.speak(self._message, media_player=self._tts_device)
             self.notification_manager.greeting('Tomas', 'På väg hem', 'Nu är vi på väg hem från jobbet!')
-        else:
-            self._device_is_near = False
+        elif current_distance > self._distance:
+            self._device_is_near = 'no'
