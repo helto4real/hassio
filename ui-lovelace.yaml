@@ -45,7 +45,7 @@ views:
               card_height: 90px
               state_image:
                 Home: /local/img/presence/sally_presence.jpg
-                Just arrived: /local/img/presence/tomas_presence.jpg
+                Just arrived: /local/img/presence/sally_presence.jpg
             - type: custom:picture-status-card
               entity: sensor.presence_melker
               image: /local/img/presence/melker_presence_away.jpg
