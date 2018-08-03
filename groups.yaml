@@ -53,6 +53,7 @@ tracker_view:
     - group.sallys_devices
     - group.melkers_devices
     - group.people_status
+    
 
 ligths_view:
   view: yes
@@ -97,7 +98,6 @@ lower_floor:
     - group.room_tvnere
     - group.room_melker
     - binary_sensor.rorelsesensor_nere
-    - binary_sensor.rorelsesensor_nere_2 #Bug that creates two instances 
     - sensor.temp_sovrum_nere
 outside:
   name: Ute

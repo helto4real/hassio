@@ -56,6 +56,8 @@ class a_better_presence(hass.Hass):
 
         # sensor attributes
         self.friendly_name = self.args.get('friendly_name', str)
+        self.max_gps_accuracy = int(self.args.get('max_gps_accuracy', 150))
+
         self.state = None
         self.last_updated = datetime.datetime.min   # the last updated time
         self.last_changed = datetime.datetime.min   # the last updated time
@@ -77,10 +79,13 @@ class a_better_presence(hass.Hass):
     
     def devicestate(self, entity, attribute, old, new, kwargs)->None:
         
-        if entity not in self._tracked_device_names: #Not device we want
-            return 
 
         new_device_tracker_state = device_tracker(new, self)
+
+        if new_device_tracker_state.gps_accuracy != None:
+            if new_device_tracker_state.gps_accuracy > self.max_gps_accuracy:
+                self.log("GPS ACC HIGHER THAN {} FOR DEVICE {}, ARE {}".format(self.max_gps_accuracy, entity, new_device_tracker_state.gps_accuracy))
+                return # Not update tracking data from gps device
         
         self.update_changed_values(new_device_tracker_state, entity)
 
@@ -167,7 +172,14 @@ class a_better_presence(hass.Hass):
             if current_device.source_type != None and current_device.source_type == 'gps':
                 self.longitude = current_device.longitude
                 updated_attributes['longitude'] = self.longitude
-            
+
+        if updated_device.gps_accuracy != None and updated_device.gps_accuracy != current_device.gps_accuracy:
+            current_device.gps_accuracy = updated_device.gps_accuracy
+            # set sensor gps attribute if 'gps' source type
+            if current_device.source_type != None and current_device.source_type == 'gps':
+                self.gps_accuracy = current_device.gps_accuracy
+                updated_attributes['gps_accuracy'] = self.gps_accuracy
+
         if updated_device.speed != None and updated_device.speed != current_device.speed:
             current_device.speed = updated_device.speed
             # set sensor gps attribute if 'gps' source type
@@ -331,6 +343,7 @@ class device_tracker:
         self.longitude = None
         self.speed = None
         self.battery = None
+        self.gps_accuracy = None
 
         if 'last_updated' in hass_device_state:
             self.last_updated = self._parse_date_time_string(hass_device_state['last_updated'])
@@ -361,6 +374,8 @@ class device_tracker:
             self.speed = attr['speed']
         if 'battery' in attr:
             self.battery = attr['battery']
+        if 'gps_accuracy' in attr:
+            self.gps_accuracy = int(attr['gps_accuracy'])
 
     def print(self):
         return # remove to debug changes

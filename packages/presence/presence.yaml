@@ -33,7 +33,7 @@ group:
     view: no
     entities:
       - sensor.tomas_phone_mqtt_bt #Bluetooth
-      - device_tracker.tomasgps
+      - device_tracker.google_maps_118123190245690142371 #Gps testing
       - device_tracker.tomass8      
 
 
@@ -107,9 +107,11 @@ device_tracker:
   - platform: gpslogger
     password: !secret gpslogger_password      
  # - platform: bluetooth_tracker
-  #- platform: google_maps
-  #  username: !secret gu 
-  #  password: !secret gp
+  - platform: google_maps
+    max_gps_accuracy: 200
+    username: !secret gu 
+    password: !secret gp
+
 sensor:
   - platform: mqtt
     name: tomas_phone_mqtt_bt

@@ -92,9 +92,10 @@ class Area(Base):
         if self.house_status.is_night() == False or self._night_light_on == True:
             return
         for night_light in self._night_lights:
-            self.call_service("light/turn_on", entity_id=night_light,
-                          brightness_pct="5",
-                          transition="0")
+            self.turn_on_device(night_light,
+                brightness_pct='15', #color_temp=self._ambient_light_color_temp, bug in IKEA DONT USE
+                transition='0')            
+
         self._night_light_on = True
 
     def motion_off_detected(self, entity: str)->None:
@@ -105,7 +106,7 @@ class Area(Base):
         if self._night_light_on == False:
             return
         for night_light in self._night_lights:
-            self.call_service("light/turn_off", entity_id=night_light)
+            self.turn_off_device(night_light)
 
         self._night_light_on = False
 

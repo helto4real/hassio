@@ -48,6 +48,9 @@ sensor.tomas_phone_mqtt_bt:
 device_tracker.tomasgps:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
+device_tracker.google_maps_118123190245690142371:
+  friendly_name: Tomas mobil GPS (google)
+  entity_picture: /local/tomas.jpg
 sensor.presence_tomas:
   friendly_name: Tomas tracker
   entity_picture: /local/tomas.jpg
