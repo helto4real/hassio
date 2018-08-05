@@ -37,7 +37,6 @@ class ProximityManager(Base):
             new: dict, kwargs: dict) -> None:
         current_distance = int(new['state'])
         current_direction = new['attributes']['dir_of_travel']
-        self.log("Distance: {}km, direction: {}".format(current_distance, current_direction))
         if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near == 'no':
             self._device_is_near = 'yes'
             self.tts_manager.speak(self._message, media_player=self._tts_device)
