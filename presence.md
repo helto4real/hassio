@@ -45,11 +45,11 @@ group:
 ```
 
 ## 3. Copy the appdaemon app and configure it all
-Copy the <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/presence/presence.py>presence.py</a> and the  <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/common/globals.py>globals.py</a> 
+Copy the <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/presence/presence.py>presence.py</a> and the  <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/common/globals.py>globals.py</a> to for example `/appdaemon/apps`
 
 
 
-In your `apps.yaml` configurations file set the following settings 
+In your `/appdaemon/apps/apps.yaml` configurations file set the following settings 
 ```yaml
 global_modules: globals
 
