@@ -25,7 +25,7 @@ Check out https://github.com/helto4real/hassio/tree/master/docker/nuc_bluetooth 
 I use the nmap to track devices see https://www.home-assistant.io/components/device_tracker.nmap_tracker/ how to set that up. But there are other trackers too that connects to your router or unifi AP:s. 
 
 ### GPS
-For GPS you can use trackers like owntracks or iCloud. I use Google maps tracker. See https://www.home-assistant.io/components/device_tracker.google_maps/ to set it up. *It is very important to make a specific google account to use for Home Assistant. For security reasons and that this tracker doesn´t support two way authentication. 
+For GPS you can use trackers like owntracks or iCloud. I use Google maps tracker. See https://www.home-assistant.io/components/device_tracker.google_maps/ to set it up. **It is very important to make a specific google account to use for Home Assistant. For security reasons and that this tracker doesn´t support two way authentication.**
 
 ## 2. Create group
 
@@ -36,7 +36,7 @@ Example from my setup:
 ```yaml
 group:
   tomas_devices:
-    name: Tomas hemma
+    name: Tomas trackers
     view: no
     entities:
       - sensor.tomas_phone_mqtt_bt #Bluetooth
@@ -61,6 +61,30 @@ app_presence_phone:
 ```
 
 ## 4. Check your status page
-A new device called `sensor.[your name] should now been created
+A new device called `sensor.[your name] should now been created and contains the combined status and position of all trackers.
 
 <img src="www/img/docs/presence_tutorial_sensor.png"/>
+
+## 5. Use in automations
+
+*You will have to use the condition like below not to make the trigger fire an event when 
+when you just rebooted the device or hass*
+
+Example below sends a message through script when state changes except when from_state is nothing wich is the case when it starts.
+
+```
+automation:
+  - alias: Send message on away-home notice Tomas
+    trigger:
+      - platform: state
+        entity_id: sensor.presence_tomas 
+    condition:
+      - condition: template
+        value_template: "{{ trigger.from_state != None }}"
+    action:
+      service: script.notify
+      data_template:
+        tell: th
+        title: "Tomas status {{trigger.to_state.state}}"
+        message: "Tomas has changed status for tracker {{trigger.to_state.state}}"    
+```
