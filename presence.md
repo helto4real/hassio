@@ -1,5 +1,5 @@
 # Setup a better presence 
-I wanted to make a better precense in code rather than in Hass configurations. It ended up with a appdaemon app that takes three different device trackers input and make a solid one.
+I wanted to make a better presence in code rather than in Hass configurations. It ended up with a appdaemon app that takes three different device trackers input and make a solid one.
 
 Checkout 
 https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/ if you want to know what inspired me.
