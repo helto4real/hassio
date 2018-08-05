@@ -28,7 +28,7 @@ views:
               card_height: 90px
               state_image:
                 Home: /local/img/presence/tomas_presence.jpg
-                Just arrived: /local/img/presence/local/tomas_presence.jpg
+                Just arrived: /local/img/presence/tomas_presence.jpg
               name: ' '
             - type: custom:picture-status-card
               entity: sensor.presence_elin

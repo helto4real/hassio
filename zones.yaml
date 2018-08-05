@@ -20,8 +20,16 @@
   icon: mdi:cart    
 
 - zone_matfors_skola:
-  name: Matfors Skola
+  name: Matfors skola
   latitude: 62.347147
   longitude: 17.018588
   radius: 100
   icon: mdi:school
+
+- zone_skvaderns_skola:
+  name: Skvaderns skola
+  latitude: 62.3990879
+  longitude: 17.3120409
+  radius: 150
+  icon: mdi:school
+  

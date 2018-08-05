@@ -35,7 +35,6 @@ class ProximityManager(Base):
     def __on_proximity_changed(
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
-        self.log(entity)
         current_distance = int(new['state'])
         current_direction = new['attributes']['dir_of_travel']
         self.log("Distance: {}km, direction: {}".format(current_distance, current_direction))

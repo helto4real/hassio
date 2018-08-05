@@ -7,6 +7,7 @@ app_presence_tomas:
   timer: 600                                   # timeout in seconds from just arrived to home and just left to away (10 min)
   update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
   group_devices: group.tomas_devices           # The group that contains the tracked devices
+  proximity_sensor: proximity.prox_home_tomas  # The proximity to get the prox values
 
  
 app_presence_elin:
@@ -17,6 +18,7 @@ app_presence_elin:
   timer: 600
   update_time: 7200
   group_devices: group.elins_devices
+  proximity_sensor: proximity.prox_home_elin 
 
 app_presence_sally:
   module: presence
@@ -26,7 +28,7 @@ app_presence_sally:
   timer: 600
   update_time: 7200   
   group_devices: group.sallys_devices
-
+  proximity_sensor: proximity.prox_home_sally 
 app_presence_melker:
   module: presence
   class: a_better_presence
@@ -35,3 +37,4 @@ app_presence_melker:
   timer: 600
   update_time: 7200   
   group_devices: group.melkers_devices
+  proximity_sensor: proximity.prox_home_melker

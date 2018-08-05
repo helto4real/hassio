@@ -21,23 +21,23 @@ group:
       - group.melkers_devices
 
   tomas_devices:
-    name: Tomas hemma
+    name: Tomas trackers
     view: no
     entities:
       - sensor.tomas_phone_mqtt_bt #Bluetooth
-      - device_tracker.google_maps_118123190245690142371 #Gps testing
+      - device_tracker.google_maps_118123190245690142371 #Gps 
       - device_tracker.tomass8 # wifi
       
   elins_devices:
-    name: Elin hemma
+    name: Elin trackers
     view: no
     entities:
-      - sensor.elin_phone_mqtt_bt
-      - device_tracker.elingps
-      - device_tracker.elinss8  
+      - sensor.elin_phone_mqtt_bt #BT
+      - device_tracker.google_maps_110786808112177763666 #Gps
+      - device_tracker.elinss8  #wifi
 
   melkers_devices:
-    name: Melker hemma
+    name: Melkers trackers
     view: no
     entities:
       - device_tracker.google_maps_113728439587103002947
@@ -45,7 +45,7 @@ group:
       - device_tracker.samsunggalaxys7
 
   sallys_devices:
-    name: Sally hemma
+    name: Sallys trackers
     view: no
     entities:
       - device_tracker.huawei_p20_pro2d36a29977
@@ -80,6 +80,20 @@ proximity:
       - spv
     devices:
       - sensor.presence_tomas
+    tolerance: 50
+
+  prox_home_melker: 
+    ignored_zones:
+      - matfors_skola
+    devices:
+      - sensor.presence_melker
+    tolerance: 50
+
+  prox_home_sally: 
+    ignored_zones:
+      - skvaderns_skola
+    devices:
+      - sensor.presence_sally
     tolerance: 50
 
     # For tracking

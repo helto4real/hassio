@@ -1,7 +1,8 @@
 import appdaemon.plugins.hass.hassapi as hass
 import threading
-import  datetime
+import datetime
 import time
+from typing import Tuple, Union
 import globals
 ###############################################################################
 # A better presence sensor function
@@ -28,7 +29,7 @@ import globals
 #
 #   Check https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/ as inspiration
 #
-# CHECK README FOR HOW TO PROPERLY SETUP TRIGGERS!!!
+# CHECK https://github.com/helto4real/hassio/blob/master/presence.md FOR TUTORIAL!!!
 ##
 
 class a_better_presence(hass.Hass):
@@ -44,6 +45,8 @@ class a_better_presence(hass.Hass):
         if "group_devices" not in self.args:
             self.log("mandatory setting 'group_devices' is missing quitting...")
             return
+
+        self._proximity_sensor = self.args.get("proximity_sensor", None)
 
         # Get the settings
         self.timeout = int(self.args.get("timer", 600))
@@ -75,11 +78,18 @@ class a_better_presence(hass.Hass):
 
         # Listen for state changes for all sensors in the group
         for sensorDevice in self._tracked_device_names:
-            self.listen_state(self.devicestate, sensorDevice, attribute="all")
-    
-    def devicestate(self, entity, attribute, old, new, kwargs)->None:
-        
+            self.listen_state(self.__devicestate, sensorDevice, attribute="all")
 
+        if self._proximity_sensor != None:
+            self.listen_state(
+                self.__on_proximity_changed, 
+                entity=self._proximity_sensor,
+                attribute="all"
+            )
+
+
+    # When state or attribute change on device_tracker    
+    def __devicestate(self, entity, attribute, old, new, kwargs)->None:
         new_device_tracker_state = device_tracker(new, self)
 
         if new_device_tracker_state.gps_accuracy != None:
@@ -88,6 +98,20 @@ class a_better_presence(hass.Hass):
                 return # Not update tracking data from gps device
         
         self.update_changed_values(new_device_tracker_state, entity)
+
+    # When proximity change on device tracker
+    def __on_proximity_changed(
+        self, entity: Union[str, dict], attribute: str, old: dict,
+        new: dict, kwargs: dict) -> None:
+
+        current_distance = int(new['state'])
+        current_direction = new['attributes']['dir_of_travel']
+
+        attributes = {
+            'proxi_distance': current_distance,
+            'proxi_direction': current_direction
+        }
+        self.set_state(self.sensorname, attributes=attributes)
 
     def get_tracked_devices(self)->{}:
         tracked_devices = {}
@@ -128,7 +152,7 @@ class a_better_presence(hass.Hass):
                 if current_device.battery != None and 'battery' not in attributes:
                     attributes['battery'] = current_device.battery
 
-            attributes["{}_last_updated".format(device_name)]=local_time_str(current_device.last_updated)
+           # attributes["{}_last_updated".format(device_name)]=local_time_str(current_device.last_updated)
         
         if self.state==None:
             self.state = globals.presence_state["away"] # some bug to check for when not all device_trackers present we assume away
@@ -197,10 +221,10 @@ class a_better_presence(hass.Hass):
         new_state = self.get_state_from_tracked_devices()
 
         if new_state != self.state:
-            updated_attributes["{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
+   #         updated_attributes["dev_{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
             self.set_state(self.sensorname, state=new_state, attributes=updated_attributes)
         else:
-            updated_attributes["{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
+   #         updated_attributes["dev_{}_last_updated".format(device_name)]=local_time_str(updated_device.last_updated)
             self.set_state(self.sensorname, attributes=updated_attributes)
         
         self.state = new_state
