@@ -63,7 +63,9 @@ app_presence_phone:
   group_devices: group.tomas_devices # The group that contains the tracked devices
 
 ```
-Note there will be other settings in the globals.py file that has nothing to do with presence. Just ignore that for now.
+Make sure you use the name of the group you created in `group_devices`!
+
+*Note there will be other settings in the globals.py file that has nothing to do with presence. Just ignore that for now.*
 
 ## 4. Check your status page
 A new device called `sensor.[your name] should now been created and contains the combined status and position of all trackers.
