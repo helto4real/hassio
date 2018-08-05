@@ -20,23 +20,14 @@ group:
       - group.sallys_devices
       - group.melkers_devices
 
-  # # After this 
-  # test_devices:
-  #   name: Test hemma
-  #   view: no
-  #   entities:
-  #     - sensor.tomas_phone_mqtt_bt
-  #     - device_tracker.testgps
-
   tomas_devices:
     name: Tomas hemma
     view: no
     entities:
       - sensor.tomas_phone_mqtt_bt #Bluetooth
       - device_tracker.google_maps_118123190245690142371 #Gps testing
-      - device_tracker.tomass8      
-
-
+      - device_tracker.tomass8 # wifi
+      
   elins_devices:
     name: Elin hemma
     view: no
@@ -49,7 +40,7 @@ group:
     name: Melker hemma
     view: no
     entities:
-      - device_tracker.melkergps
+      - device_tracker.google_maps_113728439587103002947
       - sensor.melker_phone_mqtt_bt
       - device_tracker.samsunggalaxys7
 
@@ -59,6 +50,7 @@ group:
     entities:
       - device_tracker.huawei_p20_pro2d36a29977
       - sensor.sally_phone_mqtt_bt
+      - device_tracker.google_maps_115932713534918928318
 
 automation:
   - alias: Send message on away-home notice Tomas

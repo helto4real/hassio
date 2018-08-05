@@ -11,6 +11,7 @@ secrets.yaml
 .*
 ssh
 
+deps/
 # specific files
 known_devices.yaml
 

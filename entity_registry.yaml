@@ -1,10 +1,10 @@
 light.hallenuppe:
-  config_entry_id:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:c9:82:b8-01
 sensor.daylight:
-  config_entry_id:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:21:2e:ff:ff:02:2d:8f-01
@@ -49,47 +49,47 @@ media_player.kitchen:
   platform: cast
   unique_id: 970fe191-3b8e-03dc-ca4d-c3a6a81b4d97
 binary_sensor.ytterdorr_uppe:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:02:0b:7d:f4-01-0006
 sensor.temp_sovrum_nere:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:c0:97:b4-01-0402
 sensor.temp_sovrum_nere_2:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:c0:97:b4-01-0405
 sensor.temp_vardagsrum_uppe:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:b8:f3:3c-01-0402
 sensor.temp_vardagsrum_uppe_2:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:b8:f3:3c-01-0405
 light.tvrummet_vanster:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:92:a8:56-01
 light.tvrummet_hoger:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:d4:31:5a-01
 sensor.temp_sallysrum:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:c0:9b:01-01-0402
 sensor.temp_sallysrum_2:
-  config_entry_id: 341f299a70bc43a49a9e06846815b8c4
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:c0:9b:01-01-0405

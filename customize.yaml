@@ -82,7 +82,7 @@ sensor.sally_status:
 device_tracker.huawei_p20_pro2d36a29977:
   friendly_name: Sallys mobil wifi
   entity_picture: /local/sally.jpg
-device_tracker.sallygps:
+device_tracker.google_maps_115932713534918928318:
   friendly_name: Sallys mobil GPS
   entity_picture: /local/sally.jpg
 sensor.sally_phone_mqtt_bt:
@@ -100,7 +100,7 @@ device_tracker.samsunggalaxys7:
 sensor.melker_phone_mqtt_bt:
   friendly_name: Melkers mobil BT
   entity_picture: /local/melker.jpg
-device_tracker.melkergps:
+device_tracker.google_maps_113728439587103002947:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
 

@@ -56,7 +56,7 @@ class a_better_presence(hass.Hass):
 
         # sensor attributes
         self.friendly_name = self.args.get('friendly_name', str)
-        self.max_gps_accuracy = int(self.args.get('max_gps_accuracy', 150))
+        self.max_gps_accuracy = int(self.args.get('max_gps_accuracy', 300))
 
         self.state = None
         self.last_updated = datetime.datetime.min   # the last updated time
