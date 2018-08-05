@@ -45,10 +45,14 @@ group:
 ```
 
 ## 3. Copy the appdaemon app and configure it all
-Copy the `presence.py` file from https://github.com/helto4real/hassio/tree/master/appdaemon/apps/presence
+Copy the <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/presence/presence.py>presence.py</a> and the  <a href=https://github.com/helto4real/hassio/blob/master/appdaemon/apps/common/globals.py>globals.py</a> 
 
-In your appdaemon yaml configurations file set the following settings
+
+
+In your `apps.yaml` configurations file set the following settings 
 ```yaml
+global_modules: globals
+
 app_presence_phone:
   module: presence
   class: a_better_presence
@@ -59,6 +63,7 @@ app_presence_phone:
   group_devices: group.tomas_devices # The group that contains the tracked devices
 
 ```
+Note there will be other settings in the globals.py file that has nothing to do with presence. Just ignore that for now.
 
 ## 4. Check your status page
 A new device called `sensor.[your name] should now been created and contains the combined status and position of all trackers.
