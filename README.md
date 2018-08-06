@@ -19,6 +19,9 @@ This is my home assistant setup. Please feel free to use what ever you want. Som
 - Osram Zigbee outdoor plugs x 2
 - Osram Zigbee indoor plug
 - Sonoff wifi smartswitch
+- Unifi AP wifi (used as wifitracker)
+- Google Maps (used as gps tracker)
+- NUC Bluetooh (used as BT tracker)
 
 ## My usecases
 See project tab to see what use-cases I implemented and wants to implement
