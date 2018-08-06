@@ -1,5 +1,5 @@
 from area import Area
-from globals import GlobalEvents, HouseModes
+from globals import GlobalEvents, HouseModes, presence_state
 from typing import Tuple, Union
 
 '''
@@ -17,6 +17,7 @@ class TomasRoom(Area):
 
         self._fan = self.args.get('fan', str)
         self._computer = self.args.get('computer', str)
+        self._tracker = self.args.get('tracker', str)
 
         for motion_sensor in self._motion_sensors:
         # Set the turn off computer function
@@ -33,22 +34,6 @@ class TomasRoom(Area):
                     new='on',
                     old='off')
        
-        # todo override behaviour
-
-    def on_housemode_day(self, old: HouseModes) -> None:
-        super().on_housemode_day(old)
-        # todo override behaviour
-    
-    def on_housemode_morning(self, old: HouseModes) -> None:
-        super().on_housemode_morning(old)
-        # todo override behaviour
-    
-    def on_housemode_evening(self, old: HouseModes) -> None:
-        super().on_housemode_evening(old)
-        # todo override behaviour
-
-    def on_housemode_night(self, old: HouseModes) -> None:
-        super().on_housemode_night(old)
         # todo override behaviour
 
     def motion_on_detected(self, entity:str)->None:
@@ -75,6 +60,9 @@ class TomasRoom(Area):
         """callback when motion detected in area"""
         if self.get_state(self._computer) == 'on':
             return # Already on
+        if self.get_state(self._tracker) != presence_state["home"]:
+            return #Only if Tomas is Home
+        
         self.turn_on(self._computer)
     def __off_motion_for_computer(
         self, entity: Union[str, dict], attribute: str, old: dict,

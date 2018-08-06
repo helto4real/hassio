@@ -75,6 +75,7 @@ room_tomas:
     - binary_sensor.rorelsesensor_tomas_rum
   fan: switch.switch4_tomas_fan
   computer: switch.computer_tomas
+  tracker: sensor.presence_tomas  # Tracker that checks for home for sertain automations
   properties:
     min_time_motion: 10
   dependencies:
