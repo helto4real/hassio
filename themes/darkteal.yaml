@@ -28,3 +28,4 @@
       paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
       paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
       label-badge-red: 'var(--primary-color)'
+      sidebar-icon-color: "rgba(26, 128, 122, 0.5)"
