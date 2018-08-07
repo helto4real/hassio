@@ -4,7 +4,7 @@ house_status:
   class: HouseStatusManager
   properties:
     sunrise_offset: 30            # 30 minutes offset
-    sunset_offset: -15            # -15 minutes offset
+    sunset_offset: -60            # -60 minutes offset cause of check for clody one hour before 
     early_night_time: '22:45:00'  # Time to set nightmode on early nights
     late_night_time: '00:15:00'   # Time to set nightmode on late nights
     day_time: '10:00:00'          # Time to set daymode

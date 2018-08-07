@@ -9,6 +9,8 @@ sensor:
     monitored_conditions:
       - temperature
       - symbol
+      - cloudiness
+      - windSpeed
   - platform: template
     sensors:
       temp_outside:
@@ -30,4 +32,6 @@ group:
       - sensor.ute_humidity
       - sun.sun
       - sensor.yr_symbol
+      - sensor.yr_cloudiness
+      - sensor.yr_wind_speed
 

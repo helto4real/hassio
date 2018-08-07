@@ -127,4 +127,18 @@ class HouseStatusManager(App):
     def __on_sunset(self, kwargs: dict)->None:
         """called when sunset plus offset"""
         self.log("SUNSET EVENT")
+        if float(self.get_state('sensor.yr_cloudiness')) > 75.0:
+            # It is cloudy set evening status now
+            self.log("CLOUDY! SETTING EVENING NOW")
+            self.set_state(self.HOUSE_MODE_SELECT, state=HouseModes.evening.value)
+        else:
+            # Set lights in one hour from now
+            self.log("NOT CLOUDY WAITING 45 MINUTES")
+            self.run_in(
+                self.__on_timer,
+                45*60)
+
+    def __on_timer(self, kwargs: dict) -> None:
+        """Not cloudy, set evening now instead"""
+        self.log("NOT CLOUDY SETTING EVENING")
         self.set_state(self.HOUSE_MODE_SELECT, state=HouseModes.evening.value)
