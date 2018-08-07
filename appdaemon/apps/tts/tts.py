@@ -1,7 +1,4 @@
 from base import Base
-from globals import PEOPLE
-from globals import HouseModes
-import secrets
 import queue
 import threading
 import time
