@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+
+  letsencrypt:
+    container_name: letsencrypt
+    image: linuxserver/letsencrypt
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - TZ=Europe/Stockholm
+      - URL=domain.example
+      - SUBDOMAINS=,www
+      - VALIDATION=http
+    volumes:
+      - /opt/letsencrypt/config:/config
+    cap_add:
+      - NET_ADMIN

@@ -26,8 +26,8 @@ config:
 
 http:
   api_password: !secret http_password
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+  #ssl_certificate: /ssl/fullchain.pem
+  #ssl_key: /ssl/privkey.pem
   base_url: !secret hassiourl
 
 # Checks for available updates

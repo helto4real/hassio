@@ -1,0 +1,34 @@
+
+# Copy default and hassio files to .../config/nginx/site-confs
+
+# make sure we route ssl from correct host to 
+# replace [host] with full name of your host, i.e. www.host.com
+# replace [hostip] with ip of the docker container host 
+server {
+    listen       443 ssl;
+    server_name  [host];
+    
+    ssl on;
+    ssl_certificate [use path from output from container to cert file.pem];
+    ssl_certificate_key [use path from output from container to privkey.pem];
+    ssl_prefer_server_ciphers on;
+
+    location / {
+        proxy_pass http://[hostip]:8123;
+        proxy_set_header Host $host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    location /api/websocket {
+        proxy_pass http://[hostip]:8123/api/websocket;
+        proxy_set_header Host $host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+    }
+}

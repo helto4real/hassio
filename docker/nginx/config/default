@@ -1,0 +1,17 @@
+## Version 2018/04/20 - Changelog: https://github.com/linuxserver/docker-letsencrypt/commits/master/root/defaults/default
+
+# make sure all traffic defaults to return 444
+server {
+	listen 80;
+	server_name _;
+	return 444;
+}
+
+server {
+	listen 443 ssl;
+	server_name _;
+	include /config/nginx/ssl.conf;
+	return 444;
+
+}
+
