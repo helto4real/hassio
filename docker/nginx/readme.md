@@ -5,7 +5,7 @@ I let you know my configuration to setup the reverse proxy (nginx) as a front fo
 Many would argue to improve security at a pro level is to use a real firewall with different v-lans for your devices and computers. This is not covered in this setup.
 
 ## Hass config
-I use api password for security and not using `trusted_networks` for improved security. If you want to use `trusted_networks` I would now use proxy cause of the risk of getting into hass insert the x_forwarded header.
+I use api password for security and not using `trusted_networks` for improved security. If you want to use `trusted_networks` I would not use a revers proxy with x_forwarded_for config. There are a risk of getting into hass by inserting the x_forwarded header without login!
 
 I also enabled ip-ban and login attempts for even better security.
 
