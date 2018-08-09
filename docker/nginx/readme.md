@@ -1,6 +1,6 @@
 # Setup nginx, letsencrypt for improved security
 I let you know my configuration to setup the reverse proxy (nginx) as a front for Home Assistant. 
-*I dont take any responsibility that this configuration is 100% secure. It is more secure than not using a reverse proxy I would argue but I are not making any guarantees. I would recommend you read how to configure this your self*
+*DISCLAIMER: I dont take any responsibility that this configuration is 100% secure. It is more secure than not using a reverse proxy I would argue but I am not making any guarantees. I would recommend you read how to configure this your self*
 
 Many would argue to improve security at a pro level is to use a real firewall with different v-lans for your devices and computers. This is not covered in this setup.
 
