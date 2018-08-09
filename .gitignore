@@ -14,7 +14,7 @@ ssh
 deps/
 # specific files
 known_devices.yaml
-ssl.conf
+!ssl.conf
 
 
 
