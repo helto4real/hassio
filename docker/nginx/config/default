@@ -1,6 +1,4 @@
-## Version 2018/04/20 - Changelog: https://github.com/linuxserver/docker-letsencrypt/commits/master/root/defaults/default
-
-# make sure all traffic defaults to return 444
+# redirect all traffic to return 444 (Connection closed)
 server {
 	listen 80;
 	server_name _;

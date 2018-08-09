@@ -98,12 +98,6 @@ proximity:
 
     # For tracking
 device_tracker:
-  # - platform: nmap_tracker
-  #   hosts:
-  #     !secret devices_tracked
-  #   track_new_devices: no
-  #   interval_seconds: 15
-  #   consider_home: 180
 
   - platform: unifi
     host: !secret unifi_host
@@ -114,9 +108,6 @@ device_tracker:
     ssid_filter:
       - !secret unifi_SSID
  
-#   - platform: gpslogger
-#     password: !secret gpslogger_password      
-#  # - platform: bluetooth_tracker
   - platform: google_maps
     max_gps_accuracy: 200
     username: !secret gu 

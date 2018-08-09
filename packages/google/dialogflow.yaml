@@ -7,6 +7,9 @@ intent_script:
   Turn_on:
     speech:
       text: Turning on {{ rooms }} 
+
+
+
     #action:
     #  - service_template: >
     #        homeassistant.turn_on
