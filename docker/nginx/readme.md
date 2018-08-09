@@ -1,11 +1,15 @@
 # Setup nginx, letsencrypt for improved security
-I let you know my configuration to setup the reverse proxy (nginx) as a front for Home Assistant. 
+I let you know my configuration to setup the reverse proxy (nginx) as a front with SSL for Home Assistant. My setup enables:
+- Access Home Assistant with SSL from outside firewall through standard port and is routed to the home assistant on port 8123.
+- Access Home Assistant from within the network (behind firewall) without SSL and using `http://ip:8123`
+- In future expose more services on standard port 443 by extending nginx config
+
 *DISCLAIMER: I dont take any responsibility that this configuration is 100% secure. It is more secure than not using a reverse proxy I would argue but I am not making any guarantees. I would recommend you read how to configure this your self*
 
 Many would argue to improve security at a pro level is to use a real firewall with different v-lans for your devices and computers. This is not covered in this setup.
 
 ## Hass config
-I use api password for security and not using `trusted_networks` for improved security. If you want to use `trusted_networks` I would not use a revers proxy with x_forwarded_for config. There are a risk of getting into hass by inserting the x_forwarded header without login!
+I use api password for security and ***not*** using `trusted_networks` for improved security. If you want to use `trusted_networks` I would not use a reverse proxy with `x_forwarded_for: True` config. There is a risk of hacking into hass by inserting the x_forwarded header without login!
 
 I also enabled ip-ban and login attempts for even better security.
 
@@ -18,7 +22,7 @@ http:
 ```
 
 ## linuxserver/letsencrypt
-Setup the linux server by using the provided docker-compose file. Mine is configured to listen to port 80/443 and I setup my router portforwarding to point to the host, hosting this docker image. You will need the port 80 open to allow the letsecrypt to validate ownership of your domain. After you can just leave the 80 closed and forward 443 or any custom port you want to expose from the internet. Just make sure you change that in the compose-file.
+Setup the linux server by using the provided docker-compose file. Mine is configured to listen to port 80/443 and I setup my routers portforwarding to point to the host, hosting this docker image. You will need the port 80 open to allow the letsecrypt to validate ownership of your domain. After that is completed and you get your certificates you can just leave the 80 closed and only forward 443 or any custom port you want to expose from the internet. Just make sure you change that in the compose-file.
 
 Change the `domain.example` to your domain. If you use duckdns, use the whole address like `xyz.duckdns.org`. If you plan to expose several subdomains, use the `SUBDOMAINS` settings. At least expose the standard and `www`. But you might want to expose `grafana.expample.com`, just put `,grafana` there.
 
@@ -31,7 +35,7 @@ First you want the ssl to configured to the correct certificates.
 
 ### 1. SSL certificates
 You can see the paths in the log. The ssl config are at:
-`/opt/letsencrypt/config/ngingx/ssl.conf` if you used my settings in docker-compose.yaml. Mine are in config folder as reference.
+`/opt/letsencrypt/config/ngingx/ssl.conf` if you used my settings in docker-compose.yaml. Mine are in config folder (github) as reference.
 
 ```conf
 # ssl certs
@@ -40,7 +44,7 @@ ssl_certificate_key /etc/letsencrypt/live/domain.example/privkey.pem;
 ```
 
 ### 2. Default server
-go to the folder `/opt/letsencrypt/config/nginx/site-confs` edit the default. See config folder here for reference.
+Go to the folder `/opt/letsencrypt/config/nginx/site-confs` edit the `default`. See config folder here for reference.
 
 All requests by default both on 80 and 443 is redirected to return 444. 
 
