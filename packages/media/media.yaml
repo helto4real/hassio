@@ -15,6 +15,12 @@ switch:
  #     melker:
  #         mac: !secret melkers_pc_mac
  #         ip: !secret melkers_pc_ip 
+media_player:
+  - platform: kodi
+    host: !secret kodi_tv_nere_ip
+    username: !secret kodi_tv_nere_username
+    password: !secret kodi_tv_nere_password
+    name: kodi_tv_nere
 
 group:
   # Remote controls
@@ -42,3 +48,9 @@ group:
       - media_player.tv_nere
       - media_player.tv_uppe
       - media_player.melkers_tv
+
+  kodis:
+    name: Kodi media players
+    view: no
+    entities:
+      - media_player.kodi_tv_nere

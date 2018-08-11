@@ -35,7 +35,7 @@ switch:
     0b11000226bc0cfe05010f70:
       name: switch6
     0b11000693bc0cfe02010f70:
-      name: switch7
+      name: switch7 # The switch for rpi with plex
     0b11000172bc0cfe02010f70:
       name: switch8_melkers_tv
     0b11000467bc0cfe04010f70:

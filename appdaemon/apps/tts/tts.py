@@ -28,17 +28,17 @@ class TTSManager(Base):
         self._worker.daemon = True
         self._worker.start()
 
-    def speak(self, text: str, media_player:str='media_player.vardagsrum') -> None:
+    def speak(self, text: str, media_player:str = 'media_player.vardagsrum') -> None:
         """Speak the provided text through the media player"""
 
         # queues the message to be handled async, use when_tts_done_do method to supply callback when tts is done
         self._queue.put({'text': text, 'media_player': media_player})
 
-    def speak_greeting(self, person:str, message:str, media_player:str='media_player.vardagsrum')->None:
+    def speak_greeting(self, person:str, message:str, media_player:str = 'media_player.vardagsrum')->None:
         """Speak the provided greeting through the media player"""
         self.speak(self.notification_manager.greeting_text(person, message), media_player)
 
-    def set_volume_level(self, volume_level:str, media_player:str='media_player.vardagsrum')->None:
+    def set_volume_level(self, volume_level:str, media_player:str = 'media_player.vardagsrum')->None:
         """Put command for setting volume on the queue"""
         self._queue.put({'text': '_SET_VOLUME', 'media_player': media_player, 'volume_level':volume_level})
     

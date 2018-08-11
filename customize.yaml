@@ -6,9 +6,7 @@ light.tomas_rum_fonster:
 switch.switch2:
   friendly_name: Lampa Sallys rum
   icon: mdi:lightbulb
-switch.switch3:
-  friendly_name: Lampa sovrum fönster
-  icon: mdi:lightbulb
+
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
   icon: mdi:fan
@@ -18,6 +16,9 @@ switch.switch5_melkers_fan:
 light.kok:
   friendly_name: Lampor köket
 
+switch.switch7:
+  friendly_name: KODI Switch
+  icon: mdi:filmstrip
 switch.switch8_melkers_tv:
   friendly_name: Melkers TV switch
   icon: mdi:google-chrome

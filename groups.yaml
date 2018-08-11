@@ -34,8 +34,10 @@ media_view:
   entities:
     - group.googlehomes
     - group.chromecasts
+    - group.kodis
     - group.remotes
     - switch.switch8_melkers_tv 
+    - switch.switch7 #KODI switch
 
 system_view:
   view: yes

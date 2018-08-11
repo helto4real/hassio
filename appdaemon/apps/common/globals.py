@@ -23,8 +23,10 @@ PEOPLE = {
         'notifiers': ['eh']
     }
 }
+
+
 class GlobalEvents(Enum):
-    ## Events
+    # Events
     # fired when house mode chages, i.e. day, evening, night, morning
     EV_HOUSE_MODE_CHANGED = 'EV_HOUSE_MODE_CHANGED'
     # any motion detected in a room
@@ -33,7 +35,7 @@ class GlobalEvents(Enum):
     # fires when alarm on a google home device
     EV_ALARM_CLOCK_ALARM = 'EV_ALARM_CLOCK_ALARM'
 
-    ## Commands
+    # Commands
     # play a program with a specific program id (see sr.se api for details)
     CMD_SR_PLAY_PROGRAM = 'CMD_SR_PLAY_PROGRAM'
     # send notification
@@ -44,7 +46,8 @@ class GlobalEvents(Enum):
     CMD_AMBIENT_LIGHTS_ON = 'CMD_AMBIENT_LIGHTS_ON'
     # turn off ambient lights
     CMD_AMBIENT_LIGHTS_OFF = 'CMD_AMBIENT_LIGTS_OFF'
-    
+
+
 class HouseModes(Enum):
     morning = 'Morgon'
     day = 'Dag'

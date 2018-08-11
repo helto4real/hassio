@@ -28,12 +28,12 @@ class NotificationManager(Base):
             GlobalEvents.CMD_NOTIFY_GREET.value)
 
 
-    def notify(self, person:str, title:str='', message:str='')->None:
+    def notify(self, person:str, title:str = '', message:str = '')->None:
         """Notify using a persons notifiers"""
         for notifier in PEOPLE[person]['notifiers']:
             self.call_service("notify/{}".format(notifier), title=title, message=message)
     
-    def greeting(self, person:str, title:str='', message:str='')->None:
+    def greeting(self, person:str, title:str = '', message:str = '')->None:
         """Adds a greeting phrase to the message before sending it"""
         
         self.notify(person, title, self.greeting_text(person, message))
@@ -69,18 +69,18 @@ class NotificationManager(Base):
     def __on_cmd_notify(
         self, event_name: str, data: dict, kwargs: dict) -> None:
         """notify command"""
-        person =  data.get("person", '')
-        title =  data.get("title", '')        
-        message =  data.get("message", '')
+        person = data.get("person", '')
+        title = data.get("title", '')        
+        message = data.get("message", '')
 
         self.notify(person, title, message)
 
     def __on_cmd_notify_greet(
         self, event_name: str, data: dict, kwargs: dict) -> None:
         """notify greet command"""
-        person =  data.get("person", '')
-        title =  data.get("title", '')        
-        message =  data.get("message", '')
+        person = data.get("person", '')
+        title = data.get("title", '')        
+        message = data.get("message", '')
 
         self.greeting(person, title, message)
 

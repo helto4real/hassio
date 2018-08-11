@@ -1,4 +1,4 @@
-def get_yr_weather_text_from_symbol(symbol:int):
+def get_yr_weather_text_from_symbol(symbol: int) -> str:
     if symbol == '1':
         return "vackert och klart väder"
     elif symbol == '2':

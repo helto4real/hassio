@@ -1,9 +1,9 @@
-from enum import Enum
-from base import App
-from typing import Tuple, Union
-from globals import GlobalEvents, HouseModes
-from scheduler import run_on_days
 import datetime
+from enum import Enum
+from typing import Tuple, Union
+
+from base import App
+from globals import GlobalEvents, HouseModes
 
 """
     Handles the status of the house, alot of the automations are depending on the
@@ -16,30 +16,20 @@ import datetime
         - All off  (to be implemented, no automation)
 """
 class HouseStatusManager(App):
-
     
-    _offset_sunrise : int = 0
-    _offset_sunset : int = 0
-
-    _early_night_time = datetime.datetime.strptime("23:00:00", "%H:%M:%S")
-    _late_night_time = datetime.datetime.strptime("00:15:00", "%H:%M:%S")
-    _day_time = datetime.datetime.strptime("10:00:00", "%H:%M:%S")
-
-    _current_state:HouseModes = HouseModes.day
-
     HOUSE_MODE_SELECT = 'input_select.house_mode_select'
 
     def initialize(self) -> None:
         """Initialize."""
         super().initialize()
-        _current_state = HouseModes(self.get_state(self.HOUSE_MODE_SELECT))
-
-        _offset_sunrise = int(self.properties.get('sunrise_offset', 0))*60
-        _offset_sunset = int(self.properties.get('sunset_offset', 0))*60
-
-        _early_night_time = datetime.datetime.strptime(self.properties['early_night_time'], "%H:%M:%S")
-        _late_night_time = datetime.datetime.strptime(self.properties['late_night_time'], "%H:%M:%S")
-        _day_time = datetime.datetime.strptime(self.properties['day_time'], "%H:%M:%S")
+   
+        self._current_state = HouseModes(self.get_state(self.HOUSE_MODE_SELECT))
+        self._offset_sunrise = int(self.properties.get('sunrise_offset', 0))*60
+        self._offset_sunset = int(self.properties.get('sunset_offset', 0))*60
+   
+        self._early_night_time = self.parse_time(self.properties.get('early_night_time', datetime.time(hour=23)))
+        self._late_night_time = self.parse_time(self.properties.get('late_night_time', datetime.time(minute=15)))
+        self. _day_time = self.parse_time(self.properties.get('day_time', datetime.time(hour=10)))
 
         self._early_nights = self.args.get('early_nights', {})
         self._late_nights = self.args.get('late_nights', {})
@@ -52,32 +42,32 @@ class HouseStatusManager(App):
         )
 
         # Set sunrise/sunset events
-        self.run_at_sunrise(self.__on_sunrise, offset=_offset_sunrise)
-        self.run_at_sunset(self.__on_sunset, offset=_offset_sunset )
+        self.run_at_sunrise(self.__on_sunrise, offset=self._offset_sunrise)
+        self.run_at_sunset(self.__on_sunset, offset=self._offset_sunset )
 
         # Set callback when it is nighttime on days when go to bed early
-        run_on_days(
+        self.run_on_days(
             self,
             self.__on_night_time, self._early_nights,
-            _early_night_time.time()
+            self._early_night_time
             )
 
         # Set callback when it is nighttime on days when go to bed late
-        run_on_days(
+        self.run_on_days(
             self,
             self.__on_night_time, self._late_nights,
-            _late_night_time.time()
+            self._late_night_time
             )
 
         # Set callback when it is nighttime on days when go to bed late
         self.run_daily(
             self.__on_day_time,
-            self._day_time.time()
+            self._day_time
             )
 
-        self.log("Setting early night-mode on {} at {}".format(self._early_nights, _early_night_time.time()))
-        self.log("Setting late night-mode on {} at {}".format(self._late_nights, _late_night_time.time()))
-        self.log("Setting day time at {}".format(self._day_time.time()))
+        self.log("Setting early night-mode on {} at {}".format(self._early_nights, self._early_night_time))
+        self.log("Setting late night-mode on {} at {}".format(self._late_nights, self._late_night_time))
+        self.log("Setting day time at {}".format(self._day_time))
         self.log("Next sunset is: {}".format(self.sunset()))
         self.log("Next sunrise is: {}".format(self.sunrise()))
 

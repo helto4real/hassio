@@ -92,10 +92,12 @@ class a_better_presence(hass.Hass):
     def __devicestate(self, entity, attribute, old, new, kwargs)->None:
         new_device_tracker_state = device_tracker(new, self)
 
-        if new_device_tracker_state.gps_accuracy != None:
-            if new_device_tracker_state.gps_accuracy > self.max_gps_accuracy:
-                self.log("GPS ACC HIGHER THAN {} FOR DEVICE {}, ARE {}".format(self.max_gps_accuracy, entity, new_device_tracker_state.gps_accuracy))
-                return # Not update tracking data from gps device
+        # __ TEST WITHOUT ACCURACY __ Lets see if it is stable
+        
+        # if new_device_tracker_state.gps_accuracy != None:
+        #     if new_device_tracker_state.gps_accuracy > self.max_gps_accuracy:
+        #         self.log("GPS ACC HIGHER THAN {} FOR DEVICE {}, ARE {}".format(self.max_gps_accuracy, entity, new_device_tracker_state.gps_accuracy))
+        #         return # Not update tracking data from gps device
         
         self.update_changed_values(new_device_tracker_state, entity)
 
@@ -113,7 +115,7 @@ class a_better_presence(hass.Hass):
         }
         self.set_state(self.sensorname, attributes=attributes)
 
-    def get_tracked_devices(self)->{}:
+    def get_tracked_devices(self)->dict:
         tracked_devices = {}
        
         for device_name in self._tracked_device_names:
@@ -126,7 +128,7 @@ class a_better_presence(hass.Hass):
 
         attributes = {}
 
-        if len(self.friendly_name) > 0:
+        if self.friendly_name:
             attributes['friendly_name'] = self.friendly_name
 
         attributes['source_type'] = "gps"   #default to gps source type  
@@ -154,7 +156,7 @@ class a_better_presence(hass.Hass):
 
            # attributes["{}_last_updated".format(device_name)]=local_time_str(current_device.last_updated)
         
-        if self.state==None:
+        if self.state == None:
             self.state = globals.presence_state["away"] # some bug to check for when not all device_trackers present we assume away
 
         self.set_state(self.sensorname, state=self.state, attributes=attributes)
@@ -276,7 +278,7 @@ class a_better_presence(hass.Hass):
     def is_updated_within_time(self, last_updated)->bool:
         
         diff = datetime.datetime.now(datetime.timezone.utc) - last_updated
-        if diff.days == 0 and diff.seconds< self.update_time: 
+        if diff.days == 0 and diff.seconds < self.update_time: 
             return True
         else:
             return False

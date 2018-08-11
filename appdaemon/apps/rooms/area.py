@@ -30,6 +30,7 @@ class Area(Base):
             self.properties.get('min_time_motion', 10))*60
         self._min_time_nightlights = int(
             self.properties.get('min_time_nightlights', 0))*60
+
    # Bug with IKEA cant use color temp
    #     self._ambient_light_color_temp = self._ambient_light_settings.get(
    #         "color_temp", "400")
@@ -89,7 +90,7 @@ class Area(Base):
 
     def motion_on_detected(self, entity: str)->None:
         """called when motion detected in area"""
-        if self.house_status.is_night() == False or self._night_light_on == True:
+        if self.house_status.is_night() is False or self._night_light_on is True:
             return
         for night_light in self._night_lights:
             self.turn_on_device(night_light,
@@ -103,7 +104,7 @@ class Area(Base):
 
     def nightlights_off_detected(self, entity: str)->None:
         """called when nighlights are off in area"""
-        if self._night_light_on == False:
+        if self._night_light_on is False:
             return
         for night_light in self._night_lights:
             self.turn_off_device(night_light)
@@ -126,7 +127,7 @@ class Area(Base):
         return
 
     def turn_on_ambient(self)->None:
-        if len(self._ambient_lights) == 0:
+        if not self._ambient_lights:
             return  # No ambient lights
         for light in self._ambient_lights:
             self.turn_on_device(light,
@@ -134,24 +135,11 @@ class Area(Base):
                           transition=self._ambient_ligth_transition)
            
     def turn_off_ambient(self)->None:
-        if len(self._ambient_lights) == 0:
+        if not self._ambient_lights:
             return  # No ambient lights
 
         for light in self._ambient_lights:
             self.turn_off_device(light)
-
-    def turn_on_device(self, entity:str, **kwargs:dict) -> None:
-        if entity.startswith('light'):
-            self.call_service("light/turn_on", entity_id=entity, brightness_pct=kwargs['brightness_pct'], transition=kwargs['transition'])
-        else:
-            self.turn_on(entity)
-
-    def turn_off_device(self, entity:str, **kwargs:dict) -> None:
-     
-        if entity.startswith('light'):
-            self.call_service("light/turn_off", entity_id=entity)
-        else:
-            self.turn_off(entity)
 
     '''
     

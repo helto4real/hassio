@@ -20,10 +20,10 @@ class TVRoom(Area):
         
     def on_lightswich_state_changed(self, entity: str, old: str, new: str)->None:
         super().on_lightswich_state_changed(entity, old, new)
-        if entity==self._toggle_window_ligts_switch:
+        if entity == self._toggle_window_ligts_switch:
             # turn on/off lights in window
             self.__toogle_window_lights()
-        elif entity==self._toggle_tv_switch:
+        elif entity == self._toggle_tv_switch:
             self.__toogle_tv()
 
     def motion_on_detected(self, entity:str)->None:
