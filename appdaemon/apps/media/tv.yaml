@@ -3,7 +3,9 @@ tv_downstairs:
   module: tv
   class: Tv
   remote: remote.tvroom
-  media_player: media_player.tv_nere
+  media_players: 
+    - media_player.tv_nere
+    - media_player.kodi_tv_nere
   kodi_switch: switch.switch7
   properties:
     delay_before_turn_off_tv: 20  #20 minutes before tv is shut down when idle or off

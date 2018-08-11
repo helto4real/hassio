@@ -76,7 +76,7 @@ class Alarm(App):
                 status = int(item["status"])
                 time_for_alarm = datetime.datetime.fromtimestamp(
                     fire_time/1000)
-                if time_for_alarm < current_alarm and status >= 1:
+                if time_for_alarm < current_alarm and status >= 1 and time_for_alarm >= datetime.datetime.now() :
                     current_alarm = time_for_alarm
 
         except:

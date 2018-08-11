@@ -25,7 +25,6 @@ class Base(hass.Hass):
     # Helper functions for calling the correct service
     def turn_on_device(self, entity:str, **kwargs:dict) -> None:
         if entity.startswith('light'):
-            self.log(kwargs)
             self.call_service("light/turn_on", entity_id=entity, **kwargs) 
         else:
             self.turn_on(entity)
