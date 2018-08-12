@@ -74,6 +74,7 @@ class Tv(Base):
         # Turn off tv when been idle or off for an amout of time
         if old == 'off':
             return  # Can never be from off
+  
         self.log("INACTIVITY TV, from state {} to {}".format(old, new))
 
         if self.__is_media_playing() is True:              # Added check cause sometimes it turns off when playing
@@ -92,22 +93,23 @@ class Tv(Base):
             return  # already on, nothing to do
 
         # first pause media player to let the TV get som time to turn on
-        self.__pause()
+        self.__pause(entity)
         # turn on tv
         self.__turn_on_tv()
         # wait 10 seconds and play again
-        self.run_in(self.__delay_play, 20)
+        self.run_in(self.__delay_play, 20, media_player=entity)
 
-    def __pause(self)->None:
+    def __pause(self, entity:str)->None:
         self.call_service('media_player/media_pause',
-                          entity_id=self._media_player)
+                          entity_id=entity)
 
     def __delay_play(self, kwargs: dict)->None:
-        self.__play()
 
-    def __play(self)->None:
+        self.__play(kwargs['media_player'])
+
+    def __play(self, entity:str)->None:
         self.call_service('media_player/media_play',
-                          entity_id=self._media_player)
+                          entity_id=entity)
 
     def __turn_on_tv(self)->None:
         self.turn_on(entity_id=self._remote)
