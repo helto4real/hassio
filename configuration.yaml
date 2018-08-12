@@ -47,7 +47,7 @@ conversation:
 
 recorder:
   purge_interval: 1
-  purge_keep_days: 2
+  purge_keep_days: 3
   include:
     domains:
       - climate
@@ -63,6 +63,8 @@ recorder:
       - sensor.melker_phone_mqtt_bt
       - sensor.tomas_phone_mqtt_bt
       - sensor.elin_phone_mqtt_bt
+      - proximity.prox_home_tomas
+      - proximity.prox_home_elin
 
       # sensors of interest
       - sensor.utetemp_temperature

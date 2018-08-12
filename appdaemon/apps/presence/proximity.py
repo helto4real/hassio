@@ -22,7 +22,7 @@ class ProximityManager(Base):
         self._distance = self.args.get("distance", 0)
         self._message = self.args.get("message", 0)
         self._tts_device = self.args.get("tts_device", str)
-        self._device_is_near = 'yes' # set to yes to avoid false positives when restarted the app
+        self._device_is_near = {}
 
         for device in self._devices:
             self.listen_state(
@@ -30,6 +30,7 @@ class ProximityManager(Base):
                 entity=device,
                 attribute="all"
             )
+            self._device_is_near[device] = 'yes' # set to yes to avoid false positives when restarted the app
 
     
     def __on_proximity_changed(
@@ -37,9 +38,9 @@ class ProximityManager(Base):
             new: dict, kwargs: dict) -> None:
         current_distance = int(new['state'])
         current_direction = new['attributes']['dir_of_travel']
-        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near == 'no':
-            self._device_is_near = 'yes'
+        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near[entity] == 'no':
+            self._device_is_near[entity] = 'yes'
             self.tts_manager.speak(self._message, media_player=self._tts_device)
             self.notification_manager.greeting('Tomas', 'På väg hem', 'Nu är vi på väg hem från jobbet!')
         elif current_distance > self._distance:
-            self._device_is_near = 'no'
+            self._device_is_near[entity] = 'no'
