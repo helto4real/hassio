@@ -16,13 +16,14 @@ class MelkersRoom(Area):
 
         self._tv_switch = self.properties.get('tv_switch', str)
         self._minutes_before_turn_on_switch = int(self.properties.get('minutes_before_turn_on_switch', 8))
-        self._time_to_turn_off_tv = datetime.datetime.strptime(self.properties['time_to_turn_off_tv'], "%H:%M:%S") 
+        self._time_to_turn_off_tv = self.parse_time(self.properties.get('time_to_turn_off_tv', "01:00:00")) 
 
+        self.log(self.list_constraints())
         
         # run every night to turn off his tv 
         self.run_daily(
             self.__on_time_for_turn_off_tv,
-            self._time_to_turn_off_tv.time()
+            self._time_to_turn_off_tv
             )
 
     def __on_time_for_turn_off_tv(self, kwargs: dict) -> None:

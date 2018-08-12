@@ -31,13 +31,12 @@ class Area(Base):
         self._min_time_nightlights = int(
             self.properties.get('min_time_nightlights', 0))*60
 
-   # Bug with IKEA cant use color temp
-   #     self._ambient_light_color_temp = self._ambient_light_settings.get(
-   #         "color_temp", "400")
         self._ambient_light_brightness = self._ambient_light_settings.get(
             "brightness_pct", "25")
         self._ambient_ligth_transition = self._ambient_light_settings.get(
             "transition", "25")
+
+        self.register_constraint("constraint_housemode")
 
         self.listen_event(
             self.__on_house_home_changed,
@@ -55,6 +54,18 @@ class Area(Base):
 
         self.__init_motion_sensors()
         self.__init_light_switches()
+
+    # Common area constraints 
+    def constraint_housemode(self, mode:str) -> bool:
+        if str == 'morning' and self.house_status == HouseModes.morning:
+            return True
+        elif str == 'day' and self.house_status == HouseModes.day:
+            return True
+        elif str == 'evening' and self.house_status == HouseModes.evening:
+            return True
+        elif str == 'night' and self.house_status == HouseModes.night:
+            return True
+        return False
 
     def __init_motion_sensors(self)->None:
         for motion_sensor in self._motion_sensors:
@@ -94,14 +105,14 @@ class Area(Base):
             return
         for night_light in self._night_lights:
             self.turn_on_device(night_light,
-                brightness_pct='15', #color_temp=self._ambient_light_color_temp, bug in IKEA DONT USE
+                brightness_pct='15', 
                 transition='0')            
 
         self._night_light_on = True
 
     def motion_off_detected(self, entity: str)->None:
         """called when motion off in area"""
-
+        # No base functionality for this
     def nightlights_off_detected(self, entity: str)->None:
         """called when nighlights are off in area"""
         if self._night_light_on is False:
@@ -131,7 +142,7 @@ class Area(Base):
             return  # No ambient lights
         for light in self._ambient_lights:
             self.turn_on_device(light,
-                          brightness_pct=self._ambient_light_brightness, #color_temp=self._ambient_light_color_temp, bug in IKEA DONT USE
+                          brightness_pct=self._ambient_light_brightness, 
                           transition=self._ambient_ligth_transition)
            
     def turn_off_ambient(self)->None:
@@ -197,7 +208,6 @@ class Area(Base):
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
         """callback motion off in area"""
-        self.log("LIGHTSWITCH {} STATE: {}".format(entity, new))
 
         self.on_lightswich_state_changed(entity, old, new)
 

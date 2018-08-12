@@ -19,6 +19,7 @@ class TomasRoom(Area):
         self._computer = self.args.get('computer', str)
         self._tracker = self.args.get('tracker', str)
 
+        self.register_constraint("constraint_tomas_is_home")
         for motion_sensor in self._motion_sensors:
         # Set the turn off computer function
             self.listen_state(
@@ -32,9 +33,15 @@ class TomasRoom(Area):
                     self.__on_motion_for_computer,
                     motion_sensor,
                     new='on',
-                    old='off')
+                    old='off',
+                    constraint_tomas_is_home=1)
        
-        # todo override behaviour
+        
+    def constraint_tomas_is_home(self, value) -> bool:    
+        if self.get_state(self._tracker) == presence_state["home"]:
+            return True
+        else:
+            return False
 
     def motion_on_detected(self, entity:str)->None:
         super().motion_on_detected(entity)
@@ -58,18 +65,14 @@ class TomasRoom(Area):
         self, entity: Union[str, dict], attribute: str, old: dict,
         new: dict, kwargs: dict) -> None:
         """callback when motion detected in area"""
-        if self.get_state(self._computer) == 'on':
-            return # Already on
-        if self.get_state(self._tracker) != presence_state["home"]:
-            return #Only if Tomas is Home
-        
-        self.turn_on(self._computer)
+        if self.get_state(self._computer) == 'off':
+            self.turn_on(self._computer) # Turn on computer if it is off
+
     def __off_motion_for_computer(
         self, entity: Union[str, dict], attribute: str, old: dict,
         new: dict, kwargs: dict) -> None:
         """callback motion off in area"""
-        if self.get_state(self._computer) == 'off':
-            return
-        self.turn_off(self._computer)
+        if self.get_state(self._computer) == 'on':
+            self.turn_off(self._computer) # Turn off computer if its on
         
             

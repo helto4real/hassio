@@ -22,7 +22,7 @@ class ProximityManager(Base):
         self._distance = self.args.get("distance", 0)
         self._message = self.args.get("message", 0)
         self._tts_device = self.args.get("tts_device", str)
-        self._device_is_near = 'unknown'
+        self._device_is_near = 'yes' # set to yes to avoid false positives when restarted the app
 
         for device in self._devices:
             self.listen_state(
