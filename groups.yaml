@@ -111,7 +111,7 @@ room_tvnere:
   view: no
   entities:
     - light.tvnere_fonster 
-    - light.plug1
+    - switch.plug1
     - binary_sensor.rorelsesensor_nere
 
 

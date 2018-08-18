@@ -3,7 +3,7 @@ dialogflow:
 intent_script:
   Temperature:
     speech:
-      text: The temperature at home is {{ states('sensor.utetemp_temperature') }} degrees
+      text: Temperaturen i huset är {{ states('sensor.utetemp_temperature') }} grader
   Turn_on:
     speech:
       text: Turning on {{ rooms }} 

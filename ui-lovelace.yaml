@@ -273,7 +273,7 @@ views:
                 top: 90.2%
                 left: 57.42%
             - type: state-icon
-              entity: light.plug1 # wall lights
+              entity: switch.plug1 # wall lights
               tap_action: toggle
               style:
                 top: 50.8%
@@ -719,4 +719,4 @@ views:
         title: Entities card sample
         show_header_toggle: true
         entities:
-          - light.motorvarmare
+          - switch.motorvarmare

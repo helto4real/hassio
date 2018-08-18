@@ -158,7 +158,7 @@ sensor.humidity_16:
   name:
   platform: deconz
   unique_id: 00:15:8d:00:01:fa:50:22-01-0405
-light.plug1:
+switch.plug1:
   config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz
@@ -208,7 +208,7 @@ sensor.power_19:
   name:
   platform: deconz
   unique_id: 7c:b0:3e:aa:00:ab:7c:b7-03-0b04
-light.motorvarmare:
+switch.motorvarmare:
   config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
   platform: deconz

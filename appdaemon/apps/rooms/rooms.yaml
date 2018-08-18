@@ -51,7 +51,7 @@ room_tvroom:
   class: TVRoom
   ambient_ligts:
     - light.tvnere_fonster #windows lights
-    - light.plug1 #wall lights
+    - switch.plug1 #wall lights
   night_lights:
     - light.tvnere_fonster 
   motion_sensors:
