@@ -213,3 +213,23 @@ switch.motorvarmare:
   name:
   platform: deconz
   unique_id: 7c:b0:3e:aa:00:ab:7c:b7-03
+sensor.temp_elins_rum:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:02:05:e7:0b-01-0402
+sensor.temp_elins_rum_2:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:02:05:e7:0b-01-0405
+sensor.temp_frys_uppe:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:02:05:e6:a2-01-0402
+sensor.temp_frys_uppe_2:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:02:05:e6:a2-01-0405

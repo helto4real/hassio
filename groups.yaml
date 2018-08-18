@@ -101,6 +101,7 @@ lower_floor:
     - group.room_melker
     - binary_sensor.rorelsesensor_nere
     - sensor.temp_sovrum_nere
+    - sensor.temp_elins_rum
 outside:
   name: Ute
   view: no
@@ -122,6 +123,7 @@ frysar_temperatur:
   entities:
     - sensor.frysnere_temperature  #Frys nere
     - sensor.frysuppe_temperature  #Frys uppe
+    - sensor.temp_frys_uppe #zigbee one
 
 room_tomas:
   name: Tomas rum
