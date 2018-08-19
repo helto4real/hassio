@@ -195,6 +195,11 @@ class extends HTMLElement{_render(){const e=document.createElement("div");e.id="
  * SOFTWARE.
  */window.customElements.define("media-player-card",class extends t.a{_render({hass:e,config:i}){return t["b"]`
         <style>
+            #card {
+              width: 88%;
+              height: 100%;
+              margin: auto;
+            }
             #container {
                 width: calc(561px/1.3);
                 height: calc(406px/1.3);;
@@ -264,14 +269,16 @@ class extends HTMLElement{_render(){const e=document.createElement("div");e.id="
                 transform: none;
             }
         </style>
-        <div id="container" on-click="${()=>this._click()}">
-            <div id="movie-image">
-                <div id="media-info">
-                    <div id="entity"></div>
-                    <div id="media-title"></div>
-                    <div id="app-name">HBO Nordic</div>
-                </div>
-            </div>
+        <div id="card">
+          <div id="container" on-click="${()=>this._click()}">
+              <div id="movie-image">
+                  <div id="media-info">
+                      <div id="entity"></div>
+                      <div id="media-title"></div>
+                      <div id="app-name">HBO Nordic</div>
+                  </div>
+              </div>
+          </div>
         </div>
         
         `}_didRender(e,t,i){const r=this._root.querySelector("#container"),n=this._root.querySelector("#movie-image"),o=this._root.querySelector("#entity"),a=this._root.querySelector("#media-title"),s=this._root.querySelector("#app-name");r.style.backgroundImage=`url(${this._config.image_folder}/tv.png)`;const l=this._hass.states[this._config.entity],d=l.attributes;d.entity_picture?n.style.backgroundImage=`url(${d.entity_picture})`:d.app_name&&-1!==d.app_name.toLowerCase().indexOf("netflix")&&(n.style.backgroundImage=`url(${this._config.image_folder}/netflix-logo.png)`),o.innerText=d.friendly_name?d.friendly_name:this._config.entity,a.innerText=d.media_title?d.media_title:l.state,s.innerText=d.app_name?d.app_name:"Nothing is currently playing"}_click(){this._fire("hass-more-info",{entityId:this._config.entity})}_fire(e,t){const i=new Event(e,{bubbles:!0,cancelable:!1,composed:!0});return i.detail=t||{},this._root.dispatchEvent(i),i}setConfig(e){if(this._config=e,!e.entity)throw Error("No entity defined");if(!e.image_folder)throw Error("No image_folder defined")}set hass(e){this._hass=e;var t=this._hass.states[this._config.entity].state;t!=this.state&&(this.state=t)}static get properties(){return{hass:Object,config:Object,state:String}}getCardSize(){return 2}constructor(){super(),void 0===e&&this.__initTests()}__initTests(){this.state="idle";var e={entity:"media_player.tv_nere",image_folder:"img"};const t={states:{}};t.states[e.entity]={attributes:{},state:"playing"};const i=t.states[e.entity].attributes;i.friendly_name="TV Nere",i.app_name="HBO Nordic Netflix",i.media_title="Game of thrones",this.setConfig(e),this._hass=t}})}).call(this,i(2))}]);

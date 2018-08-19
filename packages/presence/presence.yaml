@@ -109,7 +109,6 @@ device_tracker:
       - !secret unifi_SSID
  
   - platform: google_maps
-    max_gps_accuracy: 200
     username: !secret gu 
     password: !secret gp
 

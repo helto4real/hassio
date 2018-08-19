@@ -148,16 +148,6 @@ binary_sensor.rorelsesensor_sallys_rum:
   name:
   platform: deconz
   unique_id: 90:fd:9f:ff:fe:6f:85:f3-01-1000
-sensor.temperature_15:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 00:15:8d:00:01:fa:50:22-01-0402
-sensor.humidity_16:
-  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
-  name:
-  platform: deconz
-  unique_id: 00:15:8d:00:01:fa:50:22-01-0405
 switch.plug1:
   config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
   name:
@@ -233,3 +223,13 @@ sensor.temp_frys_uppe_2:
   name:
   platform: deconz
   unique_id: 00:15:8d:00:02:05:e6:a2-01-0405
+sensor.temp_melkersrum:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:fa:50:22-01-0402
+sensor.temp_melkersrum_2:
+  config_entry_id: 59abc04d07b4433a918d9933efa0c3e5
+  name:
+  platform: deconz
+  unique_id: 00:15:8d:00:01:fa:50:22-01-0405

@@ -1,5 +1,5 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.051
+  - url: /local/custom_cards/custom-cards.js?v=1.054
     type: module
    
  
@@ -93,13 +93,18 @@ views:
             Dag: '/local/img/housestatus/hs_day.png'
             Kväll: '/local/img/housestatus/hs_evening.png'
             Natt: '/local/img/housestatus/hs_night.png'
-
+        # First floor
         - type: picture-elements
           image: /local/img/first_floor2.jpg
           elements:
           #
           # Living room 
           #
+            - type: state-label
+              entity: sensor.temp_vardagsrum_uppe
+              style: 
+                top: 72%
+                left: 38%
             - type: state-icon
               entity: binary_sensor.rorelsesensor_uppe
               style:
@@ -182,6 +187,11 @@ views:
           #
           # Sallys room
           #
+            - type: state-label
+              entity: sensor.temp_sallysrum
+              style: 
+                top: 44%
+                left: 25%
             - type: state-icon
               entity: binary_sensor.rorelsesensor_sallys_rum
               style:
@@ -204,6 +214,11 @@ views:
           #
           # kitchen
           #
+            - type: state-label
+              entity: sensor.temp_frys_uppe
+              style: 
+                top: 54%
+                left: 73%
             - type: state-icon
               entity: binary_sensor.rorelsesensor_kok #Motion detector
               style:
@@ -235,6 +250,12 @@ views:
           #
           # Master bedroom 
           #
+            - type: state-label
+              entity: sensor.temp_sovrum_nere
+              style: 
+                top: 68%
+                left: 17.5%
+
             - type: state-icon
               entity: light.sovrum_fonster #bedroom light window
               tap_action: toggle
@@ -296,6 +317,11 @@ views:
           #
           # Melkers room
           #
+            - type: state-label
+              entity: sensor.temp_melkersrum
+              style: 
+                top: 68%
+                left: 80.5%
             - type: state-icon
               entity: binary_sensor.rorelsesensor_melkers_rum
               style:
@@ -318,15 +344,71 @@ views:
               style:
                 top: 70.8%
                 left: 92.4%   
-    
-  - icon: mdi:google-maps
+          #
+          # Hobby room
+          #   
+            - type: state-label
+              entity: sensor.temp_elins_rum
+              style: 
+                top: 25%
+                left: 78.5%
+            
+            - type: state-label
+              entity: sensor.frysnere_temperature
+              style: 
+                top: 27%
+                left: 86.5%
+                transform: rotate(90deg)
+
+  - icon: mdi:cast
+    title: Media
+    cards:
+      - type: vertical-stack
+        cards:   
+          - type: entities
+            entities:
+              - remote.tvroom
+              - switch.switch7
+              - switch.switch8_melkers_tv
+          - type: custom:media-player-card
+            entity: media_player.tv_nere
+            image_folder: '/local/custom_cards/img'
+          - type: custom:media-player-card
+            entity: media_player.tv_uppe
+            image_folder: '/local/custom_cards/img'
+          - type: custom:media-player-card
+            entity: media_player.melkers_tv
+            image_folder: '/local/custom_cards/img'
+
+  - icon: mdi:weather-partlycloudy
+    title: Väder
+    cards:
+      - type: entities
+        entities: 
+          - sun.sun
+          - sensor.yr_symbol
+          - type: divider
+          - sensor.yr_cloudiness
+          - sensor.yr_wind_speed
+          - type: divider
+          - sensor.utetemp_temperature
+          - sensor.utetemp_humidity
+
+  - icon: mdi:cellphone-wireless
     # Title of the view. Will be used as the tooltip for tab icon
     title: Karta
     cards:
+      - type: entities
+        entities:
+          - group.people_status
+          - group.tomas_devices
+          - group.elins_devices
+          - group.sallys_devices
+          - group.melkers_devices
         # Entities card will take a list of entities and show their state.
       - type: map
         # Title of the entities card
-        title: My map
+        title: Familjekartan
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
         entities:
@@ -335,246 +417,12 @@ views:
           - sensor.presence_elin
           - sensor.presence_melker
             
-  - icon: mdi:temperature-celsius
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Temeraturer
-    cards:
-      - type: horizontal-stack
-        cards:
- 
-          - type: custom:canvas-gauge-card
-            entity: sensor.temp_outside
-            name: Outside
-            font_size: '1em'
-            gauge:
-              type: "linear-gauge"
-              width: 120
-              height: 400
-              units: ""
-              minValue: -40
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              maxValue: 40
-              majorTicks: [
-                  "-40",
-                  "-30",
-                  "-20",
-                  "-10",
-                  "0",
-                  "10",
-                  "20",
-                  "30",
-                  "40"
-              ]
-              minorTicks: 10
-              strokeTicks: true
-              highlights: [
-                  {
-                      "from": 25,
-                      "to": 40,
-                      "color": "rgba(200, 50, 50, .25)"
-                  },
-                  {
-                      "from": -40,
-                      "to": -10,
-                      "color": "rgba(50, 50, 200, .25)"
-                  }          ]
-              colorPlate: "#ddd"
-              borderShadowWidth: 0
-              borders: false
-              needleType: "arrow"
-              needleWidth: 1
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
-              animationDuration: 1500
-              animationRule: "linear"
-              barWidth: 5
-              barStrokeWidth: 1
-              colorBarStroke: "#777"
-              colorBarProgress: "#d99"
-              colorBorderOuter: "#fff"
-              colorBorderOuterEnd: "#ddd"
-              colorBorderMiddle: "#ddd"
-              colorBorderMiddleEnd: "#ddd"
-              colorBorderInner: "#ddd"
-              colorBorderInnerEnd: "#ddd" 
-
-          - type: custom:canvas-gauge-card
-            entity: sensor.temp_sallysrum
-            name: Sally´s room
-            font_size: '1em'
-            gauge:
-              type: "linear-gauge"
-              width: 120
-              height: 400
-              units: ""
-              minValue: 0
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              maxValue: 30
-              majorTicks: [
-                  "0",
-                  "5",
-                  "10",
-                  "15",
-                  "20",
-                  "25",
-                  "30"
-              ]
-              minorTicks: 5
-              strokeTicks: true
-              highlights: [
-                  {
-                      "from": 25,
-                      "to": 30,
-                      "color": "rgba(200, 50, 50, .15)"
-                  },
-                  {
-                      "from": 0,
-                      "to": 18,
-                      "color": "rgba(50, 50, 200, .15)"
-                  }          ]
-              colorPlate: "#ddd"
-              borderShadowWidth: 0
-              borders: false
-              needleType: "arrow"
-              needleWidth: 1
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
-              animationDuration: 1500
-              animationRule: "linear"
-              barWidth: 5
-              barStrokeWidth: 1
-              colorBarStroke: "#777"
-              colorBarProgress: "#d99"
-              colorBorderOuter: "#fff"
-              colorBorderOuterEnd: "#ddd"
-              colorBorderMiddle: "#ddd"
-              colorBorderMiddleEnd: "#ddd"
-              colorBorderInner: "#ddd"
-              colorBorderInnerEnd: "#ddd" 
-
-          - type: custom:canvas-gauge-card
-            entity: sensor.temp_vardagsrum_uppe
-            name: Livingroom
-            font_size: '1em'
-            gauge:
-              type: "linear-gauge"
-              width: 120
-              height: 400
-              units: ""
-              minValue: 0
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              maxValue: 30
-              majorTicks: [
-                  "0",
-                  "5",
-                  "10",
-                  "15",
-                  "20",
-                  "25",
-                  "30"
-              ]
-              minorTicks: 5
-              strokeTicks: true
-              highlights: [
-                  {
-                      "from": 25,
-                      "to": 30,
-                      "color": "rgba(200, 50, 50, .15)"
-                  },
-                  {
-                      "from": 0,
-                      "to": 18,
-                      "color": "rgba(50, 50, 200, .15)"
-                  }          ]
-              colorPlate: "#ddd"
-              borderShadowWidth: 0
-              borders: false
-              needleType: "arrow"
-              needleWidth: 1
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
-              animationDuration: 1500
-              animationRule: "linear"
-              barWidth: 5
-              barStrokeWidth: 1
-              colorBarStroke: "#777"
-              colorBarProgress: "#d99"
-              colorBorderOuter: "#fff"
-              colorBorderOuterEnd: "#ddd"
-              colorBorderMiddle: "#ddd"
-              colorBorderMiddleEnd: "#ddd"
-              colorBorderInner: "#ddd"
-              colorBorderInnerEnd: "#ddd"              
-
-          - type: custom:canvas-gauge-card
-            entity: sensor.temp_sovrum_nere
-            name: bedroom
-            font_size: '1em'
-            gauge:
-              type: "linear-gauge"
-              width: 120
-              height: 400
-              units: ""
-              minValue: 0
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              maxValue: 30
-              majorTicks: [
-                  "0",
-                  "5",
-                  "10",
-                  "15",
-                  "20",
-                  "25",
-                  "30"
-              ]
-              minorTicks: 5
-              strokeTicks: true
-              highlights: [
-                  {
-                      "from": 25,
-                      "to": 30,
-                      "color": "rgba(200, 50, 50, .15)"
-                  },
-                  {
-                      "from": 0,
-                      "to": 18,
-                      "color": "rgba(50, 50, 200, .15)"
-                  }          ]
-              colorPlate: "#ddd"
-              borderShadowWidth: 0
-              borders: false
-              needleType: "arrow"
-              needleWidth: 1
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
-              animationDuration: 1500
-              animationRule: "linear"
-              barWidth: 5
-              barStrokeWidth: 1
-              colorBarStroke: "#777"
-              colorBarProgress: "#d99"
-              colorBorderOuter: "#fff"
-              colorBorderOuterEnd: "#ddd"
-              colorBorderMiddle: "#ddd"
-              colorBorderMiddleEnd: "#ddd"
-              colorBorderInner: "#ddd"
-              colorBorderInnerEnd: "#ddd"              
-
   - icon: mdi:gauge-low
     title: System
     cards:    
+      - type: entities
+        entities:
+          - group.low_battery_sensors
       - type: picture-elements
         image: '/local/img/performance_bg.png'
         elements:
@@ -699,18 +547,15 @@ views:
               top: 57.8%
               transform: none
 
-  - icon: mdi:cast
-    title: Media
-    cards:    
-      - type: custom:media-player-card
-        entity: media_player.tv_nere
-        image_folder: '/local/custom_cards/img'
-      - type: custom:media-player-card
-        entity: media_player.tv_uppe
-        image_folder: '/local/custom_cards/img'
-      - type: custom:media-player-card
-        entity: media_player.melkers_tv
-        image_folder: '/local/custom_cards/img'
+  - icon: mdi:camera
+    title: Kameror
+    cards:
+      - type: picture-glance
+        camera_image: camera.kamera_uppe
+        entities:
+          - sensor.kamera_uppe_light_sensor
+          - switch.kamera_uppe_night_mode
+          - binary_sensor.kamera_uppe_motion_sensor 
 
   - icon: mdi:power-plug
     title: Plugs

@@ -71,6 +71,8 @@ recorder:
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
+      - sensor.temp_outside
+      - sensor.hum_outside
       - sensor.frysnere_temperature  #Frys nere
       - sensor.frysuppe_temperature  #Frys uppe
       - sensor.temp_sovrum_nere
