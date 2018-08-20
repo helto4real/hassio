@@ -24,6 +24,7 @@ class Tv(Base):
         super().initialize()
 
         self._remote = self.args.get('remote', str)
+        self._cube = self.args.get('cube', str)
         self._kodi_switch = self.args.get('kodi_switch', str)
         self._media_players = self.args.get('media_players', [])
         self._delay_before_turn_off_tv = int(
@@ -56,6 +57,25 @@ class Tv(Base):
             attribute='current_activity'
         )
 
+        self.listen_event(self.__on_cube_changed, 'MAGIC_CUBE_EVENT')
+
+
+    def __on_cube_changed(
+        self, event_name: str, data: dict, kwargs: dict) -> None:
+    
+        if data['id'] != self._cube:
+            return # Not correct cube
+
+        if data['event_type'] == 'flip':
+            self.__toggle_pause_play_media()
+        elif data['event_type'] == 'shake':
+            self.__turn_off_tv()
+        elif data['event_type'] == 'rotate':
+            if data['data'] == 'left':
+                self.__volume_down()
+            else:
+                self.__volume_up()
+   
     def __on_remote_activity_changed(
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
@@ -115,6 +135,7 @@ class Tv(Base):
         self.turn_on(entity_id=self._remote)
 
     def __turn_off_tv(self)->None:
+        self.__stop_all_media()
         self.turn_off(entity_id=self._remote)
 
     def __is_media_playing(self)->bool:
@@ -122,3 +143,22 @@ class Tv(Base):
             if self.get_state(media_player) == 'playing':
                 return True
         return False
+
+    def __stop_all_media(self)->None:
+        for media_player in self._media_players:
+            self.call_service('media_player/media_stop',
+                          entity_id=media_player)
+
+    def __toggle_pause_play_media(self)->None:
+        for media_player in self._media_players:
+            state = self.get_state(media_player)
+            if state == 'playing':
+                self.__pause(media_player)
+            elif state == 'paused':
+                self.__play(media_player)
+
+    def __volume_up(self)->None:
+        self.call_service('remote/send_command', entity_id=self._remote, device=14329974, command='VolumeUp', num_repeats=10, delay_secs=0.05)
+
+    def __volume_down(self)->None:
+        self.call_service('remote/send_command', entity_id=self._remote, device=14329974, command='VolumeDown', num_repeats=10, delay_secs=0.05)

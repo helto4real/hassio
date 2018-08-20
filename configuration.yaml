@@ -29,7 +29,7 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 3
   use_x_forwarded_for: True
-  trusted_proxies: 192.168.1.1
+  trusted_proxies: 192.168.1.5
 
 # Checks for available updates
 # Note: This component will send some information about your system to

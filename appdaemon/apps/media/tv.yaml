@@ -3,6 +3,7 @@ tv_downstairs:
   module: tv
   class: Tv
   remote: remote.tvroom
+  cube: cube_tv_nere
   media_players: 
     - media_player.tv_nere
     - media_player.kodi_tv_nere

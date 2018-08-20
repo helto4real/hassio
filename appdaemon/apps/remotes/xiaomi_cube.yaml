@@ -1,0 +1,6 @@
+---
+xiaomi_cube_manager:
+  module: xiaomi_cube
+  class: XiaomiMagicCubeManager
+  cubes:
+    - cube_tv_nere

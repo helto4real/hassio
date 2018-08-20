@@ -556,6 +556,24 @@ views:
           - sensor.kamera_uppe_light_sensor
           - switch.kamera_uppe_night_mode
           - binary_sensor.kamera_uppe_motion_sensor 
+      - type: entities
+        entities:
+          - camera.kamera_uppe
+          - switch.kamera_uppe_h264_rtsp_server
+          - switch.kamera_uppe_mjpeg_rtsp_server
+          - sensor.kamera_uppe
+          - device_tracker.kamera_uppe
+          - sensor.kamera_uppe_light_sensor
+          - switch.kamera_uppe_ir_filter
+          - switch.kamera_uppe_ir_led
+          - switch.kamera_uppe_night_mode
+          - switch.kamera_uppe_night_mode_auto
+          - switch.kamera_uppe_blue_led
+          - switch.kamera_uppe_yellow_led
+          - switch.kamera_uppe_motion_detection
+          - switch.kamera_uppe_motion_tracking
+          - camera.kamera_uppe_motion_snapshot
+          - binary_sensor.kamera_uppe_motion_sensor 
 
   - icon: mdi:power-plug
     title: Plugs
