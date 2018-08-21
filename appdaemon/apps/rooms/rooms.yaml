@@ -19,7 +19,8 @@ room_livingroom:
   night_lights:
     - light.hallenuppe #Light Hallway one lamp  
   motion_sensors:
-    - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.rorelsesensor_vardagsrummet
+    - binary_sensor.rorelsesensor_trapp
   dependencies:
     - house_status
 
@@ -56,6 +57,7 @@ room_tvroom:
     - light.tvnere_fonster 
   motion_sensors:
     - binary_sensor.rorelsesensor_nere
+    - binary_sensor.rorelsesensor_trapp
   light_switches:
     - switch.switch_1_lb
     - switch.switch_1_rb

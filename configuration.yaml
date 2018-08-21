@@ -133,7 +133,7 @@ influxdb:
       - sensor.kamera_uppe_light_sensor
       - switch.computer_tomas
       - remote.tvroom 
-      - binary_sensor.rorelsesensor_uppe
+      - binary_sensor.rorelsesensor_vardagsrummet
       # nuc stats
       - sensor.memory_use_percent
       - sensor.processor_use

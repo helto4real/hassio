@@ -105,7 +105,7 @@ device_tracker.google_maps_113728439587103002947:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
 
-binary_sensor.rorelsesensor_uppe:
+binary_sensor.rorelsesensor_vardagsrummet:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
 binary_sensor.rorelsesensor_nere:

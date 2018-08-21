@@ -91,7 +91,7 @@ upper_floor:
     - group.room_koket
     - sensor.temp_vardagsrum_uppe
     - sensor.temp_sallysrum
-    - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.rorelsesensor_vardagsrummet
     - binary_sensor.ytterdorr_uppe
 lower_floor:
   name: Undervåning
@@ -160,7 +160,7 @@ room_vardagsrum_uppe:
   entities:
     - light.vardagsrummet
     - light.hallen #Hallway
-    - binary_sensor.rorelsesensor_uppe
+    - binary_sensor.rorelsesensor_vardagsrummet
     - binary_sensor.ytterdorr_uppe
 
 room_koket:

@@ -27,9 +27,9 @@ class Area(Base):
             'ambient_light_settings', {})
 
         self._min_time_motion = int(
-            self.properties.get('min_time_motion', 10))*60
+            self.properties.get('min_time_motion', 0))          # No default delay when no motion set
         self._min_time_nightlights = int(
-            self.properties.get('min_time_nightlights', 0))*60
+            self.properties.get('min_time_nightlights', 120))   # 2 minutes default time before turn off night ligths
 
         self._ambient_light_brightness = self._ambient_light_settings.get(
             "brightness_pct", "25")
@@ -50,7 +50,7 @@ class Area(Base):
             self.__on_cmd_ambient_lights_off,
             GlobalEvents.CMD_AMBIENT_LIGHTS_OFF.value)
 
-        self._night_light_on = False
+        self._night_light_timer_handle = None
 
         self.__init_motion_sensors()
         self.__init_light_switches()
@@ -85,12 +85,12 @@ class Area(Base):
                 duration=self._min_time_motion)
 
             # listen to motion off for nightlight function
-            self.listen_state(
-                self.__nightlight_off,
-                motion_sensor,
-                new='off',
-                old='on',
-                duration=self._min_time_nightlights)
+            # self.listen_state(
+            #     self.__nightlight_off,
+            #     motion_sensor,
+            #     new='off',
+            #     old='on',
+            #     duration=self._min_time_nightlights)
 
     def __init_light_switches(self)->None:
         for light_switch in self._light_switches:
@@ -101,26 +101,26 @@ class Area(Base):
 
     def motion_on_detected(self, entity: str)->None:
         """called when motion detected in area"""
-        if self.house_status.is_night() is False or self._night_light_on is True:
-            return
-        for night_light in self._night_lights:
-            self.turn_on_device(night_light,
-                brightness_pct='15', 
-                transition='0')            
+        
+        if self._night_light_timer_handle is None: # We have no running timeout
+            for night_light in self._night_lights:
+                self.turn_on_device(night_light,
+                    brightness_pct='15', 
+                    transition='0')            
+            self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
+        else: #We are in a timer, lets 
+            self.cancel_timer(self._night_light_timer_handle)
+            self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
 
-        self._night_light_on = True
+    def __on_night_light_timer(self, kwargs: dict) -> None:
+        for night_light in self._night_lights:
+          self.turn_off_device(night_light)
+
+        self._night_light_timer_handle = None
 
     def motion_off_detected(self, entity: str)->None:
         """called when motion off in area"""
         # No base functionality for this
-    def nightlights_off_detected(self, entity: str)->None:
-        """called when nighlights are off in area"""
-        if self._night_light_on is False:
-            return
-        for night_light in self._night_lights:
-            self.turn_off_device(night_light)
-
-        self._night_light_on = False
 
     def on_housemode_day(self, old: HouseModes) -> None:
         self.turn_off_ambient()

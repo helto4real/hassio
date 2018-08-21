@@ -106,7 +106,7 @@ views:
                 top: 72%
                 left: 38%
             - type: state-icon
-              entity: binary_sensor.rorelsesensor_uppe
+              entity: binary_sensor.rorelsesensor_vardagsrummet
               style:
                 top: 89.45%
                 left: 8.42%
