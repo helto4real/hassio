@@ -19,7 +19,6 @@ class XiaomiMagicCubeManager(App):
     
     def __on_cube_changed(
         self, event_name: str, data: dict, kwargs: dict) -> None:
-        self.log(data)
         if data.get('id', 'no_id') in self._cubes:
             event:str = str(data['event'])
             if event.startswith('-'):

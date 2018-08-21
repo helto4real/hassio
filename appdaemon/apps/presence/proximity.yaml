@@ -3,11 +3,11 @@ app_home_from_work:
   class: ProximityManager
   dir_of_travel: 'towards'
   distance: 11
-  message: 'En eller båda föräldrarna är på väg hem. Tiden beräknas till cirka 15 minuter.'
+  message: 'är på väg hem. Tiden beräknas till cirka 15 minuter.'
   tts_device: 'media_player.house'
-  devices:
-    - proximity.prox_home_elin
-    - proximity.prox_home_tomas
+  people_to_track:
+    - 'Elin'
+    - 'Tomas'
   dependencies:
     - tts_manager
     - notification_manager

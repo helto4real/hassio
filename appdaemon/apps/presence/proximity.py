@@ -1,5 +1,5 @@
 from base import Base
-from globals import GlobalEvents, presence_state
+from globals import GlobalEvents, presence_state, PEOPLE
 from typing import Tuple, Union
 from operator import itemgetter
 import datetime, time
@@ -17,20 +17,22 @@ class ProximityManager(Base):
     def initialize(self) -> None:
         """Initialize."""
         super().initialize() # Always call base class
-        self._devices = self.args.get("devices", {})
+        self._people_to_track = self.args.get("people_to_track", {})
         self._dir_of_travel = self.args.get("dir_of_travel", 'towards')
         self._distance = self.args.get("distance", 0)
         self._message = self.args.get("message", 0)
         self._tts_device = self.args.get("tts_device", str)
         self._device_is_near = {}
 
-        for device in self._devices:
+        for person in self._people_to_track:
+
             self.listen_state(
                 self.__on_proximity_changed, 
-                entity=device,
-                attribute="all"
+                entity=PEOPLE[person]['proximity'],
+                attribute="all",
+                person=person
             )
-            self._device_is_near[device] = 'yes' # set to yes to avoid false positives when restarted the app
+            self._device_is_near[person] = 'yes' # set to yes to avoid false positives when restarted the app
 
     
     def __on_proximity_changed(
@@ -38,9 +40,11 @@ class ProximityManager(Base):
             new: dict, kwargs: dict) -> None:
         current_distance = int(new['state'])
         current_direction = new['attributes']['dir_of_travel']
-        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near[entity] == 'no':
-            self._device_is_near[entity] = 'yes'
-            self.tts_manager.speak(self._message, media_player=self._tts_device)
-            self.notification_manager.greeting('Tomas', 'På väg hem', 'Nu är vi på väg hem från jobbet!')
+        person = kwargs['person']
+
+        if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near[person] == 'no':
+            self._device_is_near[person] = 'yes'
+            self.tts_manager.speak("{} {}".format(person, self._message), media_player=self._tts_device)
+            self.notification_manager.greeting('Tomas', 'På väg hem', "{} {}".format(person, self._message))
         elif current_distance > self._distance:
-            self._device_is_near[entity] = 'no'
+            self._device_is_near[person] = 'no'

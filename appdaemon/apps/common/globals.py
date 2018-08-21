@@ -16,10 +16,12 @@ presence_state["extended_away"] = "Extended away"
 PEOPLE = {
     'Tomas': {
         'device_tracker': 'sensor.presence_tomas',
+        'proximity': 'proximity.prox_home_tomas',
         'notifiers': ['th']
     },
     'Elin': {
         'device_tracker': 'sensor.presence_elin',
+        'proximity': 'proximity.prox_home_elin',
         'notifiers': ['eh']
     }
 }

@@ -84,14 +84,6 @@ class Area(Base):
                 old='on',
                 duration=self._min_time_motion)
 
-            # listen to motion off for nightlight function
-            # self.listen_state(
-            #     self.__nightlight_off,
-            #     motion_sensor,
-            #     new='off',
-            #     old='on',
-            #     duration=self._min_time_nightlights)
-
     def __init_light_switches(self)->None:
         for light_switch in self._light_switches:
             # listen to motion
