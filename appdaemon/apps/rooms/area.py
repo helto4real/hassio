@@ -94,15 +94,16 @@ class Area(Base):
     def motion_on_detected(self, entity: str)->None:
         """called when motion detected in area"""
         
-        if self.house_status.is_night() and self._night_light_timer_handle is None: # We have no running timeout
-            for night_light in self._night_lights:
-                self.turn_on_device(night_light,
-                    brightness_pct='25', 
-                    transition='0')            
-            self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
-        else: #We are in a timer, lets 
-            self.cancel_timer(self._night_light_timer_handle)
-            self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
+        if self.house_status.is_night():
+            if self._night_light_timer_handle is None: # We have no running timeout
+                for night_light in self._night_lights:
+                    self.turn_on_device(night_light,
+                        brightness_pct='25', 
+                        transition='0')            
+                self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
+            else: #We are in a timer, lets 
+                self.cancel_timer(self._night_light_timer_handle)
+                self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
 
     def __on_night_light_timer(self, kwargs: dict) -> None:
         for night_light in self._night_lights:
