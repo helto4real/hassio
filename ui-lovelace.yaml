@@ -105,11 +105,17 @@ views:
               style: 
                 top: 72%
                 left: 38%
+                
             - type: state-icon
               entity: binary_sensor.rorelsesensor_vardagsrummet
               style:
                 top: 89.45%
                 left: 8.42%
+            - type: state-icon
+              entity: binary_sensor.rorelsesensor_trapp
+              style:
+                top: 44.45%
+                left: 35.42%
             - type: state-icon
               entity: binary_sensor.ytterdorr_uppe
               style:
@@ -202,13 +208,13 @@ views:
               tap_action: toggle
               style:
                 top: 10.5%
-                left: 17.9%      
+                left: 22.9%    
             - type: state-icon
               entity: light.sallys_rum_fonster #light sallys room window
               tap_action: toggle
               style:
                 top: 10.5%
-                left: 22.9%    
+                left: 17.9%      
 
                  
           #
@@ -383,16 +389,20 @@ views:
   - icon: mdi:weather-partlycloudy
     title: Väder
     cards:
-      - type: entities
-        entities: 
-          - sun.sun
-          - sensor.yr_symbol
-          - type: divider
-          - sensor.yr_cloudiness
-          - sensor.yr_wind_speed
-          - type: divider
-          - sensor.utetemp_temperature
-          - sensor.utetemp_humidity
+      - type: vertical-stack
+        cards:   
+        - type: entities
+          entities: 
+            - sun.sun
+            - sensor.yr_symbol
+            - type: divider
+            - sensor.yr_cloudiness
+            - sensor.yr_wind_speed
+            - type: divider
+            - sensor.utetemp_temperature
+            - sensor.utetemp_humidity
+        - type: picture
+          image: 'https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png'
 
   - icon: mdi:cellphone-wireless
     # Title of the view. Will be used as the tooltip for tab icon

@@ -26,9 +26,8 @@ switch.switch8_melkers_tv:
 switch.switch9outdoor:
   friendly_name: Switch farstukvist
 
-switch.switch10: 
+switch.plug1: 
   friendly_name: Lampor vägg TV-rummet nere
-  icon: mdi:lightbulb
 light.tvnere_fonster:
   friendly_name: Lampor fönster TV-rummet nere
   
@@ -108,6 +107,11 @@ device_tracker.google_maps_113728439587103002947:
 binary_sensor.rorelsesensor_vardagsrummet:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
+
+binary_sensor.rorelsesensor_trapp:
+  icon: mdi:run-fast
+  friendly_name: Rörelsedetektor trappen
+
 binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
@@ -126,12 +130,14 @@ binary_sensor.rorelsesensor_sovrummet:
   friendly_name: Rörelsedetektor sovrummet
 binary_sensor.rorelsesensor_kok:
   icon: mdi:run-fast
-  friendly_name: Rörelsedetektor sovrummet
+  friendly_name: Rörelsedetektor köket
 sensor.frysnere_temperature:  #Frys nere
   friendly_name: Temp frysbox
 sensor.frysuppe_temperature:  #Frys uppe
   friendly_name: Temp frys kök
-   
+sensor.temp_frys_uppe:
+  friendly_name: Temp frys kök(zigbee)
+
 sensor.utetemp_temperature:
   friendly_name: Temp Ute
 sensor.utetemp_humidity:
@@ -144,6 +150,8 @@ sensor.temp_sovrum_nere:
 sensor.temp_vardagsrum_uppe:
   friendly_name: Temperatur vardagsrum uppe
 sensor.temp_sallysrum:
+  friendly_name: Temperatur Sallys rum
+sensor.temp_elins_rum:
   friendly_name: Temperatur Sallys rum
 binary_sensor.ytterdorr_uppe:
   icon: mdi:door
