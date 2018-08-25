@@ -23,6 +23,16 @@ PEOPLE = {
         'device_tracker': 'sensor.presence_elin',
         'proximity': 'proximity.prox_home_elin',
         'notifiers': ['eh']
+    },
+    'Sally': {
+        'device_tracker': 'sensor.presence_sally',
+        'proximity': 'proximity.prox_home_sally',
+        'notifiers': ['sh']
+    },
+    'Melker': {
+        'device_tracker': 'sensor.presence_melker',
+        'proximity': 'proximity.prox_home_melker',
+        'notifiers': ['mh']
     }
 }
 
