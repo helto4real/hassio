@@ -299,6 +299,12 @@ views:
               style:
                 top: 90.2%
                 left: 57.42%
+            
+            - type: state-icon
+              entity: light.ambient_tv # wall lights
+              style:
+                top: 50.8%
+                left: 44%
             - type: state-icon
               entity: switch.plug1 # wall lights
               tap_action: toggle

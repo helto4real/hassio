@@ -10,3 +10,4 @@ tv_downstairs:
   kodi_switch: switch.switch7
   properties:
     delay_before_turn_off_tv: 20  #20 minutes before tv is shut down when idle or off
+    tv_ambient_light: light.ambient_tv

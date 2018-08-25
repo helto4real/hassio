@@ -65,6 +65,7 @@ room_tvroom:
     toggle_tv_switch: switch.switch_1_lb
     toggle_window_ligts_switch: switch.switch_1_rb
     remote: remote.tvroom 
+    
   dependencies:
     - house_status
 

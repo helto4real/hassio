@@ -29,6 +29,7 @@ class Tv(Base):
         self._media_players = self.args.get('media_players', [])
         self._delay_before_turn_off_tv = int(
         self.properties.get('delay_before_turn_off_tv', 20))*60
+        self._tv_ambient_light = self.properties.get('tv_ambient_light', str)
 
         for media_player in self._media_players:
             self.listen_state(
@@ -82,7 +83,7 @@ class Tv(Base):
         """called when remote current_activity_changes"""
 
         # Make sure the switch controlling the RPI with KODI turns on and off
-        if new == 'Sätt på dator':
+        if new == 'Film':
             self.turn_on_device(self._kodi_switch)
         else:
             self.turn_off_device(self._kodi_switch)
@@ -111,9 +112,10 @@ class Tv(Base):
 
         if self.get_state(entity=self._remote) == 'on':
             return  # already on, nothing to do
-
-        # first pause media player to let the TV get som time to turn on
+      
+        # First pause media player to let the TV get som time to turn on
         self.__pause(entity)
+        
         # turn on tv
         self.__turn_on_tv()
         # wait 10 seconds and play again
@@ -132,11 +134,16 @@ class Tv(Base):
                           entity_id=entity)
 
     def __turn_on_tv(self)->None:
+        # turn on the abmient light behind the tv
+        self.turn_on_device(self._tv_ambient_light)
+        # then turn on TV
         self.turn_on(entity_id=self._remote)
 
     def __turn_off_tv(self)->None:
         self.__stop_all_media()
         self.turn_off(entity_id=self._remote)
+        # turn off the abmient light behind the tv
+        self.turn_off_device(self._tv_ambient_light)
 
     def __is_media_playing(self)->bool:
         for media_player in self._media_players:
