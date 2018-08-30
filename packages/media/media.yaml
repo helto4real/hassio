@@ -4,7 +4,7 @@ remote:
   - platform: harmony
     name: TVRoom
     host: !secret harmony
-    activity: Plattan pa TV
+    activity: TV
 
 switch:
   - platform: computer
