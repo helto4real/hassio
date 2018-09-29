@@ -18,6 +18,9 @@ room_livingroom:
     - light.hallen   # Light hallway
   night_lights:
     - light.hallenuppe #Light Hallway one lamp  
+  morning_ligts:
+    - light.vardagsrummet
+    - light.hallen
   motion_sensors:
     - binary_sensor.rorelsesensor_vardagsrummet
     - binary_sensor.rorelsesensor_trapp
@@ -31,7 +34,9 @@ room_kitchen:
   ambient_ligts:
     - light.kok
   night_lights:
-    - light.kok_lilla_fonster 
+    - light.kok_lilla_fonster
+  morning_ligts:
+    - light.kok
   motion_sensors:
     - binary_sensor.rorelsesensor_kok
   dependencies:
@@ -54,7 +59,9 @@ room_tvroom:
     - light.tvnere_fonster #windows lights
     - switch.plug1 #wall lights
   night_lights:
-    - light.tvnere_fonster 
+    - light.tvnere_fonster
+  morning_ligts:
+    - light.tvnere_fonster
   motion_sensors:
     - binary_sensor.rorelsesensor_nere
     - binary_sensor.rorelsesensor_trapp

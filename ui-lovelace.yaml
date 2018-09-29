@@ -409,6 +409,8 @@ views:
             - sensor.utetemp_humidity
         - type: picture
           image: 'https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png'
+        - type: weather-forecast
+          entity: weather.yweather
 
   - icon: mdi:cellphone-wireless
     # Title of the view. Will be used as the tooltip for tab icon

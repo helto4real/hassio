@@ -9,6 +9,8 @@ A class that are the base class of all rooms and areas where devices are present
 - Define motion sensors and nightlights and it will turn on at night when motion
   and turn off after a time without motion. Event EV_MOTION_DETECTED/EV_MOTION_OFF 
   will be sent with room and entity
+- In the morning (default after 5am) the morning lights will turn on if it is still
+  night mode (ie the sun is still down) 
 
 Inherit from this class and override default beahviour for specific needs in specific rooms
 
@@ -20,6 +22,10 @@ class Area(Base):
     def initialize(self) -> None:
         super().initialize()
         self._ambient_lights = self.args.get('ambient_ligts', {})
+        self._morning_lights = self.args.get('morning_ligts', {})
+        self._morning_time = self.parse_time(
+            self.args.get('morning_time', '05:00:00'))
+        self._morning_ligths_on = False
         self._night_lights = self.args.get('night_lights', {})
         self._motion_sensors = self.args.get('motion_sensors', {})
         self._light_switches = self.args.get('light_switches', {})
@@ -93,8 +99,17 @@ class Area(Base):
 
     def motion_on_detected(self, entity: str)->None:
         """called when motion detected in area"""
-        
+        if self._morning_ligths_on is True:
+            return
+
         if self.house_status.is_night():
+            if self.time() > self._morning_time:
+                for morning_light in self._morning_lights:
+                    self.turn_on_device(morning_light,
+                        brightness_pct='25', 
+                        transition='0') 
+                self._morning_ligths_on = True
+                return                     
             if self._night_light_timer_handle is None: # We have no running timeout
                 for night_light in self._night_lights:
                     self.turn_on_device(night_light,
@@ -139,9 +154,9 @@ class Area(Base):
                           transition=self._ambient_ligth_transition)
            
     def turn_off_ambient(self)->None:
+        self._morning_ligths_on = False 
         if not self._ambient_lights:
             return  # No ambient lights
-
         for light in self._ambient_lights:
             self.turn_off_device(light)
 

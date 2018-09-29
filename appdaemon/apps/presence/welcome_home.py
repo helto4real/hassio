@@ -41,9 +41,9 @@ class WelcomeHomeManager(Base):
     def __on_presence_changed(
         self, entity: Union[str, dict], attribute: str, old: dict,
         new: dict, kwargs: dict) -> None:
-        if new['state'] == old['state']:
+        if old is not None and new['state'] == old['state']:
             return # We dont care about updates in attributes
-            
+
         person = kwargs['person']
         # If the person hast just arrived and the door sensor i just been triggered then
         if new['state'] == presence_state['just_arrived']:
@@ -70,8 +70,21 @@ class WelcomeHomeManager(Base):
                 "Välkomen hem {} hoppas du haft en fin dag så här långt!".format(person),  
                 'Hoppas du haft det bra {}, välkommen hem ska du vara!'.format(person),                
                 'Va roligt att du kommer hem nu {}, här är allt lugnt.'.format(person),       
+                '{} är hemma, så roligt! Jag har haft så tråkigt hela dagen instängd i den här högtalaren'.format(person),       
+                '{}, {}, {}, tre ord av lycka. Välkommen!'.format(person, person, person),       
+                'Jag har något att erkänna för dig {}, jag har längtat hela dagen efter dig.'.format(person),       
+                'Alla som älskar {}, klappar nu! Klapp klapp. Härligt att se dig hemma igen!'.format(person),       
+                'Superkul att jag får hälsa familjen välkommen, speciellt dig {}.'.format(person),       
+                'Om jag kunde sjunga skulle jag sjunga en trudilutt för nu är {} här!'.format(person),       
+                'Tjena tjena mittbena {}, dags att komma hem nu?'.format(person),       
+                'Vet ni vilken som är min favorit person? Jo {}, och nu är du hemma. Hurra!'.format(person),       
                 '{}, hoppas din dag varit bra hittils. Välkommen!'.format(person) 
             ])
+
+        # if person == 'Melker':
+        #     message.extend([
+        #         "Tjena {},  hoppas du haft en fin dag så här långt!".format(person), 
+        #     ])
 
         self.tts_manager.set_volume_level('0.9', media_player=self._tts_device)
         self.tts_manager.speak(message, media_player=self._tts_device)
