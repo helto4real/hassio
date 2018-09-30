@@ -25,6 +25,8 @@ class Area(Base):
         self._morning_lights = self.args.get('morning_ligts', {})
         self._morning_time = self.parse_time(
             self.args.get('morning_time', '05:00:00'))
+        self._day_time = self.parse_time(
+            self.args.get('morning_time', '10:00:00'))
         self._morning_ligths_on = False
         self._night_lights = self.args.get('night_lights', {})
         self._motion_sensors = self.args.get('motion_sensors', {})
@@ -103,7 +105,7 @@ class Area(Base):
             return
 
         if self.house_status.is_night():
-            if self.time() > self._morning_time:
+            if self._day_time > self.time() > self._morning_time:
                 for morning_light in self._morning_lights:
                     self.turn_on_device(morning_light,
                         brightness_pct='25', 
