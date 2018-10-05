@@ -111,33 +111,41 @@ class CarHeaterManager(Base):
            while self._time_to_depart.weekday() >=5:
                self._time_to_depart = self._time_to_depart + timedelta(days=1)
 
-        # Create the new one
+        # Create the stop time at departure time
         self._scheduled_heating_stop_time_handle = \
             self.run_at(self.__on_turn_off_heater, self._time_to_depart)
 
         diff = self._time_to_depart - self.datetime()
         if diff.days == 0 and \
             diff.seconds < 3600*3:
-            # It is closer than 3 hours, call now
+            # It is closer than 3 hours, start heater now!
             self.__start_heater({})
             return
 
-        # Remove 3 hours from departure time to start heater
+        # Schedule heater to start 3 hours before departure time
         time_to_start_heater = self._time_to_depart - timedelta(hours=3)
-        # Schedule start heater time
         self._scheduled_heating_start_time_handle = \
             self.run_at(self.__start_heater, time_to_start_heater)
         
 
     def __start_heater(self, kwargs: dict) -> None:
+        """Start heater depending on temperature outside.
+
+        This function will always be called 3 hours before 
+        departure time, temperature will decide the start
+        time.
+        """
+        
         def schedule_start_time(seconds: int):
-            self.run_in(self.__start_heater, diff.seconds-30*60)
-            self.log("Temperature ({}) scedule in {} minutes".format(temp, round((diff.seconds-30*60)/60)))
+            """Schedule the calculated starttime"""
+            self.run_in(self.__start_heater, seconds)
+            self.log("Temperature ({}) scedule in {} minutes".format(temp, round(seconds/60)))
 
         temp = float(self.get_state(self._sensor_temperature))
         if temp > 5.0:
-            self.log("No heater, temperature is greater than 5 degrees ({})".format(temp))
+            # No heating above 5 degrees celcius
             return
+
         diff = self._time_to_depart - self.datetime()
 
         if 1.0 < temp <= 5.0:
