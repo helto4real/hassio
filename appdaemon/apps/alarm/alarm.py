@@ -63,13 +63,12 @@ class Alarm(App):
 
     def __findNextAlarmFromGoogleHomeDevice(self)->datetime.datetime:
         try:
+            current_alarm = datetime.datetime.max
             response = urlopen(
                 "http://{}:8008/setup/assistant/alarms".format(self._gh_device_ip))
 
             data = response.read().decode('utf-8')
             jsonData = json.loads(data)
-
-            current_alarm = datetime.datetime.max
 
             for item in jsonData.get('alarm', []):
                 fire_time = int(item['fire_time'])
