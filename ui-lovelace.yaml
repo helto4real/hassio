@@ -412,6 +412,53 @@ views:
         - type: weather-forecast
           entity: weather.yweather
 
+  - icon: mdi:car
+    title: Plugs
+    cards:
+      - type: picture-elements
+        image: /local/img/car/car-heater-background.jpg
+        elements:
+          - type: state-label
+            entity: sensor.car_departure_time
+            style:
+              left: 10.7%
+              top: 95%
+              font-size: 150%            
+          - type: custom:hui-input-number-entity-row
+            entity: input_number.car_heater_dep_time_hour
+            name: ' ' # <-- Mellanslag mellan citationstecknen
+            icon: none
+            style:
+              left: 18%
+              top: 80%
+          - type: custom:hui-input-number-entity-row
+            entity: input_number.car_heater_dep_time_minutes
+            name: ' ' # <-- Mellanslag mellan citationstecknen
+            icon: none
+            style:
+              left: 18%
+              top: 89%
+          - type: image
+            entity: switch.motorvarmare
+            style:
+              left: 73%
+              top: 70%
+              transform: scale(1.0)
+            state_image:
+              "on": /local/img/car/heater_on.png
+              "off": /local/img/car/heater_off.png
+              "unavailable": /local/img/car/heater_unavailable.png
+
+          - type: image
+            entity: input_boolean.schedule_on_weekends
+            style:
+              left: 51%
+              top: 83.5%
+              
+            state_image:
+              "on": /local/img/car/weekend-on.png
+              "off": /local/img/car/weekend-off.png
+
   - icon: mdi:cellphone-wireless
     # Title of the view. Will be used as the tooltip for tab icon
     title: Karta
@@ -593,49 +640,3 @@ views:
           - camera.kamera_uppe_motion_snapshot
           - binary_sensor.kamera_uppe_motion_sensor 
 
-  - icon: mdi:car
-    title: Plugs
-    cards:
-      - type: picture-elements
-        image: /local/img/car/car-heater-background.jpg
-        elements:
-          - type: state-label
-            entity: sensor.car_departure_time
-            style:
-              left: 10.7%
-              top: 95%
-              font-size: 150%            
-          - type: custom:hui-input-number-entity-row
-            entity: input_number.car_heater_dep_time_hour
-            name: ' ' # <-- Mellanslag mellan citationstecknen
-            icon: none
-            style:
-              left: 18%
-              top: 80%
-          - type: custom:hui-input-number-entity-row
-            entity: input_number.car_heater_dep_time_minutes
-            name: ' ' # <-- Mellanslag mellan citationstecknen
-            icon: none
-            style:
-              left: 18%
-              top: 89%
-          - type: image
-            entity: switch.motorvarmare
-            style:
-              left: 73%
-              top: 70%
-              transform: scale(1.0)
-            state_image:
-              "on": /local/img/car/heater_on.png
-              "off": /local/img/car/heater_off.png
-              "unavailable": /local/img/car/heater_unavailable.png
-
-          - type: image
-            entity: input_boolean.schedule_on_weekends
-            style:
-              left: 51%
-              top: 83.5%
-              
-            state_image:
-              "on": /local/img/car/weekend-on.png
-              "off": /local/img/car/weekend-off.png

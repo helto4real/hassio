@@ -92,14 +92,10 @@ class CarHeaterManager(Base):
         """
         self.__cancel_scheduled_timers()
 
-        current_date = self.date()
-        self._time_to_depart = datetime(
-             current_date.year,
-             current_date.month,
-             current_date.day,
-             start_time.hour,
-             start_time.minute,
-             start_time.second)
+        self._time_to_depart = self.datetime().replace(
+            hour=start_time.hour,
+            minute=start_time.minute,
+            second=start_time.second)
 
         # Add a full day if time passed
         if self._time_to_depart < self.datetime():
