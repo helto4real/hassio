@@ -26,6 +26,8 @@ I do not have detailed instructions how to create the flow but here is the basic
 ## The appdaemon app
 ### Appdaemon.yaml
 Set the settings for appdaemon, like port and api key
+Please see [dialogflow](dialogflow.py) for my implentation.
+
 ```
 appdaemon:
   api_key: !secret appdaemon_key
@@ -34,7 +36,7 @@ appdaemon:
 ...
 ```yaml
 
-Create a class and the yaml for a appdaemon app. Register endpoint. Please see [dialogflow.py](dialogflow.py) for my implentation.
+Create a class and the yaml for a appdaemon app. Register endpoint. 
 
 ```class DialogFlow(hass.Hass):
     """Proved dialog flow use-cases."""
