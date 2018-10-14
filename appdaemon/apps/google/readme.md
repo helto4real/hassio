@@ -28,17 +28,18 @@ I do not have detailed instructions how to create the flow but here is the basic
 Set the settings for appdaemon, like port and api key
 Please see [dialogflow](dialogflow.py) for my implentation.
 
-```
+```yaml
 appdaemon:
   api_key: !secret appdaemon_key
   api_port: 5000
   threads: 10
 ...
-```yaml
+```
 
 Create a class and the yaml for a appdaemon app. Register endpoint. 
 
-```class DialogFlow(hass.Hass):
+```python
+class DialogFlow(hass.Hass):
     """Proved dialog flow use-cases."""
     def initialize(self):
  
@@ -49,13 +50,13 @@ Create a class and the yaml for a appdaemon app. Register endpoint.
         param = dlgflow_get_parameter(data, 'date-time')
         return dlgflow_response("Hello world"), 200
         
-```python
+```
 
 ### Use the SSML tags
 SSML is a way to make the language sound more natural in TTS. Please see [SSML](https://developers.google.com/actions/reference/ssml) docs at google for more details. Using the code is.
 
 Se [dialogflow](dialogflow.py) implementation how I use it.
 Example using sentences:
-```
-    return dlgflow_response("<p><s>Sentence one.</s><s>Sentence two. </s></p>"), 200
 ```python
+    return dlgflow_response("<p><s>Sentence one.</s><s>Sentence two. </s></p>"), 200
+```
