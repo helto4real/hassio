@@ -11,6 +11,7 @@ from enum import Enum
 from typing import Tuple
 import re
 
+from globals import HouseModes
 import appdaemon.plugins.hass.hassapi as hass
 
 class Intent(Enum):
@@ -18,6 +19,7 @@ class Intent(Enum):
     TEMPERATURE = 'temperature'
     CAR_HEATER_TIME = 'car_heater_time'
     CAR_HEATER_STATUS = 'car_heater_status'
+    HOUSE_STATUS = 'house_status'
 
 class DialogFlow(hass.Hass):
     """Proved dialog flow use-cases."""
@@ -47,6 +49,8 @@ class DialogFlow(hass.Hass):
             return self.__respond_car_heater_set_time(data)
         elif  intent == Intent.CAR_HEATER_STATUS.value:
             return self.__respond_car_heater_status(data)
+        elif  intent == Intent.HOUSE_STATUS.value:
+            return self.__respond_house_status(data)
         else:
             return "<p><s>Känner inte igen kommandot.</s><s>Snälla försök igen.</s></p>"
 
@@ -80,6 +84,28 @@ class DialogFlow(hass.Hass):
                 return "Sätter på motorvärmaren i tre timmar."
         else:
             return "<p><s>Förstår inte kommandot.</s><s>Försök igen. </s></p>"
+
+    def __respond_house_status(self, data: dict) -> str:
+        command = dlgflow_get_parameter(data, 'house_status')
+        if command:
+            if command == 'god natt':
+                self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.night.value)
+                return "Sov gott"
+            elif command == 'god morgon':
+                self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.morning.value)
+                return "God morgon."
+            elif command == 'god kväll':
+                self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.evening.value)
+                return "God kväll."
+            elif command == 'god dag':
+                self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.day.value)
+                return "Goddag, ha det bra."
+            else:
+                return "<p><s>Förstår inte kommandot {} för husstatus.</s><s>Försök igen. </s></p>".format(command)
+        else:
+            return "<p><s>Förstår inte kommandot för husstatus.</s><s>Försök igen. </s></p>"
+
+        
 
 def clean_tags(text_with_tags):
     """Clean all tags from the ssml."""
