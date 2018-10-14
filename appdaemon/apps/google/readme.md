@@ -50,3 +50,12 @@ Create a class and the yaml for a appdaemon app. Register endpoint.
         return dlgflow_response("Hello world"), 200
         
 ```python
+
+### Use the SSML tags
+SSML is a way to make the language sound more natural in TTS. Please see [SSML](https://developers.google.com/actions/reference/ssml) docs at google for more details. Using the code is.
+
+Se [dialogflow](dialogflow.py) implementation how I use it.
+Example using sentences:
+```
+    return dlgflow_response("<p><s>Sentence one.</s><s>Sentence two. </s></p>"), 200
+```python

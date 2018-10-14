@@ -21,7 +21,7 @@ class Intent(Enum):
 
 class DialogFlow(hass.Hass):
     """Proved dialog flow use-cases."""
-    def initialize(self):
+    def initialize(self) -> None:
         self._temperatur_sensorer = self.args.get('temperatur', {})
         self._heater_switch = self.args.get('heater_switch', {})
  
