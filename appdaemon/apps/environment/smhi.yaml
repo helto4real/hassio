@@ -1,7 +1,0 @@
-# ---
-# smhi:
-#   module: smhi
-#   class: SMHISensor
-
-#   longitude: 17.041 #max 3 decimals
-#   latitude: 62.339  #max 3 decimals

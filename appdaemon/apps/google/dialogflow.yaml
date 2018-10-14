@@ -1,0 +1,7 @@
+dialog_flow_manager:        
+  module: dialogflow
+  class: DialogFlow
+  heater_switch: 'switch.motorvarmare'
+  temperatur:
+    ute: 'sensor.utetemp_temperature'
+    inne: 'sensor.temp_vardagsrum_uppe'

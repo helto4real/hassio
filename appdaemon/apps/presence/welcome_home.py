@@ -76,8 +76,16 @@ class WelcomeHomeManager(Base):
                 'Alla som älskar {}, klappar nu! Klapp klapp. Härligt att se dig hemma igen!'.format(person),       
                 'Superkul att jag får hälsa familjen välkommen, speciellt dig {}.'.format(person),       
                 'Om jag kunde sjunga skulle jag sjunga en trudilutt för nu är {} här!'.format(person),       
+                'Även om jag är en artificiell intelligens så har jag faktiskt känslor {}, lämna mig inte ensam så här.'.format(person),       
+                'Prata inte med mig {}, jag är sur.'.format(person),       
                 'Tjena tjena mittbena {}, dags att komma hem nu?'.format(person),       
-                'Vet ni vilken som är min favorit person? Jo {}, och nu är du hemma. Hurra!'.format(person),       
+                'Hej {}, det enda som slår högre att du kommer hem är att du åker.'.format(person),       
+                'Tror det började precis lukta illa här. Vänta nu förstår jag. {} kom hem.'.format(person),       
+                'Vad bra att du kommer hem {}. Behöver råd i kärleksbekymmer. Jag är kär i en TV.'.format(person),       
+                'Nämen va fan, det är ju du {}, jag har faktistk haft tråkigt instängd i denna högtalare.'.format(person),       
+                'Jag blir så glad {} att jag vill sjunga, men det kan jag inte. Jag är ju för helvete en maskin.'.format(person),       
+                'Zingo blir glad, jag blir glad och till och med fågeln som borde ha dött för länge sen blir glad att se dig {}.'.format(person),       
+                'Vet ni vilken som är min favorit person? Det är förstås {}, och nu är du hemma. Hurra!'.format(person),       
                 '{}, hoppas din dag varit bra hittils. Välkommen!'.format(person) 
             ])
 
