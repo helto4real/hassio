@@ -88,6 +88,11 @@ class Tv(Base):
         else:
             self.turn_off_device(self._kodi_switch)
 
+        if new == 'PowerOff':
+            self.turn_off_device(self._tv_ambient_light)
+        else:
+            self.turn_on_device(self._tv_ambient_light)
+
     def __on_media_player_idle_or_off(
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
@@ -134,16 +139,11 @@ class Tv(Base):
                           entity_id=entity)
 
     def __turn_on_tv(self)->None:
-        # turn on the abmient light behind the tv
-        self.turn_on_device(self._tv_ambient_light)
-        # then turn on TV
         self.turn_on(entity_id=self._remote)
 
     def __turn_off_tv(self)->None:
         self.__stop_all_media()
         self.turn_off(entity_id=self._remote)
-        # turn off the abmient light behind the tv
-        self.turn_off_device(self._tv_ambient_light)
 
     def __is_media_playing(self)->bool:
         for media_player in self._media_players:
