@@ -18,14 +18,17 @@ class Intent(Enum):
     """Provide enum for supported intents."""
     TEMPERATURE = 'temperature'
     CAR_HEATER_TIME = 'car_heater_time'
-    CAR_HEATER_STATUS = 'car_heater_status'
     HOUSE_STATUS = 'house_status'
+    TURN_ON = 'turn_on'
+    TURN_OFF = 'turn_off'
 
 class DialogFlow(hass.Hass):
     """Proved dialog flow use-cases."""
     def initialize(self) -> None:
         self._temperatur_sensorer = self.args.get('temperatur', {})
         self._heater_switch = self.args.get('heater_switch', {})
+        self._rooms = self.args.get('rooms', {})
+        self._tv = self.args.get('tv', {})
  
         self.register_endpoint(self.__api_call, 'dialogflow')
 
@@ -47,12 +50,52 @@ class DialogFlow(hass.Hass):
             return self.__respond_temperature(data)
         elif  intent == Intent.CAR_HEATER_TIME.value:
             return self.__respond_car_heater_set_time(data)
-        elif  intent == Intent.CAR_HEATER_STATUS.value:
-            return self.__respond_car_heater_status(data)
         elif  intent == Intent.HOUSE_STATUS.value:
             return self.__respond_house_status(data)
+        elif  intent == Intent.TURN_ON.value:
+            return self.__respond_turn_on(data)
+        elif  intent == Intent.TURN_OFF.value:
+            return self.__respond_turn_off(data)
         else:
             return "<p><s>Känner inte igen kommandot.</s><s>Snälla försök igen.</s></p>"
+
+    def __respond_turn_on(self, data: dict) -> str:
+        """Turn on device."""
+        device = dlgflow_get_parameter(data, 'devices')
+        if not device:
+            return "Vad vill du slå på?"
+        device = device.replace(" ", "-")
+        self.log("Turn on device {}".format(device))
+        
+        if device == "Tv":
+            self.turn_on(entity_id=self._tv)
+        elif device == "motorvärmare":
+            self.turn_on(entity_id=self._heater_switch)
+        elif device in self._rooms:
+            self.turn_on(entity_id=self._rooms[device])
+        else:
+            return "Vet inte hur jag slår på {}".format(device)
+        
+        return "Slår på {}".format(device)
+
+    def __respond_turn_off(self, data: dict) -> str:
+        """Turn off device."""
+        device = dlgflow_get_parameter(data, 'devices')
+        if not device:
+            return "Vad vill du stänga av?"
+        device = device.replace(" ", "-")
+        self.log("Turn off device {}".format(device))
+        
+        if device == "Tv":
+            self.turn_off(entity_id=self._tv)
+        elif device == "motorvärmare":
+            self.turn_off(entity_id=self._heater_switch)
+        elif device in self._rooms:
+            self.turn_off(entity_id=self._rooms[device])
+        else:
+            return "Vet inte hur jag stänger av {}".format(device)
+        
+        return "Stänger av {}".format(device)
 
     def __respond_temperature(self, data: dict) -> str:
         """Respond with temperatures around the house."""
