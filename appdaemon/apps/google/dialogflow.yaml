@@ -3,7 +3,7 @@ dialog_flow_manager:
   class: DialogFlow
   heater_switch: 'switch.motorvarmare'
   rooms:
-    sovrum: 'group.room_sovrum'
+    sovrummet: 'group.room_sovrum'
     tvrummet: 'group.room_tvnere'
     tomas-rum: 'light.tomas_rum_fonster'
     tomas-dator: 'switch.computer_tomas'
