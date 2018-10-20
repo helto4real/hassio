@@ -1,7 +1,7 @@
 dialog_flow_manager:        
   module: dialogflow
   class: DialogFlow
-  heater_switch: 'switch.motorvarmare'
+  heater_switch: 'switch.motorvarmare2'
   rooms:
     sovrummet: 'group.room_sovrum'
     tvrummet: 'group.room_tvnere'

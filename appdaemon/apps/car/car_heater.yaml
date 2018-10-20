@@ -9,7 +9,7 @@ car_heater_manager:
   # Input boolean if heater should schedule weekends 
   input_schedule_on_weekends: input_boolean.schedule_on_weekends
   # Actual switch the heater is connected to
-  heater_switch: switch.motorvarmare
+  heater_switch: switch.motorvarmare2
   # The speaker used to tell when heater is scheduled/on/off
   tts_device: media_player.vardagsrum
   # The max time in minutes the heater can be on
