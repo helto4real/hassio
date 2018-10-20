@@ -159,7 +159,7 @@ binary_sensor.ytterdorr_uppe:
 
 media_player.house:
   icon: mdi:google-home
-media_player.kitchen:
+media_player.kök:
   icon: mdi:google-home
 media_player.sovrum:
   icon: mdi:google-home
