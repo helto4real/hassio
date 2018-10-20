@@ -89,6 +89,7 @@ class Tv(Base):
             self.turn_off_device(self._kodi_switch)
 
         if new == 'PowerOff':
+            self.__stop_all_media()
             self.turn_off_device(self._tv_ambient_light)
         else:
             self.turn_on_device(self._tv_ambient_light)
@@ -142,7 +143,6 @@ class Tv(Base):
         self.turn_on(entity_id=self._remote)
 
     def __turn_off_tv(self)->None:
-        self.__stop_all_media()
         self.turn_off(entity_id=self._remote)
 
     def __is_media_playing(self)->bool:
