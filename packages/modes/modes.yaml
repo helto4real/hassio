@@ -8,6 +8,7 @@ input_select:
       - Natt
       - Kväll
       - Morgon
+      - Städning
 
 
 sensor:

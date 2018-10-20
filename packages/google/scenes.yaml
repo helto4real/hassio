@@ -1,16 +1,20 @@
 # Scenes are just used as integration with google home / assistant 
-# to be able to control scenes and automations
+# to be able to control scenes and automations. Using a dummy group
+# to be able to configure scenes
 scene:
   # Trigger different house modes
   - name: Natt
     entities:
-      group.dummy: on # dummy
+      group.dummy: on 
   - name: Dag
     entities:
-      group.dummy: on # dummy
+      group.dummy: on 
   - name: Kväll
     entities:
-      group.dummy: on # dummy
+      group.dummy: on 
   - name: Morgon
     entities:
-      group.dummy: on # dummy
+      group.dummy: on 
+  - name: Städning # Cleaning mode turns on all lights at max
+    entities:
+      group.dummy: on 

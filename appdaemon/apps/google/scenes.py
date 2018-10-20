@@ -5,11 +5,11 @@ This is a way to easily invoke automations from google home using scenes.
 """
 from enum import Enum
 from typing import Tuple
-
+from base import Base
 from globals import HouseModes
 import appdaemon.plugins.hass.hassapi as hass
 
-class SceneAutomations(hass.Hass):
+class SceneAutomations(Base):
     """Proved dialog flow use-cases."""
     def initialize(self) -> None:
         #self.listen_state(self.__on_scene_changed, entity='scene')
@@ -30,3 +30,5 @@ class SceneAutomations(hass.Hass):
             self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.evening.value)
         elif scene == 'dag':
             self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.day.value)
+        elif scene == 'stadning':
+            self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.cleaning.value)

@@ -41,7 +41,7 @@ class Area(Base):
 
         self._ambient_light_brightness = self._ambient_light_settings.get(
             "brightness_pct", "25")
-        self._ambient_ligth_transition = self._ambient_light_settings.get(
+        self._ambient_light_transition = self._ambient_light_settings.get(
             "transition", "25")
 
         self.register_constraint("constraint_housemode")
@@ -72,6 +72,8 @@ class Area(Base):
         elif str == 'evening' and self.house_status == HouseModes.evening:
             return True
         elif str == 'night' and self.house_status == HouseModes.night:
+            return True
+        elif str == 'cleaning' and self.house_status == HouseModes.cleaning:
             return True
         return False
 
@@ -144,16 +146,25 @@ class Area(Base):
     def on_housemode_night(self, old: HouseModes) -> None:
         self.turn_off_ambient()
 
+    def on_housemode_cleaning(self, old: HouseModes) -> None:
+        self.turn_on_ambient('100', '0')
+
     def on_lightswich_state_changed(self, entity: str, old: str, new: str)->None:
         return
 
-    def turn_on_ambient(self)->None:
+    def turn_on_ambient(self, brigtness: str=None,
+                        transition: str=None)->None:
+        if not brigtness:
+            brigtness = self._ambient_light_brightness
+        if not transition:
+            transition = self._ambient_light_transition
+
         if not self._ambient_lights:
             return  # No ambient lights
         for light in self._ambient_lights:
             self.turn_on_device(light,
-                          brightness_pct=self._ambient_light_brightness, 
-                          transition=self._ambient_ligth_transition)
+                          brightness_pct=brigtness, 
+                          transition=transition)
            
     def turn_off_ambient(self)->None:
         self._morning_ligths_on = False 
@@ -181,6 +192,8 @@ class Area(Base):
             self.on_housemode_night(oldMode)
         elif newMode == HouseModes.morning:
             self.on_housemode_morning(oldMode)
+        elif newMode == HouseModes.cleaning:
+            self.on_housemode_cleaning(oldMode)
 
     def __on_cmd_ambient_lights_on(
             self, event_name: str, data: dict, kwargs: dict) -> None:

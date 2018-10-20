@@ -51,3 +51,6 @@ google_assistant:
     scene.natt:
       name: 'natt'
       expose: true
+    scene.stadning:
+      name: 'städning'
+      expose: true
