@@ -1,0 +1,16 @@
+# Scenes are just used as integration with google home / assistant 
+# to be able to control scenes and automations
+scene:
+  # Trigger different house modes
+  - name: Natt
+    entities:
+      group.dummy: on # dummy
+  - name: Dag
+    entities:
+      group.dummy: on # dummy
+  - name: Kväll
+    entities:
+      group.dummy: on # dummy
+  - name: Morgon
+    entities:
+      group.dummy: on # dummy

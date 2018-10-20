@@ -116,7 +116,10 @@ room_tvnere:
     - switch.plug1
     - binary_sensor.rorelsesensor_nere
 
-
+dummy:
+  name: dummy
+  view: no
+  
 frysar_temperatur:
   name: Temperatur frysar
   view: no

@@ -3,10 +3,10 @@ google_assistant:
   expose_by_default: false
   entity_config:
     light.tomas_rum_fonster:
-      name: tomasrum
+      name: 'tomas rum'
       expose: true
-    group.room_tvnere:
-      name: tvrummet
+    light.tvnere:
+      name: 'tv rummet'
       expose: true
     light.vardagsrummet:
       name: vardagsrummet
@@ -16,4 +16,38 @@ google_assistant:
       expose: true
     light.sovrum:   
       name: sovrummet
+      expose: true
+    light.hallen:   
+      name: hallen
+      expose: true
+    light.farstukvisten:   
+      name: farstukvisten
+      expose: true
+    switch.computer_tomas:
+      name: 'tomas dator'
+      expose: true
+    switch.motorvarmare2:
+      name: 'motorvärmaren'
+      expose: true
+    switch.switch7:
+      name: 'kodi'
+      expose: true
+    switch.tv:
+      name: 'tv'
+      expose: true
+    switch.film:
+      name: 'film'
+      expose: true
+    
+    scene.dag:
+      name: 'dag'
+      expose: true
+    scene.kvall:
+      name: 'kväll'
+      expose: true
+    scene.morgon:
+      name: 'morgon'
+      expose: true
+    scene.natt:
+      name: 'natt'
       expose: true
