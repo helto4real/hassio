@@ -100,3 +100,11 @@ room_melker:
     minutes_before_turn_on_switch: 5
   dependencies:
     - house_status
+
+room_farstukvisten:
+  module: area
+  class: Area
+  ambient_ligts:
+    - light.farstukvisten
+  dependencies:
+    - house_status    

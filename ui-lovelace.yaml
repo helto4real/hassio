@@ -140,10 +140,15 @@ views:
                 top: 89.45%
                 left: 60.5%   
             - type: state-icon
+              entity: light.farstukvisten
+              style:
+                top: 3.5%
+                left: 52.5%
+            - type: state-icon
               entity: media_player.tv_uppe
               style:
                 top: 54.45%
-                left: 17.9%   
+                left: 17.4%   
           #
           # Hallen uppe
           #
@@ -243,7 +248,7 @@ views:
                 top: 58.8%
                 left: 92.4% 
             - type: state-icon
-              entity: media_player.kitchen
+              entity: media_player.kok
               style:
                 top: 89.45%
                 left: 85.5%   
@@ -439,7 +444,7 @@ views:
               left: 18%
               top: 89%
           - type: image
-            entity: switch.motorvarmare
+            entity: switch.motorvarmare2
             style:
               left: 73%
               top: 70%
