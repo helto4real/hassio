@@ -5,6 +5,11 @@ remote:
     name: TVRoom
     host: !secret harmony
     activity: TV
+  - platform: harmony
+    name: FilmRoom
+    host: !secret harmony
+    activity: Film
+
 
 switch:
   - platform: computer
@@ -12,9 +17,34 @@ switch:
       tomas:
           mac: !secret tomas_pc_mac
           ip: !secret tomas_pc_ip 
- #     melker:
- #         mac: !secret melkers_pc_mac
- #         ip: !secret melkers_pc_ip 
+
+  - platform: template
+    switches:
+      tv:
+        value_template: "{{ is_state_attr('remote.tvroom', 'current_activity', 'TV') }}"
+        turn_on:
+          service: remote.turn_on
+          data:
+            entity_id: remote.tvroom
+            activity: "20507596"
+        turn_off:
+          service: remote.turn_off
+          data:
+            entity_id: remote.tvroom
+            activity: "-1"
+      film:
+        value_template: "{{ is_state_attr('remote.tvroom', 'current_activity', 'Film') }}"
+        turn_on:
+          service: remote.turn_on
+          data:
+            entity_id: remote.tvroom
+            activity: "5783397"
+        turn_off:
+          service: remote.turn_off
+          data:
+            entity_id: remote.tvroom
+            activity: "-1"
+
 media_player:
   - platform: kodi
     host: !secret kodi_tv_nere_ip
@@ -36,7 +66,7 @@ group:
     view: no
     entities:
       - media_player.house
-      - media_player.kitchen
+      - media_player.kok
       - media_player.sovrum
       - media_player.vardagsrum
       - media_player.tvroom
