@@ -1,12 +1,18 @@
-from homeassistant.components.switch import SwitchDevice, PLATFORM_SCHEMA
+import asyncio
+import datetime
 import logging
-from urllib.request import urlopen
+import struct
+import socket
+import time
 import uuid
-import struct, socket
-import voluptuous as vol
-import datetime, time
-import threading
 
+import aiohttp
+import async_timeout
+import voluptuous as vol
+
+from homeassistant.components.switch import SwitchDevice, PLATFORM_SCHEMA
+from homeassistant.helpers import aiohttp_client
+from homeassistant.util import Throttle
 """
 Custom switch to controll on/off of your computer. 
 Following features:
@@ -31,19 +37,25 @@ _LOGGER = logging.getLogger(__name__)
 
 REQUIREMENTS = ['wakeonlan==1.0.0']
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
-    """Set up the ZigBee switch platform."""
+
+async def async_setup_platform(hass, config, add_devices, discovery_info=None):
+    """Set up the computer switch platform."""
     entities = config.get('entities', {})
     devices = []
 
+    session = aiohttp_client.async_get_clientsession(hass)
+
     for entity in entities:
-        devices.append(ComputerSwitch(hass, entity, entities[entity]['ip'], entities[entity]['mac']))
-    
-    add_devices(devices)
+        devices.append(ComputerSwitch(hass, session, entity,
+                                      entities[entity]['ip'], entities[entity]['mac']))
+
+    add_devices(devices, True)
+
 
 class ComputerSwitch(SwitchDevice):
     """Representation of a computer device (on/off)."""
-    def __init__(self, hass, name:str, ip:str, mac:str):
+
+    def __init__(self, hass, session: aiohttp.ClientSession, name: str, ip: str, mac: str):
         """Initialize the ComputerSwitch entity."""
         # use wakeonlan package
         import wakeonlan
@@ -51,20 +63,10 @@ class ComputerSwitch(SwitchDevice):
         self._name = "computer_{}".format(name)
         self._ip = ip
         self._mac = mac
-       
-        _LOGGER.info("INIT DEVICE {} with ip {} and mac {}".format(self._name, self._ip, self._mac))
-
-        if self.__computer_is_on():
-            self._state = 'on'
-        else:
-            self._state = 'off'
-
-        self._time_to_check = datetime.datetime.min
+        self._session = session
         self._wol = wakeonlan
-
-        # Make workerthread since we can have blocking timing
-        self.worker_thread = threading.Thread(target=self.__thread_start)
-        self.worker_thread.start()
+        _LOGGER.info("INIT DEVICE {} with ip {} and mac {}".format(
+            self._name, self._ip, self._mac))
 
     @property
     def should_poll(self):
@@ -99,53 +101,52 @@ class ComputerSwitch(SwitchDevice):
         """Return the state of the switch."""
         return self._state
 
-#    def update(self):
-#        """Update setting state."""
-
-
+    @Throttle(datetime.timedelta(seconds=10))
+    async def async_update(self):
+        """Update setting state."""
+        try:
+            with async_timeout.timeout(1, loop=self.hass.loop):
+                if await self.__computer_is_on():
+                    self._state = 'on'
+                else:
+                    self._state = 'off'
+        except (asyncio.TimeoutError):
+            self._state = 'off'
 
     def turn_on(self, **kwargs):
         """Turn the computer on."""
-        if self.__computer_is_on():
-            return #Already awake
+        if self.is_on:
+            return  # Already awake
 
         self._state = 'on'
         self.__turn_on_computer()
 
-
-    def turn_off(self, **kwargs):
+    async def async_turn_off(self, **kwargs):
         """Turn the computer off."""
 
-        if self.__computer_is_on()==False:
-            return #Already awake
- 
+        if not self.is_on:
+            return  # Already awake
+
         self._state = 'off'
-        self.__turn_off_computer()
-    
-        # todo fix the code here later to call the webservice to hibernate computer
+        return await self.__turn_off_computer()
 
-    def __thread_start(self):
-        while True:
-            if self.__computer_is_on():
-                self._state = 'on'
-            else:
-                self._state = 'off'
-            time.sleep(15)
-
-    def __computer_is_on(self)->bool:
+    async def __computer_is_on(self)->bool:
         try:
-            response = urlopen("http://{}:8009".format(self._ip), timeout=1)
+            async with self._session.get("http://{}:8009".format(self._ip)) as response:
+                if response.status != 200:
+                    return False
             return True
         except:
-            return False #not available som computer is not on
-    
+            return False  # not available som computer is not on
+
     def __turn_on_computer(self)->None:
-        
+
         # Turn on the computer to wake up on lan
         self._wol.send_magic_packet(self._mac)
 
-    def __turn_off_computer(self)->None:
+    async def __turn_off_computer(self)->None:
         # Turn off the computer using utility "sleeponlan" https://github.com/SR-G/sleep-on-lan
-        response = urlopen("http://{}:8009/sleep".format(self._ip))
-
-    
+        try:
+            await self._session.get("http://{}:8009/sleep".format(self._ip))
+        except:
+            pass
