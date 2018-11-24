@@ -137,6 +137,12 @@ class CarHeaterManager(Base):
             self.run_in(self.__start_heater, seconds)
             self.log("Temperature ({}) scedule in {} minutes".format(temp, round(seconds/60)))
 
+        temp_state = self.get_state(self._sensor_temperature)
+        if temp_state == 'uknown':
+            self.log("temperature not known yet, retry in 1 minutes")
+            self.run_in(self.__start_heater, 60)
+            return
+
         temp = float(self.get_state(self._sensor_temperature))
         if temp > 5.0:
             # No heating above 5 degrees celcius

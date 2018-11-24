@@ -1,4 +1,5 @@
 secrets.yaml
+appdaemon.yaml
 
 # file types
 *.json

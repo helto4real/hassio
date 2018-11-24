@@ -4,8 +4,7 @@ room_sally:
   module: room_sally
   class: SallysRoom
   ambient_ligts:
-    - switch.switch2  
-    - light.sallys_rum_fonster
+    - light.sallys_rum
   dependencies:
     - house_status
 
@@ -15,7 +14,7 @@ room_livingroom:
   class: Area
   ambient_ligts:
     - light.vardagsrummet # Windows lights in the livingroom
-    - light.hallen   # Light hallway
+    - light.hallen
   night_lights:
     - light.hallenuppe #Light Hallway one lamp  
   morning_ligts:
@@ -34,7 +33,7 @@ room_kitchen:
   ambient_ligts:
     - light.kok
   night_lights:
-    - light.kok_lilla_fonster
+    - light.kok
   morning_ligts:
     - light.kok
   motion_sensors:
@@ -94,6 +93,8 @@ room_tomas:
 room_melker:
   module: room_melker
   class: MelkersRoom
+  ambient_ligts:
+    - switch.melkers_fonsterlampa
   properties:
     tv_switch: 'switch.switch8_melkers_tv' # Melkers tv
     time_to_turn_off_tv: '01:32:00'

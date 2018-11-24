@@ -3,10 +3,9 @@ group.room_tvnere:
 light.tomas_rum_fonster:
   friendly_name: Lampa Tomas rum
   icon: mdi:lightbulb
-switch.switch2:
-  friendly_name: Lampa Sallys rum
+switch.melkers_fonsterlampa:
+  friendly_name: Lampa Melkers rum
   icon: mdi:lightbulb
-
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
   icon: mdi:fan
@@ -15,27 +14,22 @@ switch.switch5_melkers_fan:
   icon: mdi:fan
 light.kok:
   friendly_name: Lampor köket
-
 switch.switch7:
   friendly_name: KODI Switch
   icon: mdi:filmstrip
 switch.switch8_melkers_tv:
   friendly_name: Melkers TV switch
   icon: mdi:google-chrome
-
 switch.switch9outdoor:
   friendly_name: Switch farstukvist
-
-switch.plug1: 
+switch.plug1:
   friendly_name: Lampor vägg TV-rummet nere
 light.tvnere_fonster:
   friendly_name: Lampor fönster TV-rummet nere
-  
 light.vardagsrummet:
   friendly_name: Lampor fönster vardagsrummet
 light.hallen:
   friendly_name: Lampor hallen
-# Tomas devices  
 group.tomas_devices:
   friendly_name: Tomas mobil
   entity_picture: /local/tomas.jpg
@@ -54,16 +48,12 @@ device_tracker.google_maps_118123190245690142371:
 sensor.presence_tomas:
   friendly_name: Tomas tracker
   entity_picture: /local/tomas.jpg
-
-# Elins devices
 group.elins_devices:
   friendly_name: Elins mobil
   entity_picture: /local/elin.jpg
-
 sensor.elin_phone_mqtt_bt:
   friendly_name: Elins mobil BT
   entity_picture: /local/elin.jpg
-
 device_tracker.elinss8:
   friendly_name: Elins mobil wifi
   entity_picture: /local/elin.jpg
@@ -73,7 +63,6 @@ device_tracker.google_maps_110786808112177763666:
 sensor.presence_elin:
   friendly_name: Elin tracker
   entity_picture: /local/elin.jpg
-
 group.sallys_devices:
   friendly_name: Sallys mobil
   entity_picture: /local/sally.jpg
@@ -88,7 +77,6 @@ device_tracker.google_maps_115932713534918928318:
 sensor.sally_phone_mqtt_bt:
   friendly_name: Sallys mobil BT
   entity_picture: /local/sally.jpg
-
 group.melkers_devices:
   friendly_name: Melkers mobil
   entity_picture: /local/melker.jpg
@@ -103,19 +91,15 @@ sensor.melker_phone_mqtt_bt:
 device_tracker.google_maps_113728439587103002947:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
-
 binary_sensor.rorelsesensor_vardagsrummet:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
-
 binary_sensor.rorelsesensor_trapp:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor trappen
-
 binary_sensor.rorelsesensor_nere:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rummet nere
-
 binary_sensor.rorelsesensor_tomas_rum:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Tomas rum
@@ -131,20 +115,18 @@ binary_sensor.rorelsesensor_sovrummet:
 binary_sensor.rorelsesensor_kok:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor köket
-sensor.frysnere_temperature:  #Frys nere
+sensor.frysnere_temperature:
   friendly_name: Temp frysbox
-sensor.frysuppe_temperature:  #Frys uppe
+sensor.frysuppe_temperature:
   friendly_name: Temp frys kök
 sensor.temp_frys_uppe:
   friendly_name: Temp frys kök(zigbee)
-
 sensor.utetemp_temperature:
   friendly_name: Temp Ute
 sensor.utetemp_humidity:
   friendly_name: Fukt Ute
 sensor.yr_symbol:
   friendly_name: Väder
-  
 sensor.temp_sovrum_nere:
   friendly_name: Temperatur sovrum nere
 sensor.temp_vardagsrum_uppe:
@@ -156,7 +138,6 @@ sensor.temp_elins_rum:
 binary_sensor.ytterdorr_uppe:
   icon: mdi:door
   friendly_name: Ytterdörr uppe
-
 media_player.house:
   icon: mdi:google-home
 media_player.kök:
@@ -169,7 +150,8 @@ media_player.tvroom:
   icon: mdi:google-home
 media_player.tv_rummet_gh:
   icon: mdi:google-home
-
 configurator.deconz:
   hidden: true
   homebridge_hidden: true
+media_player.chromecast7346:
+  friendly_name: Tv Nere

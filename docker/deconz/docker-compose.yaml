@@ -1,7 +1,7 @@
 version: "2"
 services:
   deconz:
-    image: marthoc/deconz
+    image: marthoc/deconz:latest
     container_name: deconz
     network_mode: host
     restart: always

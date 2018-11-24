@@ -110,14 +110,14 @@ class Area(Base):
             if self._day_time > self.time() > self._morning_time:
                 for morning_light in self._morning_lights:
                     self.turn_on_device(morning_light,
-                        brightness_pct='25', 
+                        brightness_pct='35', 
                         transition='0') 
                 self._morning_ligths_on = True
                 return                     
             if self._night_light_timer_handle is None: # We have no running timeout
                 for night_light in self._night_lights:
                     self.turn_on_device(night_light,
-                        brightness_pct='25', 
+                        brightness_pct='35', 
                         transition='0')            
                 self._night_light_timer_handle = self.run_in(self.__on_night_light_timer, self._min_time_nightlights)
             else: #We are in a timer, lets 

@@ -83,9 +83,11 @@ recorder:
       - binary_sensor.ytterdorr_uppe
       - sensor.occupancy
 
-#logger:
-#  default: debug
-#  default: info
+logger:
+  default: info
+  logs:
+    pydeconz: debug
+    homeassistant.components.deconz: debug
 # Enables support for tracking state changes over time
 history:
   
@@ -154,12 +156,12 @@ tts:
 
 hassio:    
 
-mqtt:
-  broker: !secret mqqtt_broker
-  discovery: true
-  discovery_prefix: homeassistant
-  username: !secret mqtt_user
-  password: !secret mqtt_password
+#mqtt:
+#  broker: !secret mqqtt_broker
+#  discovery: true
+#  discovery_prefix: homeassistant
+#  username: !secret mqtt_user
+#  password: !secret mqtt_password
 
 #tuya:
 #  username: 54321

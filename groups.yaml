@@ -15,6 +15,7 @@ default_view:
     - group.frysar_temperatur
     - group.people_status
     - sensor.occupancy
+    - weather.smhi_hemma
     - weather.yweather
     
 room_view:
