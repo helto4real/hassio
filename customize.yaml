@@ -1,3 +1,31 @@
+# 433Mhz switches
+switch.switch1:
+  friendly_name: Julbelysning kök lilla fönster
+  icon: mdi:lightbulb
+switch.switch6:
+  friendly_name: Julbelysning kök fönster
+  icon: mdi:lightbulb
+switch.switch3:
+  friendly_name: Julbelysning Tomas Rum
+  icon: mdi:lightbulb
+switch.switch11:
+  friendly_name: Julbelysning vardagsrum vänster
+  icon: mdi:lightbulb
+switch.switch12:
+  friendly_name: Julbelysning vardagsrum mitten
+  icon: mdi:lightbulb
+switch.switch13:
+  friendly_name: Julbelysning vardagsrum höger
+  icon: mdi:lightbulb
+switch.switch14:
+  friendly_name: Julbelysning tvrum vänster
+  icon: mdi:lightbulb
+switch.switch15:
+  friendly_name: Julbelysning tvrum höger
+  icon: mdi:lightbulb
+switch.switch16:
+  friendly_name: Julbelysning sovrum
+  icon: mdi:lightbulb
 group.room_tvnere:
   icon: mdi:lightbulb-outline
 light.tomas_rum_fonster:

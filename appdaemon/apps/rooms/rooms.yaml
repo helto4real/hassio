@@ -13,13 +13,19 @@ room_livingroom:
   module: area
   class: Area
   ambient_ligts:
-    - light.vardagsrummet # Windows lights in the livingroom
+#    - light.vardagsrummet # Windows lights in the livingroom
     - light.hallen
+    - switch.switch11
+    - switch.switch12
+    - switch.switch13
   night_lights:
     - light.hallenuppe #Light Hallway one lamp  
   morning_ligts:
-    - light.vardagsrummet
+#    - light.vardagsrummet
     - light.hallen
+    - switch.switch11
+    - switch.switch12
+    - switch.switch13
   motion_sensors:
     - binary_sensor.rorelsesensor_vardagsrummet
     - binary_sensor.rorelsesensor_trapp
@@ -31,11 +37,17 @@ room_kitchen:
   module: area
   class: Area
   ambient_ligts:
-    - light.kok
+#    - light.kok
+    - switch.switch6
+    - switch.switch1
   night_lights:
-    - light.kok
+#    - light.kok
+    - switch.switch1
+    - switch.switch6
   morning_ligts:
-    - light.kok
+#    - light.kok
+    - switch.switch1
+    - switch.switch6
   motion_sensors:
     - binary_sensor.rorelsesensor_kok
   dependencies:
@@ -46,7 +58,8 @@ room_master_bedroom:
   module: area
   class: Area
   ambient_ligts:
-    - light.sovrum_fonster #window light
+    - light.switch16 #Julbelysning fönster
+#    - light.sovrum_fonster #window light
   dependencies:
     - house_status    
 
@@ -55,12 +68,20 @@ room_tvroom:
   module: room_tvroom
   class: TVRoom
   ambient_ligts:
-    - light.tvnere_fonster #windows lights
+#    - light.tvnere_fonster #windows lights
     - switch.plug1 #wall lights
+    - switch.switch14 #Julbelysning vänster
+    - switch.switch15 #Julbelysning höger
   night_lights:
-    - light.tvnere_fonster
+#    - light.tvnere_fonster
+    - switch.plug1 #wall lights
+    - switch.switch14 #Julbelysning vänster
+    - switch.switch15 #Julbelysning höger
   morning_ligts:
-    - light.tvnere_fonster
+#    - light.tvnere_fonster
+    - switch.plug1 #wall lights
+    - switch.switch14 #Julbelysning vänster
+    - switch.switch15 #Julbelysning höger
   motion_sensors:
     - binary_sensor.rorelsesensor_nere
     - binary_sensor.rorelsesensor_trapp
@@ -79,7 +100,8 @@ room_tomas:
   module: room_tomas
   class: TomasRoom
   ambient_ligts:
-    - light.tomas_rum_fonster
+#    - light.tomas_rum_fonster
+    - switch.switch3
   motion_sensors:
     - binary_sensor.rorelsesensor_tomas_rum
   fan: switch.switch4_tomas_fan

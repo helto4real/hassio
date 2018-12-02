@@ -124,23 +124,41 @@ views:
                   top: 10.5%
                   left: 48.5%
               - type: state-icon
-                entity: light.vardagsrummet_hoger
+                entity: switch.switch13 #Julbelysning höger
                 tap_action: toggle
                 style:
                   top: 89.45%
                   left: 17.9%
+              # - type: state-icon
+              #   entity: light.vardagsrummet_hoger
+              #   tap_action: toggle
+              #   style:
+              #     top: 89.45%
+              #     left: 17.9%
               - type: state-icon
-                entity: light.vardagsrumet_mitten
+                entity: switch.switch12 #Julbelysning mitten
                 tap_action: toggle
                 style:
                   top: 89.45%
                   left: 38.2%
+              # - type: state-icon
+              #   entity: light.vardagsrumet_mitten
+              #   tap_action: toggle
+              #   style:
+              #     top: 89.45%
+              #     left: 38.2%
               - type: state-icon
-                entity: light.vardagsrummet_vanster
+                entity: switch.switch11 #Julbelysning vänster
                 tap_action: toggle
                 style:
                   top: 89.45%
                   left: 60.5%
+              # - type: state-icon
+              #   entity: light.vardagsrummet_vanster
+              #   tap_action: toggle
+              #   style:
+              #     top: 89.45%
+              #     left: 60.5%
               - type: state-icon
                 entity: light.farstukvisten
                 style:
@@ -180,11 +198,17 @@ views:
                   top: 44%
                   left: 78.5%
               - type: state-icon
-                entity: light.tomas_rum_fonster #tomas room
+                entity: switch.switch3 #Julbelysning
                 tap_action: toggle
                 style:
                   top: 10.5%
                   left: 82.5%
+              # - type: state-icon
+              #   entity: light.tomas_rum_fonster #tomas room
+              #   tap_action: toggle
+              #   style:
+              #     top: 10.5%
+              #     left: 82.5%
               - type: state-icon
                 entity: switch.computer_tomas #tomas room
                 tap_action: toggle
@@ -238,13 +262,25 @@ views:
                   top: 89.45%
                   left: 70.2%
               - type: state-icon
-                entity: light.kok_fonster #window
+                entity: switch.switch6 #Julbelysning fönster
                 tap_action: toggle
                 style:
                   top: 89.45%
                   left: 78.2%
+              # - type: state-icon
+              #   entity: light.kok_fonster #window
+              #   tap_action: toggle
+              #   style:
+              #     top: 89.45%
+              #     left: 78.2%
+              # - type: state-icon
+              #   entity: light.kok_lilla_fonster #small windows
+              #   tap_action: toggle
+              #   style:
+              #     top: 58.8%
+              #     left: 92.4%
               - type: state-icon
-                entity: light.kok_lilla_fonster #small windows
+                entity: switch.switch1 #Julbelysning lilla fönster
                 tap_action: toggle
                 style:
                   top: 58.8%
@@ -268,13 +304,18 @@ views:
                 style:
                   top: 68%
                   left: 17.5%
-
               - type: state-icon
-                entity: light.sovrum_fonster #bedroom light window
+                entity: switch.switch16 #Julbelysning sovrum fönster
                 tap_action: toggle
                 style:
                   top: 90.2%
                   left: 16.6%
+              # - type: state-icon
+              #   entity: light.sovrum_fonster #bedroom light window
+              #   tap_action: toggle
+              #   style:
+              #     top: 90.2%
+              #     left: 16.6%
               - type: state-icon
                 entity: light.sovrum_byra #bedroom light table
                 tap_action: toggle
@@ -295,18 +336,29 @@ views:
           # Tv room 
           #
               - type: state-icon
-                entity: light.tvrummet_hoger
+                entity: switch.switch15
                 tap_action: toggle
                 style:
                   top: 90.2%
                   left: 47.2%
-              - type: state-icon
-                entity: light.tvrummet_vanster
+              # - type: state-icon
+              #   entity: light.tvrummet_hoger
+              #   tap_action: toggle
+              #   style:
+              #     top: 90.2%
+              #     left: 47.2%
+              - type: state-icon              
+                entity: switch.switch14 #Julbelysning vänster
                 tap_action: toggle
                 style:
                   top: 90.2%
                   left: 57.42%
-
+              # - type: state-icon
+              #   entity: light.tvrummet_vanster
+              #   tap_action: toggle
+              #   style:
+              #     top: 90.2%
+              #     left: 57.42%
               - type: state-icon
                 entity: light.ambient_tv # wall lights
                 style:

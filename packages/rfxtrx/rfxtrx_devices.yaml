@@ -23,17 +23,17 @@ switch:
     0b11000402bc0cfe01010f70:
       name: testswitch
     0b11000451bc0cfe08010f70:
-      name: switch1
+      name: switch1 #Julbelysning kök lilla fönster
     0b11000329bc0cfe06010f70:
       name: switch2
     0b11000115bc0cfe01010f70:
-      name: switch3 #sovrummet lampa fönster           
+      name: switch3 # Julbelysning Tomas Rum           
     0b11000534bc0cfe06010f70:
       name: switch4_tomas_fan
     0b11000152bc0cfe01010f70:
       name: switch5_melkers_fan
     0b11000226bc0cfe05010f70:
-      name: switch6
+      name: switch6 # Julbelysning kök
     0b11000693bc0cfe02010f70:
       name: switch7 # The switch for rpi with plex
     0b11000172bc0cfe02010f70:
@@ -42,6 +42,18 @@ switch:
       name: switch9outdoor
     0b11000555bc0cfe07010f70:
       name: switch10
+    0b11000381bc0cfe01010f70:
+      name: switch11 #Julbelysning vardagsrum vänster
+    0b11000239bc0cfe07010f70:
+      name: switch12 #Julbelysning vardagsrum mitten
+    0b11000250bc0cfe08010f70:
+      name: switch13 #Julbelysning vardagsrum höger
+    0b11000163bc0cfe09010f70:
+      name: switch14 #Julbelysning tvrum vänster
+    0b11000136bc0cfe08010f70:
+      name: switch15 #Julbelysning tvrum höger
+    0b11000651bc0cfe04010f70:
+      name: switch16 #Julbelysning sovrum fönster
     0b110000018ce3620b000060:
       name: switch_1_lb
     0b110010018ce3620c000070:
