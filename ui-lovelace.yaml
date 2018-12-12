@@ -197,18 +197,18 @@ views:
                 style:
                   top: 44%
                   left: 78.5%
-              - type: state-icon
-                entity: switch.switch3 #Julbelysning
-                tap_action: toggle
-                style:
-                  top: 10.5%
-                  left: 82.5%
               # - type: state-icon
-              #   entity: light.tomas_rum_fonster #tomas room
+              #   entity: switch.switch3 #Julbelysning
               #   tap_action: toggle
               #   style:
               #     top: 10.5%
               #     left: 82.5%
+              - type: state-icon
+                entity: light.tomas_rum_fonster #tomas room
+                tap_action: toggle
+                style:
+                  top: 10.5%
+                  left: 82.5%
               - type: state-icon
                 entity: switch.computer_tomas #tomas room
                 tap_action: toggle
@@ -262,7 +262,7 @@ views:
                   top: 89.45%
                   left: 70.2%
               - type: state-icon
-                entity: switch.switch6 #Julbelysning fönster
+                entity: switch.switch3 #Julbelysning fönster
                 tap_action: toggle
                 style:
                   top: 89.45%

@@ -22,12 +22,16 @@ class Base(hass.Hass):
             if not getattr(self, app, None):
                 setattr(self, app, self.get_app(app))
 
+    def log_to_logbook(self, name: str, message:str)->None:
+        self.call_service("logbook/log", name = name, message = message)
+
     # Helper functions for calling the correct service
     def turn_on_device(self, entity:str, **kwargs:dict) -> None:
         if entity.startswith('light'):
             self.call_service("light/turn_on", entity_id=entity, **kwargs) 
         else:
             self.turn_on(entity)
+        self.log_to_logbook('Device', "Slår på  {}".format(self.friendly_name(entity)))
 
     def turn_off_device(self, entity:str, **kwargs:dict) -> None:
         
@@ -35,6 +39,7 @@ class Base(hass.Hass):
             self.call_service("light/turn_off", entity_id=entity, **kwargs)
         else:
             self.turn_off(entity)
+        self.log_to_logbook('Device', "Slår av  {}".format(self.friendly_name(entity)))
             
     # Helper functions to trigger on specific time and days
     def run_on_days(self,

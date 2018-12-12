@@ -82,8 +82,11 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when remote current_activity_changes"""
 
+        self.log_to_logbook('TV', "Ny state  {}".format(new))
+
         # Make sure the switch controlling the RPI with KODI turns on and off
         if new == 'Film':
+            
             self.turn_on_device(self._kodi_switch)
         else:
             self.turn_off_device(self._kodi_switch)
@@ -107,7 +110,7 @@ class Tv(Base):
         if self.__is_media_playing() is True:              # Added check cause sometimes it turns off when playing
             self.log("Media is playing, it is still active!!")
             return
-
+        self.log_to_logbook('TV', "Stänger av TV pga inaktivitet")
         self.log("Turning off TV due to inactivity")
         self.__turn_off_tv()
 
@@ -118,10 +121,12 @@ class Tv(Base):
 
         if self.get_state(entity=self._remote) == 'on':
             return  # already on, nothing to do
-      
+
+        self.log_to_logbook('TV', "Slår på  {}".format(entity))
+
         # First pause media player to let the TV get som time to turn on
         self.__pause(entity)
-        
+        self.log_to_logbook('TV', "Pausar  {}".format(entity))
         # turn on tv
         self.__turn_on_tv()
         # wait 10 seconds and play again
@@ -138,6 +143,7 @@ class Tv(Base):
     def __play(self, entity:str)->None:
         self.call_service('media_player/media_play',
                           entity_id=entity)
+        self.log_to_logbook('TV', "Spelar  {}".format(entity))
 
     def __turn_on_tv(self)->None:
         self.turn_on(entity_id=self._remote)
@@ -165,7 +171,9 @@ class Tv(Base):
                 self.__play(media_player)
 
     def __volume_up(self)->None:
+        self.log_to_logbook('TV', "Ökar volymen")
         self.call_service('remote/send_command', entity_id=self._remote, device=14329974, command='VolumeUp', num_repeats=10, delay_secs=0.05)
 
     def __volume_down(self)->None:
+        self.log_to_logbook('TV', "Minskar volymen")
         self.call_service('remote/send_command', entity_id=self._remote, device=14329974, command='VolumeDown', num_repeats=10, delay_secs=0.05)

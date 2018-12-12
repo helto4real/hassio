@@ -153,6 +153,7 @@ tts:
     language: 'sv'
     cache: false
     time_memory: 600
+    base_url: http://192.168.1.5
 
 hassio:    
 

@@ -108,6 +108,7 @@ class HouseStatusManager(App):
             GlobalEvents.EV_HOUSE_MODE_CHANGED.value, 
             old=old_mode, 
             new=new_mode)
+        self.log_to_logbook('House', "Ny state  {}".format(new_mode))
     
     def __on_sunrise(self, kwargs: dict)->None:
         """called when sunrise plus offset"""

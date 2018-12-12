@@ -66,3 +66,4 @@ class HouseModes(Enum):
     evening = 'Kväll'
     night = 'Natt'
     cleaning = 'Städning' #all lights on
+

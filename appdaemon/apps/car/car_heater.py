@@ -174,11 +174,13 @@ class CarHeaterManager(Base):
 
     def __turn_on_heater(self):
         """Turn on heater switch."""
+        self.log_to_logbook('CarHeater', "Slår på motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
         self.turn_on(self._heater_switch)
 
 
     def __on_turn_off_heater(self, kwargs: dict) -> None:
         """Turn off heater switch."""
+        self.log_to_logbook('CarHeater', "Slår av motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
         self.turn_off(self._heater_switch)
 
 

@@ -45,13 +45,13 @@ class TomasRoom(Area):
 
     def motion_on_detected(self, entity:str)->None:
         super().motion_on_detected(entity)
-        if self.get_state(self._fan) == 'off':
-            self.turn_on(self._fan)
+        # if self.get_state(self._fan) == 'off':
+        #     self.turn_on(self._fan)
         
     def motion_off_detected(self, entity:str)->None:
         super().motion_off_detected(entity)
-        if self.get_state(self._fan) == 'on':
-            self.turn_off(self._fan)
+        # if self.get_state(self._fan) == 'on':
+        #     self.turn_off(self._fan)
 
     def nightlights_off_detected(self, entity:str)->None:
         super().nightlights_off_detected(entity)

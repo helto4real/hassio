@@ -1,7 +1,7 @@
 version: "2"
 services:
   deconz:
-    image: marthoc/deconz:latest
+    image: marthoc/deconz:latest #helto/deconz:local
     container_name: deconz
     network_mode: host
     restart: always

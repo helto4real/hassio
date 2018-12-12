@@ -68,10 +68,13 @@ class DialogFlow(hass.Hass):
         self.log("Turn on device {}".format(device))
         
         if device == "Tv":
+            self.log_to_logbook('DialogFlow', "Slår på TV {}".format(self.friendly_name(self._tv)))
             self.turn_on(entity_id=self._tv)
         elif device == "motorvärmare":
+            self.log_to_logbook('DialogFlow', "Slår på motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
             self.turn_on(entity_id=self._heater_switch)
         elif device in self._rooms:
+            self.log_to_logbook('DialogFlow', "Slår på {}".format(self.friendly_name(self._rooms[device])))
             self.turn_on(entity_id=self._rooms[device])
         else:
             return "Vet inte hur jag slår på {}".format(device)
@@ -87,10 +90,13 @@ class DialogFlow(hass.Hass):
         self.log("Turn off device {}".format(device))
         
         if device == "Tv":
+            self.log_to_logbook('DialogFlow', "Slår av TV {}".format(self.friendly_name(self._tv)))
             self.turn_off(entity_id=self._tv)
         elif device == "motorvärmare":
+            self.log_to_logbook('DialogFlow', "Slår av motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
             self.turn_off(entity_id=self._heater_switch)
         elif device in self._rooms:
+            self.log_to_logbook('DialogFlow', "Slår av {}".format(self.friendly_name(self._rooms[device])))
             self.turn_off(entity_id=self._rooms[device])
         else:
             return "Vet inte hur jag stänger av {}".format(device)

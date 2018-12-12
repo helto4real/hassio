@@ -20,7 +20,7 @@ class SceneAutomations(Base):
 
     def __on_scene_changed(self, event_name, data, kwargs):
         _,scene = data['service_data']['entity_id'].split('.')
-       
+        self.log_to_logbook('Scenes', "Scen ändrad till {}".format(scene))       
         self.log("SCENE: {}".format(scene))
         if scene == 'natt':
             self.set_state(entity_id='input_select.house_mode_select', state=HouseModes.night.value)

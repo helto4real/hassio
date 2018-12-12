@@ -2,11 +2,11 @@
 switch.switch1:
   friendly_name: Julbelysning kök lilla fönster
   icon: mdi:lightbulb
-switch.switch6:
+switch.switch66:
   friendly_name: Julbelysning kök fönster
   icon: mdi:lightbulb
 switch.switch3:
-  friendly_name: Julbelysning Tomas Rum
+  friendly_name: Julbelysning kök
   icon: mdi:lightbulb
 switch.switch11:
   friendly_name: Julbelysning vardagsrum vänster

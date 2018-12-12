@@ -29,11 +29,11 @@ class MelkersRoom(Area):
     def __on_time_for_turn_off_tv(self, kwargs: dict) -> None:
         """Time to set the house mode to day."""
         self.log("TURN OFF MELKERS TV")
-        self.turn_off(self._tv_switch)
+        self.turn_off_device(self._tv_switch)
 
         self.run_in(self.__on_time_for_turn_on_tv, self._minutes_before_turn_on_switch*60) #*60
  
     def __on_time_for_turn_on_tv(self, kwargs: dict) -> None:
         self.log("TURN ON MELKERS TV")
-        self.turn_on(self._tv_switch)
+        self.turn_on_device(self._tv_switch)
         

@@ -32,6 +32,9 @@ class LightManager(Base):
         if new == 'on':
             self.log("FIRE CMD_AMBIENT_LIGHTS_ON")
             self.fire_event(GlobalEvents.CMD_AMBIENT_LIGHTS_ON.value)
+            self.log_to_logbook('Lights', "Ambient ligts on")
         else:
             self.log("FIRE CMD_AMBIENT_LIGHTS_OFF")
             self.fire_event(GlobalEvents.CMD_AMBIENT_LIGHTS_OFF.value)
+            self.log_to_logbook('Lights', "Ambient ligts off")
+            

@@ -32,3 +32,5 @@ class SRPlayProgram(hass.Hass):
 
         self.call_service("media_player/play_media", entity_id=entity_id,
                           media_content_type="audio/m4a", media_content_id=url)
+
+        self.log_to_logbook('Media', "Spelar Ekot")

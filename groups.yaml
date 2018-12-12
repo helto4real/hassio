@@ -68,7 +68,7 @@ ligths_view:
     - switch.switch3
     - switch.switch4_tomas_fan
     - switch.switch5
-    - switch.switch6
+    #- switch.switch66
     - switch.switch7
     - switch.switch8
     - switch.switch10

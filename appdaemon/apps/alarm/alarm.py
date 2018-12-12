@@ -29,6 +29,7 @@ class Alarm(App):
         self.run_minutely(self.__on_every_minute, datetime.time(0, 0, 0))
 
         self._last_known_time_for_alarm = datetime.datetime.min
+        
 
     def __on_every_minute(self, kwargs: dict)->None:
 
@@ -43,6 +44,7 @@ class Alarm(App):
                 self.fire_event(
                     GlobalEvents.EV_ALARM_CLOCK_ALARM.value
                 )
+                self.log_to_logbook('Alarm', "Alarm körs på GH med ip {}".format(self._gh_device_ip))
                 self.log("ALARM RUNNING!")
 
         next_alarm = self.__findNextAlarmFromGoogleHomeDevice()

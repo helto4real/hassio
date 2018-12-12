@@ -108,6 +108,7 @@ class Area(Base):
 
         if self.house_status.is_night():
             if self._day_time > self.time() > self._morning_time:
+                self.log_to_logbook('Lights', "Tänder morgonlampor")
                 for morning_light in self._morning_lights:
                     self.turn_on_device(morning_light,
                         brightness_pct='35', 
@@ -115,6 +116,7 @@ class Area(Base):
                 self._morning_ligths_on = True
                 return                     
             if self._night_light_timer_handle is None: # We have no running timeout
+                self.log_to_logbook('Lights', "Tänder nattlampor")
                 for night_light in self._night_lights:
                     self.turn_on_device(night_light,
                         brightness_pct='35', 
@@ -154,6 +156,7 @@ class Area(Base):
 
     def turn_on_ambient(self, brigtness: str=None,
                         transition: str=None)->None:
+        self.log_to_logbook('Lights', "Tänder allmänljuset för {}".format(self._ambient_lights))
         if not brigtness:
             brigtness = self._ambient_light_brightness
         if not transition:
@@ -167,6 +170,7 @@ class Area(Base):
                           transition=transition)
            
     def turn_off_ambient(self)->None:
+        self.log_to_logbook('Lights', "Släcker allmänljuset för {}".format(self._ambient_lights))
         self._morning_ligths_on = False 
         if not self._ambient_lights:
             return  # No ambient lights

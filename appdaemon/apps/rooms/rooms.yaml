@@ -38,16 +38,16 @@ room_kitchen:
   class: Area
   ambient_ligts:
 #    - light.kok
-    - switch.switch6
+    - switch.switch3
     - switch.switch1
   night_lights:
 #    - light.kok
     - switch.switch1
-    - switch.switch6
+    - switch.switch3
   morning_ligts:
 #    - light.kok
     - switch.switch1
-    - switch.switch6
+    - switch.switch3
   motion_sensors:
     - binary_sensor.rorelsesensor_kok
   dependencies:
@@ -100,8 +100,8 @@ room_tomas:
   module: room_tomas
   class: TomasRoom
   ambient_ligts:
-#    - light.tomas_rum_fonster
-    - switch.switch3
+    - light.tomas_rum_fonster
+    #- switch.switch3
   motion_sensors:
     - binary_sensor.rorelsesensor_tomas_rum
   fan: switch.switch4_tomas_fan
