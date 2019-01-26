@@ -1,0 +1,24 @@
+sensor:
+  - platform: swedish_recycling
+    entities:
+      matfors:
+          station_id: '10421'
+          use_as_state: 'NextCarton'
+
+#   - platform: rest
+#     name: atervinning_matfors
+#     resource: "https://webapp.ftiab.se/Code/Ajax/StationHandler.aspx/GetStationMaintenance"
+#     method: POST
+#     payload: '{ "stationId": "10421" }'
+#     value_template: "{{ value_json.d.NextPapers }}"
+#     json_attributes:
+#       - d
+#     #   - d.NextPapers
+#     headers:
+#       Content-Type: application/json
+
+#   - platform: template
+#     sensors:
+#       atervinning_date:
+#         friendly_name: 'Date'
+#         value_template: '{{ states.sensor.atervinning_matfors.attributes["d"]["NextPapers"] }}'
