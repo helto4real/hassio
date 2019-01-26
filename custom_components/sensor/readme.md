@@ -5,6 +5,8 @@ Check https://www.ftiab.se/173.html to search for your specifc recycling station
 ## Usage
 Copy the `swedish_recycling.py` to your folder `custom_component/sensor` folder under config root
 
+The component will create a sensor with the state of the value you shoose in `use_as_state`. The rest of the properties will show as attributes in the sensor. You can only choose one of the options as state in `use_as_state`
+
 ## Configuration
 ```yaml
 sensor:
@@ -12,7 +14,7 @@ sensor:
     entities:                           
       matfors:                        # name of entity
           station_id: '10421'         # unique station id
-          use_as_state: 'NextCarton'  # what to display as state
+          use_as_state: 'NextCarton'  # what to display as state, can only choose one here
 ```
 |property|description|
 |---|---|
