@@ -2,7 +2,10 @@
 This custom component checks the recycling station (återvinningsstation). 
 Check https://www.ftiab.se/173.html to search for your specifc recycling station. You will need the unique id of the station when configuring the component.
 
-# Configuration
+## Usage
+Copy the `swedish_recycling.py` to your folder `custom_component/sensor` folder under config root
+
+## Configuration
 ```yaml
 sensor:
   - platform: swedish_recycling
