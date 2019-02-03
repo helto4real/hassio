@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt # zigbee2mqtt
+    restart: always
+    #command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+    #ports:
+    #  - "80:80"     # The HTTP port
+    #  - "8081:8080" # The Web UI (enabled by --api)
+    volumes:
+      - /usr/share/hassio/share/zigbee2mqtt/data:/app/data
+      #- /opt/traefik/data/traefik/acme.json:/acme.json
+    devices:
+      - /dev/ttyUSB.ZIG:/dev/ttyACM0
+      

@@ -4,14 +4,14 @@ occupancy_manager:
   module: occupancy
   class: OccupancyManager
   motion_detectors:
-    - binary_sensor.rorelsesensor_melkers_rum
-    - binary_sensor.rorelsesensor_nere
-    - binary_sensor.rorelsesensor_sallys_rum
-    - binary_sensor.rorelsesensor_sovrummet
-    - binary_sensor.rorelsesensor_tomas_rum
-    - binary_sensor.rorelsesensor_vardagsrummet
-    - binary_sensor.rorelsesensor_kok
-    - binary_sensor.rorelsesensor_trapp
+    - binary_sensor.melker_pir
+    - binary_sensor.tvrum_pir
+    - binary_sensor.sally_pir
+    - binary_sensor.sovrum_pir
+    - binary_sensor.tomas_pir
+    - binary_sensor.vardagsrum_pir
+    - binary_sensor.kok_pir
+    - binary_sensor.trapp_pir
   presence_sensors:
     - sensor.presence_tomas
     - sensor.presence_elin

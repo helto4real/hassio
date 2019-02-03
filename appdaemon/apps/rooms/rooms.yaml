@@ -13,22 +13,18 @@ room_livingroom:
   module: area
   class: Area
   ambient_ligts:
-#    - light.vardagsrummet # Windows lights in the livingroom
-    - light.hallen
-    - switch.switch11
-    - switch.switch12
-    - switch.switch13
+#    - light.vardagsrum # Windows lights in the livingroom
+    - light.hall
+    - light.vardagsrum
   night_lights:
-    - light.hallenuppe #Light Hallway one lamp  
+    - light.hallen_byra #Light Hallway one lamp  
   morning_ligts:
-#    - light.vardagsrummet
-    - light.hallen
-    - switch.switch11
-    - switch.switch12
-    - switch.switch13
+#    - light.vardagsrum
+    - light.hall
+    - light.vardagsrum
   motion_sensors:
-    - binary_sensor.rorelsesensor_vardagsrummet
-    - binary_sensor.rorelsesensor_trapp
+    - binary_sensor.vardagsrum_pir
+    - binary_sensor.trapp_pir
   dependencies:
     - house_status
 
@@ -37,19 +33,13 @@ room_kitchen:
   module: area
   class: Area
   ambient_ligts:
-#    - light.kok
-    - switch.switch3
-    - switch.switch1
+    - light.kok
   night_lights:
-#    - light.kok
-    - switch.switch1
-    - switch.switch3
+    - light.kok
   morning_ligts:
-#    - light.kok
-    - switch.switch1
-    - switch.switch3
+    - light.kok
   motion_sensors:
-    - binary_sensor.rorelsesensor_kok
+    - binary_sensor.kok_pir
   dependencies:
     - house_status
 
@@ -58,8 +48,8 @@ room_master_bedroom:
   module: area
   class: Area
   ambient_ligts:
-    - light.switch16 #Julbelysning fönster
-#    - light.sovrum_fonster #window light
+#    - light.switch16 #Julbelysning fönster
+    - light.sovrum #window light
   dependencies:
     - house_status    
 
@@ -68,30 +58,21 @@ room_tvroom:
   module: room_tvroom
   class: TVRoom
   ambient_ligts:
-#    - light.tvnere_fonster #windows lights
-    - switch.plug1 #wall lights
-    - switch.switch14 #Julbelysning vänster
-    - switch.switch15 #Julbelysning höger
+    - light.tvrummet #all lights in tv-room
   night_lights:
-#    - light.tvnere_fonster
-    - switch.plug1 #wall lights
-    - switch.switch14 #Julbelysning vänster
-    - switch.switch15 #Julbelysning höger
+    - light.tvrummet
   morning_ligts:
-#    - light.tvnere_fonster
-    - switch.plug1 #wall lights
-    - switch.switch14 #Julbelysning vänster
-    - switch.switch15 #Julbelysning höger
+    - light.tvrummet
   motion_sensors:
-    - binary_sensor.rorelsesensor_nere
-    - binary_sensor.rorelsesensor_trapp
+    - binary_sensor.tvrum_pir
+    - binary_sensor.trapp_pir
   light_switches:
     - switch.switch_1_lb
     - switch.switch_1_rb
   properties:
     toggle_tv_switch: switch.switch_1_lb
     toggle_window_ligts_switch: switch.switch_1_rb
-    remote: remote.tvroom 
+    remote: remote.tvrummet 
     
   dependencies:
     - house_status
@@ -100,10 +81,9 @@ room_tomas:
   module: room_tomas
   class: TomasRoom
   ambient_ligts:
-    - light.tomas_rum_fonster
-    #- switch.switch3
+    - light.tomas_fonster
   motion_sensors:
-    - binary_sensor.rorelsesensor_tomas_rum
+    - binary_sensor.tomas_pir
   fan: switch.switch4_tomas_fan
   computer: switch.computer_tomas
   tracker: sensor.presence_tomas  # Tracker that checks for home for sertain automations
@@ -116,7 +96,7 @@ room_melker:
   module: room_melker
   class: MelkersRoom
   ambient_ligts:
-    - switch.melkers_fonsterlampa
+    - switch.ikea3
   properties:
     tv_switch: 'switch.switch8_melkers_tv' # Melkers tv
     time_to_turn_off_tv: '01:32:00'
@@ -128,6 +108,6 @@ room_farstukvisten:
   module: area
   class: Area
   ambient_ligts:
-    - light.farstukvisten
+    - light.osram_led_outdoor1
   dependencies:
     - house_status    

@@ -29,6 +29,8 @@ class Base(hass.Hass):
     def turn_on_device(self, entity:str, **kwargs:dict) -> None:
         if entity.startswith('light'):
             self.call_service("light/turn_on", entity_id=entity, **kwargs) 
+        elif entity.startswith('remote'):
+            self.call_service("remote/turn_on", entity_id=entity, **kwargs) 
         else:
             self.turn_on(entity)
         self.log_to_logbook('Device', "Slår på  {}".format(self.friendly_name(entity)))
@@ -37,6 +39,8 @@ class Base(hass.Hass):
         
         if entity.startswith('light'):
             self.call_service("light/turn_off", entity_id=entity, **kwargs)
+        elif entity.startswith('remote'):
+            self.call_service("remote/turn_off", entity_id=entity, **kwargs) 
         else:
             self.turn_off(entity)
         self.log_to_logbook('Device', "Slår av  {}".format(self.friendly_name(entity)))

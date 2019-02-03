@@ -17,3 +17,5 @@ services:
       - DEBUG_ZCL=0
       - DEBUG_ZDP=0
       - DEBUG_OTAU=0
+      - DECONZ_VNC_MODE=1
+      - DECONZ_VNC_PASSWORD=abc123

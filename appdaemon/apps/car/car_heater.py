@@ -115,11 +115,13 @@ class CarHeaterManager(Base):
         if diff.days == 0 and \
             diff.seconds < 3600*3:
             # It is closer than 3 hours, start heater now!
+            self.log("Less than 3 hours left, check if start heater now!")
             self.__start_heater({})
             return
-
+        
         # Schedule heater to start 3 hours before departure time
         time_to_start_heater = self._time_to_depart - timedelta(hours=3)
+        self.log("Checking if heater should start at: {}".format(time_to_start_heater))
         self._scheduled_heating_start_time_handle = \
             self.run_at(self.__start_heater, time_to_start_heater)
         
@@ -132,20 +134,22 @@ class CarHeaterManager(Base):
         time.
         """
         
-        def schedule_start_time(seconds: int):
+        def schedule_start_time(seconds: int, temp: float):
             """Schedule the calculated starttime"""
-            self.run_in(self.__start_heater, seconds)
             self.log("Temperature ({}) scedule in {} minutes".format(temp, round(seconds/60)))
+            self.run_in(self.__start_heater, seconds)
 
         temp_state = self.get_state(self._sensor_temperature)
-        if temp_state == 'uknown':
+        if temp_state == 'unknown':
             self.log("temperature not known yet, retry in 1 minutes")
             self.run_in(self.__start_heater, 60)
             return
 
         temp = float(self.get_state(self._sensor_temperature))
+        self.log("Temperature is {} degrees check if we should start heater...".format(temp))
         if temp > 5.0:
             # No heating above 5 degrees celcius
+            self.log("Temperature is {} degrees, not starting heater".format(temp))
             return
 
         diff = self._time_to_depart - self.datetime()
@@ -153,19 +157,23 @@ class CarHeaterManager(Base):
         if 1.0 < temp <= 5.0:
             # We should use 30 minutes timer
             if diff.seconds > 30*60:
-                schedule_start_time(diff.seconds-30*60)
+                self.log("Temperature is {} degrees, set the timer to 30 minutes", temp)
+                schedule_start_time(diff.seconds-30*60, temp)
                 return
         elif -10.0 < temp < 1.0:
             # we use 60 minutes
             if diff.seconds > 60*60:
-                schedule_start_time(diff.seconds-60*60)
+                self.log("Temperature is {} degrees, set the timer to 60 minutes", temp)
+                schedule_start_time(diff.seconds-60*60, temp)
                 return
         elif -20.0 < temp < -10:
             # we use 120 minutes
             if diff.seconds > 120*60:
-                schedule_start_time(diff.seconds-120*60)
+                self.log("Temperature is {} degrees, set the timer to 2 hours", temp)
+                schedule_start_time(diff.seconds-120*60, temp)
                 return
         elif temp <= -20.0:
+            self.log("Temperature is {} degrees, set the timer to 3 hours", temp)
             # we use 180 minutes
             pass
 
@@ -175,12 +183,14 @@ class CarHeaterManager(Base):
     def __turn_on_heater(self):
         """Turn on heater switch."""
         self.log_to_logbook('CarHeater', "Slår på motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
+        self.log("Turn on car heater")
         self.turn_on(self._heater_switch)
 
 
     def __on_turn_off_heater(self, kwargs: dict) -> None:
         """Turn off heater switch."""
         self.log_to_logbook('CarHeater', "Slår av motorvärmaren {}".format(self.friendly_name(self._heater_switch)))
+        self.log("Turn off car heater")
         self.turn_off(self._heater_switch)
 
 
@@ -189,9 +199,11 @@ class CarHeaterManager(Base):
         # Cancel all current schedules if exist
         if self._scheduled_heating_start_time_handle is not None:
             # Cancel start timer
+            self.log("Cancel start timer")
             self.cancel_timer(self._scheduled_heating_start_time_handle)
         if self._scheduled_heating_stop_time_handle is not None:
             # Cancel stop timer
+            self.log("Cancel stop timer")
             self.cancel_timer(self._scheduled_heating_stop_time_handle)
 
         self._scheduled_heating_stop_time_handle = None

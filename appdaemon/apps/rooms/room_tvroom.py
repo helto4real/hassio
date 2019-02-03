@@ -33,5 +33,5 @@ class TVRoom(Area):
         self.toggle(entity_id=self._remote)
     
     def __toogle_window_lights(self)->None:
-        self.toggle(entity_id='light.tvnere_fonster')
+        self.toggle(entity_id='light.tvrummet')
     

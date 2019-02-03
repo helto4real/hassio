@@ -30,6 +30,7 @@ class Tv(Base):
         self._delay_before_turn_off_tv = int(
         self.properties.get('delay_before_turn_off_tv', 20))*60
         self._tv_ambient_light = self.properties.get('tv_ambient_light', str)
+        self.nextTimeCanCheckState = datetime.datetime.now()
 
         for media_player in self._media_players:
             self.listen_state(
@@ -64,6 +65,7 @@ class Tv(Base):
     def __on_cube_changed(
         self, event_name: str, data: dict, kwargs: dict) -> None:
     
+        self.log("cube_event: {}".format(event_name))
         if data['id'] != self._cube:
             return # Not correct cube
 
@@ -82,6 +84,7 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when remote current_activity_changes"""
 
+        self.log("remote_changed to: {}".format(new))
         self.log_to_logbook('TV', "Ny state  {}".format(new))
 
         # Make sure the switch controlling the RPI with KODI turns on and off
@@ -119,20 +122,39 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when media player changes state to 'playing'"""
 
+        self.log("media_player_state: {}->{}".format(entity, new))
+
+        if old==new:
+            self.log("Media player same state {}={}".format(entity, new))
+            return
+    
+
+        if datetime.datetime.now() < self.nextTimeCanCheckState:
+            #  Must have delay to make sure state is ok
+            return
+
+            # Have to make sure we delay check of remote status cause of slow updates
+        self.nextTimeCanCheckState = datetime.datetime.now() + datetime.timedelta(minutes=2)
+
+        
         if self.get_state(entity=self._remote) == 'on':
+            self.log("remote already on: {}".format(self._remote))
             return  # already on, nothing to do
 
-        self.log_to_logbook('TV', "Slår på  {}".format(entity))
+        #self.log_to_logbook('TV', "Slår på  {}".format(entity))
 
         # First pause media player to let the TV get som time to turn on
         self.__pause(entity)
-        self.log_to_logbook('TV', "Pausar  {}".format(entity))
+       # self.log_to_logbook('TV', "Pausar  {}".format(entity))
         # turn on tv
         self.__turn_on_tv()
-        # wait 10 seconds and play again
-        self.run_in(self.__delay_play, 20, media_player=entity)
+
+        
+        # wait 25 seconds and play again
+        self.run_in(self.__delay_play, 22, media_player=entity)
 
     def __pause(self, entity:str)->None:
+        self.log("Pausar {}".format(entity))
         self.call_service('media_player/media_pause',
                           entity_id=entity)
 
@@ -141,15 +163,19 @@ class Tv(Base):
         self.__play(kwargs['media_player'])
 
     def __play(self, entity:str)->None:
+        self.log("Spelar {}".format(entity))
         self.call_service('media_player/media_play',
                           entity_id=entity)
         self.log_to_logbook('TV', "Spelar  {}".format(entity))
 
     def __turn_on_tv(self)->None:
-        self.turn_on(entity_id=self._remote)
+        self.log("Slår på remote {}".format(self._remote))
+       ## self.call_service("remote/turn_on", entity_id=self._remote, activity="TV")
+        self.turn_on_device(self._remote, activity="TV")
 
     def __turn_off_tv(self)->None:
-        self.turn_off(entity_id=self._remote)
+        self.log("Slår av remote {}".format(self._remote))
+        self.turn_off_device(self._remote)
 
     def __is_media_playing(self)->bool:
         for media_player in self._media_players:

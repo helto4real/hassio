@@ -17,7 +17,7 @@ sensor:
 
 switch:
   platform: rfxtrx
-  automatic_add: False
+  automatic_add: True
   signal_repetitions: 4
   devices:
     0b11000402bc0cfe01010f70:

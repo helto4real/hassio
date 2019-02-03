@@ -1,471 +1,357 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.056
-    type: module
-
-
+  - type: module
+    url: /local/custom_cards/custom-cards.js?v=1.056
 title: Hellströms home
-
-
 views:
-    # View tab title.
-  - title: Information
-    # Optional unique id for direct access /lovelace/${id}
-    id: info
-    icon: mdi:information-outline
-    cards:
-      - id: 522705aaa015490f82d093cd3b395793  # Automatically created id
-        type: vertical-stack
-        cards:
-        #
-        # PRESENCE INFORMATION
-        #
-          - id: presence_hs
-            type: horizontal-stack
-            cards:
-              - type: custom:picture-status-card
+  - cards:
+      - cards:
+          - cards:
+              - card_height: 90px
                 entity: sensor.presence_tomas
-                image: /local/img/presence/tomas_presence_away.jpg
-             # font_size: 1em
                 font_color: white
-                card_height: 90px
+                image: /local/img/presence/tomas_presence_away.jpg
+                name: ' '
                 state_image:
                   Home: /local/img/presence/tomas_presence.jpg
                   Just arrived: /local/img/presence/tomas_presence.jpg
-                name: ' '
-              - type: custom:picture-status-card
+                type: 'custom:picture-status-card'
+              - card_height: 90px
                 entity: sensor.presence_elin
-                image: /local/img/presence/elin_presence_away.jpg
                 font_color: white
-                card_height: 90px
+                image: /local/img/presence/elin_presence_away.jpg
                 state_image:
                   Home: /local/img/presence/elin_presence.jpg
                   Just arrived: /local/img/presence/elin_presence.jpg
-              - type: custom:picture-status-card
+                type: 'custom:picture-status-card'
+              - card_height: 90px
                 entity: sensor.presence_sally
-                image: /local/img/presence/sally_presence_away.jpg
                 font_color: white
-                card_height: 90px
+                image: /local/img/presence/sally_presence_away.jpg
                 state_image:
                   Home: /local/img/presence/sally_presence.jpg
                   Just arrived: /local/img/presence/sally_presence.jpg
-              - type: custom:picture-status-card
+                type: 'custom:picture-status-card'
+              - card_height: 90px
                 entity: sensor.presence_melker
-                image: /local/img/presence/melker_presence_away.jpg
                 font_color: white
-                card_height: 90px
+                image: /local/img/presence/melker_presence_away.jpg
                 state_image:
                   Home: /local/img/presence/melker_presence.jpg
                   Just arrived: /local/img/presence/melker_presence.jpg
-
-        #
-        # Temperature and moisture plus current weather icons
-        #
-          - type: picture-elements
-            image: /local/img/weather_bg.jpg
-            elements:
-              - type: state-label
-                entity: sensor.temp_outside
+                type: 'custom:picture-status-card'
+            id: presence_hs
+            type: horizontal-stack
+          - elements:
+              - entity: sensor.temp_outside
                 style:
-                  top: 47%
+                  font-size: 150%
+                  font-weight: bold;
                   left: 9.8%
-                  font-size: 150%
-                  font-weight: bold;
-              - type: state-label
-                entity: sensor.hum_outside
-                style:
                   top: 47%
-                  left: 24.8%
+                type: state-label
+              - entity: sensor.hum_outside
+                style:
                   font-size: 150%
                   font-weight: bold;
-              - type: state-icon
-                entity: sensor.yr_symbol
+                  left: 24.8%
+                  top: 47%
+                type: state-label
+              - entity: sensor.yr_symbol
                 style:
-                  top: 52%
                   left: 40%
-
-        #
-        # House status card
-        #
-          - type: picture-entity
-            entity: input_select.house_mode_select
+                  top: 52%
+                type: state-icon
+            image: /local/img/weather_bg.jpg
+            type: picture-elements
+          - entity: input_select.house_mode_select
             show_name: false
             show_state: false
             state_image:
-              Morgon: /local/img/housestatus/hs_morning.png
               Dag: /local/img/housestatus/hs_day.png
               Kväll: /local/img/housestatus/hs_evening.png
+              Morgon: /local/img/housestatus/hs_morning.png
               Natt: /local/img/housestatus/hs_night.png
-        # First floor
-          - type: picture-elements
-            image: /local/img/first_floor2.jpg
-            elements:
-          #
-          # Living room 
-          #
-              - type: state-label
-                entity: sensor.temp_vardagsrum_uppe
+            type: picture-entity
+          - elements:
+              - entity: sensor.temp_vardagsrum
                 style:
-                  top: 72%
                   left: 38%
-
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_vardagsrummet
+                  top: 72%
+                type: state-label
+              - entity: binary_sensor.vardagsrum_pir
                 style:
-                  top: 89.45%
                   left: 8.42%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_trapp
+                  top: 89.45%
+                type: state-icon
+              - entity: binary_sensor.trapp_pir
                 style:
-                  top: 44.45%
                   left: 35.42%
-              - type: state-icon
-                entity: binary_sensor.ytterdorr_uppe
+                  top: 44.45%
+                type: state-icon
+              - entity: binary_sensor.dorr_uppe_magnet
                 style:
-                  top: 10.5%
                   left: 48.5%
-              - type: state-icon
-                entity: switch.switch13 #Julbelysning höger
-                tap_action: toggle
+                  top: 10.5%
+                type: state-icon
+              - entity: light.vardagsrummet_hoger
                 style:
-                  top: 89.45%
                   left: 17.9%
-              # - type: state-icon
-              #   entity: light.vardagsrummet_hoger
-              #   tap_action: toggle
-              #   style:
-              #     top: 89.45%
-              #     left: 17.9%
-              - type: state-icon
-                entity: switch.switch12 #Julbelysning mitten
-                tap_action: toggle
-                style:
                   top: 89.45%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.vardagsrumet_mitten
+                style:
                   left: 38.2%
-              # - type: state-icon
-              #   entity: light.vardagsrumet_mitten
-              #   tap_action: toggle
-              #   style:
-              #     top: 89.45%
-              #     left: 38.2%
-              - type: state-icon
-                entity: switch.switch11 #Julbelysning vänster
-                tap_action: toggle
-                style:
                   top: 89.45%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.vardagsrummet_vanster
+                style:
                   left: 60.5%
-              # - type: state-icon
-              #   entity: light.vardagsrummet_vanster
-              #   tap_action: toggle
-              #   style:
-              #     top: 89.45%
-              #     left: 60.5%
-              - type: state-icon
-                entity: light.farstukvisten
+                  top: 89.45%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.osram_led_outdoor1
                 style:
-                  top: 3.5%
                   left: 52.5%
-              - type: state-icon
-                entity: media_player.tv_uppe
+                  top: 3.5%
+                type: state-icon
+              - entity: media_player.tv_uppe
                 style:
-                  top: 54.45%
                   left: 17.4%
-          #
-          # Hallen uppe
-          #
-              - type: state-icon
-                entity: light.hallenuppe_dorr
-                tap_action: toggle
+                  top: 54.45%
+                type: state-icon
+              - entity: light.hallen_dorr
                 style:
-                  top: 10.5%
                   left: 55.5%
-              - type: state-icon
-                entity: media_player.vardagsrum
+                  top: 10.5%
+                tap_action: toggle
+                type: state-icon
+              - entity: media_player.vardagsrum
                 style:
+                  left: 55.5%
                   top: 19.5%
-                  left: 55.5%
-              - type: state-icon
-                entity: light.hallenuppe
-                tap_action: toggle
+                type: state-icon
+              - entity: light.hallen_byra
                 style:
+                  left: 55.5%
                   top: 27.5%
-                  left: 55.5%
-          #
-          # Tomas room
-          #     
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_tomas_rum
-                style:
-                  top: 44%
-                  left: 78.5%
-              # - type: state-icon
-              #   entity: switch.switch3 #Julbelysning
-              #   tap_action: toggle
-              #   style:
-              #     top: 10.5%
-              #     left: 82.5%
-              - type: state-icon
-                entity: light.tomas_rum_fonster #tomas room
                 tap_action: toggle
+                type: state-icon
+              - entity: binary_sensor.tomas_pir
                 style:
-                  top: 10.5%
+                  left: 78.5%
+                  top: 44%
+                type: state-icon
+              - entity: light.tomas_fonster
+                style:
                   left: 82.5%
-              - type: state-icon
-                entity: switch.computer_tomas #tomas room
-                tap_action: toggle
-                style:
                   top: 10.5%
-                  left: 92.2%
-              - type: state-icon
-                entity: switch.switch4_tomas_fan #tomas room
                 tap_action: toggle
+                type: state-icon
+              - entity: switch.computer_tomas
                 style:
+                  left: 92.2%
+                  top: 10.5%
+                tap_action: toggle
+                type: state-icon
+              - entity: switch.switch4_tomas_fan
+                style:
+                  left: 92.2%
                   top: 20.5%
-                  left: 92.2%
-          #
-          # Sallys room
-          #
-              - type: state-label
-                entity: sensor.temp_sallysrum
+                tap_action: toggle
+                type: state-icon
+              - entity: sensor.temp_sallysrum
                 style:
-                  top: 44%
                   left: 25%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_sallys_rum
-                style:
                   top: 44%
+                type: state-label
+              - entity: binary_sensor.sally_pir
+                style:
                   left: 8.42%
-              - type: state-icon
-                entity: switch.sallys_mys_belysning #light sallys room led light
-                tap_action: toggle
+                  top: 44%
+                type: state-icon
+              # - entity: switch.sallys_mys_belysning
+              #   style:
+              #     left: 22.9%
+              #     top: 10.5%
+              #   tap_action: toggle
+              #   type: state-icon
+              - entity: light.sallys_rum
                 style:
-                  top: 10.5%
-                  left: 22.9%
-              - type: state-icon
-                entity: light.sallys_rum_fonster #light sallys room window
-                tap_action: toggle
-                style:
-                  top: 10.5%
                   left: 17.9%
-
-
-          #
-          # kitchen
-          #
-              - type: state-label
-                entity: sensor.temp_frys_uppe
+                  top: 10.5%
+                tap_action: toggle
+                type: state-icon
+              - entity: sensor.temp_frys_uppe
                 style:
-                  top: 54%
                   left: 73%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_kok #Motion detector
+                  top: 54%
+                type: state-label
+              - entity: binary_sensor.kok_pir
                 style:
-                  top: 89.45%
                   left: 70.2%
-              - type: state-icon
-                entity: switch.switch3 #Julbelysning fönster
-                tap_action: toggle
-                style:
                   top: 89.45%
+                type: state-icon
+              - entity: light.kok_fonster
+                style:
                   left: 78.2%
-              # - type: state-icon
-              #   entity: light.kok_fonster #window
-              #   tap_action: toggle
-              #   style:
-              #     top: 89.45%
-              #     left: 78.2%
-              # - type: state-icon
-              #   entity: light.kok_lilla_fonster #small windows
-              #   tap_action: toggle
-              #   style:
-              #     top: 58.8%
-              #     left: 92.4%
-              - type: state-icon
-                entity: switch.switch1 #Julbelysning lilla fönster
-                tap_action: toggle
-                style:
-                  top: 58.8%
-                  left: 92.4%
-              - type: state-icon
-                entity: media_player.kok
-                style:
                   top: 89.45%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.kok_lilla_fonster
+                style:
+                  left: 92.4%
+                  top: 58.8%
+                tap_action: toggle
+                type: state-icon
+              - entity: media_player.kok
+                style:
                   left: 85.5%
-          #
-          # Lower floor
-          #
-          - type: picture-elements
-            image: /local/img/second_floor2.jpg
-            elements:
-          #
-          # Master bedroom 
-          #
-              - type: state-label
-                entity: sensor.temp_sovrum_nere
+                  top: 89.45%
+                type: state-icon
+            image: /local/img/first_floor2.jpg
+            type: picture-elements
+          - elements:
+              - entity: sensor.temp_sovrum_nere
                 style:
-                  top: 68%
                   left: 17.5%
-              - type: state-icon
-                entity: switch.switch16 #Julbelysning sovrum fönster
-                tap_action: toggle
-                style:
-                  top: 90.2%
-                  left: 16.6%
-              # - type: state-icon
-              #   entity: light.sovrum_fonster #bedroom light window
-              #   tap_action: toggle
-              #   style:
-              #     top: 90.2%
-              #     left: 16.6%
-              - type: state-icon
-                entity: light.sovrum_byra #bedroom light table
-                tap_action: toggle
-                style:
-                  top: 75.2%
-                  left: 27.6%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_sovrummet
-                style:
-                  top: 90.2%
-                  left: 8.42%
-              - type: state-icon
-                entity: media_player.sovrum
-                style:
-                  top: 90.2%
-                  left: 25.6%
-          #
-          # Tv room 
-          #
-              - type: state-icon
-                entity: switch.switch15
-                tap_action: toggle
-                style:
-                  top: 90.2%
-                  left: 47.2%
-              # - type: state-icon
-              #   entity: light.tvrummet_hoger
-              #   tap_action: toggle
-              #   style:
-              #     top: 90.2%
-              #     left: 47.2%
-              - type: state-icon              
-                entity: switch.switch14 #Julbelysning vänster
-                tap_action: toggle
-                style:
-                  top: 90.2%
-                  left: 57.42%
-              # - type: state-icon
-              #   entity: light.tvrummet_vanster
-              #   tap_action: toggle
-              #   style:
-              #     top: 90.2%
-              #     left: 57.42%
-              - type: state-icon
-                entity: light.ambient_tv # wall lights
-                style:
-                  top: 50.8%
-                  left: 44%
-              - type: state-icon
-                entity: switch.plug1 # wall lights
-                tap_action: toggle
-                style:
-                  top: 50.8%
-                  left: 67%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_nere
-                style:
-                  top: 90.2%
-                  left: 33.42%
-              - type: state-icon
-                entity: media_player.tv_nere
-                style:
-                  top: 50.8%
-                  left: 50%
-              - type: state-icon
-                entity: media_player.tv_rummet_gh
-                style:
-                  top: 50.8%
-                  left: 59%
-          #
-          # Melkers room
-          #
-              - type: state-label
-                entity: sensor.temp_melkersrum
-                style:
                   top: 68%
-                  left: 80.5%
-              - type: state-icon
-                entity: binary_sensor.rorelsesensor_melkers_rum
+                type: state-label
+              - entity: light.sovrum_fonster
                 style:
+                  left: 16.6%
                   top: 90.2%
-                  left: 73.42%
-              - type: state-icon
-                entity: media_player.melkers_tv
+                tap_action: toggle
+                type: state-icon
+              - entity: light.sovrum_byra
                 style:
+                  left: 27.6%
+                  top: 75.2%
+                tap_action: toggle
+                type: state-icon
+              - entity: binary_sensor.sovrum_pir
+                style:
+                  left: 8.42%
+                  top: 90.2%
+                type: state-icon
+              - entity: media_player.sovrum
+                style:
+                  left: 25.6%
+                  top: 90.2%
+                type: state-icon
+              - entity: light.tvrummet_hoger
+                style:
+                  left: 47.2%
+                  top: 90.2%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.tvrummet_vanster
+                style:
+                  left: 57.42%
+                  top: 90.2%
+                tap_action: toggle
+                type: state-icon
+              - entity: light.ambient_tv
+                style:
+                  left: 44%
                   top: 50.8%
-                  left: 92.4%
-              - type: state-icon
-                entity: switch.switch8_melkers_tv # Melkers tv  
+                type: state-icon
+              - entity: switch.osram1
+                style:
+                  left: 67%
+                  top: 50.8%
                 tap_action: toggle
+                type: state-icon
+              - entity: binary_sensor.tvrum_pir
                 style:
-                  top: 60.8%
-                  left: 92.4%
-              - type: state-icon
-                entity: switch.switch5_melkers_fan
-                tap_action: toggle
-                style:
-                  top: 70.8%
-                  left: 92.4%
-              - type: state-icon
-                entity: switch.melkers_fonsterlampa
-                style:
+                  left: 33.42%
                   top: 90.2%
-                  left: 83.22%          #
-          # Hobby room
-          #   
-              - type: state-label
-                entity: sensor.temp_elins_rum
+                type: state-icon
+              - entity: media_player.tv_nere
                 style:
-                  top: 25%
+                  left: 50%
+                  top: 50.8%
+                type: state-icon
+              - entity: media_player.tv_rummet_gh
+                style:
+                  left: 59%
+                  top: 50.8%
+                type: state-icon
+              - entity: sensor.temp_melkersrum_2
+                style:
+                  left: 80.5%
+                  top: 68%
+                type: state-label
+              - entity: binary_sensor.melker_pir
+                style:
+                  left: 73.42%
+                  top: 90.2%
+                type: state-icon
+              - entity: media_player.melkers_tv
+                style:
+                  left: 92.4%
+                  top: 50.8%
+                type: state-icon
+              - entity: switch.switch8_melkers_tv
+                style:
+                  left: 92.4%
+                  top: 60.8%
+                tap_action: toggle
+                type: state-icon
+              - entity: switch.switch5_melkers_fan
+                style:
+                  left: 92.4%
+                  top: 70.8%
+                tap_action: toggle
+                type: state-icon
+              - entity: switch.ikea3
+                style:
+                  left: 83.22%
+                  top: 90.2%
+                type: state-icon
+              - entity: sensor.temp_elinsrum
+                style:
                   left: 78.5%
-
-              - type: state-label
-                entity: sensor.frysnere_temperature
+                  top: 25%
+                type: state-label
+              - entity: sensor.frysnere_temperature
                 style:
-                  top: 27%
                   left: 86.5%
+                  top: 27%
                   transform: rotate(90deg)
-
-  - id: 1  # Automatically created id
-    icon: mdi:cast
-    title: Media
-    cards:
-      - id: 2201d16c40eb4fcb838189864ea81251  # Automatically created id
+                type: state-label
+            image: /local/img/second_floor2.jpg
+            type: picture-elements
+        id: 522705aaa015490f82d093cd3b395793
         type: vertical-stack
-        cards:
-          - type: entities
-            entities:
-              - remote.tvroom
+    icon: 'mdi:information-outline'
+    id: info
+    title: Information
+  - cards:
+      - cards:
+          - entities:
+              - remote.tvrummet
               - switch.switch7
               - switch.switch8_melkers_tv
-          - type: custom:media-player-card
-            entity: media_player.tv_nere
+            type: entities
+          - entity: media_player.tv_nere
             image_folder: /local/custom_cards/img
-          - type: custom:media-player-card
-            entity: media_player.tv_uppe
+            type: 'custom:media-player-card'
+          - entity: media_player.tv_uppe
             image_folder: /local/custom_cards/img
-          - type: custom:media-player-card
-            entity: media_player.melkers_tv
+            type: 'custom:media-player-card'
+          - entity: media_player.melkers_tv
             image_folder: /local/custom_cards/img
-
-  - id: 2  # Automatically created id
-    icon: mdi:weather-partlycloudy
-    title: Väder
-    cards:
-      - id: 21c8e6ac54b04954902a064bab379066  # Automatically created id
+            type: 'custom:media-player-card'
+        id: 2201d16c40eb4fcb838189864ea81251
         type: vertical-stack
-        cards:
-          - type: entities
-            entities:
+    icon: 'mdi:cast'
+    id: 1
+    title: Media
+  - cards:
+      - cards:
+          - entities:
               - sun.sun
               - sensor.yr_symbol
               - type: divider
@@ -474,237 +360,276 @@ views:
               - type: divider
               - sensor.utetemp_temperature
               - sensor.utetemp_humidity
-          - type: picture
-            image: https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png
-
-          - type: weather-forecast
-            entity: weather.smhi_hemma
-  - id: 3  # Automatically created id
-    icon: mdi:car
-    title: Plugs
-    cards:
-      - id: 809a520141ac4c4999204b250410bae9  # Automatically created id
-        type: picture-elements
-        image: /local/img/car/car-heater-background.jpg
-        elements:
-          - type: state-label
-            entity: sensor.car_departure_time
+            type: entities
+          - image: >-
+              https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png
+            type: picture
+          - entity: weather.smhi_hemma
+            type: weather-forecast
+        id: 21c8e6ac54b04954902a064bab379066
+        type: vertical-stack
+    icon: 'mdi:weather-partlycloudy'
+    id: 2
+    title: Väder
+  - cards:
+      - elements:
+          - entity: sensor.car_departure_time
             style:
+              font-size: 150%
               left: 10.7%
               top: 95%
-              font-size: 150%
-          - type: custom:hui-input-number-entity-row
-            entity: input_number.car_heater_dep_time_hour
-            name: ' ' # <-- Mellanslag mellan citationstecknen
+            type: state-label
+          - entity: input_number.car_heater_dep_time_hour
             icon: none
+            name: ' '
             style:
               left: 18%
               top: 80%
-          - type: custom:hui-input-number-entity-row
-            entity: input_number.car_heater_dep_time_minutes
-            name: ' ' # <-- Mellanslag mellan citationstecknen
+            type: 'custom:hui-input-number-entity-row'
+          - entity: input_number.car_heater_dep_time_minutes
             icon: none
+            name: ' '
             style:
               left: 18%
               top: 89%
-          - type: image
-            entity: switch.motorvarmare2
+            type: 'custom:hui-input-number-entity-row'
+          - entity: switch.osram_ut_2
+            state_image:
+              'off': /local/img/car/heater_off.png
+              'on': /local/img/car/heater_on.png
+              unavailable: /local/img/car/heater_unavailable.png
             style:
               left: 73%
               top: 70%
               transform: scale(1.0)
+            type: image
+          - entity: input_boolean.schedule_on_weekends
             state_image:
-              on: /local/img/car/heater_on.png
-              off: /local/img/car/heater_off.png
-              unavailable: /local/img/car/heater_unavailable.png
-
-          - type: image
-            entity: input_boolean.schedule_on_weekends
+              'off': /local/img/car/weekend-off.png
+              'on': /local/img/car/weekend-on.png
             style:
               left: 51%
               top: 83.5%
-
-            state_image:
-              on: /local/img/car/weekend-on.png
-              off: /local/img/car/weekend-off.png
-
-  - id: 4  # Automatically created id
-    icon: mdi:cellphone-wireless
-    # Title of the view. Will be used as the tooltip for tab icon
-    title: Karta
-    cards:
-      - id: 6aef2fd213244a1daf304a308f0e302b  # Automatically created id
-        type: entities
-        entities:
+            type: image
+        id: 809a520141ac4c4999204b250410bae9
+        image: /local/img/car/car-heater-background.jpg
+        type: picture-elements
+    icon: 'mdi:car'
+    id: 3
+    title: Plugs
+  - cards:
+      - entities:
           - group.people_status
           - group.tomas_devices
           - group.elins_devices
           - group.sallys_devices
           - group.melkers_devices
-        # Entities card will take a list of entities and show their state.
-      - id: d0bb476eaef541398cba8f348d6bbd08  # Automatically created id
-        type: map
-        # Title of the entities card
-        title: Familjekartan
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
-        entities:
+        id: 6aef2fd213244a1daf304a308f0e302b
+        type: entities
+      - entities:
           - sensor.presence_sally
           - sensor.presence_tomas
           - sensor.presence_elin
           - sensor.presence_melker
-
-  - id: 5  # Automatically created id
-    icon: mdi:gauge-low
-    title: System
-    cards:
-      - id: 21bb7cef44ec465cbd17271b1feea2c6  # Automatically created id
-        type: entities
-        entities:
+        id: d0bb476eaef541398cba8f348d6bbd08
+        title: Familjekartan
+        type: map
+    icon: 'mdi:cellphone-wireless'
+    id: 4
+    title: Karta
+  - cards:
+      - entities:
           - group.low_battery_sensors
-      - id: e4727b21ba4044ff96585d62fb36b118  # Automatically created id
-        type: picture-elements
-        image: /local/img/performance_bg.png
-        elements:
-          - type: custom:canvas-gauge-card
+        id: 21bb7cef44ec465cbd17271b1feea2c6
+        type: entities
+      - elements:
+          - card_height: 125
             entity: sensor.processor_use
-            card_height: 125
             gauge:
-              type: radial-gauge
-              width: 210
-              height: 210
-              minValue: 0
-              maxValue: 100
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              majorTicks: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90',
-                '100']
-              minorTicks: 2
-              strokeTicks: true
-              highlights: [{from: 80, to: 100, color: 'rgba(200, 50, 50, .75)'}]
-              colorPlate: '#ddd'
-              borders: false
-              needleType: arrow
-              needleWidth: 2
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
               animationDuration: 1500
               animationRule: linear
+              borders: false
+              colorPlate: '#ddd'
+              height: 210
+              highlights:
+                - color: 'rgba(200, 50, 50, .75)'
+                  from: 80
+                  to: 100
+              majorTicks:
+                - '0'
+                - '10'
+                - '20'
+                - '30'
+                - '40'
+                - '50'
+                - '60'
+                - '70'
+                - '80'
+                - '90'
+                - '100'
+              maxValue: 100
+              minValue: 0
+              minorTicks: 2
+              needleCircleInner: false
+              needleCircleOuter: true
+              needleCircleSize: 7
+              needleType: arrow
+              needleWidth: 2
+              startAngle: 90
+              strokeTicks: true
+              ticksAngle: 180
+              type: radial-gauge
+              valueBox: false
+              width: 210
             style:
               left: 4.2%
               top: 9.6%
               transform: none
-
-          - type: custom:canvas-gauge-card
+            type: 'custom:canvas-gauge-card'
+          - card_height: 125
             entity: sensor.load_1m
-            card_height: 125
             gauge:
-              type: radial-gauge
-              width: 210
-              height: 210
-              minValue: 0
-              maxValue: 100
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              majorTicks: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90',
-                '100']
-              minorTicks: 2
-              strokeTicks: true
-              highlights: [{from: 80, to: 100, color: 'rgba(200, 50, 50, .75)'}]
-              colorPlate: '#ddd'
-              borders: false
-              needleType: arrow
-              needleWidth: 2
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
               animationDuration: 1500
               animationRule: linear
+              borders: false
+              colorPlate: '#ddd'
+              height: 210
+              highlights:
+                - color: 'rgba(200, 50, 50, .75)'
+                  from: 80
+                  to: 100
+              majorTicks:
+                - '0'
+                - '10'
+                - '20'
+                - '30'
+                - '40'
+                - '50'
+                - '60'
+                - '70'
+                - '80'
+                - '90'
+                - '100'
+              maxValue: 100
+              minValue: 0
+              minorTicks: 2
+              needleCircleInner: false
+              needleCircleOuter: true
+              needleCircleSize: 7
+              needleType: arrow
+              needleWidth: 2
+              startAngle: 90
+              strokeTicks: true
+              ticksAngle: 180
+              type: radial-gauge
+              valueBox: false
+              width: 210
             style:
               left: 52.8%
               top: 9.6%
               transform: none
-
-          - type: custom:canvas-gauge-card
+            type: 'custom:canvas-gauge-card'
+          - card_height: 125
             entity: sensor.memory_use_percent
-            card_height: 125
             gauge:
-              type: radial-gauge
-              width: 210
-              height: 210
-              minValue: 0
-              maxValue: 100
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              majorTicks: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90',
-                '100']
-              minorTicks: 2
-              strokeTicks: true
-              highlights: [{from: 80, to: 100, color: 'rgba(200, 50, 50, .75)'}]
-              colorPlate: '#ddd'
-              borders: false
-              needleType: arrow
-              needleWidth: 2
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
               animationDuration: 1500
               animationRule: linear
+              borders: false
+              colorPlate: '#ddd'
+              height: 210
+              highlights:
+                - color: 'rgba(200, 50, 50, .75)'
+                  from: 80
+                  to: 100
+              majorTicks:
+                - '0'
+                - '10'
+                - '20'
+                - '30'
+                - '40'
+                - '50'
+                - '60'
+                - '70'
+                - '80'
+                - '90'
+                - '100'
+              maxValue: 100
+              minValue: 0
+              minorTicks: 2
+              needleCircleInner: false
+              needleCircleOuter: true
+              needleCircleSize: 7
+              needleType: arrow
+              needleWidth: 2
+              startAngle: 90
+              strokeTicks: true
+              ticksAngle: 180
+              type: radial-gauge
+              valueBox: false
+              width: 210
             style:
               left: 4.2%
               top: 57.8%
               transform: none
-
-
-          - type: custom:canvas-gauge-card
+            type: 'custom:canvas-gauge-card'
+          - card_height: 125
             entity: sensor.disk_use_percent_home
-            card_height: 125
             gauge:
-              type: radial-gauge
-              width: 210
-              height: 210
-              minValue: 0
-              maxValue: 100
-              startAngle: 90
-              ticksAngle: 180
-              valueBox: false
-              majorTicks: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90',
-                '100']
-              minorTicks: 2
-              strokeTicks: true
-              highlights: [{from: 80, to: 100, color: 'rgba(200, 50, 50, .75)'}]
-              colorPlate: '#ddd'
-              borders: false
-              needleType: arrow
-              needleWidth: 2
-              needleCircleSize: 7
-              needleCircleOuter: true
-              needleCircleInner: false
               animationDuration: 1500
               animationRule: linear
+              borders: false
+              colorPlate: '#ddd'
+              height: 210
+              highlights:
+                - color: 'rgba(200, 50, 50, .75)'
+                  from: 80
+                  to: 100
+              majorTicks:
+                - '0'
+                - '10'
+                - '20'
+                - '30'
+                - '40'
+                - '50'
+                - '60'
+                - '70'
+                - '80'
+                - '90'
+                - '100'
+              maxValue: 100
+              minValue: 0
+              minorTicks: 2
+              needleCircleInner: false
+              needleCircleOuter: true
+              needleCircleSize: 7
+              needleType: arrow
+              needleWidth: 2
+              startAngle: 90
+              strokeTicks: true
+              ticksAngle: 180
+              type: radial-gauge
+              valueBox: false
+              width: 210
             style:
               left: 52.8%
               top: 57.8%
               transform: none
-
-  - id: 6  # Automatically created id
-    icon: mdi:camera
-    title: Kameror
-    cards:
-      - id: fbe940e9094c458b9083ff0d3450b38f  # Automatically created id
-        type: picture-glance
-        camera_image: camera.kamera_uppe
+            type: 'custom:canvas-gauge-card'
+        id: e4727b21ba4044ff96585d62fb36b118
+        image: /local/img/performance_bg.png
+        type: picture-elements
+    icon: 'mdi:gauge-low'
+    id: 5
+    title: System
+  - cards:
+      - camera_image: camera.kamera_uppe
         entities:
           - sensor.kamera_uppe_light_sensor
           - switch.kamera_uppe_night_mode
           - binary_sensor.kamera_uppe_motion_sensor
-      - id: bfade4e5c6fb4af89cfc159f5731482e  # Automatically created id
-        type: entities
-        entities:
+        id: fbe940e9094c458b9083ff0d3450b38f
+        type: picture-glance
+      - entities:
           - camera.kamera_uppe
           - switch.kamera_uppe_h264_rtsp_server
           - switch.kamera_uppe_mjpeg_rtsp_server
@@ -721,4 +646,8 @@ views:
           - switch.kamera_uppe_motion_tracking
           - camera.kamera_uppe_motion_snapshot
           - binary_sensor.kamera_uppe_motion_sensor
-
+        id: bfade4e5c6fb4af89cfc159f5731482e
+        type: entities
+    icon: 'mdi:camera'
+    id: 6
+    title: Kameror

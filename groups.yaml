@@ -63,16 +63,16 @@ ligths_view:
   view: yes
   icon: mdi:lightbulb-outline
   entities:
-    - light.tomas_rum_fonster
+    - light.tomas_fonster
     - switch.switch2
     - switch.switch3
     - switch.switch4_tomas_fan
     - switch.switch5
-    #- switch.switch66
+    #- switch.ikea2
     - switch.switch7
     - switch.switch8
     - switch.switch10
-    - light.tvnere_fonster  
+    - light.tvrummet  
 
 uteclimate:
   name: Klimat ute
@@ -91,31 +91,31 @@ upper_floor:
     - group.room_sally
     - group.room_vardagsrum_uppe
     - group.room_koket
-    - sensor.temp_vardagsrum_uppe
+    - sensor.temp_vardagsrum
     - sensor.temp_sallysrum
-    - binary_sensor.rorelsesensor_vardagsrummet
-    - binary_sensor.ytterdorr_uppe
+    - binary_sensor.vardagsrum_pir
+    - binary_sensor.dorr_uppe_magnet
 lower_floor:
   name: Undervåning
   view: no
   entities:
     - group.room_tvnere
     - group.room_melker
-    - binary_sensor.rorelsesensor_nere
+    - binary_sensor.tvrum_pir
     - sensor.temp_sovrum_nere
     - sensor.temp_elins_rum
 outside:
   name: Ute
   view: no
   entities:
-    - switch.switch9outdoor
+    - switch.osram_ut_1
 room_tvnere:
   name: TV rummet nere
   view: no
   entities:
-    - light.tvnere_fonster 
-    - switch.plug1
-    - binary_sensor.rorelsesensor_nere
+    - light.tvrummet 
+    - switch.osram1
+    - binary_sensor.tvrum_pir
 
 dummy:
   name: dummy
@@ -134,39 +134,38 @@ room_tomas:
   name: Tomas rum
   view: no
   entities:
-    - light.tomas_rum_fonster
+    - light.tomas_fonster
     - switch.computer_tomas # logical switch to see computer status
     - switch.switch4_tomas_fan
-    - binary_sensor.rorelsesensor_tomas_rum
+    - binary_sensor.tomas_pir
 room_melker: 
   name: Melkers rum
   view: no
   entities:
     - switch.switch5_melkers_fan
     - switch.switch8_melkers_tv # Melkers tv
-    - binary_sensor.rorelsesensor_melkers_rum
+    - binary_sensor.melker_pir
 room_sally:
   name: Sallys rum
   view: no
   entities:
-    - switch.switch2
-    - light.sallys_rum_fonster
-    - binary_sensor.rorelsesensor_sallys_rum
+    - light.sallys_rum
+    - binary_sensor.sally_pir
 
 room_sovrum:
   name: Sovrummet
   view: no
   entities:
     - light.sovrum
-    - binary_sensor.rorelsesensor_sovrummet
+    - binary_sensor.sovrum_pir
 room_vardagsrum_uppe:
   name: Vardagsrummet uppe
   view: no
   entities:
-    - light.vardagsrummet
+    - light.vardagsrum
     - light.hallen #Hallway
-    - binary_sensor.rorelsesensor_vardagsrummet
-    - binary_sensor.ytterdorr_uppe
+    - binary_sensor.vardagsrum_pir
+    - binary_sensor.dorr_uppe_magnet
 
 room_koket:
   name: Köket

@@ -16,11 +16,11 @@ sensor:
       temp_outside:
           friendly_name: "Temperature outside"
         #unit_of_measurement: 'degrees'
-          value_template: "{{ states.sensor.utetemp_temperature.state | round(0) }}"
+          value_template: "{{ states.sensor.temp_altan_ute.state | round(0) }}"
       hum_outside:
           friendly_name: "Humidity outside"
         #unit_of_measurement: 'degrees'
-          value_template: "{{ states.sensor.utetemp_humidity.state | round(0) }}"
+          value_template: "{{ states.sensor.temp_altan_ute_2.state | round(0) }}"
 
 group:
   # För givare och väder    

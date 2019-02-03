@@ -4,3 +4,14 @@ light:
       192.168.1.218:
         name: Ambient TV
         transition: 3500
+  # - platform: group
+  #   name: hallen
+  #   entities:
+  #     - light.hallen_dorren
+  #     - light.hallen_byra
+
+  # - platform: group
+  #   name: vardagsrummet
+  #   entities:
+  #     - light.hallen_dorren
+  #     - light.hallen_byra

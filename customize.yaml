@@ -1,24 +1,24 @@
 # 433Mhz switches
-switch.switch1:
+switch.ikea1:
   friendly_name: Julbelysning kök lilla fönster
   icon: mdi:lightbulb
-switch.switch66:
+switch.ikea2:
   friendly_name: Julbelysning kök fönster
   icon: mdi:lightbulb
 switch.switch3:
   friendly_name: Julbelysning kök
   icon: mdi:lightbulb
-switch.switch11:
+switch.ikea3:
   friendly_name: Julbelysning vardagsrum vänster
   icon: mdi:lightbulb
-switch.switch12:
+switch.innr2:
   friendly_name: Julbelysning vardagsrum mitten
   icon: mdi:lightbulb
 switch.switch13:
   friendly_name: Julbelysning vardagsrum höger
   icon: mdi:lightbulb
-switch.switch14:
-  friendly_name: Julbelysning tvrum vänster
+switch.innr3:
+  friendly_name: Julbelysning tvrum
   icon: mdi:lightbulb
 switch.switch15:
   friendly_name: Julbelysning tvrum höger
@@ -28,7 +28,7 @@ switch.switch16:
   icon: mdi:lightbulb
 group.room_tvnere:
   icon: mdi:lightbulb-outline
-light.tomas_rum_fonster:
+light.tomas_fonster:
   friendly_name: Lampa Tomas rum
   icon: mdi:lightbulb
 switch.melkers_fonsterlampa:
@@ -50,11 +50,11 @@ switch.switch8_melkers_tv:
   icon: mdi:google-chrome
 switch.switch9outdoor:
   friendly_name: Switch farstukvist
-switch.plug1:
+switch.osram1:
   friendly_name: Lampor vägg TV-rummet nere
-light.tvnere_fonster:
+light.tvrummet:
   friendly_name: Lampor fönster TV-rummet nere
-light.vardagsrummet:
+light.vardagsrum:
   friendly_name: Lampor fönster vardagsrummet
 light.hallen:
   friendly_name: Lampor hallen
@@ -119,28 +119,28 @@ sensor.melker_phone_mqtt_bt:
 device_tracker.google_maps_113728439587103002947:
   friendly_name: Melker mobil GPS
   entity_picture: /local/melker.jpg
-binary_sensor.rorelsesensor_vardagsrummet:
+binary_sensor.vardagsrum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor vardagsrum uppe
-binary_sensor.rorelsesensor_trapp:
+binary_sensor.trapp_pir:
   icon: mdi:run-fast
-  friendly_name: Rörelsedetektor trappen
-binary_sensor.rorelsesensor_nere:
+  friendly_name: Rörelsedetektor trapp
+binary_sensor.tvrum_pir:
   icon: mdi:run-fast
-  friendly_name: Rörelsedetektor TV-rummet nere
-binary_sensor.rorelsesensor_tomas_rum:
+  friendly_name: Rörelsedetektor TV-rum
+binary_sensor.tomas_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Tomas rum
-binary_sensor.rorelsesensor_sallys_rum:
+binary_sensor.sally_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Sallys rum
-binary_sensor.rorelsesensor_melkers_rum:
+binary_sensor.melker_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Melkers rum
-binary_sensor.rorelsesensor_sovrummet:
+binary_sensor.sovrum_pir:
   icon: mdi:run-fast
-  friendly_name: Rörelsedetektor sovrummet
-binary_sensor.rorelsesensor_kok:
+  friendly_name: Rörelsedetektor sovrum
+binary_sensor.kok_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor köket
 sensor.frysnere_temperature:
@@ -157,18 +157,18 @@ sensor.yr_symbol:
   friendly_name: Väder
 sensor.temp_sovrum_nere:
   friendly_name: Temperatur sovrum nere
-sensor.temp_vardagsrum_uppe:
+sensor.temp_vardagsrum:
   friendly_name: Temperatur vardagsrum uppe
 sensor.temp_sallysrum:
   friendly_name: Temperatur Sallys rum
 sensor.temp_elins_rum:
   friendly_name: Temperatur Sallys rum
-binary_sensor.ytterdorr_uppe:
+binary_sensor.dorr_uppe_magnet:
   icon: mdi:door
   friendly_name: Ytterdörr uppe
 media_player.house:
   icon: mdi:google-home
-media_player.kök:
+media_player.kok:
   icon: mdi:google-home
 media_player.sovrum:
   icon: mdi:google-home

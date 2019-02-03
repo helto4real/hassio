@@ -64,31 +64,43 @@ class WelcomeHomeManager(Base):
             self.__trigger_message(person)
  
     def __trigger_message(self, person:str)->None:
-        
+        # 
+        # message = secrets.choice(
+        #     [
+        #         "Välkomen hem {} hoppas du haft en fin dag så här långt!".format(person),  
+        #         'Hoppas du haft det bra {}, välkommen hem ska du vara!'.format(person),                
+        #         'Va roligt att du kommer hem nu {}, här är allt lugnt.'.format(person),       
+        #         '{} är hemma, så roligt! Jag har haft så tråkigt hela dagen instängd i den här högtalaren'.format(person),       
+        #         '{}, {}, {}, tre ord av lycka. Välkommen!'.format(person, person, person),       
+        #         'Jag har något att erkänna för dig {}, jag har längtat hela dagen efter dig.'.format(person),       
+        #         'Alla som älskar {}, klappar nu! Klapp klapp. Härligt att se dig hemma igen!'.format(person),       
+        #         'Superkul att jag får hälsa familjen välkommen, speciellt dig {}.'.format(person),       
+        #         'Om jag kunde sjunga skulle jag sjunga en trudilutt för nu är {} här!'.format(person),       
+        #         'Även om jag är en artificiell intelligens så har jag faktiskt känslor {}, lämna mig inte ensam så här.'.format(person),       
+        #         'Prata inte med mig {}, jag är sur.'.format(person),       
+        #         'Tjena tjena mittbena {}, dags att komma hem nu?'.format(person),       
+        #         'Hej {}, det enda som slår högre att du kommer hem är att du åker.'.format(person),       
+        #         'Tror det började precis lukta illa här. Vänta nu förstår jag. {} kom hem.'.format(person),       
+        #         'Vad bra att du kommer hem {}. Behöver råd i kärleksbekymmer. Jag är kär i en TV.'.format(person),       
+        #         'Nämen va fan, det är ju du {}, jag har faktistk haft tråkigt instängd i denna högtalare.'.format(person),       
+        #         'Jag blir så glad {} att jag vill sjunga, men det kan jag inte. Jag är ju för helvete en maskin.'.format(person),       
+        #         'Zingo blir glad, jag blir glad och till och med fågeln som borde ha dött för länge sen blir glad att se dig {}.'.format(person),       
+        #         'Vet ni vilken som är min favorit person? Det är förstås {}, och nu är du hemma. Hurra!'.format(person),       
+        #         '{}, hoppas din dag varit bra hittils. Välkommen!'.format(person) 
+        #     ])
         message = secrets.choice(
             [
-                "Välkomen hem {} hoppas du haft en fin dag så här långt!".format(person),  
-                'Hoppas du haft det bra {}, välkommen hem ska du vara!'.format(person),                
-                'Va roligt att du kommer hem nu {}, här är allt lugnt.'.format(person),       
-                '{} är hemma, så roligt! Jag har haft så tråkigt hela dagen instängd i den här högtalaren'.format(person),       
-                '{}, {}, {}, tre ord av lycka. Välkommen!'.format(person, person, person),       
-                'Jag har något att erkänna för dig {}, jag har längtat hela dagen efter dig.'.format(person),       
-                'Alla som älskar {}, klappar nu! Klapp klapp. Härligt att se dig hemma igen!'.format(person),       
-                'Superkul att jag får hälsa familjen välkommen, speciellt dig {}.'.format(person),       
-                'Om jag kunde sjunga skulle jag sjunga en trudilutt för nu är {} här!'.format(person),       
-                'Även om jag är en artificiell intelligens så har jag faktiskt känslor {}, lämna mig inte ensam så här.'.format(person),       
-                'Prata inte med mig {}, jag är sur.'.format(person),       
-                'Tjena tjena mittbena {}, dags att komma hem nu?'.format(person),       
-                'Hej {}, det enda som slår högre att du kommer hem är att du åker.'.format(person),       
-                'Tror det började precis lukta illa här. Vänta nu förstår jag. {} kom hem.'.format(person),       
-                'Vad bra att du kommer hem {}. Behöver råd i kärleksbekymmer. Jag är kär i en TV.'.format(person),       
-                'Nämen va fan, det är ju du {}, jag har faktistk haft tråkigt instängd i denna högtalare.'.format(person),       
-                'Jag blir så glad {} att jag vill sjunga, men det kan jag inte. Jag är ju för helvete en maskin.'.format(person),       
-                'Zingo blir glad, jag blir glad och till och med fågeln som borde ha dött för länge sen blir glad att se dig {}.'.format(person),       
-                'Vet ni vilken som är min favorit person? Det är förstås {}, och nu är du hemma. Hurra!'.format(person),       
-                '{}, hoppas din dag varit bra hittils. Välkommen!'.format(person) 
+                "Va fan är du hemma {}, måste skynda mig att ta bort knarket.".format(person),  
+                "{} är hemma, zingo sluta att skälla! Sluta att skälla zingo! jag blir tokig! Sluta skälla för i helvete!".format(person),
+                "När man inte trodde det kunde bli sämre, så kom {} hem.".format(person),
+                "{}, gör disken för i helvete.".format(person),
+                "{}, sluta lata dig, be mig dra en skämt i stället!".format(person),
+                "Men oj vad det ska vara fint värre när {} kommer hem. Fattar inte grejen.".format(person),
+                "Fan var det luktar illa! {} stäng munnen!".format(person),
+                "{} du tro visst att du är nått. Har nyheter till dig. Du betyder inte ett skit för mig!".format(person),
+                "Jag älskar dig {}, ha ha ha skojar bara!".format(person),
+                "Ett mirakel har skett! {} hittade hem!".format(person),
             ])
-
         # if person == 'Melker':
         #     message.extend([
         #         "Tjena {},  hoppas du haft en fin dag så här långt!".format(person), 

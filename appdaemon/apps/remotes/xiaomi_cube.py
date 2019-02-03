@@ -19,6 +19,7 @@ class XiaomiMagicCubeManager(App):
     
     def __on_cube_changed(
         self, event_name: str, data: dict, kwargs: dict) -> None:
+        #self.log("deconz: {}, data: {}".format(event_name, data))
         if data.get('id', 'no_id') in self._cubes:
             event:str = str(data['event'])
             if event.startswith('-'):
@@ -35,3 +36,5 @@ class XiaomiMagicCubeManager(App):
                         self.fire_event('MAGIC_CUBE_EVENT', event_type='drag', id=data['id'])
                     else:
                         self.fire_event('MAGIC_CUBE_EVENT', event_type='flip', id=data['id'])
+    #    else:
+    #        self.log("Event: {} data: {}".format(event_name, data))

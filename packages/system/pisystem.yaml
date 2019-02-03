@@ -5,7 +5,7 @@ sensor:
         arg: /home
       - type: memory_use_percent
       - type: processor_use
-      - type: since_last_boot
+      - type: last_boot
       - type: network_out
         arg: 'wlp2s0'
       - type: load_1m
@@ -20,7 +20,7 @@ group:
       - sensor.processor_use
       - sensor.disk_use_percent_home
       - sensor.memory_use_percent
-      - sensor.since_last_boot
+      - sensor.last_boot
       - sensor.ha_uptime
       - sensor.cpu
       - sensor.network_out_wlp2s0

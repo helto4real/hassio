@@ -1,14 +1,15 @@
 google_assistant:
   project_id: hellstroms-home
+  api_key: M3NEQAZBzy5IZe307vmYz0kj
   expose_by_default: false
   entity_config:
-    light.tomas_rum_fonster:
+    light.tomas_fonster:
       name: 'tomas rum'
       expose: true
-    light.tvnere:
+    light.tvrummet:
       name: 'tv rummet'
       expose: true
-    light.vardagsrummet:
+    light.vardagsrum:
       name: vardagsrummet
       expose: true
     light.kok:
@@ -17,10 +18,10 @@ google_assistant:
     light.sovrum:   
       name: sovrummet
       expose: true
-    light.hallen:   
+    light.hall:   
       name: hallen
       expose: true
-    light.farstukvisten:   
+    light.osram_led_outdoor1:   
       name: farstukvisten
       expose: true
     light.sallys_rum:   
@@ -29,10 +30,10 @@ google_assistant:
     switch.computer_tomas:
       name: 'tomas dator'
       expose: true
-    switch.kaffebryggaren:   
+    switch.innr1:   
       name: kaffebryggaren
       expose: true
-    switch.motorvarmare2:
+    switch.osram_ut_2:
       name: 'motorvärmaren'
       expose: true
     switch.switch7:
@@ -44,7 +45,6 @@ google_assistant:
     switch.film:
       name: 'film'
       expose: true
-    
     scene.dag:
       name: 'dag'
       expose: true

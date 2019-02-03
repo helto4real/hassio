@@ -25,7 +25,7 @@ config:
 
 
 http:
-  api_password: !secret http_password
+#  api_password: !secret http_password
   ip_ban_enabled: True
   login_attempts_threshold: 3
   use_x_forwarded_for: True
@@ -61,6 +61,10 @@ recorder:
       - sensor.presence_tomas
       - sensor.presence_sally
       - sensor.presence_melker
+      - sensor.elin_presence
+      - sensor.tomas_presence
+      - sensor.sally_presence
+      - sensor.melker_presence
       - sensor.sally_phone_mqtt_bt
       - sensor.melker_phone_mqtt_bt
       - sensor.tomas_phone_mqtt_bt
@@ -76,11 +80,11 @@ recorder:
       - sensor.frysnere_temperature  #Frys nere
       - sensor.frysuppe_temperature  #Frys uppe
       - sensor.temp_sovrum_nere
-      - sensor.temp_vardagsrum_uppe
+      - sensor.temp_vardagsrum_2
       - sensor.temp_sallysrum
       - sensor.temp_elins_rum
       - sensor.temp_frys_uppe
-      - binary_sensor.ytterdorr_uppe
+      - binary_sensor.dorr_uppe_magnet
       - sensor.occupancy
 
 logger:
@@ -127,15 +131,15 @@ influxdb:
       - sensor.frysnere_temperature  #Frys nere
       - sensor.frysuppe_temperature  #Frys uppe
       - sensor.temp_sovrum_nere
-      - sensor.temp_vardagsrum_uppe
+      - sensor.temp_vardagsrum
       - sensor.temp_sallysrum
       - sensor.temp_elins_rum
       - sensor.temp_frys_uppe
-      - binary_sensor.ytterdorr_uppe
+      - binary_sensor.dorr_uppe_magnet
       - sensor.kamera_uppe_light_sensor
       - switch.computer_tomas
-      - remote.tvroom 
-      - binary_sensor.rorelsesensor_vardagsrummet
+      - remote.tvrummet 
+      - binary_sensor.vardagsrum_pir
       # nuc stats
       - sensor.memory_use_percent
       - sensor.processor_use
@@ -153,7 +157,7 @@ tts:
     language: 'sv'
     cache: false
     time_memory: 600
-    base_url: http://192.168.1.5
+    #base_url: http://192.168.1.5
 
 hassio:    
 
