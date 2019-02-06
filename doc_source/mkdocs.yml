@@ -1,5 +1,5 @@
 site_name: My Home Assistant docs
-theme: readthedocs
+theme: 'material' #readthedocs
 google_analytics:
   - UA-133997912-1
   - auto
