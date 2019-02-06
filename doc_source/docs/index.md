@@ -3,9 +3,6 @@ title: Welcome
 summary: My documented Home Assistant configuration.
 authors:
     - Tomas Hellström (@helto4real)
-google_analytics:
-  - UA-133997912-1
-  - auto
 ---
 
 
