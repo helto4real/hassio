@@ -12,7 +12,7 @@ title: My gear
 - Razberry Z-wave (not currently use z-wave yet)
 - Telldus temperature sensors
 - Telldus switches (indoors and outdoors)
-- Xiaomi temp/hum sensors, door sensor
+- Xiaomi temp/hum sensors, door sensors, motion sensors
 - Nexa light switch
 - IKEA Trådfri lights 
 - IKEA Trådfri motions sensors

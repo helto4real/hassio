@@ -23,6 +23,7 @@ frontend:
 # Enables configuration UI
 config:
 
+system_health:
 
 http:
 #  api_password: !secret http_password
