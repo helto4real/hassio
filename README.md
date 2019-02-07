@@ -27,3 +27,5 @@ This is my home assistant setup. Please feel free to use what ever you want. Som
 See project tab to see what use-cases I implemented and wants to implement
 
 https://github.com/helto4real/hassio/projects/1
+
+<a href="https://www.buymeacoffee.com/ij1qXRM6E" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>

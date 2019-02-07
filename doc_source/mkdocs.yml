@@ -3,5 +3,6 @@ theme: 'material' #readthedocs
 google_analytics:
   - UA-133997912-1
   - auto
-repo_url: https://github.com/helto4real/hassio
+repo_url: https://github.com/helto4real/hassio/
 site_dir: ../docs
+site_author: 'Tomas Hellström, @helto4real'
