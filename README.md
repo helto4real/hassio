@@ -1,6 +1,10 @@
 # Tomas home assistant configuration
 This is my home assistant setup. Please feel free to use what ever you want. Some of the stuff are in swedish but trying to comment etc. in english.
 
+<a href="https://www.buymeacoffee.com/ij1qXRM6E" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+# Lovelace example
+![lovelace](/www/example_lovelace.jpg "Lovelace example")
+
 ## My gear
 - Intel NUC Debian, docker with Hass.IO
 - Appdaemon, most of my stuff is done in appdaemon, check it out!
@@ -28,4 +32,3 @@ See project tab to see what use-cases I implemented and wants to implement
 
 https://github.com/helto4real/hassio/projects/1
 
-<a href="https://www.buymeacoffee.com/ij1qXRM6E" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
