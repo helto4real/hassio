@@ -1,0 +1,328 @@
+title: Home
+icon: mdi:information-outline
+# panel: true
+path: home
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:picture-status-card'
+            card_height: 90px
+            entity: sensor.presence_tomas
+            font_color: white
+            image: /local/img/presence/tomas_presence_away.jpg
+            name: ' '
+            state_image:
+              Home: /local/img/presence/tomas_presence.jpg
+              Just arrived: /local/img/presence/tomas_presence.jpg
+            
+          - type: 'custom:picture-status-card'
+            card_height: 90px
+            entity: sensor.presence_elin
+            font_color: white
+            image: /local/img/presence/elin_presence_away.jpg
+            state_image:
+              Home: /local/img/presence/elin_presence.jpg
+              Just arrived: /local/img/presence/elin_presence.jpg
+            
+          - type: 'custom:picture-status-card'
+            card_height: 90px
+            entity: sensor.presence_sally
+            font_color: white
+            image: /local/img/presence/sally_presence_away.jpg
+            state_image:
+              Home: /local/img/presence/sally_presence.jpg
+              Just arrived: /local/img/presence/sally_presence.jpg
+            
+          - type: 'custom:picture-status-card'
+            card_height: 90px
+            entity: sensor.presence_melker
+            font_color: white
+            image: /local/img/presence/melker_presence_away.jpg
+            state_image:
+              Home: /local/img/presence/melker_presence.jpg
+              Just arrived: /local/img/presence/melker_presence.jpg
+            type: 'custom:picture-status-card'
+ 
+      #   type: horizontal-stack
+      - type: picture-elements
+        elements:
+          - entity: sensor.temp_outside
+            style:
+              font-size: 150%
+              font-weight: bold;
+              left: 9.8%
+              top: 47%
+            type: state-label
+          - entity: sensor.hum_outside
+            style:
+              font-size: 150%
+              font-weight: bold;
+              left: 24.8%
+              top: 47%
+            type: state-label
+          - entity: sensor.yr_symbol
+            style:
+              left: 40%
+              top: 52%
+            type: state-icon
+        image: /local/img/weather_bg.jpg
+        type: picture-elements
+      - type: picture-entity
+        entity: input_select.house_mode_select
+        show_name: false
+        show_state: false
+        state_image:
+          Dag: /local/img/housestatus/hs_day.png
+          Kväll: /local/img/housestatus/hs_evening.png
+          Morgon: /local/img/housestatus/hs_morning.png
+          Natt: /local/img/housestatus/hs_night.png
+        
+      - type: picture-elements
+        elements:
+          - entity: sensor.temp_vardagsrum
+            style:
+              left: 38%
+              top: 72%
+            type: state-label
+          - entity: binary_sensor.vardagsrum_pir
+            style:
+              left: 8.42%
+              top: 89.45%
+            type: state-icon
+          - entity: binary_sensor.trapp_pir
+            style:
+              left: 35.42%
+              top: 44.45%
+            type: state-icon
+          - entity: binary_sensor.dorr_uppe_magnet
+            style:
+              left: 48.5%
+              top: 10.5%
+            type: state-icon
+          - entity: light.vardagsrummet_hoger
+            style:
+              left: 17.9%
+              top: 89.45%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.vardagsrumet_mitten
+            style:
+              left: 38.2%
+              top: 89.45%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.vardagsrummet_vanster
+            style:
+              left: 60.5%
+              top: 89.45%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.osram_led_outdoor1
+            style:
+              left: 52.5%
+              top: 3.5%
+            type: state-icon
+          - entity: media_player.tv_uppe
+            style:
+              left: 17.4%
+              top: 54.45%
+            type: state-icon
+          - entity: light.hallen_dorr
+            style:
+              left: 55.5%
+              top: 10.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: media_player.vardagsrum
+            style:
+              left: 55.5%
+              top: 19.5%
+            type: state-icon
+          - entity: light.hallen_byra
+            style:
+              left: 55.5%
+              top: 27.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: binary_sensor.tomas_pir
+            style:
+              left: 78.5%
+              top: 44%
+            type: state-icon
+          - entity: light.tomas_fonster
+            style:
+              left: 82.5%
+              top: 10.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: switch.computer_tomas
+            style:
+              left: 92.2%
+              top: 10.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: switch.switch4_tomas_fan
+            style:
+              left: 92.2%
+              top: 20.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: sensor.temp_sallysrum
+            style:
+              left: 25%
+              top: 44%
+            type: state-label
+          - entity: binary_sensor.sally_pir
+            style:
+              left: 8.42%
+              top: 44%
+            type: state-icon
+          - entity: light.sallys_rum
+            style:
+              left: 17.9%
+              top: 10.5%
+            tap_action: toggle
+            type: state-icon
+          - entity: sensor.temp_frys_uppe
+            style:
+              left: 73%
+              top: 54%
+            type: state-label
+          - entity: binary_sensor.kok_pir
+            style:
+              left: 70.2%
+              top: 89.45%
+            type: state-icon
+          - entity: light.kok_fonster
+            style:
+              left: 78.2%
+              top: 89.45%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.kok_lilla_fonster
+            style:
+              left: 92.4%
+              top: 58.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: media_player.kok
+            style:
+              left: 85.5%
+              top: 89.45%
+            type: state-icon
+        image: /local/img/first_floor2.jpg
+        
+      - type: picture-elements
+        elements:
+          - entity: sensor.temp_sovrum_nere
+            style:
+              left: 17.5%
+              top: 68%
+            type: state-label
+          - entity: light.sovrum_fonster
+            style:
+              left: 16.6%
+              top: 90.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.sovrum_byra
+            style:
+              left: 27.6%
+              top: 75.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: binary_sensor.sovrum_pir
+            style:
+              left: 8.42%
+              top: 90.2%
+            type: state-icon
+          - entity: media_player.sovrum
+            style:
+              left: 25.6%
+              top: 90.2%
+            type: state-icon
+          - entity: light.tvrummet_hoger
+            style:
+              left: 47.2%
+              top: 90.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.tvrummet_vanster
+            style:
+              left: 57.42%
+              top: 90.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.ambient_tv
+            style:
+              left: 44%
+              top: 50.8%
+            type: state-icon
+          - entity: switch.osram1
+            style:
+              left: 67%
+              top: 50.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: binary_sensor.tvrum_pir
+            style:
+              left: 33.42%
+              top: 90.2%
+            type: state-icon
+          - entity: media_player.tv_nere
+            style:
+              left: 50%
+              top: 50.8%
+            type: state-icon
+          - entity: media_player.tv_rummet_gh
+            style:
+              left: 59%
+              top: 50.8%
+            type: state-icon
+          - entity: sensor.temp_melkersrum
+            style:
+              left: 80.5%
+              top: 68%
+            type: state-label
+          - entity: binary_sensor.melker_pir
+            style:
+              left: 73.42%
+              top: 90.2%
+            type: state-icon
+          - entity: media_player.melkers_tv
+            style:
+              left: 92.4%
+              top: 50.8%
+            type: state-icon
+          - entity: switch.switch8_melkers_tv
+            style:
+              left: 92.4%
+              top: 60.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: switch.switch5_melkers_fan
+            style:
+              left: 92.4%
+              top: 70.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: switch.ikea3
+            style:
+              left: 83.22%
+              top: 90.2%
+            type: state-icon
+          - entity: sensor.temp_elinsrum
+            style:
+              left: 78.5%
+              top: 25%
+            type: state-label
+          - entity: sensor.frysnere_temperature
+            style:
+              left: 86.5%
+              top: 27%
+              transform: rotate(90deg)
+            type: state-label
+        image: /local/img/second_floor2.jpg
+      

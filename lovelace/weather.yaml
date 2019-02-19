@@ -1,0 +1,71 @@
+icon: 'mdi:weather-partlycloudy'
+title: Väder
+path: weather
+
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          name: 'Temperatur ute'
+          color_thresholds:
+            - value: -15
+              color: "#112266"
+            - value: 0
+              color: "#00CED1"
+            - value: 25
+              color: "#590000"
+          entities:
+            - sensor.utetemp_temperature
+        - type: custom:mini-graph-card
+          name: 'Fukt ute'
+          color_thresholds:
+            - value: 80
+              color: "#112266"
+            - value: 60
+              color: "#00CED1"
+            - value: 40
+              color: "#590000"
+          entities:
+            - sensor.utetemp_humidity
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          name: 'Vind (m/s)'
+          color_thresholds:
+            - value: 0
+              color: "#003300"
+            - value: 10
+              color: "#555500"
+            - value: 20
+              color: "#590000"
+          entities:
+            - sensor.yr_wind_speed
+        - type: custom:mini-graph-card
+          name: 'Molninghet'
+          color_thresholds:
+            - value: 0
+              color: "#003300"
+            - value: 50
+              color: "#555500"
+            - value: 100
+              color: "#590000"
+          entities:
+            - sensor.yr_cloudiness
+      - type: entities
+        entities:
+          - sun.sun
+          - sensor.yr_symbol
+       
+      - type: picture
+        image: >-
+          https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png
+
+      - type: weather-forecast
+        entity: weather.smhi_hemma        
+      - type: custom:smhi-forecast-card
+        entity: weather.smhi_hemma
+
+    
+    

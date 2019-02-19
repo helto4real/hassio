@@ -87,6 +87,8 @@ recorder:
       - sensor.temp_frys_uppe
       - binary_sensor.dorr_uppe_magnet
       - sensor.occupancy
+      - sensor.yr_cloudiness
+      - sensor.yr_wind_speed
 
 logger:
   default: info
@@ -161,6 +163,9 @@ tts:
     #base_url: http://192.168.1.5
 
 hassio:    
+
+lovelace:
+  mode: yaml
 
 #mqtt:
 #  broker: !secret mqqtt_broker

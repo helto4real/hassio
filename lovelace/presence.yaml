@@ -1,0 +1,17 @@
+title: presence
+icon: 'mdi:cellphone-wireless'
+cards:
+  - type: entities
+    entities:
+      - group.people_status
+      - group.tomas_devices
+      - group.elins_devices
+      - group.sallys_devices
+      - group.melkers_devices
+   
+  - type: map
+    entities:
+      - sensor.presence_sally
+      - sensor.presence_tomas
+      - sensor.presence_elin
+      - sensor.presence_melker

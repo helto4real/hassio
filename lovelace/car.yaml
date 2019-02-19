@@ -1,0 +1,50 @@
+title: Car
+icon: mdi:car
+path: car
+cards:
+  - type: picture-elements
+    image: /local/img/car/car-heater-background.jpg
+    elements:
+      - type: state-label
+        entity: sensor.car_departure_time
+        style:
+          font-size: 150%
+          left: 10.7%
+          top: 95%
+        
+      - type: 'custom:hui-input-number-entity-row'
+        entity: input_number.car_heater_dep_time_hour
+        icon: none
+        name: ' '
+        style:
+          left: 18%
+          top: 80%
+        
+      - type: 'custom:hui-input-number-entity-row'
+        entity: input_number.car_heater_dep_time_minutes
+        icon: none
+        name: ' '
+        style:
+          left: 18%
+          top: 89%
+        
+      - type: image
+        entity: switch.osram_ut_2
+        state_image:
+          'off': /local/img/car/heater_off.png
+          'on': /local/img/car/heater_on.png
+          unavailable: /local/img/car/heater_unavailable.png
+        style:
+          left: 73%
+          top: 70%
+          transform: scale(1.0)
+        
+      - type: image
+        entity: input_boolean.schedule_on_weekends
+        state_image:
+          'off': /local/img/car/weekend-off.png
+          'on': /local/img/car/weekend-on.png
+        style:
+          left: 51%
+          top: 83.5%
+        

@@ -1,0 +1,27 @@
+icon: 'mdi:cast'
+id: 1
+title: Media
+# panel: true
+path: cast
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        entities:
+          - remote.tvrummet
+          - switch.switch7
+          - switch.switch8_melkers_tv
+        
+      - type: 'custom:media-player-card'
+        entity: media_player.tv_nere
+        image_folder: /local/custom_cards/img
+        
+      - type: 'custom:media-player-card'
+        entity: media_player.tv_uppe
+        image_folder: /local/custom_cards/img
+        
+      - type: 'custom:media-player-card'
+        entity: media_player.melkers_tv
+        image_folder: /local/custom_cards/img
+            
+
