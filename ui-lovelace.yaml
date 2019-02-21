@@ -3,7 +3,7 @@ resources:
     type: module
   - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
     type: module
-  - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.23
+  - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.25
     type: module
 title: Hellströms home
 views:

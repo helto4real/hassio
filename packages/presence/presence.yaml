@@ -1,5 +1,3 @@
-
-
 group:
 
   people_status:
@@ -112,8 +110,8 @@ device_tracker:
     username: !secret gu 
     password: !secret gp
 
-  - platform: googlehome
-    host: '192.168.1.65'
+  # - platform: googlehome
+  #   host: '192.168.1.65'
 
 sensor:
   - platform: mqtt

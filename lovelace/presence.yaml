@@ -8,7 +8,14 @@ cards:
       - group.elins_devices
       - group.sallys_devices
       - group.melkers_devices
-   
+
+  - type: entities
+    entities:
+      - person.tomas
+      - person.elin
+      - person.sally
+      - person.melker
+
   - type: map
     entities:
       - sensor.presence_sally

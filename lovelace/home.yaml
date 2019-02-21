@@ -9,7 +9,7 @@ cards:
         cards:
           - type: 'custom:picture-status-card'
             card_height: 90px
-            entity: sensor.presence_tomas
+            entity: person.tomas
             font_color: white
             image: /local/img/presence/tomas_presence_away.jpg
             name: ' '
@@ -19,7 +19,7 @@ cards:
             
           - type: 'custom:picture-status-card'
             card_height: 90px
-            entity: sensor.presence_elin
+            entity: person.elin
             font_color: white
             image: /local/img/presence/elin_presence_away.jpg
             state_image:
@@ -28,7 +28,7 @@ cards:
             
           - type: 'custom:picture-status-card'
             card_height: 90px
-            entity: sensor.presence_sally
+            entity: person.sally
             font_color: white
             image: /local/img/presence/sally_presence_away.jpg
             state_image:
@@ -37,13 +37,12 @@ cards:
             
           - type: 'custom:picture-status-card'
             card_height: 90px
-            entity: sensor.presence_melker
+            entity: person.melker
             font_color: white
             image: /local/img/presence/melker_presence_away.jpg
             state_image:
               Home: /local/img/presence/melker_presence.jpg
               Just arrived: /local/img/presence/melker_presence.jpg
-            type: 'custom:picture-status-card'
  
       #   type: horizontal-stack
       - type: picture-elements
@@ -68,7 +67,6 @@ cards:
               top: 52%
             type: state-icon
         image: /local/img/weather_bg.jpg
-        type: picture-elements
       - type: picture-entity
         entity: input_select.house_mode_select
         show_name: false

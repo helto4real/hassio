@@ -58,14 +58,14 @@ recorder:
       - input_select.house_mode_select
       - media_player.melkers_tv
       # tracking
-      - sensor.presence_elin
-      - sensor.presence_tomas
-      - sensor.presence_sally
-      - sensor.presence_melker
-      - sensor.elin_presence
-      - sensor.tomas_presence
-      - sensor.sally_presence
-      - sensor.melker_presence
+      - person.sally
+      - person.melker
+      - person.elin
+      - person.tomas
+      - device_tracker.sally_presence
+      - device_tracker.melker_presence
+      - device_tracker.elin_presence
+      - device_tracker.tomas_presence
       - sensor.sally_phone_mqtt_bt
       - sensor.melker_phone_mqtt_bt
       - sensor.tomas_phone_mqtt_bt
@@ -167,6 +167,23 @@ hassio:
 lovelace:
   mode: yaml
 
+person:
+  - name: Tomas
+    id: tomastracker
+    device_trackers:
+      - device_tracker.tomas_presence
+  - name: Elin
+    id: elintracker
+    device_trackers:
+      - device_tracker.elin_presence
+  - name: Sally
+    id: sallytracker
+    device_trackers:
+      - device_tracker.sally_presence
+  - name: Melker
+    id: melkertracker
+    device_trackers:
+      - device_tracker.melker_presence
 #mqtt:
 #  broker: !secret mqqtt_broker
 #  discovery: true
