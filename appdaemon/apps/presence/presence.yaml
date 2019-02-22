@@ -1,40 +1,40 @@
----
-app_presence_tomas:
-  module: presence
-  class: a_better_presence
-  name: presence_tomas                         # name of the device in Hass
-  friendly_name: 'Tomas tracker'                # display name
-  timer: 300                                   # timeout in seconds from just arrived to home and just left to away (5 min)
-  update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
-  group_devices: group.tomas_devices           # The group that contains the tracked devices
-  proximity_sensor: proximity.prox_home_tomas  # The proximity to get the prox values
+# ---
+# app_presence_tomas:
+#   module: presence
+#   class: a_better_presence
+#   name: presence_tomas                         # name of the device in Hass
+#   friendly_name: 'Tomas tracker'                # display name
+#   timer: 300                                   # timeout in seconds from just arrived to home and just left to away (5 min)
+#   update_time: 7200                            # how old reported values get to be before reporting not_home (2hr)
+#   group_devices: group.tomas_devices           # The group that contains the tracked devices
+#   proximity_sensor: proximity.prox_home_tomas  # The proximity to get the prox values
 
  
-app_presence_elin:
-  module: presence
-  class: a_better_presence
-  name: presence_elin
-  friendly_name: 'Elins tracker'
-  timer: 300
-  update_time: 7200
-  group_devices: group.elins_devices
-  proximity_sensor: proximity.prox_home_elin 
+# app_presence_elin:
+#   module: presence
+#   class: a_better_presence
+#   name: presence_elin
+#   friendly_name: 'Elins tracker'
+#   timer: 300
+#   update_time: 7200
+#   group_devices: group.elins_devices
+#   proximity_sensor: proximity.prox_home_elin 
 
-app_presence_sally:
-  module: presence
-  class: a_better_presence
-  name: presence_sally
-  friendly_name: 'Sallys tracker'
-  timer: 300
-  update_time: 7200   
-  group_devices: group.sallys_devices
-  proximity_sensor: proximity.prox_home_sally 
-app_presence_melker:
-  module: presence
-  class: a_better_presence
-  name: presence_melker
-  friendly_name: 'Melkers tracker'
-  timer: 300
-  update_time: 7200   
-  group_devices: group.melkers_devices
-  proximity_sensor: proximity.prox_home_melker
+# app_presence_sally:
+#   module: presence
+#   class: a_better_presence
+#   name: presence_sally
+#   friendly_name: 'Sallys tracker'
+#   timer: 300
+#   update_time: 7200   
+#   group_devices: group.sallys_devices
+#   proximity_sensor: proximity.prox_home_sally 
+# app_presence_melker:
+#   module: presence
+#   class: a_better_presence
+#   name: presence_melker
+#   friendly_name: 'Melkers tracker'
+#   timer: 300
+#   update_time: 7200   
+#   group_devices: group.melkers_devices
+#   proximity_sensor: proximity.prox_home_melker
