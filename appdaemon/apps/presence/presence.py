@@ -54,7 +54,7 @@ class a_better_presence(hass.Hass):
 
         self._timer = None
 
-        self.sensorname = "sensor.{}".format(self.args["name"])
+        self.sensorname = "device_tracker.{}".format(self.args["name"])
         self._home_state = None
 
         # sensor attributes
