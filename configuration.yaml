@@ -119,10 +119,11 @@ influxdb:
       - media_player.melkers_tv
       - media_player.tv_nere
       # tracking
-      - sensor.presence_elin
-      - sensor.presence_tomas
-      - sensor.presence_melker
-      - sensor.presence_sally
+      - device_tracker.elin_presence
+      - device_tracker.tomas_presence
+      - device_tracker.melker_presence
+      - device_tracker.sally_presence
+
       - sensor.tomas_phone_mqtt_bt # just for reference remove later
       - device_tracker.tomass8  # just for reference remove later
       - device_tracker.tomasgps # just for reference remove later

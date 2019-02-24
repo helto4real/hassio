@@ -18,7 +18,8 @@ cards:
 
   - type: map
     entities:
-      - sensor.presence_sally
-      - sensor.presence_tomas
-      - sensor.presence_elin
-      - sensor.presence_melker
+      - device_tracker.elin_presence
+      - device_tracker.tomas_presence
+      - device_tracker.melker_presence
+      - device_tracker.sally_presence
+

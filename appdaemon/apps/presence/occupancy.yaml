@@ -13,9 +13,10 @@ occupancy_manager:
     - binary_sensor.kok_pir
     - binary_sensor.trapp_pir
   presence_sensors:
-    - sensor.presence_tomas
-    - sensor.presence_elin
-    - sensor.presence_melker
-    - sensor.presence_sally
+    - device_tracker.tomas_presence
+    - device_tracker.elin_presence
+    - device_tracker.melker_presence
+    - device_tracker.sally_presence
+ 
   properties:
     min_time_passed_for_motion: 1 # How many minutes to think no motion = occupancy not_home

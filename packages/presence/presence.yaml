@@ -3,10 +3,11 @@ group:
   people_status:
     name: Familjen hemmastatus
     entities:
-      - sensor.presence_tomas
-      - sensor.presence_elin
-      - sensor.presence_sally
-      - sensor.presence_melker
+      - device_tracker.elin_presence
+      - device_tracker.tomas_presence
+      - device_tracker.melker_presence
+      - device_tracker.sally_presence
+
 
   presence:
     name: Familjens devicestatus
@@ -54,7 +55,7 @@ automation:
   - alias: Send message on away-home notice Tomas
     trigger:
       - platform: state
-        entity_id: sensor.presence_tomas 
+        entity_id: sensor.tomas_presence 
     condition:
       - condition: template
         value_template: "{{ trigger.from_state != None and trigger.from_state.state != trigger.to_state.state }}"
@@ -71,27 +72,27 @@ proximity:
     ignored_zones:
       - sjukhuset
     devices:
-      - sensor.presence_elin
+      - device_tracker.elin_presence
     tolerance: 50
   prox_home_tomas: 
     ignored_zones:
       - spv
     devices:
-      - sensor.presence_tomas
+      - device_tracker.tomas_presence
     tolerance: 50
 
   prox_home_melker: 
     ignored_zones:
       - matfors_skola
     devices:
-      - sensor.presence_melker
+      - device_tracker.melker_presence
     tolerance: 50
 
   prox_home_sally: 
     ignored_zones:
       - skvaderns_skola
     devices:
-      - sensor.presence_sally
+      - device_tracker.sally_presence
     tolerance: 50
 
     # For tracking

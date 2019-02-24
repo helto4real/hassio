@@ -73,7 +73,7 @@ device_tracker.tomasgps:
 device_tracker.google_maps_118123190245690142371:
   friendly_name: Tomas mobil GPS
   entity_picture: /local/tomas.jpg
-sensor.presence_tomas:
+device_tracker.tomas_presence:
   friendly_name: Tomas tracker
   entity_picture: /local/tomas.jpg
 group.elins_devices:
@@ -88,7 +88,7 @@ device_tracker.elinss8:
 device_tracker.google_maps_110786808112177763666:
   friendly_name: Elins mobil GPS
   entity_picture: /local/elin.jpg
-sensor.presence_elin:
+device_tracker.elin_presence:
   friendly_name: Elin tracker
   entity_picture: /local/elin.jpg
 group.sallys_devices:
