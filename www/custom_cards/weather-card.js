@@ -256,7 +256,7 @@ class WeatherCard extends LitElement {
                                 `
                               : ""
                           }
-                          <br /><span class="highTemp"
+                          <br /><span class="lowTemp"
                             >${daily.precipitation}${
                               this.getUnit("precipitation")
                             }</span
