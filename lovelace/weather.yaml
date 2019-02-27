@@ -61,11 +61,9 @@ cards:
       - type: picture
         image: >-
           https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png
-
-      - type: weather-forecast
+      - type: custom:weather-card
         entity: weather.smhi_hemma        
-      - type: custom:smhi-forecast-card
-        entity: weather.smhi_hemma
+        icons: "/local/custom_cards/weather_icons/"
 
     
     

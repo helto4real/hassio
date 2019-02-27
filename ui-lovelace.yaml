@@ -5,6 +5,9 @@ resources:
     type: module
   - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.25
     type: module
+  - url: /local/custom_cards/weather-card.js?v0.2
+    type: module
+
 title: Hellströms home
 views:
   - !include lovelace/home.yaml
