@@ -1,6 +1,8 @@
 # Tomas home assistant configuration
 This is my home assistant setup. Please feel free to use what ever you want. Some of the stuff are in swedish but trying to comment etc. in english.
 
+If you like what I do and want to buy me a cup of coffee. It is always appreciated :)
+
 <a href="https://www.buymeacoffee.com/ij1qXRM6E" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 # Lovelace example
 ![lovelace](/www/example_lovelace.jpg "Lovelace example")
