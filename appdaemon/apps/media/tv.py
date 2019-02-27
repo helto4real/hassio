@@ -30,7 +30,7 @@ class Tv(Base):
         self._delay_before_turn_off_tv = int(
         self.properties.get('delay_before_turn_off_tv', 20))*60
         self._tv_ambient_light = self.properties.get('tv_ambient_light', str)
-        self.nextTimeCanCheckState = datetime.datetime.now()
+        # self.nextTimeCanCheckState = datetime.datetime.now()
 
         for media_player in self._media_players:
             self.listen_state(
@@ -122,19 +122,19 @@ class Tv(Base):
             new: dict, kwargs: dict) -> None:
         """called when media player changes state to 'playing'"""
 
-        self.log("media_player_state: {}->{}".format(entity, new))
+        self.log("media_player_state: {}: {}->{}".format(entity, old, new))
 
         if old==new:
             self.log("Media player same state {}={}".format(entity, new))
             return
     
 
-        if datetime.datetime.now() < self.nextTimeCanCheckState:
-            #  Must have delay to make sure state is ok
-            return
+        # if datetime.datetime.now() < self.nextTimeCanCheckState:
+        #     #  Must have delay to make sure state is ok
+        #     return
 
             # Have to make sure we delay check of remote status cause of slow updates
-        self.nextTimeCanCheckState = datetime.datetime.now() + datetime.timedelta(minutes=2)
+        # self.nextTimeCanCheckState = datetime.datetime.now() + datetime.timedelta(minutes=2)
 
         
         if self.get_state(entity=self._remote) == 'on':
