@@ -10,6 +10,13 @@ Copy the weather icons (weather_icons folder) and weather-card.js
 
 use following in lovelace yaml
 
+in `ui-lovelace.yaml` add:
+```yaml
+  - url: /local/custom_cards/weather-card.js?v0.2
+    type: module
+```
+
+In your card config write:
 ```yaml
 - type: custom:weather-card
         entity: weather.smhi_hemma        
