@@ -17,7 +17,7 @@ class LowBatteryManager(Base):
         self._tts_device = self.args.get("tts_device", "media_player.house")
 
         for person in self._people:
-
+            self.log("Setup tracker {}".format(PEOPLE[person]['device_tracker']))
             self.listen_state(
                 self.__on_tracker_changed, 
                 entity=PEOPLE[person]['device_tracker'],
@@ -28,8 +28,7 @@ class LowBatteryManager(Base):
     def __on_tracker_changed(
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
-        
-        
+
         person = kwargs['person']
         batt_level = int(new["attributes"].get("battery_level", 100))
         old_bat_lev = int(old["attributes"].get("battery_level", 100))
