@@ -19,7 +19,7 @@ class LowBatteryManager(Base):
         for person in self._people:
 
             self.listen_state(
-                self.__on_proximity_changed, 
+                self.__on_tracker_changed, 
                 entity=PEOPLE[person]['device_tracker'],
                 attribute="all",
                 person=person
@@ -28,11 +28,13 @@ class LowBatteryManager(Base):
     def __on_tracker_changed(
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
+        
+        
         person = kwargs['person']
         batt_level = int(new["attributes"].get("battery_level", 100))
         old_bat_lev = int(old["attributes"].get("battery_level", 100))
         state = new["state"]
-
+        
         if batt_level != old_bat_lev:
             self.log("{} changed battery status from {} to {}".format(entity, old_bat_lev, batt_level))
 
