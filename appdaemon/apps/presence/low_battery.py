@@ -34,11 +34,12 @@ class LowBatteryManager(Base):
         old_bat_lev = int(old["attributes"].get("battery_level", 100))
         state = new["state"]
         
-        if batt_level != old_bat_lev:
+        if batt_level != old_bat_lev and self.now_is_between("07:00:00", "22:30:00"):
             self.log("{} changed battery status from {} to {}".format(entity, old_bat_lev, batt_level))
 
         if old_bat_lev > self._low_bat_level and \
             batt_level<=self._low_bat_level and \
-            state=="Home":
+            state=="Home" and \
+            self.now_is_between("07:00:00", "22:30:00"):
             # Battery level went from over min level to under min level and the person is home, lets warn!
             self.tts_manager.speak("{}, dags att ladda din mobil. {} ladda din mobil nu!".format(person, person), media_player=self._tts_device)
