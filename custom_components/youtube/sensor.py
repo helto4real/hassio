@@ -96,7 +96,6 @@ class YoutubeSensor(Entity):
 
         async with self._session.get(api_url) as response:
             if response.status != 200:
-                # Do some logging
                 _LOGGER.warn("Fail to get Youtube information {}, check key or channel id"
                                 .format(self._name))
                 self._available = False
@@ -107,18 +106,21 @@ class YoutubeSensor(Entity):
 
             items = data_json.get("items", [])
             if len(items) == 0:
-                # Logger return warning here
+                _LOGGER.error("Fail to get Youtube information, no items returned for {}, check key or channel id"
+                                .format(self._name))
                 self._available = False
-                return #{}
+                return
             stats = items[0].get("statistics", {})
             if len(stats) == 0:
-                # Logger warn and return {}
+                _LOGGER.error("Fail to get Youtube information, no statistics returned for {}, check key or channel id"
+                                .format(self._name))
                 self._available = False
-                return #{}
+                return 
             if stats["hiddenSubscriberCount"] != False:
+                _LOGGER.warn("Fail to get Youtube information, subscriber count are hidden!{}, check key or channel id"
+                                .format(self._name))
                 self._available = False
-                # Logger warn channel hiding subscriber count
-                return #{}
+                return
             
             subscriber_count = int(stats["subscriberCount"])
             video_count = int(stats["videoCount"])
