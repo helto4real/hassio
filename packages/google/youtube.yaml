@@ -1,0 +1,9 @@
+sensor:
+  - platform: youtube
+    entities:
+      qg8r:
+          channel_id: 'UCVo5TLYz57tTAM9F3jyZD0w'
+          key: !secret google_api
+      helto:
+          channel_id: 'UCMxSJuAU_4N94bh4zW9rUtg'
+          key: !secret google_api
