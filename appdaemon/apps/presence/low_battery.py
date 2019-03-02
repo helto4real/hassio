@@ -13,7 +13,7 @@ class LowBatteryManager(Base):
         super().initialize() # Always call base class
 
         self._people = self.args.get("people", {})
-        self._low_bat_level = int(self.args.get("battery_level_low", 15))
+        self._low_bat_level = int(self.args.get("battery_level_low", "15"))
         self._tts_device = self.args.get("tts_device", "media_player.house")
 
         for person in self._people:
@@ -30,8 +30,8 @@ class LowBatteryManager(Base):
             new: dict, kwargs: dict) -> None:
 
         person = kwargs['person']
-        batt_level = int(new["attributes"].get("battery_level", 100))
-        old_bat_lev = int(old["attributes"].get("battery_level", 100))
+        batt_level = int(new["attributes"].get("battery_level", "100"))
+        old_bat_lev = int(old["attributes"].get("battery_level", "100"))
         state = new["state"]
         
         if batt_level != old_bat_lev and self.now_is_between("07:00:00", "22:30:00"):
