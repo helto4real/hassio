@@ -29,6 +29,9 @@ class LowBatteryManager(Base):
             self, entity: Union[str, dict], attribute: str, old: dict,
             new: dict, kwargs: dict) -> None:
 
+        if old is None:
+            return
+
         person = kwargs['person']
         batt_level = int(new["attributes"].get("battery_level", "100"))
         old_bat_lev = int(old["attributes"].get("battery_level", "100"))
