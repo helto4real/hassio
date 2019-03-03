@@ -4,16 +4,23 @@ import async_timeout
 import json
 import logging
 import datetime
-import voluptuous as vol
+# import voluptuous as vol
 from typing import Dict
 
-from homeassistant.components.sensor import PLATFORM_SCHEMA
+# import homeassistant.helpers.config_validation as cv
+# from homeassistant.components.sensor import PLATFORM_SCHEMA, DOMAIN
+# from homeassistant.const import CONF_ENTITIES
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 from homeassistant.helpers import aiohttp_client
 
 _LOGGER = logging.getLogger(__name__)
 
+# YT_SCHEMA = vol.Schema({
+#     vol.Required(CONF_ENTITIES): cv.entity_ids,
+#     vol.Required("channel_id"): cv.string,
+#     vol.Required("key"): cv.string,
+# })
 
 async def async_setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the computer switch platform."""
@@ -56,6 +63,11 @@ class YoutubeSensor(Entity):
         return self._name
 
     @property
+    def unit_of_measurement(self):
+        """Return the unit of measurement."""
+        return "count"
+
+    @property
     def name(self):
         """Return the name of the entity."""
         return self._name
@@ -88,7 +100,7 @@ class YoutubeSensor(Entity):
                 await self.get_data()
         except (asyncio.TimeoutError):
             self._available = False
-            _LOGGER.error("Timeout fetching recycling data")
+            _LOGGER.error("Timeout fetching youtube data")
 
     async def get_data(self) -> None:
         api_url = "https://www.googleapis.com/youtube/v3/channels?id={}" \
