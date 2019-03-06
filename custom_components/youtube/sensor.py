@@ -80,7 +80,6 @@ class YoutubeSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-
         return self._state 
     
     @property
@@ -134,14 +133,9 @@ class YoutubeSensor(Entity):
                 self._available = False
                 return
             
-            subscriber_count = int(stats["subscriberCount"])
-            video_count = int(stats["videoCount"])
-            view_count = int(stats["viewCount"])
-            comment_count = int(stats["commentCount"])
-
-            self._state = subscriber_count
-            self._attributes["video_count"] = video_count
-            self._attributes["view_count"] = view_count
-            self._attributes["comment_count"] = comment_count
+            self._state = int(stats["subscriberCount"])
+            self._attributes["video_count"] = int(stats["videoCount"])
+            self._attributes["view_count"] = int(stats["viewCount"])
+            self._attributes["comment_count"] = int(stats["commentCount"])
 
             self._available = True
