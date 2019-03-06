@@ -151,7 +151,7 @@ class Tv(Base):
 
         
         # wait 25 seconds and play again
-        self.run_in(self.__delay_play, 22, media_player=entity)
+        self.run_in(self.__delay_play, 18, media_player=entity)
 
     def __pause(self, entity:str)->None:
         self.log("Pausar {}".format(entity))
