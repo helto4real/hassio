@@ -44,6 +44,7 @@ class ProximityManager(Base):
 
         if current_direction == 'towards' and current_distance <= self._distance and self._device_is_near[person] == 'no':
             self._device_is_near[person] = 'yes'
+            self.tts_manager.speak("Ett meddelande", media_player=self._tts_device)
             self.tts_manager.speak("{} {}".format(person, self._message), media_player=self._tts_device)
             self.notification_manager.greeting('Tomas', 'På väg hem', "{} {}".format(person, self._message))
         elif current_distance > self._distance:
