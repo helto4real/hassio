@@ -1,5 +1,5 @@
 from base import Base
-from globals import PEOPLE
+from globals import PEOPLE, presence_state
 from typing import Tuple, Union
 """
 Class LowBatteryManager manages the low battery warning TTS 
@@ -42,7 +42,7 @@ class LowBatteryManager(Base):
 
         if old_bat_lev > self._low_bat_level and \
             batt_level<=self._low_bat_level and \
-            state=="Home" and \
+            state==presence_state["home"] and \
             self.now_is_between("07:00:00", "22:30:00"):
             # Battery level went from over min level to under min level and the person is home, lets warn!
             self.tts_manager.speak("{}, dags att ladda din mobil. {} ladda din mobil nu!".format(person, person), media_player=self._tts_device)

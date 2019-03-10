@@ -14,8 +14,8 @@ cards:
             image: /local/img/presence/tomas_presence_away.jpg
             name: ' '
             state_image:
-              Home: /local/img/presence/tomas_presence.jpg
-              Just arrived: /local/img/presence/tomas_presence.jpg
+              Hemma: /local/img/presence/tomas_presence.jpg
+              Anlänt: /local/img/presence/tomas_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -23,8 +23,8 @@ cards:
             font_color: white
             image: /local/img/presence/elin_presence_away.jpg
             state_image:
-              Home: /local/img/presence/elin_presence.jpg
-              Just arrived: /local/img/presence/elin_presence.jpg
+              Hemma: /local/img/presence/elin_presence.jpg
+              Anlänt: /local/img/presence/elin_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -32,8 +32,8 @@ cards:
             font_color: white
             image: /local/img/presence/sally_presence_away.jpg
             state_image:
-              Home: /local/img/presence/sally_presence.jpg
-              Just arrived: /local/img/presence/sally_presence.jpg
+              Hemma: /local/img/presence/sally_presence.jpg
+              Anlänt: /local/img/presence/sally_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -41,8 +41,8 @@ cards:
             font_color: white
             image: /local/img/presence/melker_presence_away.jpg
             state_image:
-              Home: /local/img/presence/melker_presence.jpg
-              Just arrived: /local/img/presence/melker_presence.jpg
+              Hemma: /local/img/presence/melker_presence.jpg
+              Anlänt: /local/img/presence/melker_presence.jpg
  
       #   type: horizontal-stack
       - type: picture-elements
@@ -205,7 +205,7 @@ cards:
               top: 58.8%
             tap_action: toggle
             type: state-icon
-          - entity: media_player.kok
+          - entity: media_player.kitchen
             style:
               left: 85.5%
               top: 89.45%

@@ -89,6 +89,7 @@ recorder:
       - sensor.occupancy
       - sensor.yr_cloudiness
       - sensor.yr_wind_speed
+      - sensor.yt_pewdiepie
 
 logger:
   default: info

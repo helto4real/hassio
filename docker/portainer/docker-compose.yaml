@@ -1,15 +1,15 @@
 version: '2'
 
 services:
-  portainer:
+  portainer_service:
     image: portainer/portainer
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - portainer_data2:/data
     ports:
      - "9000:9000"
 
 volumes:
-  portainer_data:
+  portainer_data2:

@@ -1,9 +1,9 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.086
+  - url: /local/custom_cards/custom-cards.js?v=1.089
     type: module
   - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
     type: module
-  - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.25
+  - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
     type: module
   - url: /local/custom_cards/weather-card.js?v0.3
     type: module

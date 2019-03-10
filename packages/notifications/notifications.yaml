@@ -1,4 +1,13 @@
 notify:
+  - platform: rest
+    name: discord_webhook
+    method: POST
+    message_param_name: content
+    title_param_name: username
+    data:
+      username: hass
+    resource: !secret discord_hook
+
   - name: th
     platform: pushbullet
     api_key: !secret pushbullet_api_key

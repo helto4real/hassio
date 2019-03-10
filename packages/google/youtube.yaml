@@ -7,3 +7,6 @@ sensor:
       helto:
           channel_id: 'UCMxSJuAU_4N94bh4zW9rUtg'
           key: !secret google_api
+      pewdiepie:
+          channel_id: 'UC-lHJZR3Gqxm24_Vd_AJ5Yw'
+          key: !secret google_api

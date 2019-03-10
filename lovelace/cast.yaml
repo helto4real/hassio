@@ -11,7 +11,9 @@ cards:
           - remote.tvrummet
           - switch.switch7
           - switch.switch8_melkers_tv
-        
+          - sensor.yt_qg8r
+      - type: sensor
+        entity: sensor.yt_qg8r
       - type: 'custom:media-player-card'
         entity: media_player.tv_nere
         image_folder: /local/custom_cards/img

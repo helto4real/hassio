@@ -57,7 +57,7 @@ tracker_view:
     - group.sallys_devices
     - group.melkers_devices
     - group.people_status
-    
+    - sensor.yt_qg8r
 
 ligths_view:
   view: yes

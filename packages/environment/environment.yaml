@@ -34,6 +34,3 @@ group:
       - sensor.yr_symbol
       - sensor.yr_cloudiness
       - sensor.yr_wind_speed
-
-weather:
-  - platform: yweather

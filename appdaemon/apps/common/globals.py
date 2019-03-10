@@ -7,10 +7,10 @@ Global definitions that are used everywhere in my automations for easy access
 
 presence_state = {}
 # Change this if you want to change the display name
-presence_state["home"] = "Home"
-presence_state["just_arrived"] = "Just arrived"
-presence_state["just_left"] = "Just left"
-presence_state["away"] = "Away"
+presence_state["home"] = "Hemma"
+presence_state["just_arrived"] = "Anlänt"
+presence_state["just_left"] = "Åkt"
+presence_state["away"] = "Borta"
 presence_state["extended_away"] = "Extended away"
 
 PEOPLE = {
@@ -18,7 +18,7 @@ PEOPLE = {
         'person': 'person.tomas',
         'device_tracker': 'device_tracker.tomas_presence',
         'proximity': 'proximity.prox_home_tomas',
-        'notifiers': ['th']
+        'notifiers': ['discord_webhook']
     },
     'Elin': {
         'person': 'person.elin',
