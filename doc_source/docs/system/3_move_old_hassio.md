@@ -10,9 +10,9 @@ Move a current installation is not as straight forward that one might home for. 
 
 ## Install backup from old HASSIO installation
 - Get a backup and download it
-- Login to your fresh copy
-- IMPORTANT! Before restoring backup, add the custom add-on paths to stores. If not the restor wont restore custom add-ons
-- Do a restore of Hassio
+- Login to your fresh copy of Hassio
+- IMPORTANT! Before restoring backup, add the custom add-on paths to stores. If you not do this, the restore wont restore custom add-ons
+- Make a restore of Hassio
 
 ## New IP for your machine
 If your new machine has a new ip address additional things need to be taken care of. I choose to keep my old installation and start fresh i.e. new ip. The upside doing a new setup is that you can keep your old until everything is up and running.

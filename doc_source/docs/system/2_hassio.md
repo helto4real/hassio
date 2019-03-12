@@ -8,7 +8,7 @@ authors:
 This script requires a clean machine. It will install docker and hassio.
 Copy and paste the following script prior installing hassio.
 
-FIRST GO INTE SUDO MODE IF YOU HAVE SUDO!!!
+FIRST GO INTO SUDO MODE IF YOU HAVE SUDO!!!
 
 ```
 sudo -i

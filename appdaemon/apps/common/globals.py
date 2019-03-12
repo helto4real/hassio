@@ -8,8 +8,8 @@ Global definitions that are used everywhere in my automations for easy access
 presence_state = {}
 # Change this if you want to change the display name
 presence_state["home"] = "Hemma"
-presence_state["just_arrived"] = "Anlänt"
-presence_state["just_left"] = "Åkt"
+presence_state["just_arrived"] = "Nyss anlänt"
+presence_state["just_left"] = "Nyss åkt"
 presence_state["away"] = "Borta"
 presence_state["extended_away"] = "Extended away"
 

@@ -4,5 +4,5 @@ google_analytics:
   - UA-133997912-1
   - auto
 repo_url: https://github.com/helto4real/hassio/
-site_dir: ../docs
+site_dir: site
 site_author: 'Tomas Hellström, @helto4real'
