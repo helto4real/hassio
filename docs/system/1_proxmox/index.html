@@ -38,7 +38,7 @@
     
     
       
-        <title>nginx and lets encrypt</title>
+        <title>1. Setup the system - proxmox</title>
       
     
     
@@ -99,7 +99,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#setup-nginx-letsencrypt-for-improved-security" tabindex="1" class="md-skip">
+      <a href="#setup-the-system" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -125,7 +125,7 @@
                 My Home Assistant docs
               </span>
               <span class="md-header-nav__topic">
-                nginx and lets encrypt
+                1. Setup the system - proxmox
               </span>
             
           
@@ -288,12 +288,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Docker
@@ -311,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../bluetooth/" title="Bluetooth tracker" class="md-nav__link">
+    <a href="../../docker/bluetooth/" title="Bluetooth tracker" class="md-nav__link">
       Bluetooth tracker
     </a>
   </li>
@@ -323,11 +321,49 @@
 
 
   <li class="md-nav__item">
-    <a href="../deconz/" title="Deconz" class="md-nav__link">
+    <a href="../../docker/deconz/" title="Deconz" class="md-nav__link">
       Deconz
     </a>
   </li>
 
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/nginx/" title="nginx and lets encrypt" class="md-nav__link">
+      nginx and lets encrypt
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
         
           
           
@@ -344,11 +380,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        nginx and lets encrypt
+        1. Setup the system - proxmox
       </label>
     
-    <a href="./" title="nginx and lets encrypt" class="md-nav__link md-nav__link--active">
-      nginx and lets encrypt
+    <a href="./" title="1. Setup the system - proxmox" class="md-nav__link md-nav__link--active">
+      1. Setup the system - proxmox
     </a>
     
       
@@ -362,44 +398,51 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hass-config" title="Hass config" class="md-nav__link">
-    Hass config
+  <a href="#hardware" title="Hardware" class="md-nav__link">
+    Hardware
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#linuxserverletsencrypt" title="linuxserver/letsencrypt" class="md-nav__link">
-    linuxserver/letsencrypt
+  <a href="#prepare-install" title="Prepare install" class="md-nav__link">
+    Prepare install
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-nginx" title="Setup nginx" class="md-nav__link">
-    Setup nginx
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-before-creating-first-vm" title="Configure before creating first VM" class="md-nav__link">
+    Configure before creating first VM
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-ssl-certificates" title="1. SSL certificates" class="md-nav__link">
-    1. SSL certificates
+  <a href="#add-the-no-subscription-repository" title="Add the No-Subscription Repository" class="md-nav__link">
+    Add the No-Subscription Repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-default-server" title="2. Default server" class="md-nav__link">
-    2. Default server
+  <a href="#network" title="Network" class="md-nav__link">
+    Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-hassio-server" title="3. Hassio server" class="md-nav__link">
-    3. Hassio server
+  <a href="#certificates" title="Certificates" class="md-nav__link">
+    Certificates
   </a>
   
 </li>
@@ -410,9 +453,70 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#router-setup" title="Router setup" class="md-nav__link">
-    Router setup
+  <a href="#add-vm-for-hassio" title="Add VM for Hassio" class="md-nav__link">
+    Add VM for Hassio
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-the-iso" title="Upload the ISO" class="md-nav__link">
+    Upload the ISO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-vm" title="Add the VM" class="md-nav__link">
+    Add the VM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-debian" title="Setup Debian" class="md-nav__link">
+    Setup Debian
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-sudo" title="Install sudo" class="md-nav__link">
+    Install sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-configuration" title="IP configuration" class="md-nav__link">
+    IP configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizing-the-setup" title="Finalizing the setup" class="md-nav__link">
+    Finalizing the setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -427,49 +531,13 @@
   </li>
 
         
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      System
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        System
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
           
           
           
 
 
   <li class="md-nav__item">
-    <a href="../../system/1_proxmox/" title="1. Setup the system - proxmox" class="md-nav__link">
-      1. Setup the system - proxmox
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
+    <a href="../2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
       2. Setup the system - Hassio
     </a>
   </li>
@@ -481,7 +549,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../system/3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
+    <a href="../3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
       3. Move old settings to new
     </a>
   </li>
@@ -513,44 +581,51 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hass-config" title="Hass config" class="md-nav__link">
-    Hass config
+  <a href="#hardware" title="Hardware" class="md-nav__link">
+    Hardware
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#linuxserverletsencrypt" title="linuxserver/letsencrypt" class="md-nav__link">
-    linuxserver/letsencrypt
+  <a href="#prepare-install" title="Prepare install" class="md-nav__link">
+    Prepare install
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-nginx" title="Setup nginx" class="md-nav__link">
-    Setup nginx
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-before-creating-first-vm" title="Configure before creating first VM" class="md-nav__link">
+    Configure before creating first VM
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-ssl-certificates" title="1. SSL certificates" class="md-nav__link">
-    1. SSL certificates
+  <a href="#add-the-no-subscription-repository" title="Add the No-Subscription Repository" class="md-nav__link">
+    Add the No-Subscription Repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-default-server" title="2. Default server" class="md-nav__link">
-    2. Default server
+  <a href="#network" title="Network" class="md-nav__link">
+    Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-hassio-server" title="3. Hassio server" class="md-nav__link">
-    3. Hassio server
+  <a href="#certificates" title="Certificates" class="md-nav__link">
+    Certificates
   </a>
   
 </li>
@@ -561,9 +636,70 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#router-setup" title="Router setup" class="md-nav__link">
-    Router setup
+  <a href="#add-vm-for-hassio" title="Add VM for Hassio" class="md-nav__link">
+    Add VM for Hassio
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-the-iso" title="Upload the ISO" class="md-nav__link">
+    Upload the ISO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-vm" title="Add the VM" class="md-nav__link">
+    Add the VM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-debian" title="Setup Debian" class="md-nav__link">
+    Setup Debian
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-sudo" title="Install sudo" class="md-nav__link">
+    Install sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-configuration" title="IP configuration" class="md-nav__link">
+    IP configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizing-the-setup" title="Finalizing the setup" class="md-nav__link">
+    Finalizing the setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -583,101 +719,151 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/helto4real/hassio/edit/master/docs/docker/nginx.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/helto4real/hassio/edit/master/docs/system/1_proxmox.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="setup-nginx-letsencrypt-for-improved-security">Setup nginx, letsencrypt for improved security</h1>
-<p>I let you know my configuration to setup the reverse proxy (nginx) as a front with SSL for Home Assistant. My setup enables:
-- Access Home Assistant with SSL from outside firewall through standard port and is routed to the home assistant on port 8123.
-- Access Home Assistant from within the network (behind firewall) without SSL and using <code>http://ip:8123</code>
-- In future expose more services on standard port 443 by extending nginx config</p>
-<p><em>DISCLAIMER: I dont take any responsibility that this configuration is 100% secure. It is more secure than not using a reverse proxy I would argue but I am not making any guarantees. I would recommend you read how to configure this your self</em></p>
-<p>Many would argue to improve security at a pro level is to use a real firewall with different v-lans for your devices and computers. This is not covered in this setup.</p>
-<h2 id="hass-config">Hass config</h2>
-<p>I use api password for security and <strong><em>not</em></strong> using <code>trusted_networks</code> for improved security. If you want to use <code>trusted_networks</code> I would not use a reverse proxy with <code>x_forwarded_for: True</code> config. There is a risk of hacking into hass by inserting the x_forwarded header without login!</p>
-<p>I also enabled ip-ban and login attempts for even better security.</p>
-<pre><code class="yaml">http:
-  api_password: !secret http_password
-  ip_ban_enabled: True
-  login_attempts_threshold: 3
-  use_x_forwarded_for: True
+                <h1 id="setup-the-system">Setup the system</h1>
+<p>I use an Intel NUC as my device setting upp the system.</p>
+<h2 id="hardware">Hardware</h2>
+<ul>
+<li>Intel NUC with at least 8 Gig memory plus VM mem size, I use 32 Gig but 16 would be enough</li>
+<li>Make sure you have enough harddrive space. I use 256 gig SSD.</li>
+<li>Bios boot and hit F2 (NUC) to enter. Look for boot order and boot devices. Make sure USB boot is prio. Make sure you enabled virtualization features of the processor. </li>
+</ul>
+<h2 id="prepare-install">Prepare install</h2>
+<ul>
+<li>Download the proxmox image at <a href="https://www.proxmox.com/en/downloads/category/iso-images-pve">this site</a></li>
+<li>Get a USB stick with at least 1 gig memory </li>
+<li>Prepare the stick, I used <a href="https://rufus.ie/">rufus download</a></li>
+<li>Use the settings like below, specifically I used the DD mode (not ISO) to make the usb boot.</li>
+</ul>
+<p><img alt="rufus" src="../img/proxmox/rufus_settings_1.jpg" /></p>
+<p>Set the DD setting (Pardon the Swedish) and press OK.
+<img alt="rufus" src="../img/proxmox/rufus_settings_2.jpg" /></p>
+<h2 id="install">Install</h2>
+<ul>
+<li>Put the usb in the NUC and reboot. Make sure you made hardware and bios correctly</li>
+<li>Set the admin/root password (DONT LOSE IT!)</li>
+<li>Choose harddrive where you install proxmox on</li>
+<li>Select correct country, keyboard layout and time-zone</li>
+<li>Install and reboot after install is done</li>
+<li>Test install by login to proxmox web interface wich are https://yourip:8006. Login with root/yourpassword</li>
+</ul>
+<h2 id="configure-before-creating-first-vm">Configure before creating first VM</h2>
+<h3 id="add-the-no-subscription-repository">Add the No-Subscription Repository</h3>
+<p>In order to get new images you need a repository. Give you have no subscription we have to add the correct repository. Add the pev-no-sybscription between the main contrib and security updates in the file:</p>
+<p><code>/etc/apt/sources.list</code></p>
+<pre><code>deb http://ftp.debian.org/debian stretch main contrib
+
+# PVE pve-no-subscription repository provided by proxmox.com,
+# NOT recommended for production use
+deb http://download.proxmox.com/debian/pve stretch pve-no-subscription
+
+# security updates
+deb http://security.debian.org stretch/updates main contrib
 </code></pre>
 
-<h2 id="linuxserverletsencrypt">linuxserver/letsencrypt</h2>
-<p>Setup the linux server by using the provided docker-compose file. Mine is configured to listen to port 80/443 and I setup my routers portforwarding to point to the host, hosting this docker image. You will need the port 80 open to allow the letsecrypt to validate ownership of your domain. After that is completed and you get your certificates you can just leave the 80 closed and only forward 443 or any custom port you want to expose from the internet. Just make sure you change that in the compose-file.</p>
-<p>Change the <code>domain.example</code> to your domain. If you use duckdns, use the whole address like <code>xyz.duckdns.org</code>. If you plan to expose several subdomains, use the <code>SUBDOMAINS</code> settings. At least expose the standard and <code>www</code>. But you might want to expose <code>grafana.expample.com</code>, just put <code>,grafana</code> there.</p>
-<p>Copy the file and run <code>sudo docker-compose up -d</code> while on the same directory as the <code>docker-compose.yaml</code> file.</p>
-<p>Check the log to make sure the certificates are created correctly.</p>
-<h2 id="setup-nginx">Setup nginx</h2>
-<p>First you want the ssl to configured to the correct certificates.</p>
-<h3 id="1-ssl-certificates">1. SSL certificates</h3>
-<p>You can see the paths in the log. The ssl config are at:
-<code>/opt/letsencrypt/config/ngingx/ssl.conf</code> if you used my settings in docker-compose.yaml. Mine are in config folder (github) as reference.</p>
-<pre><code class="conf"># ssl certs
-ssl_certificate /etc/letsencrypt/live/domain.example/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/domain.example/privkey.pem;
+<h3 id="network">Network</h3>
+<p>For home users the default bridged network makes most sense so not extra network is configured. Multiple bridges can be created. For improved security, vlans can be setup. I might do this in a test environmet but will not use VLAN for now.</p>
+<h3 id="certificates">Certificates</h3>
+<p>I will use lets encrypt for certificate management. 
+Todo: document this</p>
+<h2 id="add-vm-for-hassio">Add VM for Hassio</h2>
+<p>Creating the virtual machine. Default values apply if not specified in the instructions or on image.</p>
+<h3 id="upload-the-iso">Upload the ISO</h3>
+<p>Download debian or what ever operating system you prefere. I use net install image of Debian 9. <a href="https://www.debian.org/CD/netinst/">download here</a>. Select amd64 CD or torrent if you prefer.</p>
+<p><img alt="upload" src="../img/proxmox/upload_iso.jpg" /></p>
+<p>Then select your ISO file and press <code>Upload</code></p>
+<p><img alt="upload" src="../img/proxmox/upload_iso_debian.jpg" /></p>
+<h3 id="add-the-vm">Add the VM</h3>
+<p><strong>General</strong>
+- Name: HASSIO
+- No resource pool</p>
+<p><img alt="general" src="../img/proxmox/1-create-vm-general.jpg" /></p>
+<p><strong>OS</strong>
+- select your isofile and use rest default</p>
+<p><img alt="general" src="../img/proxmox/create-vm-deb.jpg" /></p>
+<p><strong>Hard disk</strong>
+I used 20 Gig as start disk, remember that the whole disk wont be allocated at once. This is the max size.</p>
+<p><strong>CPU</strong>
+- 1 socket, 2 cores should be sufficent (I have 4 cores total)</p>
+<p><strong>Memory</strong>
+- 2368 MiB should be sufficient for HASSIO and docker containers</p>
+<p><strong>Network</strong></p>
+<p>Default settings</p>
+<p>Create the VM by select the start the installation after created checkbox and press "Finish"</p>
+<h3 id="setup-debian">Setup Debian</h3>
+<h4 id="installation">Installation</h4>
+<p>For other operating systems please see other.
+- double click on new host to get to screen
+- Install Debian with default settings. I used swedish as language and sweden as location 
+- Choose host name, I use hassio
+- Set the root password
+- Set the non root name and username 
+- Use whole disk and standard settings for partitioning
+- Use standard settings util you are at the software selection
+- Unselect debian environment and print server
+- Select "SSH" server, I am sure you want to connect remote to the machine
+- Install rest as default and reboot</p>
+<p>Screens from setup. (Sorry for Swedish):</p>
+<p><img alt="general" src="../img/proxmox/debian_start.jpg" />
+<img alt="general" src="../img/proxmox/debian_language.jpg" />
+<img alt="general" src="../img/proxmox/debian_host.jpg" />
+<img alt="general" src="../img/proxmox/debian_software.jpg" /></p>
+<h4 id="install-sudo">Install sudo</h4>
+<p>Depending on your configuration you might need to install sudo.</p>
+<p>Enter su using <code>$ su</code> and enter password.
+Install sudo and add your user (the one you provided in installtime) and exit from su.</p>
+<pre><code>$ apt-get install sudo
+$ adduser username sudo
+$ usermod -aG sudo youruser
+$ exit
 </code></pre>
 
-<h3 id="2-default-server">2. Default server</h3>
-<p>Go to the folder <code>/opt/letsencrypt/config/nginx/site-confs</code> edit the <code>default</code>. See config folder here for reference.</p>
-<p>All requests by default both on 80 and 443 is redirected to return 444. </p>
-<pre><code class="yaml">server {
-    listen 80;
-    server_name _;
-    return 444;
-}
-
-server {
-    listen 443 ssl;
-    server_name _;
-    include /config/nginx/ssl.conf;
-    return 444;
-
-}
+<p>and the exit. 
+Now you can use sudo for admin. </p>
+<p>if you get problems you might need to add the user in the sudoers file.</p>
+<pre><code>$ su
+$ nano /etc/sudoers
+$ exit
 </code></pre>
 
-<h3 id="3-hassio-server">3. Hassio server</h3>
-<p>Now we make a new file in <code>/opt/letsencrypt/config/nginx/site-confs</code> called <code>hassio</code>.</p>
-<p>The config is when you surf with domain.example (default 443) it routes it to your_hass_ip:8123. </p>
-<pre><code class="yaml">
-map $http_upgrade $connection_upgrade {
-   default upgrade;
-   ''      close;
-}
-
-server {
-    listen       443 ssl;
-    server_name  domain.example;
-
-    include /config/nginx/ssl.conf;
-
-    proxy_buffering off;
-    location / {
-        proxy_pass ip_to_hass:8123;
-        proxy_set_header Host $host;
-        proxy_redirect http:// https://;
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
-    }
-
-    location /api/websocket {
-        proxy_pass ip_to_hass:8123/api/websocket;
-        proxy_set_header Host $host;
-
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
-
-    }
-}
-
+<p>put the <code>youruser   ALL=(ALL:ALL) ALL</code> after root</p>
+<h4 id="ip-configuration">IP configuration</h4>
+<p>If you want the default DHCP IP just skip this step</p>
+<pre><code># Log in as root or su to root then
+nano /etc/network/interfaces
+# Should look like this:
+source /etc/network/interfaces.d/*
+# The loopback network interface
+auto lo
+iface lo inet loopback
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet dhcp
 </code></pre>
 
-<h2 id="router-setup">Router setup</h2>
-<p>Use your router to port forward 443 to the ip of nginx docker host. Remember to portforward port 80 to same host setting up letsecrypt. Then you can remove it once you have the domain ownership established.</p>
+<p>then change to :</p>
+<pre><code># The primary network interface
+allow-hotplug eth0
+iface eth0 inet static
+        address 192.168.1.202
+        netmask 255.255.255.0
+        gateway 192.0.1.1
+</code></pre>
+
+<p>Make sure your settings are correct. In an VM the eth0 is probable something else. To list network interfaces write <code>ip link show</code> to get the correct one. You need to select the ethernet interface.</p>
+<h4 id="finalizing-the-setup">Finalizing the setup</h4>
+<p>Now it is a good time to make a snapshot. A snapshot is a point in time to restart from. 
+- First make sure the latest updates and uppgrades are on the base operating syste before making snapshot.</p>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ exit
+</code></pre>
+
+<p>go to the proxmox web interface and select your host ant then select "snapshot".
+Create the snapshot. Call it "Fresh". Now we always can start fresh after installing hassio and all other stuff.</p>
+<p>CONGRATULATIONS YOUR FIRST VM IS UP AND RUNNING! Lets install Hassio, see next chapter.</p>
                 
                   
                 
@@ -698,7 +884,7 @@ server {
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../deconz/" title="Deconz" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../docker/nginx/" title="nginx and lets encrypt" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -707,19 +893,19 @@ server {
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Deconz
+                nginx and lets encrypt
               </span>
             </div>
           </a>
         
         
-          <a href="../../system/1_proxmox/" title="1. Setup the system - proxmox" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2_hassio/" title="2. Setup the system - Hassio" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                1. Setup the system - proxmox
+                2. Setup the system - Hassio
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
