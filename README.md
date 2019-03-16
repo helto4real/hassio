@@ -3,6 +3,8 @@ This is my home assistant setup. Please feel free to use what ever you want. Som
 
 If you like what I do and want to buy me a cup of coffee. It is always appreciated :)
 
+[Here is a more complete documentation of my setup](https://helto4real.github.io/hassio/). I will add more docs over time. Please check it out.
+
 <a href="https://www.buymeacoffee.com/ij1qXRM6E" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 # Lovelace example
 ![lovelace](/www/example_lovelace.jpg "Lovelace example")
