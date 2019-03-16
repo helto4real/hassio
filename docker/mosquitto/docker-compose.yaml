@@ -8,6 +8,6 @@ services:
       - 9001:9001
     restart: always    
     volumes:
-      - /mosquitto.conf:/opt/mosquitto/config/mosquitto.conf
+      - /opt/mosquitto/config/mosquitto.conf:/mosquitto.conf
     #   - /mosquitto/data
     #   - /mosquitto/log 
