@@ -38,7 +38,7 @@
     
     
       
-        <title>Deconz</title>
+        <title>3.1 Alternative hassos install</title>
       
     
     
@@ -99,7 +99,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#setup-deconz-in-docker" tabindex="1" class="md-skip">
+      <a href="#alternative-way-to-install-hassio" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -125,7 +125,7 @@
                 My Home Assistant docs
               </span>
               <span class="md-header-nav__topic">
-                Deconz
+                3.1 Alternative hassos install
               </span>
             
           
@@ -288,12 +288,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Docker
@@ -311,8 +309,94 @@
 
 
   <li class="md-nav__item">
-    <a href="../bluetooth/" title="Bluetooth tracker" class="md-nav__link">
+    <a href="../../docker/bluetooth/" title="Bluetooth tracker" class="md-nav__link">
       Bluetooth tracker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/deconz/" title="Deconz" class="md-nav__link">
+      Deconz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/nginx/" title="nginx and lets encrypt" class="md-nav__link">
+      nginx and lets encrypt
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1_proxmox/" title="1. Setup the system - proxmox" class="md-nav__link">
+      1. Setup the system - proxmox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
+      2. Setup the system - Hassio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
+      3. Move old settings to new
     </a>
   </li>
 
@@ -332,11 +416,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Deconz
+        3.1 Alternative hassos install
       </label>
     
-    <a href="./" title="Deconz" class="md-nav__link md-nav__link--active">
-      Deconz
+    <a href="./" title="3.1 Alternative hassos install" class="md-nav__link md-nav__link--active">
+      3.1 Alternative hassos install
     </a>
     
       
@@ -350,15 +434,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#make-presistent-device-names" title="Make presistent device names" class="md-nav__link">
-    Make presistent device names
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-the-deconz-docker-container" title="Starting the deconz docker container" class="md-nav__link">
-    Starting the deconz docker container
+  <a href="#warning" title="Warning!" class="md-nav__link">
+    Warning!
   </a>
   
 </li>
@@ -380,91 +457,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../nginx/" title="nginx and lets encrypt" class="md-nav__link">
-      nginx and lets encrypt
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      System
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        System
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/1_proxmox/" title="1. Setup the system - proxmox" class="md-nav__link">
-      1. Setup the system - proxmox
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
-      2. Setup the system - Hassio
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
-      3. Move old settings to new
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/4_hassop/" title="3.1 Alternative hassos install" class="md-nav__link">
-      3.1 Alternative hassos install
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/5_opnsense_firewall/" title="4 Firewall setup with guest network VLAN" class="md-nav__link">
+    <a href="../5_opnsense_firewall/" title="4 Firewall setup with guest network VLAN" class="md-nav__link">
       4 Firewall setup with guest network VLAN
     </a>
   </li>
@@ -496,15 +489,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#make-presistent-device-names" title="Make presistent device names" class="md-nav__link">
-    Make presistent device names
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starting-the-deconz-docker-container" title="Starting the deconz docker container" class="md-nav__link">
-    Starting the deconz docker container
+  <a href="#warning" title="Warning!" class="md-nav__link">
+    Warning!
   </a>
   
 </li>
@@ -525,91 +511,15 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/helto4real/hassio/edit/master/docs/docker/deconz.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/helto4real/hassio/edit/master/docs/system/4_hassop.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="setup-deconz-in-docker">Setup deconz in docker</h1>
-<p>As many users of Hass.io you will have several serial devices but the deconz requires the devices to be ttyUSB0 for conbee stick. Here is a trick to manage this.</p>
-<h2 id="make-presistent-device-names">Make presistent device names</h2>
-<p>Check this <a href="http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/">guide</a> for details.</p>
-<p><strong>First find out what device id you have for your serial devices</strong></p>
-<p>If you know which device you want to get details about, run</p>
-<pre><code class="sh">$ /bin/udevadm info --name=/dev/ttyUSB0 | grep ID_VENDOR
-E: ID_VENDOR_ID=0403
-
-$ /bin/udevadm info --name=/dev/ttyUSB0 | grep ID_MODEL_ID
-E: ID_MODEL_ID=6015
-
-$ /bin/udevadm info --name=/dev/ttyUSB0 | grep SERIAL_SHORT
-E: ID_SERIAL_SHORT=ABC01234
-</code></pre>
-
-<pre><code>$ lsusb
-
-Bus 002 Device 004: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)
-Bus 002 Device 003: ID 0403:6001 Future Technology Devices International, Ltd FT232 USB-Serial (UART) IC
-</code></pre>
-
-<p>One of the two devices is my conbee device have to find out which.</p>
-<p>Look for something similar to below to find your conbee device</p>
-<pre><code>$ more /var/log/messages | grep ttyUSB -B 7 -A 7
-
-New USB device found, idVendor=0403, idProduct=6015
-Product: FT230X Basic UART
-Manufacturer: FTDI
-SerialNumber: DO00KDGR
-
-</code></pre>
-
-<p><strong>Make UDEV rules</strong>
-create a file at: /etc/udev/rules.d/99-usb-serial.rules
-Make sure your id:s and serial number matches!</p>
-<pre><code>SUBSYSTEM==&quot;tty&quot;, ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6015&quot;, ATTRS{serial}==&quot;DO00KDGR&quot;, SYMLINK+=&quot;ttyUSB.CON&quot;
-SUBSYSTEM==&quot;tty&quot;, ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6001&quot;, ATTRS{serial}==&quot;A138UEXZ&quot;, SYMLINK+=&quot;ttyUSB.RFX&quot;
-</code></pre>
-
-<p>restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time. 
-check with <code>ls /dev</code> and check link with <code>ls -l /dev/ttyUSB.CON</code>
-In my example I use rfxtrx usb too.</p>
-<h2 id="starting-the-deconz-docker-container">Starting the deconz docker container</h2>
-<p>Now you can map ttyUSB.CON to ttyUSB0 as the example below... And youre done!</p>
-<pre><code class="shell-script">
-$ sudo docker run -d \
-    --name=deconz \
-    --net=host \
-    --restart=always \
-    -e DECONZ_WEB_PORT=8080 \
-    -e DECONZ_WS_PORT=8443 \
-    -v /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ \
-    --device=/dev/ttyUSB.CON:/dev/ttyUSB0 \
-    marthoc/deconz
-
-</code></pre>
-
-<p>or </p>
-<p>use my docker compose file in this folder</p>
-<pre><code class="yaml">
-version: &quot;2&quot;
-services:
-  deconz:
-    image: marthoc/deconz
-    container_name: deconz
-    network_mode: host
-    restart: always
-    volumes:
-      - /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ
-    devices:
-      - /dev/ttyUSB.CON:/dev/ttyUSB0
-    environment:
-      - DECONZ_WEB_PORT=8080
-      - DECONZ_WS_PORT=8443
-      - DEBUG_INFO=1
-      - DEBUG_APS=0
-      - DEBUG_ZCL=0
-      - DEBUG_ZDP=0
-      - DEBUG_OTAU=0
-
-</code></pre>
+                <h1 id="alternative-way-to-install-hassio">Alternative way to install Hassio</h1>
+<p>After my initial setup I found out there are possible to install Hassio directly as VM on proxmox using hassos!
+My strategy is to make local add-ons for any docker container I need for Home Assistant. In that way I can keep the server footprint very small and have "all-in-one" package to backup both hassio config plus VM.</p>
+<p>See  <a href="https://github.com/whiskerz007/proxmox_hassos_install">whisker hassos install script</a> for instructions. This script apply for proxmox. </p>
+<h2 id="warning">Warning!</h2>
+<p>If you use several hassio instances on the same machine, disable discovery for yeelight on all but one. There are a bug that makes hass loop 100% cpu. </p>
                 
                   
                 
@@ -630,7 +540,7 @@ services:
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../bluetooth/" title="Bluetooth tracker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../3_move_old_hassio/" title="3. Move old settings to new" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -639,19 +549,19 @@ services:
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Bluetooth tracker
+                3. Move old settings to new
               </span>
             </div>
           </a>
         
         
-          <a href="../nginx/" title="nginx and lets encrypt" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../5_opnsense_firewall/" title="4 Firewall setup with guest network VLAN" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                nginx and lets encrypt
+                4 Firewall setup with guest network VLAN
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

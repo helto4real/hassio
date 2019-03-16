@@ -38,7 +38,7 @@
     
     
       
-        <title>Deconz</title>
+        <title>4 Firewall setup with guest network VLAN</title>
       
     
     
@@ -99,7 +99,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#setup-deconz-in-docker" tabindex="1" class="md-skip">
+      <a href="#firewall-setup" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -125,7 +125,7 @@
                 My Home Assistant docs
               </span>
               <span class="md-header-nav__topic">
-                Deconz
+                4 Firewall setup with guest network VLAN
               </span>
             
           
@@ -288,12 +288,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Docker
@@ -311,8 +309,106 @@
 
 
   <li class="md-nav__item">
-    <a href="../bluetooth/" title="Bluetooth tracker" class="md-nav__link">
+    <a href="../../docker/bluetooth/" title="Bluetooth tracker" class="md-nav__link">
       Bluetooth tracker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/deconz/" title="Deconz" class="md-nav__link">
+      Deconz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/nginx/" title="nginx and lets encrypt" class="md-nav__link">
+      nginx and lets encrypt
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1_proxmox/" title="1. Setup the system - proxmox" class="md-nav__link">
+      1. Setup the system - proxmox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
+      2. Setup the system - Hassio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
+      3. Move old settings to new
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_hassop/" title="3.1 Alternative hassos install" class="md-nav__link">
+      3.1 Alternative hassos install
     </a>
   </li>
 
@@ -332,11 +428,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Deconz
+        4 Firewall setup with guest network VLAN
       </label>
     
-    <a href="./" title="Deconz" class="md-nav__link md-nav__link--active">
-      Deconz
+    <a href="./" title="4 Firewall setup with guest network VLAN" class="md-nav__link md-nav__link--active">
+      4 Firewall setup with guest network VLAN
     </a>
     
       
@@ -350,16 +446,70 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#make-presistent-device-names" title="Make presistent device names" class="md-nav__link">
-    Make presistent device names
+  <a href="#proxmox-setup" title="Proxmox setup" class="md-nav__link">
+    Proxmox setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#networking" title="Networking" class="md-nav__link">
+    Networking
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opnsense" title="Install opnsense" class="md-nav__link">
+    Install opnsense
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-the-deconz-docker-container" title="Starting the deconz docker container" class="md-nav__link">
-    Starting the deconz docker container
+  <a href="#example-of-vlan-guest-network" title="Example of VLAN, Guest network" class="md-nav__link">
+    Example of VLAN, Guest network
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assign-interface" title="Assign interface" class="md-nav__link">
+    Assign interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp" title="DHCP" class="md-nav__link">
+    DHCP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall-rules-for-guestnet" title="Firewall rules for guestnet" class="md-nav__link">
+    Firewall rules for guestnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-wifi-setting" title="Add the wifi setting" class="md-nav__link">
+    Add the wifi setting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -371,102 +521,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../nginx/" title="nginx and lets encrypt" class="md-nav__link">
-      nginx and lets encrypt
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      System
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        System
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/1_proxmox/" title="1. Setup the system - proxmox" class="md-nav__link">
-      1. Setup the system - proxmox
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/2_hassio/" title="2. Setup the system - Hassio" class="md-nav__link">
-      2. Setup the system - Hassio
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/3_move_old_hassio/" title="3. Move old settings to new" class="md-nav__link">
-      3. Move old settings to new
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/4_hassop/" title="3.1 Alternative hassos install" class="md-nav__link">
-      3.1 Alternative hassos install
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../system/5_opnsense_firewall/" title="4 Firewall setup with guest network VLAN" class="md-nav__link">
-      4 Firewall setup with guest network VLAN
-    </a>
   </li>
 
         
@@ -496,16 +550,70 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#make-presistent-device-names" title="Make presistent device names" class="md-nav__link">
-    Make presistent device names
+  <a href="#proxmox-setup" title="Proxmox setup" class="md-nav__link">
+    Proxmox setup
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#networking" title="Networking" class="md-nav__link">
+    Networking
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opnsense" title="Install opnsense" class="md-nav__link">
+    Install opnsense
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-the-deconz-docker-container" title="Starting the deconz docker container" class="md-nav__link">
-    Starting the deconz docker container
+  <a href="#example-of-vlan-guest-network" title="Example of VLAN, Guest network" class="md-nav__link">
+    Example of VLAN, Guest network
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assign-interface" title="Assign interface" class="md-nav__link">
+    Assign interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp" title="DHCP" class="md-nav__link">
+    DHCP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall-rules-for-guestnet" title="Firewall rules for guestnet" class="md-nav__link">
+    Firewall rules for guestnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-wifi-setting" title="Add the wifi setting" class="md-nav__link">
+    Add the wifi setting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -525,91 +633,103 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/helto4real/hassio/edit/master/docs/docker/deconz.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/helto4real/hassio/edit/master/docs/system/5_opnsense_firewall.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="setup-deconz-in-docker">Setup deconz in docker</h1>
-<p>As many users of Hass.io you will have several serial devices but the deconz requires the devices to be ttyUSB0 for conbee stick. Here is a trick to manage this.</p>
-<h2 id="make-presistent-device-names">Make presistent device names</h2>
-<p>Check this <a href="http://hintshop.ludvig.co.nz/show/persistent-names-usb-serial-devices/">guide</a> for details.</p>
-<p><strong>First find out what device id you have for your serial devices</strong></p>
-<p>If you know which device you want to get details about, run</p>
-<pre><code class="sh">$ /bin/udevadm info --name=/dev/ttyUSB0 | grep ID_VENDOR
-E: ID_VENDOR_ID=0403
-
-$ /bin/udevadm info --name=/dev/ttyUSB0 | grep ID_MODEL_ID
-E: ID_MODEL_ID=6015
-
-$ /bin/udevadm info --name=/dev/ttyUSB0 | grep SERIAL_SHORT
-E: ID_SERIAL_SHORT=ABC01234
-</code></pre>
-
-<pre><code>$ lsusb
-
-Bus 002 Device 004: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)
-Bus 002 Device 003: ID 0403:6001 Future Technology Devices International, Ltd FT232 USB-Serial (UART) IC
-</code></pre>
-
-<p>One of the two devices is my conbee device have to find out which.</p>
-<p>Look for something similar to below to find your conbee device</p>
-<pre><code>$ more /var/log/messages | grep ttyUSB -B 7 -A 7
-
-New USB device found, idVendor=0403, idProduct=6015
-Product: FT230X Basic UART
-Manufacturer: FTDI
-SerialNumber: DO00KDGR
-
-</code></pre>
-
-<p><strong>Make UDEV rules</strong>
-create a file at: /etc/udev/rules.d/99-usb-serial.rules
-Make sure your id:s and serial number matches!</p>
-<pre><code>SUBSYSTEM==&quot;tty&quot;, ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6015&quot;, ATTRS{serial}==&quot;DO00KDGR&quot;, SYMLINK+=&quot;ttyUSB.CON&quot;
-SUBSYSTEM==&quot;tty&quot;, ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6001&quot;, ATTRS{serial}==&quot;A138UEXZ&quot;, SYMLINK+=&quot;ttyUSB.RFX&quot;
-</code></pre>
-
-<p>restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time. 
-check with <code>ls /dev</code> and check link with <code>ls -l /dev/ttyUSB.CON</code>
-In my example I use rfxtrx usb too.</p>
-<h2 id="starting-the-deconz-docker-container">Starting the deconz docker container</h2>
-<p>Now you can map ttyUSB.CON to ttyUSB0 as the example below... And youre done!</p>
-<pre><code class="shell-script">
-$ sudo docker run -d \
-    --name=deconz \
-    --net=host \
-    --restart=always \
-    -e DECONZ_WEB_PORT=8080 \
-    -e DECONZ_WS_PORT=8443 \
-    -v /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ \
-    --device=/dev/ttyUSB.CON:/dev/ttyUSB0 \
-    marthoc/deconz
-
-</code></pre>
-
-<p>or </p>
-<p>use my docker compose file in this folder</p>
-<pre><code class="yaml">
-version: &quot;2&quot;
-services:
-  deconz:
-    image: marthoc/deconz
-    container_name: deconz
-    network_mode: host
-    restart: always
-    volumes:
-      - /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ
-    devices:
-      - /dev/ttyUSB.CON:/dev/ttyUSB0
-    environment:
-      - DECONZ_WEB_PORT=8080
-      - DECONZ_WS_PORT=8443
-      - DEBUG_INFO=1
-      - DEBUG_APS=0
-      - DEBUG_ZCL=0
-      - DEBUG_ZDP=0
-      - DEBUG_OTAU=0
-
-</code></pre>
+                <h1 id="firewall-setup">Firewall setup</h1>
+<p>A good security gets more and more important, especially when dealing with IoT stuff. What happens it your IoT device gets hacked. How do we make sure it doesnt have full access to your network? Do we know if and where it sends usage and private data?</p>
+<p>At least we can make sure we make basic setup of a good firewall and segmented networks using VLANS. We have a wonderful piece of machine in Intel NUC that have alot of machine power left so I decided to use it as a firewall/router too. I am using <a href="https://opnsense.org/download/">OpnSense</a> software and an extra USB ethernet dongle on the WAN side. I bought two used managed gigabit switches with VLAN capabilites. I also use the Unifi AP capability to set VLAN id to a SSID for the guest wifi and IoT wifi/network. I will explain it in the following chapters. </p>
+<p>The reader takes own responsibility of the security using this guide!</p>
+<h2 id="proxmox-setup">Proxmox setup</h2>
+<h3 id="networking">Networking</h3>
+<p>I have two networking devices. The built-in ethernet and the usb dongle. For a computer I would advice to buy a normal ethernet card but for a NUC the USB will be fine.</p>
+<p><img alt="network 1" src="../img/security/proxmox_lan_1.jpg" /></p>
+<p>I also have two "Linux bridges", one for WAN (the usb one) and one for the LAN. Very important to add the "VLAN Aware" checkbox. This will make the bridge work like a switch for VLANS.</p>
+<p><img alt="network 1" src="../img/security/proxmox_lan_2.jpg" /></p>
+<h2 id="install-opnsense">Install opnsense</h2>
+<p>If you want you can read the <a href="https://docs.opnsense.org/manual/install.html">full installation guide</a> of opnsense. This is how I configured it.</p>
+<ol>
+<li>Upload the <a href="https://opnsense.org/download/">OpnSense</a> image. </li>
+<li>Create the VM, I use 2048 MiB memory, 3 cores, 20gig storage. GuestOS=Other. Use default LAN network, my case vmbr0.</li>
+<li>Add the WAN network device</li>
+<li>
+<p>Add the VLAN network device in my case with tag=xx
+Hardware should look something like this:</p>
+<p><img alt="hardware" src="../img/security/hardware_opnsense.jpg" /></p>
+</li>
+<li>
+<p>Start the VM and go to console</p>
+</li>
+<li>Wait for the installation to end</li>
+<li>When prompted, login as "installer" and password "opnsense". </li>
+<li>Install defaults, now the FW is listening to "192.168.1.1"</li>
+<li>IMPORTANT, remove ISO from CD for the VM!!!! If you forget this it will start in live mode and no settings will be saved.</li>
+<li>Use web browser to login to "root" and use "opnsense" as password. Do the wizard. A tip is to use the old routers MAC address if you have binding to outside IP addresses. </li>
+<li>After wizard is done you have a basic setup of firewalled WAN/LAN </li>
+</ol>
+<h2 id="example-of-vlan-guest-network">Example of VLAN, Guest network</h2>
+<p>As an example I use VLAN for guest network Wifi. Same can be applied to setup VLAN for IoT network. </p>
+<p>If you used my example you will have three networking interfaces. Now it is time to configure VLAN for the third taged one. </p>
+<h3 id="assign-interface">Assign interface</h3>
+<ol>
+<li>Goto Interfaces-&gt;Assignments</li>
+<li>You will se LAN and WAN and a third unassigned one. Click on it and click the enable checkbox</li>
+<li>Give it following settings and click "Save". Makse sure the subnetmask is NOT 32!!</li>
+</ol>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th align="left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description</td>
+<td align="left">Your description of the VLAN</td>
+</tr>
+<tr>
+<td>IPv4 Configuration Type</td>
+<td align="left">Static IPv4</td>
+</tr>
+<tr>
+<td>IPv4 address</td>
+<td align="left"><code>10.1.2.1</code> (example) subnet mask <code>24</code></td>
+</tr>
+<tr>
+<td>IPv4 Configuration Type</td>
+<td align="left">Static IPv4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dhcp">DHCP</h3>
+<ol>
+<li>Now it is time to activate DHCP. Go to Services-&gt;DHCPv4-&gt;YOUR_NEW_INTERFACE </li>
+<li>Press enable DHCP server</li>
+<li>Set range from <code>10.1.2.100</code> to <code>10.1.2.200</code> and click "Save"</li>
+</ol>
+<h3 id="firewall-rules-for-guestnet">Firewall rules for guestnet</h3>
+<ol>
+<li>Goto Firewall-&gt;Rules-&gt;YOUR_NEW_INTERFACE</li>
+<li>
+<p>Add a block rule that blocks everything from any source to LAN net. (The point with guest network that it cant access any LAN devices)</p>
+<p><img alt="firwall 1" src="../img/security/firewall_block.jpg" /></p>
+</li>
+<li>
+<p>Add a allow everything else rule by using all defaults and press save</p>
+</li>
+<li>The result should look something like this</li>
+</ol>
+<p><img alt="firwall 2" src="../img/security/firewall_total.jpg" /></p>
+<h3 id="add-the-wifi-setting">Add the wifi setting</h3>
+<p>I have a Unifi AP and controller. </p>
+<ol>
+<li>Create new network. If you already have a guest wifi setup, make sure your VLAN tag is the same. You will find the VLAN setting under ADVANCED OPTIONS. </li>
+</ol>
+<p><img alt="unifi" src="../img/security/unifi_create_network.jpg" /></p>
+<p>If you want you can setup more advanced guest network capabilities, like "apply guest policies" settings. 
+2. Now you can use a device to connect to the new guest network and make sure it get correct ip and gateway. Also check if you can reach internet and not get to local LAN devices. Important to test this!!!</p>
                 
                   
                 
@@ -630,7 +750,7 @@ services:
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../bluetooth/" title="Bluetooth tracker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../4_hassop/" title="3.1 Alternative hassos install" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -639,25 +759,11 @@ services:
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Bluetooth tracker
+                3.1 Alternative hassos install
               </span>
             </div>
           </a>
         
-        
-          <a href="../nginx/" title="nginx and lets encrypt" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                nginx and lets encrypt
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>
