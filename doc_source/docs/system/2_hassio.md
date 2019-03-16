@@ -5,7 +5,7 @@ authors:
     - Tomas Hellström (@helto4real)
 ---
 # Install prereq and hassio
-This script requires a clean machine. It will install docker and hassio.
+This script requires a clean machine. It will install docker, docker-compose and hassio.
 Copy and paste the following script prior installing hassio.
 
 FIRST GO INTO SUDO MODE IF YOU HAVE SUDO!!!
