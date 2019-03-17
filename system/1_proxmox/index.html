@@ -901,7 +901,7 @@ Create the snapshot. Call it "Fresh". Now we always can start fresh after instal
 <li><code>$ mount | grep sdc1</code>, to check if mount went ok</li>
 </ol>
 <p>if you later want to unmount the usb, the command is <code>umount /media/usb-drive</code>. </p>
-<p>Top PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. </p>
+<p>To PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. </p>
 <ol>
 <li><code>$ blkid -t TYPE=ntfs -sUUID</code> Check your unique id of drive. The type can be <code>vfat</code> if not windows formatted.</li>
 <li>In the file <code>/etc/fstab</code> add the following <code>UUID=702432D524329DD2 /media/usb-drive ntfs defaults 0 0</code> REMEMBER TO USER YOUR OWN UUID and other type than ntfs if your drive is formatted non ntfs! </li>
