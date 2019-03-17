@@ -192,7 +192,7 @@ For full descriptions go to [this url](https://linuxconfig.org/howto-mount-usb-d
 
 if you later want to unmount the usb, the command is `umount /media/usb-drive`. 
 
-Top PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. 
+To PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. 
 
 1. `$ blkid -t TYPE=ntfs -sUUID` Check your unique id of drive. The type can be `vfat` if not windows formatted.
 2. In the file `/etc/fstab` add the following `UUID=702432D524329DD2 /media/usb-drive ntfs defaults 0 0` REMEMBER TO USER YOUR OWN UUID and other type than ntfs if your drive is formatted non ntfs! 
