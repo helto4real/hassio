@@ -175,4 +175,40 @@ $ exit
 go to the proxmox web interface and select your host ant then select "snapshot".
 Create the snapshot. Call it "Fresh". Now we always can start fresh after installing hassio and all other stuff.
 
-CONGRATULATIONS YOUR FIRST VM IS UP AND RUNNING! Lets install Hassio, see next chapter.
+CONGRATULATIONS YOUR FIRST VM IS UP AND RUNNING!
+
+# Proxmox backup
+One of the best features running virtual environments is the possibility to backup entire machine really easy. Here is docs about how that's done.
+## Use usb disk
+### Mount the USB drive
+If you are running a windows system, the drive is probably a NTFS drive. This guide assumes this but there are basically very few difference with other format types. 
+
+For full descriptions go to [this url](https://linuxconfig.org/howto-mount-usb-drive-in-linux)
+
+1. `$ fdisk -l` lists your disks, make sure you can see your drive. Take not of drive path i.e. `/dev/?`
+2. `$ mkdir /media/usb-drive` makes mount point
+3. `$ mount /dev/sdc1 /media/usb-drive/` (sdc1 will probably be another device id for you), check #1
+4. `$ mount | grep sdc1`, to check if mount went ok
+
+if you later want to unmount the usb, the command is `umount /media/usb-drive`. 
+
+Top PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. 
+
+1. `$ blkid -t TYPE=ntfs -sUUID` Check your unique id of drive. The type can be `vfat` if not windows formatted.
+2. In the file `/etc/fstab` add the following `UUID=702432D524329DD2 /media/usb-drive ntfs defaults 0 0` REMEMBER TO USER YOUR OWN UUID and other type than ntfs if your drive is formatted non ntfs! 
+
+**Please be VERY CAREFUL to make sure everything is correct. This is why you should try mount manually first** 
+
+### Add drive to Proxmox
+1. In datacenter view, select `Storage`
+2. Click, "Add->Directory" set your settings and Save
+
+![directory](img/proxmox/storage_create_directory.jpg)
+
+Now you can use the drive as target disk making backups in proxmox!.
+
+## Schedule backups
+1. In datacenter view, select `Backup`
+2. Add a backupscheme and select your new backupdisk
+
+![backup](img/proxmox/add_backup.jpg)
