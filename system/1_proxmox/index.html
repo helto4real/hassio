@@ -887,7 +887,32 @@ $ exit
 
 <p>go to the proxmox web interface and select your host ant then select "snapshot".
 Create the snapshot. Call it "Fresh". Now we always can start fresh after installing hassio and all other stuff.</p>
-<p>CONGRATULATIONS YOUR FIRST VM IS UP AND RUNNING! Lets install Hassio, see next chapter.</p>
+<p>CONGRATULATIONS YOUR FIRST VM IS UP AND RUNNING!</p>
+<h1 id="proxmox-backup">Proxmox backup</h1>
+<p>One of the best features running virtual environments is the possibility to backup entire machine really easy. Here is docs about how that's done.</p>
+<h2 id="use-usb-disk">Use usb disk</h2>
+<h3 id="mount-the-usb-drive">Mount the USB drive</h3>
+<p>If you are running a windows system, the drive is probably a NTFS drive. This guide assumes this but there are basically very few difference with other format types. </p>
+<p>For full descriptions go to <a href="https://linuxconfig.org/howto-mount-usb-drive-in-linux">this url</a></p>
+<ol>
+<li><code>$ fdisk -l</code> lists your disks, make sure you can see your drive. Take not of drive path i.e. <code>/dev/?</code></li>
+<li><code>$ mkdir /media/usb-drive</code> makes mount point</li>
+<li><code>$ mount /dev/sdc1 /media/usb-drive/</code> (sdc1 will probably be another device id for you), check #1</li>
+<li><code>$ mount | grep sdc1</code>, to check if mount went ok</li>
+</ol>
+<p>if you later want to unmount the usb, the command is <code>umount /media/usb-drive</code>. </p>
+<p>Top PERMANENTLY MAKE MOUNT AVAILABLE ATT BOOT then do following. </p>
+<ol>
+<li><code>$ blkid -t TYPE=ntfs -sUUID</code> Check your unique id of drive. The type can be <code>vfat</code> if not windows formatted.</li>
+<li>In the file <code>/etc/fstab</code> add the following <code>UUID=702432D524329DD2 /media/usb-drive ntfs defaults 0 0</code> REMEMBER TO USER YOUR OWN UUID and other type than ntfs if your drive is formatted non ntfs! </li>
+</ol>
+<p><strong>Please be VERY CAREFUL to make sure everything is correct. This is why you should try mount manually first</strong> </p>
+<h3 id="add-drive-to-proxmox">Add drive to Proxmox</h3>
+<ol>
+<li>In datacenter view, select <code>Storage</code></li>
+<li>Click, "Add-&gt;Directory" set your settings and Save</li>
+</ol>
+<p><img alt="directory" src="../img/proxmox/storage_create_directory.jpg" /></p>
                 
                   
                 
