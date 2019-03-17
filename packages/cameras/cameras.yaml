@@ -1,7 +1,7 @@
 camera:
   - platform: ffmpeg
     name: kamera_uppe
-    input: -rtsp_transport tcp -i rtsp://192.168.1.12:8554/unicast
+    input: !secret dafang
 
 ffmpeg:
 
