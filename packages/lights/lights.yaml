@@ -1,9 +1,8 @@
-light:
-  - platform: yeelight
-    devices:
-      !secret yeelight_tvnere:
-        name: Ambient TV
-        transition: 3500
+yeelight:
+  devices:
+    !secret yeelight_tvnere:
+      name: Ambient TV
+      transition: 3500
   # - platform: group
   #   name: hallen
   #   entities:
