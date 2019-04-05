@@ -212,3 +212,88 @@ Now you can use the drive as target disk making backups in proxmox!.
 2. Add a backupscheme and select your new backupdisk
 
 ![backup](img/proxmox/add_backup.jpg)
+
+## ZFS 
+I am using the system setup as NAS. 4 identical disks 2xstripe mirrored. This is at good alternative for speed and safety. Find other options for disk configurations online. I have on-line backup of my NAS this is why I dont use a "safer" configturation.
+
+### Find the disks
+
+`$ ls /dev/disk/by-id`
+
+Copy the result and remove all lines with -partx. You will have the list of the unique id:s of the disks
+
+### Create the zfs pool
+First I make one mirrored with two disks.Then I make a second stripe mirrored disk. Remember to use your ID:s of the disks you got from result above. I also default use compression on the pool. 
+
+```
+$ zpool create storage -m /mnt/storage mirror ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0PN86VX ata-WDC_WD40EFRX-68N32N0_WD-WCC7K1TVP925
+$ zpool add storage mirror ata-WDC_WD40EFRX-68N32N0_WD-WCC7K2ES2RH7 ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6CZH2D3
+$ zfs set compression=on storage
+$ zpool status
+```
+
+status should be something like this. 
+
+```
+  pool: storage
+ state: ONLINE
+  scan: none requested
+config:
+
+        NAME                                          STATE     READ WRITE CKSUM
+        storage                                       ONLINE       0     0     0
+          mirror-0                                    ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0PN86VX  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K1TVP925  ONLINE       0     0     0
+          mirror-1                                    ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K2ES2RH7  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6CZH2D3  ONLINE       0     0     0
+```
+
+### Create more datasets
+
+Use the zfs create command to create the datasets. Example:
+
+
+`$ zfs create storage/media`
+
+### Expose datasets trough LXC container turnkey.fileserver
+I choose to expose smb/NFS through easy admin turnkey fileserver. Update and check available. Use the current version of fileserver, please check when running available command.
+
+```
+$ pveam update
+$ pveam available
+$ pveam download debian-9-turnkey-fileserver_15.0-1_amd64.tar.gz
+```
+#### Create LCX 
+Create LCX container with following properties:
+
+---------------
+| Property  |  Value  |
+|----------|:-------------|
+| Host | fileserver (or your name)  |
+| Unpriveleged | Should be "unselected"  |
+| Password | passwd (your pswd)  |
+| template | Name of your turnkey image downloaded    |
+| memory | 800 |
+| IPv4 | Select static or DHCP and your settings     |
+
+#### Bind ZFS datatset to LCX container
+Edit the `/etc/pve/lxc/100.conf` file (the 100 should be replaced with the id of your container/VM)
+Add the line:
+`mp0: /mnt/storage/media,mp=/mnt/storage/media`
+
+This will bind the /mnt/storage/media dataset to a mount inside the container with the same path.
+
+#### Configure the container (fileserver)
+
+
+Follow the instructions for first time use.
+1. Login using SSH using the root and password provided when you created the container. Use putty or any favourite client
+2. Install
+
+From a browser, enter configuration using 
+
+https://ip_of_your_container:12321
+
+Search turnkey fileserver for information about configure the smb/NFS stuff. I use `/mnt/storage/media` as smb for example since i bound the zfs dataset to it.
