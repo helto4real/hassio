@@ -434,6 +434,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#remove-the-enterprise-subscription" title="Remove the enterprise subscription" class="md-nav__link">
+    Remove the enterprise subscription
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#network" title="Network" class="md-nav__link">
     Network
   </a>
@@ -641,6 +648,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#remove-the-enterprise-subscription" title="Remove the enterprise subscription" class="md-nav__link">
+    Remove the enterprise subscription
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#network" title="Network" class="md-nav__link">
     Network
   </a>
@@ -787,6 +801,8 @@ deb http://download.proxmox.com/debian/pve stretch pve-no-subscription
 deb http://security.debian.org stretch/updates main contrib
 </code></pre>
 
+<h3 id="remove-the-enterprise-subscription">Remove the enterprise subscription</h3>
+<p>Comment out the line <code>deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise</code> in the file <code>/etc/apt/sources.list.d/pve-enterprise.list</code> if you are not planning to get a subscription or you will get errors on <code>apt-get update</code>.</p>
 <h3 id="network">Network</h3>
 <p>For home users the default bridged network makes most sense so not extra network is configured. Multiple bridges can be created. For improved security, vlans can be setup. I might do this in a test environmet but will not use VLAN for now.</p>
 <h3 id="certificates">Certificates</h3>
