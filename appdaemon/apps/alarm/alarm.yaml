@@ -2,4 +2,4 @@
 alarm:
   module: alarm
   class: Alarm
-  gh_device_ip: '192.168.1.133'
+  gh_device_ip: !secret bedroom_gh
