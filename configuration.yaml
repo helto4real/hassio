@@ -13,6 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   packages: !include_dir_named packages  
+  whitelist_external_dirs:
+    - "/share/cameras"
 # Show links to resources in log and frontend
 #introduction:
 
@@ -46,6 +48,10 @@ updater:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
+
+# Stream settings
+stream:
+
 
 recorder:
   purge_interval: 1

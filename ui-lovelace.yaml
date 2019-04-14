@@ -16,7 +16,7 @@ views:
   - !include lovelace/car.yaml
   - !include lovelace/presence.yaml
   - !include lovelace/system.yaml
-
+  - !include lovelace/cameras.yaml
   # - cards:
   #     - camera_image: camera.kamera_uppe
   #       entities:

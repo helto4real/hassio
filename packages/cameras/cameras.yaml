@@ -1,7 +1,18 @@
+# camera:
+#   - platform: ffmpeg
+#     name: kamera_uppe
+#     input: !secret dafang
+
 camera:
-  - platform: ffmpeg
-    name: kamera_uppe
-    input: !secret dafang
+  - platform: generic
+    name: kamera_stream
+    username: !secret dafang_user
+    password: !secret dafang_password 
+    authentication: basic    
+    verify_ssl: false
+    scan_interval: 5
+    still_image_url: !secret dafang_still
+    stream_source: !secret dafang
 
 ffmpeg:
 
@@ -12,6 +23,7 @@ group:
     icon: mdi:camera
     entities:
       - camera.kamera_uppe
+      - camera.kamera_stream
       - group.kamera_uppe
 
   kamera_uppe:

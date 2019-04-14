@@ -1,0 +1,16 @@
+icon: 'mdi:camera'
+id: 1
+title: Cameras
+# panel: true
+path: cameras
+cards:
+  - type: picture-entity
+    name: Uppe
+    entity: camera.kamera_stream
+      # camera_image: camera.kamera_stream
+  # - type: vertical-stack
+  #   cards:
+  #     - type: entities
+  #       entities:
+  #         - camera.kamera_stream
+
