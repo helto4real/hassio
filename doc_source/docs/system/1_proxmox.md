@@ -43,6 +43,9 @@ deb http://download.proxmox.com/debian/pve stretch pve-no-subscription
 # security updates
 deb http://security.debian.org stretch/updates main contrib
 ```
+### Remove the enterprise subscription
+Comment out the line `deb https://enterprise.proxmox.com/debian/pve stretch pve-enterprise` in the file `/etc/apt/sources.list.d/pve-enterprise.list` if you are not planning to get a subscription or you will get errors on `apt-get update`.
+
 ### Network
 For home users the default bridged network makes most sense so not extra network is configured. Multiple bridges can be created. For improved security, vlans can be setup. I might do this in a test environmet but will not use VLAN for now.
 

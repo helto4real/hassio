@@ -33,6 +33,7 @@ Hardware should look something like this:
 
     ![hardware](img/security/hardware_opnsense.jpg)
 
+
 5. Start the VM and go to console
 6. Wait for the installation to end
 7. When prompted, login as "installer" and password "opnsense". 
