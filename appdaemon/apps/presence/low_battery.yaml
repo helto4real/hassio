@@ -1,12 +1,12 @@
-low_battery_manager:
-  module: low_battery
-  class: LowBatteryManager
-  people:
-    - 'Tomas'
-    - 'Elin'
-    - 'Melker'
-    - 'Sally'
-  battery_level_low: 15
-  tts_device: media_player.house
-  dependencies:
-    - tts_manager
+# low_battery_manager:
+#   module: low_battery
+#   class: LowBatteryManager
+#   people:
+#     - 'Tomas'
+#     - 'Elin'
+#     - 'Melker'
+#     - 'Sally'
+#   battery_level_low: 15
+#   tts_device: media_player.house
+#   dependencies:
+#     - tts_manager
