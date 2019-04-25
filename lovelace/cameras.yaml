@@ -7,6 +7,7 @@ cards:
   - type: picture-entity
     name: Uppe
     entity: camera.kamera_stream
+    camera_view: "live"
       # camera_image: camera.kamera_stream
   # - type: vertical-stack
   #   cards:
