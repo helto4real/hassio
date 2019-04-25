@@ -5,19 +5,8 @@ remote:
     name: TVRUMMET
     host: !secret harmony
     activity: TV
-  # - platform: harmony
-  #   name: TVRUMMET
-  #   host: !secret harmony
-  #   activity: Film
-
 
 switch:
-  - platform: computer
-    entities:
-      tomas:
-          mac: !secret tomas_pc_mac
-          ip: !secret tomas_pc_ip 
-
   - platform: template
     switches:
       tv:
@@ -44,6 +33,11 @@ switch:
           data:
             entity_id: remote.tvrummet
             activity: "PowerOff"
+  - platform: computer
+    entities:
+      tomas:
+        mac: !secret tomas_pc_mac
+        ip: !secret tomas_pc_ip
 
 media_player:
   - platform: kodi

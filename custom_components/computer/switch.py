@@ -8,9 +8,9 @@ import uuid
 
 import aiohttp
 import async_timeout
-import voluptuous as vol
+#import voluptuous as vol
 
-from homeassistant.components.switch import SwitchDevice, PLATFORM_SCHEMA
+from homeassistant.components.switch import SwitchDevice
 from homeassistant.helpers import aiohttp_client
 from homeassistant.util import Throttle
 """
@@ -35,11 +35,12 @@ switch:
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['wakeonlan==1.0.0']
+#REQUIREMENTS = ['wakeonlan==1.0.0']
 
 
 async def async_setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the computer switch platform."""
+    _LOGGER.error("ADDING COMPUTER DEVICE!")
     entities = config.get('entities', {})
     devices = []
 
@@ -49,6 +50,7 @@ async def async_setup_platform(hass, config, add_devices, discovery_info=None):
         devices.append(ComputerSwitch(hass, session, entity,
                                       entities[entity]['ip'], entities[entity]['mac']))
 
+    
     add_devices(devices, True)
 
 

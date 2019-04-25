@@ -4,10 +4,10 @@ import async_timeout
 import json
 import logging
 import datetime
-import voluptuous as vol
+#import voluptuous as vol
 from typing import Dict
 
-from homeassistant.components.sensor import PLATFORM_SCHEMA
+#from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 from homeassistant.helpers import aiohttp_client
