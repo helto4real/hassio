@@ -1,6 +1,6 @@
 google_assistant:
   project_id: hellstroms-home
-  api_key: M3NEQAZBzy5IZe307vmYz0kj
+  api_key: !secret google_key
   expose_by_default: false
   entity_config:
     light.tomas_fonster:
