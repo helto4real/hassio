@@ -538,13 +538,15 @@
 <p>I recommend using public/private key to access rather than a username/password. Please checkout the <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client">Microsoft docs for this</a></p>
 <h2 id="home-assistant-remote-debugging">Home assistant remote debugging</h2>
 <p>Make sure you install the remote debugger component "ptvsd" in hass. Then start hass from the home-assistant folder, the root. Also make sure you open the remote folder the same. Se rest of config for remote debugging.</p>
-<p>Typically I:
-- Devmachine: Remote SSH to the devenvironment using ssh client
-- Devserver: Activate the correct venv with source command
-- Devserver: Start Hass in the root git folder att devserver
-- Devmachine: In VSCODE, press F1 and choose <code>Remote-SSH: Connect to Host</code>
-- Devmachine: Attach debugger 
-- Devmachine: Fly away!!! </p>
+<p>Typically I do the following steps:</p>
+<ol>
+<li>Devmachine: Remote SSH to the devenvironment using ssh client</li>
+<li>Devserver: Activate the correct venv with source command</li>
+<li>Devserver: Start Hass in the root git folder att devserver</li>
+<li>Devmachine: In VSCODE, press F1 and choose <code>Remote-SSH: Connect to Host</code></li>
+<li>Devmachine: Attach debugger </li>
+<li>Devmachine: Fly away!!! </li>
+</ol>
 <h3 id="remote-debugging-component">Remote debugging component</h3>
 <p>In the configuration.yaml file, add the ptvsd component. Remember to remove in production environment.</p>
 <pre><code class="yaml">ptvsd:
