@@ -16,6 +16,7 @@ deps/
 # specific files
 known_devices.yaml
 !ssl.conf
+!custom_components/swedish_recycling/*.json
 
 
 
