@@ -1,0 +1,10 @@
+googlehome:
+  devices:
+    - host: !secret gh_sovrum
+      track_devices: false
+      track_alarms: true
+#     - host: 192.168.1.104
+#       device_types: 3
+#       track_devices: true
+#       track_alarms: false
+#       #rssi_threshold: -100

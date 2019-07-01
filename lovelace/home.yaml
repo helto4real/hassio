@@ -15,7 +15,7 @@ cards:
             name: ' '
             state_image:
               Hemma: /local/img/presence/tomas_presence.jpg
-              Anlänt: /local/img/presence/tomas_presence.jpg
+              Nyss anlänt: /local/img/presence/tomas_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -24,7 +24,7 @@ cards:
             image: /local/img/presence/elin_presence_away.jpg
             state_image:
               Hemma: /local/img/presence/elin_presence.jpg
-              Anlänt: /local/img/presence/elin_presence.jpg
+              Nyss anlänt: /local/img/presence/elin_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -33,7 +33,7 @@ cards:
             image: /local/img/presence/sally_presence_away.jpg
             state_image:
               Hemma: /local/img/presence/sally_presence.jpg
-              Anlänt: /local/img/presence/sally_presence.jpg
+              Nyss anlänt: /local/img/presence/sally_presence.jpg
             
           - type: 'custom:picture-status-card'
             card_height: 90px
@@ -42,7 +42,7 @@ cards:
             image: /local/img/presence/melker_presence_away.jpg
             state_image:
               Hemma: /local/img/presence/melker_presence.jpg
-              Anlänt: /local/img/presence/melker_presence.jpg
+              Nyss anlänt: /local/img/presence/melker_presence.jpg
  
       #   type: horizontal-stack
       - type: picture-elements
