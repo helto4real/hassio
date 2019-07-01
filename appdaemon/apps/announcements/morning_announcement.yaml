@@ -1,9 +1,9 @@
 
 ---
-morning_announcement:
-  module: morning_announcement
-  class: MorningAnnouncement
-  tts_device: 'media_player.sovrum'
-  temp_device: 'sensor.utetemp_temperature'
-  dependencies:
-    - tts_manager
+# morning_announcement:
+#   module: morning_announcement
+#   class: MorningAnnouncement
+#   tts_device: 'media_player.sovrum'
+#   temp_device: 'sensor.utetemp_temperature'
+#   dependencies:
+#     - tts_manager

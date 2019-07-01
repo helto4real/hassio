@@ -99,9 +99,10 @@ recorder:
 
 logger:
   default: info
-  logs:
-    pydeconz: debug
-    homeassistant.components.deconz: debug
+  #logs:
+    #pydeconz: debug
+    #homeassistant.components.deconz: debug
+    #homeassistant.components.scrape: debug
 # Enables support for tracking state changes over time
 history:
   
@@ -161,7 +162,14 @@ map:
 
 sensor:
   - platform: time_date
-
+  - platform: scrape
+    name: spot_price_sundsvall
+    resource: https://elen.nu/timpriser-pa-el-for-elomrade-se2-sundsvall
+    select: ".elspot-area-price strong"
+    value_template: '{{ ((value.split(" ")[0]) | replace (",", ".")) }}'
+    unit_of_measurement: "öre/kWh"
+    headers:
+      User-Agent: Mozilla/5.0
 # Text to speech
 tts:
   - platform: google_translate
@@ -200,10 +208,8 @@ person:
 #  username: !secret mqtt_user
 #  password: !secret mqtt_password
 
-#tuya:
-#  username: 54321
-#  password: 12345
-#  country_code: 46
+
+
 #cloud:
 
 zone: !include zones.yaml

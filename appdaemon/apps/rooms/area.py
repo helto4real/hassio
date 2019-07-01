@@ -157,25 +157,25 @@ class Area(Base):
     def turn_on_ambient(self, brigtness: str=None,
                         transition: str=None)->None:
         self.log_to_logbook('Lights', "Tänder allmänljuset för {}".format(self._ambient_lights))
-        if not brigtness:
-            brigtness = self._ambient_light_brightness
-        if not transition:
-            transition = self._ambient_light_transition
+        # if not brigtness:
+        #     brigtness = self._ambient_light_brightness
+        # if not transition:
+        #     transition = self._ambient_light_transition
 
-        if not self._ambient_lights:
-            return  # No ambient lights
-        for light in self._ambient_lights:
-            self.turn_on_device(light,
-                          brightness_pct=brigtness, 
-                          transition=transition)
+        # if not self._ambient_lights:
+        #     return  # No ambient lights
+        # for light in self._ambient_lights:
+        #     self.turn_on_device(light,
+        #                   brightness_pct=brigtness, 
+        #                   transition=transition)
            
     def turn_off_ambient(self)->None:
         self.log_to_logbook('Lights', "Släcker allmänljuset för {}".format(self._ambient_lights))
-        self._morning_ligths_on = False 
-        if not self._ambient_lights:
-            return  # No ambient lights
-        for light in self._ambient_lights:
-            self.turn_off_device(light)
+        # self._morning_ligths_on = False 
+        # if not self._ambient_lights:
+        #     return  # No ambient lights
+        # for light in self._ambient_lights:
+        #     self.turn_off_device(light)'
 
     '''
     

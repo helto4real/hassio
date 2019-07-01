@@ -34,42 +34,42 @@ class HouseStatusManager(App):
         self._early_nights = self.args.get('early_nights', {})
         self._late_nights = self.args.get('late_nights', {})
 
-        self.listen_state(
-            self.__house_mode_change,
-            self.HOUSE_MODE_SELECT,
-            attribute='all',
-            duration=10
-        )
+        # self.listen_state(
+        #     self.__house_mode_change,
+        #     self.HOUSE_MODE_SELECT,
+        #     attribute='all',
+        #     duration=10
+        # )
 
-        # Set sunrise/sunset events
-        self.run_at_sunrise(self.__on_sunrise, offset=self._offset_sunrise)
-        self.run_at_sunset(self.__on_sunset, offset=self._offset_sunset )
+        # # Set sunrise/sunset events
+        # self.run_at_sunrise(self.__on_sunrise, offset=self._offset_sunrise)
+        # self.run_at_sunset(self.__on_sunset, offset=self._offset_sunset )
 
-        # Set callback when it is nighttime on days when go to bed early
-        self.run_on_days(
-            self,
-            self.__on_night_time, self._early_nights,
-            self._early_night_time
-            )
+        # # Set callback when it is nighttime on days when go to bed early
+        # self.run_on_days(
+        #     self,
+        #     self.__on_night_time, self._early_nights,
+        #     self._early_night_time
+        #     )
 
-        # Set callback when it is nighttime on days when go to bed late
-        self.run_on_days(
-            self,
-            self.__on_night_time, self._late_nights,
-            self._late_night_time
-            )
+        # # Set callback when it is nighttime on days when go to bed late
+        # self.run_on_days(
+        #     self,
+        #     self.__on_night_time, self._late_nights,
+        #     self._late_night_time
+        #     )
 
-        # Set callback when it is nighttime on days when go to bed late
-        self.run_daily(
-            self.__on_day_time,
-            self._day_time
-            )
+        # # Set callback when it is nighttime on days when go to bed late
+        # self.run_daily(
+        #     self.__on_day_time,
+        #     self._day_time
+        #     )
 
-        self.log("Setting early night-mode on {} at {}".format(self._early_nights, self._early_night_time))
-        self.log("Setting late night-mode on {} at {}".format(self._late_nights, self._late_night_time))
-        self.log("Setting day time at {}".format(self._day_time))
-        self.log("Next sunset is: {}".format(self.sunset()))
-        self.log("Next sunrise is: {}".format(self.sunrise()))
+        # self.log("Setting early night-mode on {} at {}".format(self._early_nights, self._early_night_time))
+        # self.log("Setting late night-mode on {} at {}".format(self._late_nights, self._late_night_time))
+        # self.log("Setting day time at {}".format(self._day_time))
+        # self.log("Next sunset is: {}".format(self.sunset()))
+        # self.log("Next sunrise is: {}".format(self.sunrise()))
 
     def is_night(self)->bool:
         """returns True if night else False"""
@@ -104,10 +104,10 @@ class HouseStatusManager(App):
         old_mode = HouseModes(old['state']).value
         self._current_state = HouseModes(new_mode)
 
-        self.fire_event(
-            GlobalEvents.EV_HOUSE_MODE_CHANGED.value, 
-            old=old_mode, 
-            new=new_mode)
+        # self.fire_event(
+        #     GlobalEvents.EV_HOUSE_MODE_CHANGED.value, 
+        #     old=old_mode, 
+        #     new=new_mode)
         self.log_to_logbook('House', "Ny state  {}".format(new_mode))
     
     def __on_sunrise(self, kwargs: dict)->None:

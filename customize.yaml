@@ -28,36 +28,57 @@ switch.switch16:
   icon: mdi:lightbulb
 group.room_tvnere:
   icon: mdi:lightbulb-outline
+
+# Ambient lights
 light.tomas_fonster:
   friendly_name: Lampa Tomas rum
   icon: mdi:lightbulb
-switch.melkers_fonsterlampa:
+  ambient: true
+light.sallys_rum:
+  friendly_name: Lampa Sallys rum
+  ambient: true
+light.osram_led_outdoor1:
+  friendly_name: Led farstukvist
+  ambient: true
+switch.ikea3:
   friendly_name: Lampa Melkers rum
   icon: mdi:lightbulb
+  ambient: true
+light.kok:
+  friendly_name: Lampor köket
+  ambient: true
+light.tvrummet:
+  friendly_name: Lampor fönster TV-rummet nere
+  ambient: true
+light.vardagsrum:
+  friendly_name: Lampor fönster vardagsrummet
+  ambient: true
+light.sovrum:
+  friendly_name: Lampor sovrum
+  ambient: true
+light.hall:
+  friendly_name: Lampor hallen
+  ambient: true
+switch.osram1:
+  friendly_name: Lampor vägg TV-rummet nere
+  ambient: false
+  icon: mdi:lightbulb
+
+
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
   icon: mdi:fan
 switch.switch5_melkers_fan:
   friendly_name: Melkers fläkt
   icon: mdi:fan
-light.kok:
-  friendly_name: Lampor köket
 switch.switch7:
   friendly_name: KODI Switch
   icon: mdi:filmstrip
 switch.switch8_melkers_tv:
   friendly_name: Melkers TV switch
   icon: mdi:google-chrome
-switch.switch9outdoor:
-  friendly_name: Switch farstukvist
-switch.osram1:
-  friendly_name: Lampor vägg TV-rummet nere
-light.tvrummet:
-  friendly_name: Lampor fönster TV-rummet nere
-light.vardagsrum:
-  friendly_name: Lampor fönster vardagsrummet
-light.hallen:
-  friendly_name: Lampor hallen
+
+
 group.tomas_devices:
   friendly_name: Tomas mobil
   entity_picture: /local/tomas.jpg
