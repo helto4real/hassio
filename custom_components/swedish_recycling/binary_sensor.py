@@ -136,14 +136,23 @@ class SwedishRecyclingSensor(Entity):
             data_json = json.loads(response_json["d"])
             response_data = {}
             for attr, value in data_json.items():
-                date_split = re.split('([0-9]+)\s([a-z]{3})', value)
+                
+                if 'kl' in value:
+                    regular_expression = '([0-9]+)\s([a-z]{3})\skl\s([0-9]+):([0-9]+)'
+                else:
+                    regular_expression = '([0-9]+)\s([a-z]{3})'
+                date_split = re.split(regular_expression, value)
                 if len(date_split) >1:
                     year = datetime.datetime.now().year
                     month = _MONTH[date_split[2]]
                     if (month < datetime.datetime.now().month and attr.startswith('Next')):
                         year = year + 1
-
-                    response_data[attr] = datetime.datetime(year, month, int(date_split[1]))
+                    
+                    if len(date_split) == 4:
+                        response_data[attr] = datetime.datetime(year, month, int(date_split[1]))
+                    else:
+                        response_data[attr] = datetime.datetime(year, month, int(date_split[1]), \
+                            int(date_split[3]), int(date_split[4]))
                 else:
                     response_data[attr] = value
 
