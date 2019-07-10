@@ -4,6 +4,8 @@ import async_timeout
 import json
 import logging
 import datetime
+import re
+
 #import voluptuous as vol
 from typing import Dict
 
@@ -14,6 +16,19 @@ from homeassistant.helpers import aiohttp_client
 
 _LOGGER = logging.getLogger(__name__)
 
+_MONTH = {
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "maj": 5,
+    "jun": 6, 
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "okt": 10,
+    "nov": 11,
+    "dec": 12}
 
 async def async_setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the computer switch platform."""
@@ -42,7 +57,7 @@ class SwedishRecyclingSensor(Entity):
         self._use_as_state = use_as_state
         self._session = session
         self._available = False
-        self._attributes: Dict[str, str] = {}
+        self._attributes = {}
         _LOGGER.info("Init Swedish recycling {} with station_id {} and use state {}".format(
             self._name, self._station_id, self._use_as_state))
 
@@ -72,7 +87,10 @@ class SwedishRecyclingSensor(Entity):
 
         for attr, value in self._attributes.items():
             if attr.lower() == self._use_as_state.lower():
-                return value
+                if value.date() == datetime.datetime.today().date():
+                    return "on"
+                else:
+                    return "off"
 
         return "unavailable"
     
@@ -91,6 +109,7 @@ class SwedishRecyclingSensor(Entity):
         try:
             with async_timeout.timeout(30, loop=self.hass.loop):
                 self._attributes = await self.get_data()
+               
                 if len(self._attributes) > 0:
                     self._available = True
                 else:
@@ -104,7 +123,7 @@ class SwedishRecyclingSensor(Entity):
         api_url = "https://webapp.ftiab.se/Code/Ajax/StationHandler.aspx/GetStationMaintenance"
         payload = '{"stationId": "'+ self._station_id + '"}'
         headers = {'Content-Type': 'application/json'}
-        data_json: Dict[str, str] = {}
+        data_json = {}
 
         async with self._session.post(api_url, data=payload, headers=headers) as response:
             if response.status != 200:
@@ -115,5 +134,17 @@ class SwedishRecyclingSensor(Entity):
             data = await response.text()
             response_json = json.loads(data)
             data_json = json.loads(response_json["d"])
+            response_data = {}
+            for attr, value in data_json.items():
+                date_split = re.split('([0-9]+)\s([a-z]{3})', value)
+                if len(date_split) >1:
+                    year = datetime.datetime.now().year
+                    month = _MONTH[date_split[2]]
+                    if (month < datetime.datetime.now().month):
+                        year = year + 1
 
-        return data_json
+                    response_data[attr] = datetime.datetime(year, month, int(date_split[1]))
+                else:
+                    response_data[attr] = value
+
+            return response_data

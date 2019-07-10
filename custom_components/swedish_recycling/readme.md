@@ -3,13 +3,13 @@ This custom component checks the recycling station (återvinningsstation).
 Check https://www.ftiab.se/173.html to search for your specifc recycling station. You will need the unique id of the station when configuring the component.
 
 ## Usage
-Copy the `swedish_recycling.py` to your folder `custom_component/sensor` folder under config root
+Copy the all files from "swedish_recycling" to folder `custom_component/swedish_recycling` folder under config root
 
-The component will create a sensor with the state of the value you shoose in `use_as_state`. The rest of the properties will show as attributes in the sensor. You can only choose one of the options as state in `use_as_state`
+The component will create a binary_sensor with the state on if the date you shoose in `use_as_state` is today. The rest of the properties will show as attributes. You can only choose one of the options as state in `use_as_state`
 
 ## Configuration
 ```yaml
-sensor:
+binary_sensor:
   - platform: swedish_recycling
     entities:                           
       matfors:                        # name of entity
