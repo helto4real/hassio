@@ -140,7 +140,7 @@ class SwedishRecyclingSensor(Entity):
                 if len(date_split) >1:
                     year = datetime.datetime.now().year
                     month = _MONTH[date_split[2]]
-                    if (month < datetime.datetime.now().month):
+                    if (month < datetime.datetime.now().month and attr.startswith('Next')):
                         year = year + 1
 
                     response_data[attr] = datetime.datetime(year, month, int(date_split[1]))
