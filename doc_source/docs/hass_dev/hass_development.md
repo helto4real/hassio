@@ -1,39 +1,27 @@
 # My development setup
-This is my setup for doing development on home assistant. The remote features of VS.code is somewhat experimental so use at own risk. Currently VS.code experimental only supports remote development and debugging.
+This is my setup for doing development on home assistant. The remote features of VS.code is awesome and now when Home Assistant docker container is built upon startup it is a plug&play experience thanks to @pvizeli.
 
 # Development of Hass
 ## Components 
-- Home Assistant host: Any linux machine or VM
-    - Debian/Ubuntu 
-    - Git
-    - Python environment including venv
-- Develop tools: Windows PC with VSCODE
-
-I use a LXC container with debian 9 as host for my dev environment running on proxmox. But any linux based host would suffice. Using docker containers on dev machine would also work. You will need the docker remote extension for VSCODE then.
-
-I use my PC as development machine i.e where my VSCODE is installed.  Setup SSH on the dev server and use root or other user as you please. Make sure your settings are right by do a manual ssh session. 
-
-## VS.Code Extension
-You will need the "Remote - SSH" extension for Visual Studio Code Eperimental on your dev maching/laptop.  Install it through normal extension add-ons in VS Code. 
-[Check out the docs](https://github.com/Microsoft/vscode-remote-release)
-
-I recommend using public/private key to access rather than a username/password. Please checkout the [Microsoft docs for this](https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client)
-
+- PC: Any type of PC that are able to run linux containers
+- VSCODE (Visual Studio Code)
+- [Remote Development extension](https://code.visualstudio.com/docs/remote/remote-overview) installed on VSCODE
+- GIT 
 
 ## Home assistant remote debugging
 Make sure you install the remote debugger component "ptvsd" in hass. Then start hass from the home-assistant folder, the root. Also make sure you open the remote folder the same. Se rest of config for remote debugging.
 
 Typically I do the following steps:
 
-1. Devmachine: Remote SSH to the devenvironment using ssh client
-2. Devserver: Activate the correct venv with source command
-3. Devserver: Start Hass in the root git folder att devserver
-4. Devmachine: In VSCODE, press F1 and choose `Remote-SSH: Connect to Host`
-5. Devmachine: Attach debugger 
-6. Devmachine: Fly away!!! 
+1. Clone your fork repo of Home Assistant as described in [devdocs](https://developers.home-assistant.io/docs/en/development_environment.html#setup-local-repository)
+2. Open the folder "Home-Assistant" in VSCODE, now you will be prompted if you want to use the container, and you want that :)
+3. Now it starts new instance of VSCODE and builds container
+4. From terminal you can go to homeassistant folder and start hass as usual with "hass" 
+5. Use localhost:8123 to access
+
 
 ### Remote debugging component
-In the configuration.yaml file, add the ptvsd component. Remember to remove in production environment.
+In the configuration.yaml file, add the ptvsd component. You can open the file on /root/.homeassistant/configuration.yaml from VSCODE remote container and add:
 ```yaml
 ptvsd:
   wait: True # Set to True if you want hass to break and wait for debugger to attach
@@ -47,12 +35,11 @@ Make sure you setup python remote attach debugger that should look something lik
             "type": "python",
             "request": "attach",
             "justMyCode": false,
-            "debugStdlib": true,
             "port": 5678,
             "host": "localhost",
             "pathMappings": [
                 {
-                    "localRoot":  "${workspaceRoot}",
+                    "localRoot":  "/workspaces/home-assistant/homeassistant",
                     "remoteRoot": "."
                 }
             ]
