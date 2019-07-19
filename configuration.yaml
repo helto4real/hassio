@@ -96,6 +96,7 @@ recorder:
       - sensor.yr_cloudiness
       - sensor.yr_wind_speed
       - sensor.yt_pewdiepie
+      - binary_sensor.wash_mashine
 
 logger:
   default: info
@@ -155,7 +156,7 @@ influxdb:
       # nuc stats
       - sensor.memory_use_percent
       - sensor.processor_use
-      
+      - binary_sensor.wash_mashine
 
 # Enables a map showing the location of tracked devices
 map:
@@ -177,12 +178,15 @@ tts:
     language: 'sv'
     cache: false
     time_memory: 600
-    #base_url: http://192.168.1.5
+    # base_url: http://192.168.1.5
 
 hassio:    
 
 lovelace:
   mode: yaml
+
+hacs:
+  token: !secret github_token_hacs
 
 person:
   - name: Tomas
