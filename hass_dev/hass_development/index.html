@@ -518,37 +518,26 @@
                 
                 
                 <h1 id="my-development-setup">My development setup</h1>
-<p>This is my setup for doing development on home assistant. The remote features of VS.code is somewhat experimental so use at own risk. Currently VS.code experimental only supports remote development and debugging.</p>
+<p>This is my setup for doing development on home assistant. The remote features of VS.code is awesome and now when Home Assistant docker container is built upon startup it is a plug&amp;play experience thanks to @pvizeli.</p>
 <h1 id="development-of-hass">Development of Hass</h1>
 <h2 id="components">Components</h2>
 <ul>
-<li>Home Assistant host: Any linux machine or VM<ul>
-<li>Debian/Ubuntu </li>
-<li>Git</li>
-<li>Python environment including venv</li>
+<li>PC: Any type of PC that are able to run linux containers</li>
+<li>VSCODE (Visual Studio Code)</li>
+<li><a href="https://code.visualstudio.com/docs/remote/remote-overview">Remote Development extension</a> installed on VSCODE</li>
+<li>GIT </li>
 </ul>
-</li>
-<li>Develop tools: Windows PC with VSCODE</li>
-</ul>
-<p>I use a LXC container with debian 9 as host for my dev environment running on proxmox. But any linux based host would suffice. Using docker containers on dev machine would also work. You will need the docker remote extension for VSCODE then.</p>
-<p>I use my PC as development machine i.e where my VSCODE is installed.  Setup SSH on the dev server and use root or other user as you please. Make sure your settings are right by do a manual ssh session. </p>
-<h2 id="vscode-extension">VS.Code Extension</h2>
-<p>You will need the "Remote - SSH" extension for Visual Studio Code Eperimental on your dev maching/laptop.  Install it through normal extension add-ons in VS Code. 
-<a href="https://github.com/Microsoft/vscode-remote-release">Check out the docs</a></p>
-<p>I recommend using public/private key to access rather than a username/password. Please checkout the <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client">Microsoft docs for this</a></p>
 <h2 id="home-assistant-remote-debugging">Home assistant remote debugging</h2>
 <p>Make sure you install the remote debugger component "ptvsd" in hass. Then start hass from the home-assistant folder, the root. Also make sure you open the remote folder the same. Se rest of config for remote debugging.</p>
 <p>Typically I do the following steps:</p>
 <ol>
-<li>Devmachine: Remote SSH to the devenvironment using ssh client</li>
-<li>Devserver: Activate the correct venv with source command</li>
-<li>Devserver: Start Hass in the root git folder att devserver</li>
-<li>Devmachine: In VSCODE, press F1 and choose <code>Remote-SSH: Connect to Host</code></li>
-<li>Devmachine: Attach debugger </li>
-<li>Devmachine: Fly away!!! </li>
+<li>Clone your fork repo of Home Assistant as described in <a href="https://developers.home-assistant.io/docs/en/development_environment.html#setup-local-repository">devdocs</a></li>
+<li>Open the folder "Home-Assistant" in VSCODE, not you will be prompted if you want to use the container, and you want that :)</li>
+<li>Now it starts new instance of VSCODE and builds container</li>
+<li>From terminal you can go to homeassistant folder and start hass as usual with "hass" </li>
 </ol>
 <h3 id="remote-debugging-component">Remote debugging component</h3>
-<p>In the configuration.yaml file, add the ptvsd component. Remember to remove in production environment.</p>
+<p>In the configuration.yaml file, add the ptvsd component. You can open the file on /root/.homeassistant/configuration.yaml from VSCODE remote container and add:</p>
 <pre><code class="yaml">ptvsd:
   wait: True # Set to True if you want hass to break and wait for debugger to attach
 </code></pre>
@@ -560,12 +549,11 @@
             &quot;type&quot;: &quot;python&quot;,
             &quot;request&quot;: &quot;attach&quot;,
             &quot;justMyCode&quot;: false,
-            &quot;debugStdlib&quot;: true,
             &quot;port&quot;: 5678,
             &quot;host&quot;: &quot;localhost&quot;,
             &quot;pathMappings&quot;: [
                 {
-                    &quot;localRoot&quot;:  &quot;${workspaceRoot}&quot;,
+                    &quot;localRoot&quot;:  &quot;/workspaces/home-assistant/homeassistant&quot;,
                     &quot;remoteRoot&quot;: &quot;.&quot;
                 }
             ]
