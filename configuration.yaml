@@ -173,11 +173,18 @@ sensor:
       User-Agent: Mozilla/5.0
 # Text to speech
 tts:
-  - platform: google_translate
-    service_name: google_say
-    language: 'sv'
-    cache: false
-    time_memory: 600
+  - platform: google_cloud
+    key_file: googlecloud.json
+    language: sv-SE
+    voice: sv-SE-Wavenet-A
+    # pitch: -2
+    #speed: 0.97
+
+  # - platform: google_translate
+  #   service_name: google_say
+  #   language: 'sv'
+  #   cache: false
+  #   time_memory: 600
     # base_url: http://192.168.1.5
 
 hassio:    
