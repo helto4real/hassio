@@ -11,6 +11,7 @@ appdaemon.yaml
 # specific folders
 .*
 ssh
+tts
 
 deps/
 # specific files
