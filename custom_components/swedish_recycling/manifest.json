@@ -1,8 +1,11 @@
 {
-    "domain": "swedish_recycling",
-    "name": "Recycling integration",
-    "documentation": "https://no.docs.com",
-    "dependencies": [],
-    "codeowners": ["@helto4real"],
-    "requirements": []
-  }
+  "domain": "swedish_recycling",
+  "name": "Swedish Recycling",
+  "config_flow": true,
+  "documentation": "https://github.com/helto4real/custom_component_swedish_recycling",
+  "dependencies": [],
+  "codeowners": [
+    "@helto4real"
+  ],
+  "requirements": []
+}

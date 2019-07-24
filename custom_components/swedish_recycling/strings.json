@@ -1,0 +1,19 @@
+{
+    "config": {
+        "title": "Swedish recycling service (ftiab.se)",
+        "step": {
+            "user": {
+                "title": "Enter Name and station id",
+                "data": {
+                    "name": "Name",
+                    "station_id": "Station id",
+                    "use_as_state": "Use as state"
+                }
+            }
+        },
+        "error": {
+            "name_exists": "Name already exists",
+            "wrong_station_id_or_use_as_state": "Station id not exists or selected state not available as a date!"
+        }
+    }
+}
