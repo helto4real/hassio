@@ -5,8 +5,14 @@ resources:
     type: module
   - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
     type: module
-  - url: /local/custom_cards/weather-card.js?v0.3
+  - url: /community_plugin/krisinfo-card/krisinfo-card.js
+    type: js
+  # - url: /community_plugin/weather-card/weather-card.js?v1.0
+  #   type: js
+  - url: /community_plugin/weather-card-mod/weather-card-mod.js
     type: module
+  - url: /local/custom_cards/card-tools.js?v1.1
+    type: js
 
 title: Hellströms home
 views:

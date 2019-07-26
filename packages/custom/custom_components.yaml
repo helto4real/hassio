@@ -1,0 +1,5 @@
+sensor:
+  - platform: krisinformation
+    name: "Krisinformation Västernorrland"
+    county: "Västernorrlands län"
+    radius: 100
