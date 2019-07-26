@@ -1,7 +1,0 @@
-binary_sensor:
-  - platform: swedish_recycling
-    entities:
-      matfors:
-        station_id: '10421'
-        use_as_state: 'NextCarton'
-
