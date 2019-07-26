@@ -658,6 +658,23 @@ services:
       - DEBUG_OTAU=0
 
 </code></pre>
+
+<h1 id="upgrade-ikea-in-container">Upgrade IKEA in container</h1>
+<ol>
+<li>Install python 
+Use portainer to get the command prompt inside the container.</li>
+</ol>
+<pre><code class="bash">apk update &amp;&amp;
+apk-get install -y python wget &amp;&amp;
+wget https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/ikea-ota-download.py &amp;&amp;
+/usr/bin/python2.7 ikea-ota-download.py
+
+</code></pre>
+
+<ol>
+<li>Enable auto OTA in old web interface</li>
+</ol>
+<p>You find the link in the help page of deconz. Goto settings, shoose advanced settings and select the OTA option.</p>
                 
                   
                 
