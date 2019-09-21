@@ -1,4 +1,4 @@
-icon: 'mdi:weather-partlycloudy'
+icon: 'mdi:weather-partly-cloudy'
 title: Väder
 path: weather
 
@@ -57,13 +57,12 @@ cards:
         entities:
           - sun.sun
           - sensor.yr_symbol
-       
+
       - type: picture
         image: >-
           https://www.yr.no/place/Sweden/V%C3%A4sternorrland/Matfors/avansert_meteogram.png
       - type: custom:weather-card-mod
-        entity: weather.smhi_hemma        
+        entity: weather.smhi_hemma
         icons: "/community_plugin/weather-card-mod/icons/"
       - type: custom:krisinfo-card
         entity: sensor.krisinformation_vasternorrland
-    

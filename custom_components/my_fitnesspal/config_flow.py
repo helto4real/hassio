@@ -4,7 +4,7 @@ import logging
 from collections import OrderedDict
 from datetime import datetime, date
 
-from homeassistant import config_entries, data_entry_flow
+from homeassistant import config_entries
 from homeassistant.const import CONF_USERNAME, CONF_PASSWORD, CONF_NAME
 
 import homeassistant.helpers.config_validation as cv
@@ -19,7 +19,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 @config_entries.HANDLERS.register(DOMAIN)
-class RecyclingFlowHandler(data_entry_flow.FlowHandler):
+class RecyclingFlowHandler(config_entries.ConfigFlow):
     """Config flow for myfitnespal component."""
 
     VERSION = 1

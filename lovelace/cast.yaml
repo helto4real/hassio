@@ -1,4 +1,4 @@
-icon: 'mdi:cast'
+icon: "mdi:cast"
 id: 1
 title: Media
 # panel: true
@@ -14,16 +14,13 @@ cards:
           - sensor.yt_qg8r
       - type: sensor
         entity: sensor.yt_qg8r
-      - type: 'custom:media-player-card'
+      - type: "custom:media-player-card"
         entity: media_player.tv_nere
         image_folder: /local/custom_cards/img
-        
-      - type: 'custom:media-player-card'
+
+      - type: "custom:media-player-card"
         entity: media_player.tv_uppe
         image_folder: /local/custom_cards/img
-        
-      - type: 'custom:media-player-card'
-        entity: media_player.melkers_tv
-        image_folder: /local/custom_cards/img
-            
-
+      # - type: 'custom:media-player-card'
+      #   entity: media_player.melkers_tv
+      #   image_folder: /local/custom_cards/img

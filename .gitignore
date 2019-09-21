@@ -20,4 +20,4 @@ known_devices.yaml
 !custom_components/swedish_recycling/*.json
 
 
-
+tensorflow

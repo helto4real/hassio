@@ -12,7 +12,7 @@ homeassistant:
   time_zone: Europe/Stockholm
   # Customization file
   customize: !include customize.yaml
-  packages: !include_dir_named packages  
+  packages: !include_dir_named packages
   whitelist_external_dirs:
     - "/share/cameras"
 # Show links to resources in log and frontend
@@ -28,9 +28,9 @@ config:
 system_health:
 
 http:
-#  api_password: !secret http_password
+  #  api_password: !secret http_password
   ip_ban_enabled: True
-  login_attempts_threshold: 3
+  login_attempts_threshold: 7
   use_x_forwarded_for: True
   trusted_proxies: !secret hassioip
 
@@ -51,7 +51,6 @@ conversation:
 
 # Stream settings
 stream:
-
 
 recorder:
   purge_interval: 1
@@ -84,8 +83,8 @@ recorder:
       - sensor.utetemp_humidity
       - sensor.temp_outside
       - sensor.hum_outside
-      - sensor.frysnere_temperature  #Frys nere
-      - sensor.frysuppe_temperature  #Frys uppe
+      - sensor.frysnere_temperature #Frys nere
+      - sensor.frysuppe_temperature #Frys uppe
       - sensor.temp_sovrum_nere
       - sensor.temp_vardagsrum_2
       - sensor.temp_sallysrum
@@ -101,28 +100,27 @@ recorder:
 logger:
   default: info
   #logs:
-    #pydeconz: debug
-    #homeassistant.components.deconz: debug
-    #homeassistant.components.scrape: debug
+  #pydeconz: debug
+  #homeassistant.components.deconz: debug
+  #homeassistant.components.scrape: debug
 # Enables support for tracking state changes over time
 history:
-  
+
 # View all events in a logbook
 logbook:
 
 influxdb:
-  
   username: !secret influx_username
   password: !secret influx_password
   include:
-#    domains:
-#      - climate
-#      - device_tracker
-#      - sensor
-#      - remote 
-#      - media_player
-#      - input_select  
-#      - binary_sensor
+    #    domains:
+    #      - climate
+    #      - device_tracker
+    #      - sensor
+    #      - remote
+    #      - media_player
+    #      - input_select
+    #      - binary_sensor
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
@@ -134,15 +132,15 @@ influxdb:
       - device_tracker.sally_presence
 
       - sensor.tomas_phone_mqtt_bt # just for reference remove later
-      - device_tracker.tomass8  # just for reference remove later
+      - device_tracker.tomass8 # just for reference remove later
       - device_tracker.tomasgps # just for reference remove later
       - sensor.occupancy
-      
+
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
-      - sensor.frysnere_temperature  #Frys nere
-      - sensor.frysuppe_temperature  #Frys uppe
+      - sensor.frysnere_temperature #Frys nere
+      - sensor.frysuppe_temperature #Frys uppe
       - sensor.temp_sovrum_nere
       - sensor.temp_vardagsrum
       - sensor.temp_sallysrum
@@ -151,7 +149,7 @@ influxdb:
       - binary_sensor.dorr_uppe_magnet
       - sensor.kamera_uppe_light_sensor
       - switch.computer_tomas
-      - remote.tvrummet 
+      - remote.tvrummet
       - binary_sensor.vardagsrum_pir
       # nuc stats
       - sensor.memory_use_percent
@@ -185,9 +183,9 @@ tts:
   #   language: 'sv'
   #   cache: false
   #   time_memory: 600
-    # base_url: http://192.168.1.5
+  # base_url: http://192.168.1.5
 
-hassio:    
+hassio:
 
 lovelace:
   mode: yaml
@@ -218,8 +216,6 @@ person:
 #  discovery_prefix: homeassistant
 #  username: !secret mqtt_user
 #  password: !secret mqtt_password
-
-
 
 #cloud:
 

@@ -1,17 +1,41 @@
-icon: 'mdi:camera'
+icon: "mdi:camera"
 id: 1
 title: Cameras
 # panel: true
 path: cameras
 cards:
   - type: picture-entity
-    name: Uppe
+    name: DAFANG
     entity: camera.kamera_stream
     camera_view: "live"
-      # camera_image: camera.kamera_stream
+  # - type: picture-entity
+  #   name: Kamera 1
+  #   entity: camera.kamera_1
+  #   camera_view: "live"
+  # - type: picture-entity
+  #   name: Kamera 2
+  #   entity: camera.kamera_2
+  #   camera_view: "live"
+  - type: picture-entity
+    name: Kamera 3
+    entity: camera.kamera_3
+    camera_view: "live"
+  # - type: picture-entity
+  #   name: Kamera 4
+  #   entity: camera.kamera_4
+  #   camera_view: "live"
+  - type: picture-entity
+    name: ESPCAM
+    entity: camera.my_camera
+    camera_view: "live"
+  # - type: picture-entity
+  #   name: tensorflow
+  #   entity: camera.live_view
+  #   camera_view: "live"
+
+  # camera_image: camera.kamera_stream
   # - type: vertical-stack
   #   cards:
   #     - type: entities
   #       entities:
   #         - camera.kamera_stream
-

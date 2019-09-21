@@ -7,13 +7,33 @@ camera:
   - platform: generic
     name: kamera_stream
     username: !secret dafang_user
-    password: !secret dafang_password 
-    authentication: basic    
+    password: !secret dafang_password
+    authentication: basic
     verify_ssl: false
     scan_interval: 5
     still_image_url: !secret dafang_still
     stream_source: !secret dafang
 
+  # - platform: local_file
+  #   file_path: /config/motion/kamera_3_latest.jpg
+  #   name: "Live view"
+amcrest:
+  # - host: !secret camera_1_ip
+  #   username: !secret camera_user
+  #   password: !secret camera_password
+  #   name: kamera_1
+  # - host: !secret camera_2_ip
+  #   username: !secret camera_user
+  #   password: !secret camera_password
+  #   name: kamera_2
+  - host: !secret camera_3_ip
+    username: !secret camera_user
+    password: !secret camera_password
+    name: kamera_3
+  # - host: !secret camera_4_ip
+  #   username: !secret camera_user
+  #   password: !secret camera_password
+  #   name: kamera_4
 ffmpeg:
 
 group:
@@ -43,4 +63,22 @@ group:
       - switch.kamera_uppe_motion_detection
       - switch.kamera_uppe_motion_tracking
       - camera.kamera_uppe_motion_snapshot
-      - binary_sensor.kamera_uppe_motion_sensor      
+      - binary_sensor.kamera_uppe_motion_sensor
+# image_processing:
+#   - platform: tensorflow
+#     source:
+#       - entity_id: camera.kamera_3
+#     model:
+#       graph: /config/tensorflow/model/frozen_inference_graph.pb
+#       # graph: /config/tensorflow/frozen_inference_graph.pb
+#       # model_dir: /config/tensorflow
+#       # labels: /config/tensorflow/object_detection/data/mscoco_label_map.pbtxt
+#       categories:
+#         - car
+#         - person
+#         - bicycle
+#         - dog
+#         - motorcycle
+#     file_out:
+#         - "/config/motion/{{ camera_entity.split('.')[1] }}_latest.jpg"
+#         # - "/config/motion/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"

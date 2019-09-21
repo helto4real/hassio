@@ -5,27 +5,27 @@ switch.ikea1:
 switch.ikea2:
   friendly_name: Julbelysning kök fönster
   icon: mdi:lightbulb
-switch.switch3:
-  friendly_name: Julbelysning kök
-  icon: mdi:lightbulb
-switch.ikea3:
-  friendly_name: Julbelysning vardagsrum vänster
-  icon: mdi:lightbulb
-switch.innr2:
-  friendly_name: Julbelysning vardagsrum mitten
-  icon: mdi:lightbulb
-switch.switch13:
-  friendly_name: Julbelysning vardagsrum höger
-  icon: mdi:lightbulb
-switch.innr3:
-  friendly_name: Julbelysning tvrum
-  icon: mdi:lightbulb
-switch.switch15:
-  friendly_name: Julbelysning tvrum höger
-  icon: mdi:lightbulb
-switch.switch16:
-  friendly_name: Julbelysning sovrum
-  icon: mdi:lightbulb
+# switch.switch3:
+#   friendly_name: Julbelysning kök
+#   icon: mdi:lightbulb
+# switch.ikea3:
+#   friendly_name: Julbelysning vardagsrum vänster
+#   icon: mdi:lightbulb
+# switch.innr2:
+#   friendly_name: Julbelysning vardagsrum mitten
+#   icon: mdi:lightbulb
+# switch.switch13:
+#   friendly_name: Julbelysning vardagsrum höger
+#   icon: mdi:lightbulb
+# switch.innr3:
+#   friendly_name: Julbelysning tvrum
+#   icon: mdi:lightbulb
+# switch.switch15:
+#   friendly_name: Julbelysning tvrum höger
+#   icon: mdi:lightbulb
+# switch.switch16:
+#   friendly_name: Julbelysning sovrum
+#   icon: mdi:lightbulb
 group.room_tvnere:
   icon: mdi:lightbulb-outline
 
