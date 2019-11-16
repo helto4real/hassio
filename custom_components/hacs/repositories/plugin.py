@@ -56,6 +56,8 @@ class HacsPlugin(HacsRepository):
 
     async def update_repository(self):
         """Update."""
+        if self.github.ratelimits.remaining == 0:
+            return
         # Run common update steps.
         await self.common_update()
 
@@ -81,6 +83,11 @@ class HacsPlugin(HacsRepository):
             return
 
         possible_locations = ["dist", "release", ""]
+
+        if self.repository_manifest:
+            if self.repository_manifest.content_in_root:
+                possible_locations = [""]
+
         for location in possible_locations:
             if self.content.path.remote is not None:
                 continue
@@ -111,6 +118,11 @@ class HacsPlugin(HacsRepository):
                     f"{self.information.name}.umd.js",
                     f"{self.information.name}-bundle.js",
                 ]
+
+                if self.repository_manifest:
+                    if self.repository_manifest.filename:
+                        valid_filenames.append(self.repository_manifest.filename)
+
                 for name in valid_filenames:
                     if name in files:
                         # YES! We got it!

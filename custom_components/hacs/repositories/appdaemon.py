@@ -14,6 +14,7 @@ class HacsAppdaemon(HacsRepository):
         self.information.full_name = full_name
         self.information.category = self.category
         self.content.path.local = self.localpath
+        self.content.path.remote = "apps"
 
     @property
     def localpath(self):
@@ -59,12 +60,21 @@ class HacsAppdaemon(HacsRepository):
 
     async def update_repository(self):
         """Update."""
+        if self.github.ratelimits.remaining == 0:
+            return
         await self.common_update()
 
         # Get appdaemon objects.
-        addir = await self.repository_object.get_contents("apps", self.ref)
-        self.content.path.remote = addir[0].path
-        self.information.name = addir[0].name
+        if self.repository_manifest:
+            if self.repository_manifest.content_in_root:
+                self.content.path.remote = ""
+
+        if self.content.path.remote == "apps":
+            addir = await self.repository_object.get_contents(
+                self.content.path.remote, self.ref
+            )
+            self.content.path.remote = addir[0].path
+            self.information.name = addir[0].name
         self.content.objects = await self.repository_object.get_contents(
             self.content.path.remote, self.ref
         )

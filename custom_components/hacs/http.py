@@ -19,6 +19,31 @@ def webresponse(classname):
     return classname
 
 
+class HacsExperimental(HomeAssistantView, Hacs):
+    """Base View Class for HACS."""
+
+    requires_auth = False
+    name = "hacs"
+    url = r"/hacs_experimental/{requested_file:.+}"
+
+    def __init__(self):
+        """Initialize."""
+        self.logger = Logger("hacs.http")
+
+    async def get(self, request, requested_file):  # pylint: disable=unused-argument
+        """Handle HACS Experimental Web requests."""
+        servefile = f"{self.system.config_path}/custom_components/hacs/frontend/experimental/{requested_file}"
+
+        # Serve .gz file if it exist
+        if os.path.exists(f"{servefile}.gz"):
+            servefile += ".gz"
+
+        if os.path.exists(servefile):
+            return web.FileResponse(servefile)
+        else:
+            return web.Response(status=404)
+
+
 class HacsWebResponse(HomeAssistantView, Hacs):
     """Base View Class for HACS."""
 
@@ -47,15 +72,12 @@ class HacsWebResponse(HomeAssistantView, Hacs):
         self.repository_id = path.replace(self.endpoint + "/", "")
         if self.endpoint != "static":
             self.logger.debug(f"Endpoint ({self.endpoint}) called")
-        if self.configuration.dev:
-            self.logger.debug(f"Raw headers ({self.raw_headers})")
-            self.logger.debug(f"Postdata ({self.postdata})")
         if self.endpoint in WEBRESPONSE:
             try:
                 response = WEBRESPONSE[self.endpoint]
                 response = await response.response(self)
             except Exception as exception:
-                render = self.render(f"error", message=exception)
+                render = self.render("error", message=exception)
                 return web.Response(
                     body=render, content_type="text/html", charset="utf-8"
                 )
@@ -208,11 +230,11 @@ class Repository(HacsWebResponse):
             await repository.update_repository()
             repository.status.updated_info = True
 
-            self.data.write()
+            await self.data.async_write()
 
         if repository.status.new:
             repository.status.new = False
-            self.data.write()
+            await self.data.async_write()
 
         render = self.render("repository", repository=repository, message=message)
         return web.Response(body=render, content_type="text/html", charset="utf-8")

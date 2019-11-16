@@ -1,8 +1,6 @@
 """Constants for HACS"""
 # pylint: disable=unused-import
-from ..const import ELEMENT_TYPES
-
-STORAGE_VERSION = "5"
+STORAGE_VERSION = "6"
 STORENAME = "hacs"
 
 # Messages

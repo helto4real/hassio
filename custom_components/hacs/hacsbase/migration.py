@@ -1,6 +1,5 @@
 """HACS Migration logic."""
 # pylint: disable=broad-except,no-member
-import json
 from shutil import copy2
 
 from integrationhelper import Logger, Validate
@@ -101,7 +100,7 @@ class FromVersion4(Migration):
                     version_type = "commit"
                     version_installed = repository["installed_commit"]
                     version_available = repository["last_commit"]
-                if repository["full_name"] != "custom-components/hacs":
+                if repository["full_name"] != "hacs/integration":
                     installed[repository["repository_name"]] = {
                         "version_type": str(version_type),
                         "version_installed": str(version_installed),
@@ -109,11 +108,22 @@ class FromVersion4(Migration):
                     }
 
         path = f"{self.system.config_path}/.storage/{STORES['hacs']}"
-        save(path, hacs)
+        save(self.logger, path, hacs)
 
         path = f"{self.system.config_path}/.storage/{STORES['repositories']}"
-        save(path, repositories)
+        save(self.logger, path, repositories)
 
         path = f"{self.system.config_path}/.storage/{STORES['installed']}"
-        save(path, installed)
+        save(self.logger, path, installed)
+        self.logger.info("Migration done")
+
+
+@register
+class FromVersion5(Migration):
+    """Migrate from version 5"""
+
+    from_version = "5"
+
+    def migrate(self):
+        """Start migration."""
         self.logger.info("Migration done")
