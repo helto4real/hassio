@@ -33,7 +33,7 @@ google_assistant:
     switch.innr1:   
       name: kaffebryggaren
       expose: true
-    switch.osram_ut_2:
+    switch.osram_ut_1:
       name: 'motorvärmaren'
       expose: true
     switch.switch7:

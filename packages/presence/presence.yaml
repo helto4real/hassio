@@ -1,4 +1,8 @@
 group:
+  low_battery_devices:
+    name: Batteristat
+    entities:
+      -
   people_status:
     name: Familjen hemmastatus
     entities:
@@ -93,17 +97,24 @@ proximity:
       - device_tracker.sally_presence
     tolerance: 50
 
-    # For tracking
-device_tracker:
-  - platform: unifi
-    host: !secret unifi_host
-    username: !secret unifi_username
-    password: !secret unifi_password
-    detection_time: 120
-    verify_ssl: false
-    ssid_filter:
-      - !secret unifi_SSID
+# unifi:
+#   controllers:
+#     - host: !secret unifi_host
+#       site: HEMMA
+#       ssid_filter:
+#         - !secret unifi_SSID
 
+# For tracking
+# device_tracker:
+#   - platform: unifi
+#     host: !secret unifi_host
+#     username: !secret unifi_username
+#     password: !secret unifi_password
+#     detection_time: 120
+#     verify_ssl: false
+#     ssid_filter:
+#       - !secret unifi_SSID
+device_tracker:
   - platform: google_maps
     username: !secret gu
     # password: !secret gp

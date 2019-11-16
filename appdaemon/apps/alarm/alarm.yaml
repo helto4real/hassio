@@ -1,5 +1,5 @@
 ---
-alarm:
-  module: alarm
-  class: Alarm
-  gh_device_ip: !secret bedroom_gh
+# alarm:
+#   module: alarm
+#   class: Alarm
+#   gh_device_ip: !secret bedroom_gh

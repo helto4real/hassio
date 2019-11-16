@@ -3,10 +3,31 @@ icon: 'mdi:gauge-low'
 path: system
 cards:
   
+    - type: custom:auto-entities
+      card:
+        type: entities
+        title: Battery warning
+      filter:
+        include:
+          - domain: device_tracker
+            options:
+              secondary_info: last-changed
+            attributes:
+              battery_level: "< 20"
+            entity_id: "*presence"
+    - type: custom:auto-entities
+      card:
+        type: entities
+        title: Sensors
+      filter:
+        include:
+          - group: group.low_battery_devices
+
+
     - type: entities
       entities:
-        - group.low_battery_sensors
-      
+        - group.low_battery_devices
+
     - type: picture-elements
       image: /local/img/performance_bg.png
       elements:

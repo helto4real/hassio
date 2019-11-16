@@ -1,17 +1,21 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.089
+  - url: /local/custom_cards/custom-cards.js?v=1.093
     type: module
   - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
     type: module
-  - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
-    type: module
+  # - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
+  #   type: module
   - url: /community_plugin/krisinfo-card/krisinfo-card.js
     type: js
   # - url: /community_plugin/weather-card/weather-card.js?v1.0
   #   type: js
-  - url: /community_plugin/weather-card-mod/weather-card-mod.js
+  - url: /community_plugin/weather-card-mod/weather-card-mod.js?v0.2
     type: module
   - url: /local/custom_cards/card-tools.js?v1.1
+    type: js
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: js
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
     type: js
 
 title: Hellströms home

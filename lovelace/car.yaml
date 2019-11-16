@@ -29,7 +29,7 @@ cards:
           top: 89%
         
       - type: image
-        entity: switch.osram_ut_2
+        entity: switch.osram_ut_1
         state_image:
           'off': /local/img/car/heater_off.png
           'on': /local/img/car/heater_on.png

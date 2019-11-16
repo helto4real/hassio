@@ -1,12 +1,12 @@
 ---
-car_heater_manager:        
+car_heater_manager:
   module: car_heater
   class: CarHeaterManager
   # Temp sensor outside or use from weather service
   sensor_temperature: sensor.temp_altan_ute
   # Template sensor show hour:minute to schedule
   sensor_time_for_departure: sensor.car_departure_time
-  # Input boolean if heater should schedule weekends 
+  # Input boolean if heater should schedule weekends
   input_schedule_on_weekends: input_boolean.schedule_on_weekends
   # Actual switch the heater is connected to
   heater_switch: switch.osram_ut_2

@@ -16,7 +16,7 @@ cards:
             state_image:
               Hemma: /local/img/presence/tomas_presence.jpg
               Nyss anlänt: /local/img/presence/tomas_presence.jpg
-            
+
           - type: 'custom:picture-status-card'
             card_height: 90px
             entity: person.elin
@@ -25,7 +25,7 @@ cards:
             state_image:
               Hemma: /local/img/presence/elin_presence.jpg
               Nyss anlänt: /local/img/presence/elin_presence.jpg
-            
+
           - type: 'custom:picture-status-card'
             card_height: 90px
             entity: person.sally
@@ -34,7 +34,7 @@ cards:
             state_image:
               Hemma: /local/img/presence/sally_presence.jpg
               Nyss anlänt: /local/img/presence/sally_presence.jpg
-            
+
           - type: 'custom:picture-status-card'
             card_height: 90px
             entity: person.melker
@@ -43,7 +43,7 @@ cards:
             state_image:
               Hemma: /local/img/presence/melker_presence.jpg
               Nyss anlänt: /local/img/presence/melker_presence.jpg
- 
+
       #   type: horizontal-stack
       - type: picture-elements
         elements:
@@ -76,7 +76,7 @@ cards:
           Kväll: /local/img/housestatus/hs_evening.png
           Morgon: /local/img/housestatus/hs_morning.png
           Natt: /local/img/housestatus/hs_night.png
-        
+
       - type: picture-elements
         elements:
           - entity: sensor.temp_vardagsrum
@@ -211,7 +211,7 @@ cards:
               top: 89.45%
             type: state-icon
         image: /local/img/first_floor2.jpg
-        
+
       - type: picture-elements
         elements:
           - entity: sensor.temp_sovrum_nere
@@ -274,9 +274,14 @@ cards:
               left: 50%
               top: 50.8%
             type: state-icon
+          - entity: media_player.plex_kodi_add_on_libreelec
+            style:
+              left: 56.5%
+              top: 50.8%
+            type: state-icon
           - entity: media_player.tv_rummet_gh
             style:
-              left: 59%
+              left: 63%
               top: 50.8%
             type: state-icon
           - entity: sensor.temp_melkersrum
@@ -323,4 +328,3 @@ cards:
               transform: rotate(90deg)
             type: state-label
         image: /local/img/second_floor2.jpg
-      
