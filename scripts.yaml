@@ -1,0 +1,15 @@
+'1574282602304':
+  alias: day_scene
+  sequence:
+  - data:
+      data:
+        transition: 0
+      entity_id:
+      - light.vardagsrum
+      - light.kok
+      - light.tomas_rum
+      - light.sallys_rum
+      - light.osram_led_outdoor1
+      - light.tvrummet
+      - light.sovrum
+    service: light.turn_on

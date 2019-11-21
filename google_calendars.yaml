@@ -38,3 +38,10 @@
     ignore_availability: true
     name: Contacts
     track: false
+
+- cal_id: j311cdbnft8dqioqf4lpahm3as@group.calendar.google.com
+  entities:
+  - device_id: sundsvalls_fotoklubb
+    ignore_availability: true
+    name: Sundsvalls Fotoklubb
+    track: true

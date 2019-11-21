@@ -1,0 +1,60 @@
+tv_scene:
+  alias: "TV scene"
+  sequence:
+    # Turn on blue tv backlight
+    - service: light.turn_on
+      entity_id: light.ambient_tv
+      data:
+        xy_color: [0.136, 0.04]
+        brightness: 13
+    # Turn off ligt in the room
+    - service: light.turn_off
+      entity_id: light.tvrummet
+    # Turn off kodi swich and wall lights
+    - service: switch.turn_off
+      entity_id:
+        - switch.switch7 # Kodi switch off
+        - switch.osram1 # Tv-room wall
+    # Turn on TV using remote
+    - service: remote.turn_on
+      entity_id: remote.tvrummet
+      data:
+        activity: TV
+
+film_scene:
+  alias: "Film scene"
+  sequence:
+    # Turn on blue tv backlight
+    - service: light.turn_on
+      entity_id: light.ambient_tv
+      data:
+        xy_color: [0.136, 0.04]
+        brightness: 13
+    # Turn off ligt in the room
+    - service: light.turn_off
+      entity_id: light.tvrummet
+    # Turn off wall lights
+    - service: switch.turn_off
+      entity_id:
+        - switch.osram1 # Tv-room wall
+    - service: switch.turn_on
+      entity_id:
+        - switch.switch7 # Kodi switch on
+    # Turn on TV using remote
+    - service: remote.turn_on
+      entity_id: remote.tvrummet
+      data:
+        activity: Film
+
+tv_off_scene:
+  alias: "TV off scene"
+  sequence:
+    # Turn on blue tv backlight
+    - service: light.turn_off
+      entity_id: light.ambient_tv
+    # Turn off kodi swich and wall lights
+    - service: switch.turn_off
+      entity_id: switch.switch7 # Kodi switch off
+    # Turn on TV using remote
+    - service: remote.turn_off
+      entity_id: remote.tvrummet

@@ -18,6 +18,8 @@ homeassistant:
 # Show links to resources in log and frontend
 #introduction:
 
+script: !include_dir_merge_named scripts/
+
 # Enables the frontend
 frontend:
   javascript_version: latest
@@ -100,9 +102,9 @@ recorder:
 
 logger:
   default: info
-  #logs:
-  #pydeconz: debug
-  #homeassistant.components.deconz: debug
+  # logs:
+  #   pydeconz: debug
+  #   homeassistant.components.deconz: debug
   #homeassistant.components.scrape: debug
 # Enables support for tracking state changes over time
 history:

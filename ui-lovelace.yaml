@@ -1,5 +1,5 @@
 resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.093
+  - url: /local/custom_cards/custom-cards.js?v=1.095
     type: module
   - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
     type: module
@@ -9,7 +9,7 @@ resources:
     type: js
   # - url: /community_plugin/weather-card/weather-card.js?v1.0
   #   type: js
-  - url: /community_plugin/weather-card-mod/weather-card-mod.js?v0.2
+  - url: /community_plugin/weather-card-mod/weather-card-mod.js?v0.5
     type: module
   - url: /local/custom_cards/card-tools.js?v1.1
     type: js

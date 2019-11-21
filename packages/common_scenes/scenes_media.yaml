@@ -1,0 +1,46 @@
+# Sadly the new scenes cant be used with remotes so moved to script
+
+# scene:
+#   - name: TV
+#     entities:
+#       # Start TV on remote
+#       remote.tvrummet:
+#         state: on
+#         activity: TV
+#       # # Turn off lights on tv
+#       # light.tvrummet:
+#       #   state: off
+#       #   transition: 0
+#       # Turn off kodi switch
+#       # switch.switch7: off
+#       # # Turn on the tv ambient blue light
+#       # light.ambient_tv:
+#       #   state: on
+#       #   xy_color: [0.136, 0.04]
+#       #   brightness: 13
+
+#   - name: Film
+#     entities:
+#       # Turn off lights on tv
+#       light.tvrummet:
+#         state: off
+#         transition: 0
+#       # Start TV on remote
+#       remote.tvrummet:
+#         state: on
+#         activity: Film
+#       # Turn on kodi switch
+#       switch.switch7: on
+#       # Turn on the tv ambient blue light
+#       light.ambient_tv:
+#         state: on
+#         xy_color: [0.136, 0.04]
+#         brightness: 13
+#   - name: TV av
+#     entities:
+#       # Turn off TV
+#       remote.tvrummet: off
+#       # Turn off kodi switch
+#       switch.switch7: off
+#       # Turn off the tv ambient blue light
+#       light.ambient_tv: off

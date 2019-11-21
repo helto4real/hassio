@@ -7,17 +7,17 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: 'custom:picture-status-card'
+          - type: "custom:picture-status-card"
             card_height: 90px
             entity: person.tomas
             font_color: white
             image: /local/img/presence/tomas_presence_away.jpg
-            name: ' '
+            name: " "
             state_image:
               Hemma: /local/img/presence/tomas_presence.jpg
               Nyss anlänt: /local/img/presence/tomas_presence.jpg
 
-          - type: 'custom:picture-status-card'
+          - type: "custom:picture-status-card"
             card_height: 90px
             entity: person.elin
             font_color: white
@@ -26,7 +26,7 @@ cards:
               Hemma: /local/img/presence/elin_presence.jpg
               Nyss anlänt: /local/img/presence/elin_presence.jpg
 
-          - type: 'custom:picture-status-card'
+          - type: "custom:picture-status-card"
             card_height: 90px
             entity: person.sally
             font_color: white
@@ -35,7 +35,7 @@ cards:
               Hemma: /local/img/presence/sally_presence.jpg
               Nyss anlänt: /local/img/presence/sally_presence.jpg
 
-          - type: 'custom:picture-status-card'
+          - type: "custom:picture-status-card"
             card_height: 90px
             entity: person.melker
             font_color: white
@@ -149,7 +149,7 @@ cards:
               left: 78.5%
               top: 44%
             type: state-icon
-          - entity: light.tomas_fonster
+          - entity: light.tomas_rum
             style:
               left: 82.5%
               top: 10.5%
@@ -167,7 +167,7 @@ cards:
               top: 20.5%
             tap_action: toggle
             type: state-icon
-          - entity: sensor.temp_sallysrum
+          - entity: sensor.temp_sallys_rum
             style:
               left: 25%
               top: 44%
@@ -177,7 +177,7 @@ cards:
               left: 8.42%
               top: 44%
             type: state-icon
-          - entity: light.sallys_rum
+          - entity: switch.ikea4
             style:
               left: 17.9%
               top: 10.5%
@@ -316,7 +316,7 @@ cards:
               left: 83.22%
               top: 90.2%
             type: state-icon
-          - entity: sensor.temp_elinsrum
+          - entity: sensor.temp_elins_rum
             style:
               left: 78.5%
               top: 25%

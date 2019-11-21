@@ -1,0 +1,32 @@
+light:
+  - platform: group
+    name: vardagsrum
+    entities:
+      - light.vardagsrumet_mitten
+      - light.vardagsrummet_vanster
+      - light.vardagsrummet_hoger
+      - light.hallen_dorr
+      - light.hallen_byra
+
+  - platform: group
+    name: kok
+    entities:
+      - light.kok_fonster
+      - light.kok_lilla_fonster
+
+  - platform: group
+    name: tomas_rum
+    entities:
+      - light.tomas_fonster
+
+  - platform: group
+    name: tvrummet
+    entities:
+      - light.tvrummet_vanster
+      - light.tvrummet_hoger
+
+  - platform: group
+    name: sovrum
+    entities:
+      - light.sovrum_byra
+      - light.sovrum_fonster

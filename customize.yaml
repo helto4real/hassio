@@ -11,6 +11,9 @@ switch.ikea2:
 # switch.ikea3:
 #   friendly_name: Julbelysning vardagsrum vänster
 #   icon: mdi:lightbulb
+switch.ikea4:
+  friendly_name: Lampa Sallys fönster
+  icon: mdi:lightbulb
 # switch.innr2:
 #   friendly_name: Julbelysning vardagsrum mitten
 #   icon: mdi:lightbulb
@@ -30,7 +33,7 @@ group.room_tvnere:
   icon: mdi:lightbulb-outline
 
 # Ambient lights
-light.tomas_fonster:
+light.tomas_rum:
   friendly_name: Lampa Tomas rum
   icon: mdi:lightbulb
   ambient: true

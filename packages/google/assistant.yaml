@@ -3,7 +3,7 @@ google_assistant:
   api_key: !secret google_key
   expose_by_default: false
   entity_config:
-    light.tomas_fonster:
+    light.tomas_rum:
       name: 'tomas rum'
       expose: true
     light.tvrummet:
@@ -15,25 +15,25 @@ google_assistant:
     light.kok:
       name: köket
       expose: true
-    light.sovrum:   
+    light.sovrum:
       name: sovrummet
       expose: true
-    light.hall:   
+    light.hall:
       name: hallen
       expose: true
-    light.osram_led_outdoor1:   
+    light.osram_led_outdoor1:
       name: farstukvisten
       expose: true
-    light.sallys_rum:   
+    light.sallys_rum:
       name: sallys rum
       expose: true
     switch.computer_tomas:
       name: 'tomas dator'
       expose: true
-    switch.innr1:   
+    switch.innr1:
       name: kaffebryggaren
       expose: true
-    switch.osram_ut_1:
+    switch.osram_ut_2:
       name: 'motorvärmaren'
       expose: true
     switch.switch7:

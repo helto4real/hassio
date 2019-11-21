@@ -11,7 +11,7 @@ cards:
           font-size: 150%
           left: 10.7%
           top: 95%
-        
+
       - type: 'custom:hui-input-number-entity-row'
         entity: input_number.car_heater_dep_time_hour
         icon: none
@@ -19,7 +19,7 @@ cards:
         style:
           left: 18%
           top: 80%
-        
+
       - type: 'custom:hui-input-number-entity-row'
         entity: input_number.car_heater_dep_time_minutes
         icon: none
@@ -27,9 +27,9 @@ cards:
         style:
           left: 18%
           top: 89%
-        
+
       - type: image
-        entity: switch.osram_ut_1
+        entity: switch.osram_ut_2
         state_image:
           'off': /local/img/car/heater_off.png
           'on': /local/img/car/heater_on.png
@@ -38,7 +38,7 @@ cards:
           left: 73%
           top: 70%
           transform: scale(1.0)
-        
+
       - type: image
         entity: input_boolean.schedule_on_weekends
         state_image:
@@ -47,4 +47,4 @@ cards:
         style:
           left: 51%
           top: 83.5%
-        
+
