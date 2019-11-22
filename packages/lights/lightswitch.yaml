@@ -1,0 +1,10 @@
+light:
+  - platform: switch
+    name: sallys_fonster
+    entity_id: switch.ikea4
+  - platform: switch
+    name: melkers_fonster
+    entity_id: switch.ikea3
+  - platform: switch
+    name: tvrummet_vagg
+    entity_id: switch.osram1

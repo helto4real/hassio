@@ -177,7 +177,7 @@ cards:
               left: 8.42%
               top: 44%
             type: state-icon
-          - entity: switch.ikea4
+          - entity: light.sallys_fonster
             style:
               left: 17.9%
               top: 10.5%
@@ -258,7 +258,7 @@ cards:
               left: 44%
               top: 50.8%
             type: state-icon
-          - entity: switch.osram1
+          - entity: light.tvrummet_vagg
             style:
               left: 67%
               top: 50.8%
@@ -311,7 +311,7 @@ cards:
               top: 70.8%
             tap_action: toggle
             type: state-icon
-          - entity: switch.ikea3
+          - entity: light.melkers_fonster
             style:
               left: 83.22%
               top: 90.2%

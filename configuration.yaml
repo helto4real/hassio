@@ -102,9 +102,9 @@ recorder:
 
 logger:
   default: info
-  # logs:
-  #   pydeconz: debug
-  #   homeassistant.components.deconz: debug
+  logs:
+    pydeconz: debug
+    homeassistant.components.deconz: debug
   #homeassistant.components.scrape: debug
 # Enables support for tracking state changes over time
 history:

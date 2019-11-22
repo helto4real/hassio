@@ -1,18 +1,21 @@
 # Scenes for common time of day and
-        # - light.hallen_byra
-        # - light.hallen_dorr
-        # - light.kok_fonster
-        # - light.kok_lilla_fonster
-        # - light.osram_led_outdoor1
-        # - light.sovrum_byra
-        # - light.sovrum_fonster
-        # - light.tvrummet_hoger
-        # - light.tvrummet_vanster
-        # - light.vardagsrumet_mitten
-        # - light.vardagsrummet_hoger
-        # - light.vardagsrummet_vanster
-        # - light.tomas_fonster
 
+# - light.hallen_byra
+# - light.hallen_dorr
+# - light.kok_fonster
+# - light.kok_lilla_fonster
+# - light.osram_led_outdoor1
+# - light.sovrum_byra
+# - light.sovrum_fonster
+# - light.vardagsrumet_mitten
+# - light.vardagsrummet_hoger
+# - light.vardagsrummet_vanster
+# - light.tomas_fonster
+# - light.sallys_fonster
+# - light.melkers_fonster
+# - light.tvrummet_hoger
+# - light.tvrummet_vanster
+# - light.tvrummet_vagg
 
 morning_scene:
   alias: "Morning scene"
@@ -22,14 +25,11 @@ morning_scene:
         - light.vardagsrum
         - light.kok
         - light.tomas_rum
-        - light.osram_led_outdoor1
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
         - light.tvrummet
         - light.sovrum
-    - service: switch.turn_off
-      entity_id:
-        - switch.ikea3 # Melkers room
-        - switch.ikea4 # Sallys room
-        - switch.osram1 # Tv-room wall
 
 day_scene:
   alias: "Day scene"
@@ -39,14 +39,11 @@ day_scene:
         - light.vardagsrum
         - light.kok
         - light.tomas_rum
-        - light.osram_led_outdoor1
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
         - light.tvrummet
         - light.sovrum
-    - service: switch.turn_off
-      entity_id:
-        - switch.ikea3 # Melkers room
-        - switch.ikea4 # Sallys room
-        - switch.osram1 # Tv-room wall
 
 evening_scene:
   alias: "Evening scene"
@@ -56,22 +53,68 @@ evening_scene:
         - light.vardagsrum
         - light.kok
         - light.tomas_rum
-        - light.osram_led_outdoor1
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
       data:
-        brightness: 64
-        color_temp: 370
+        transition: 0
+        brightness: 100
+    - delay: "00:00:01"
     - service: light.turn_on
       entity_id:
         - light.tvrummet
         - light.sovrum
       data:
-        brightness: 20
-        color_temp: 370
-    - service: switch.turn_on
+        transition: 0
+        brightness: 5
+    - delay: "00:00:05"
+    - service: light.turn_on
       entity_id:
-        - switch.ikea3 # Melkers room
-        - switch.ikea4 # Sallys room
-        - switch.osram1 # Tv-room wall
+        - light.vardagsrum
+        - light.kok
+        - light.tomas_rum
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
+        - light.tvrummet
+        - light.sovrum
+      data:
+        transition: 0
+        color_temp: 390
+
+color_scene:
+  alias: "Color scene"
+  sequence:
+    - service: light.turn_on
+      entity_id:
+        - light.vardagsrum
+        - light.kok
+        - light.tomas_rum
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
+        - light.tvrummet
+        - light.sovrum
+      data:
+        transition: 0
+        color_temp: 390
+
+cleaning_scene:
+  alias: "Cleaning scene"
+  sequence:
+    - service: light.turn_on
+      entity_id:
+        - light.vardagsrum
+        - light.kok
+        - light.tomas_rum
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
+        - light.tvrummet
+        - light.sovrum
+      data:
+        transition: 0
+        brightness: 254
 
 night_scene:
   alias: "Night scene"
@@ -81,11 +124,8 @@ night_scene:
         - light.vardagsrum
         - light.kok
         - light.tomas_rum
-        - light.osram_led_outdoor1
+        - light.melkers_rum
+        - light.sallys_rum
+        - light.farstukvisten
         - light.tvrummet
         - light.sovrum
-    - service: switch.turn_off
-      entity_id:
-        - switch.ikea3 # Melkers room
-        - switch.ikea4 # Sallys room
-        - switch.osram1 # Tv-room wall

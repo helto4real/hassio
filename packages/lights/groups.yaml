@@ -20,10 +20,26 @@ light:
       - light.tomas_fonster
 
   - platform: group
+    name: melkers_rum
+    entities:
+      - light.melkers_fonster
+
+  - platform: group
+    name: sallys_rum
+    entities:
+      - light.sallys_fonster
+
+  - platform: group
+    name: farstukvisten
+    entities:
+      - light.osram_led_outdoor1
+
+  - platform: group
     name: tvrummet
     entities:
       - light.tvrummet_vanster
       - light.tvrummet_hoger
+      - light.tvrummet_vagg
 
   - platform: group
     name: sovrum

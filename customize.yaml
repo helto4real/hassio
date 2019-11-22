@@ -29,43 +29,45 @@ switch.ikea4:
 # switch.switch16:
 #   friendly_name: Julbelysning sovrum
 #   icon: mdi:lightbulb
-group.room_tvnere:
-  icon: mdi:lightbulb-outline
+# group.room_tvnere:
+#   icon: mdi:lightbulb-outline
 
 # Ambient lights
 light.tomas_rum:
-  friendly_name: Lampa Tomas rum
-  icon: mdi:lightbulb
-  ambient: true
+  friendly_name: Lampor Tomas rum
+#   icon: mdi:lightbulb
+#   ambient: true
 light.sallys_rum:
-  friendly_name: Lampa Sallys rum
-  ambient: true
+  friendly_name: Lampor Sallys rum
+light.melkers_rum:
+  friendly_name: Lampor Melkers rum
+#   ambient: true
 light.osram_led_outdoor1:
   friendly_name: Led farstukvist
-  ambient: true
-switch.ikea3:
-  friendly_name: Lampa Melkers rum
-  icon: mdi:lightbulb
-  ambient: true
+#  ambient: true
+# switch.ikea3:
+#   friendly_name: Lampa Melkers rum
+#   icon: mdi:lightbulb
+#   ambient: true
 light.kok:
   friendly_name: Lampor köket
-  ambient: true
+  # ambient: true
 light.tvrummet:
   friendly_name: Lampor fönster TV-rummet nere
-  ambient: true
+  # ambient: true
 light.vardagsrum:
   friendly_name: Lampor fönster vardagsrummet
-  ambient: true
+  # ambient: true
 light.sovrum:
   friendly_name: Lampor sovrum
-  ambient: true
+  # ambient: true
 light.hall:
   friendly_name: Lampor hallen
-  ambient: true
-switch.osram1:
+  # ambient: true
+light.tvrummet_vagg:
   friendly_name: Lampor vägg TV-rummet nere
-  ambient: false
-  icon: mdi:lightbulb
+  # ambient: false
+  # icon: mdi:lightbulb
 
 
 switch.switch4_tomas_fan:
