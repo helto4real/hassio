@@ -11,9 +11,9 @@ switch.ikea2:
 # switch.ikea3:
 #   friendly_name: Julbelysning vardagsrum vänster
 #   icon: mdi:lightbulb
-switch.ikea4:
-  friendly_name: Lampa Sallys fönster
-  icon: mdi:lightbulb
+# switch.ikea4:
+#   friendly_name: Lampa Sallys fönster
+#   icon: mdi:lightbulb
 # switch.innr2:
 #   friendly_name: Julbelysning vardagsrum mitten
 #   icon: mdi:lightbulb
@@ -33,39 +33,39 @@ switch.ikea4:
 #   icon: mdi:lightbulb-outline
 
 # Ambient lights
-light.tomas_rum:
-  friendly_name: Lampor Tomas rum
+# light.tomas_rum:
+#   friendly_name: Lampor Tomas rum
 #   icon: mdi:lightbulb
 #   ambient: true
-light.sallys_rum:
-  friendly_name: Lampor Sallys rum
-light.melkers_rum:
-  friendly_name: Lampor Melkers rum
+# light.sallys_rum:
+#   friendly_name: Lampor Sallys rum
+# light.melkers_rum:
+#   friendly_name: Lampor Melkers rum
 #   ambient: true
-light.osram_led_outdoor1:
-  friendly_name: Led farstukvist
+# light.osram_led_outdoor1:
+#   friendly_name: Led farstukvist
 #  ambient: true
 # switch.ikea3:
 #   friendly_name: Lampa Melkers rum
 #   icon: mdi:lightbulb
 #   ambient: true
-light.kok:
-  friendly_name: Lampor köket
-  # ambient: true
-light.tvrummet:
-  friendly_name: Lampor fönster TV-rummet nere
-  # ambient: true
-light.vardagsrum:
-  friendly_name: Lampor fönster vardagsrummet
-  # ambient: true
-light.sovrum:
-  friendly_name: Lampor sovrum
-  # ambient: true
-light.hall:
-  friendly_name: Lampor hallen
-  # ambient: true
-light.tvrummet_vagg:
-  friendly_name: Lampor vägg TV-rummet nere
+# light.kok:
+#   friendly_name: Lampor köket
+#   # ambient: true
+# light.tvrummet:
+#   friendly_name: Lampor fönster TV-rummet nere
+#   # ambient: true
+# light.vardagsrum:
+#   friendly_name: Lampor fönster vardagsrummet
+#   # ambient: true
+# light.sovrum:
+#   friendly_name: Lampor sovrum
+#   # ambient: true
+# light.hall:
+#   friendly_name: Lampor hallen
+#   # ambient: true
+# light.tvrummet_vagg:
+#   friendly_name: Lampor vägg TV-rummet nere
   # ambient: false
   # icon: mdi:lightbulb
 
@@ -154,13 +154,13 @@ binary_sensor.trapp_pir:
 binary_sensor.tvrum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor TV-rum
-binary_sensor.tomas_pir:
+binary_sensor.tomas_rum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Tomas rum
-binary_sensor.sally_pir:
+binary_sensor.sallys_rum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Sallys rum
-binary_sensor.melker_pir:
+binary_sensor.melkers_rum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Melkers rum
 binary_sensor.sovrum_pir:
@@ -173,7 +173,7 @@ sensor.frysnere_temperature:
   friendly_name: Temp frysbox
 sensor.frysuppe_temperature:
   friendly_name: Temp frys kök
-sensor.temp_frys_uppe:
+sensor.kok_frys_temp:
   friendly_name: Temp frys kök(zigbee)
 sensor.utetemp_temperature:
   friendly_name: Temp Ute
@@ -181,15 +181,15 @@ sensor.utetemp_humidity:
   friendly_name: Fukt Ute
 sensor.yr_symbol:
   friendly_name: Väder
-sensor.temp_sovrum_nere:
+sensor.sovrum_temp:
   friendly_name: Temperatur sovrum nere
-sensor.temp_vardagsrum:
+sensor.vardagsrum_temp:
   friendly_name: Temperatur vardagsrum uppe
-sensor.temp_sallysrum:
+sensor.sallys_rum_temp:
   friendly_name: Temperatur Sallys rum
-sensor.temp_elins_rum:
-  friendly_name: Temperatur Sallys rum
-binary_sensor.dorr_uppe_magnet:
+sensor.hobbyrum_temp:
+  friendly_name: Temperatur hobbyrummet
+binary_sensor.hall_dorr:
   icon: mdi:door
   friendly_name: Ytterdörr uppe
 media_player.house:

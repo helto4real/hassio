@@ -21,7 +21,7 @@ google_assistant:
     light.hall:
       name: hallen
       expose: true
-    light.osram_led_outdoor1:
+    light.farstukvist_led:
       name: farstukvisten
       expose: true
     light.sallys_rum:
@@ -30,10 +30,10 @@ google_assistant:
     switch.computer_tomas:
       name: 'tomas dator'
       expose: true
-    switch.innr1:
+    switch.kaffebryggaren:
       name: kaffebryggaren
       expose: true
-    switch.osram_ut_2:
+    switch.motorvarmare:
       name: 'motorvärmaren'
       expose: true
     switch.switch7:

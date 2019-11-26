@@ -79,7 +79,7 @@ cards:
 
       - type: picture-elements
         elements:
-          - entity: sensor.temp_vardagsrum
+          - entity: sensor.vardagsrum_temp
             style:
               left: 38%
               top: 72%
@@ -94,30 +94,30 @@ cards:
               left: 35.42%
               top: 44.45%
             type: state-icon
-          - entity: binary_sensor.dorr_uppe_magnet
+          - entity: binary_sensor.hall_dorr
             style:
               left: 48.5%
               top: 10.5%
             type: state-icon
-          - entity: light.vardagsrummet_hoger
+          - entity: light.julbelysning_vardagsrum_h #light.vardagsrum_fonster_hoger
             style:
               left: 17.9%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.vardagsrumet_mitten
+          - entity: light.julbelysning_vardagsrum_h #light.vardagsrum_fonster_mitten
             style:
               left: 38.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.vardagsrummet_vanster
+          - entity: light.julbelysning_vardagsrum_v #light.vardagsrum_fonster_vanster
             style:
               left: 60.5%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.osram_led_outdoor1
+          - entity: light.farstukvist_led
             style:
               left: 52.5%
               top: 3.5%
@@ -127,7 +127,7 @@ cards:
               left: 17.4%
               top: 54.45%
             type: state-icon
-          - entity: light.hallen_dorr
+          - entity: light.hall_dorr
             style:
               left: 55.5%
               top: 10.5%
@@ -138,18 +138,18 @@ cards:
               left: 55.5%
               top: 19.5%
             type: state-icon
-          - entity: light.hallen_byra
+          - entity: light.hall_dorr
             style:
               left: 55.5%
               top: 27.5%
             tap_action: toggle
             type: state-icon
-          - entity: binary_sensor.tomas_pir
+          - entity: binary_sensor.tomas_rum_pir
             style:
               left: 78.5%
               top: 44%
             type: state-icon
-          - entity: light.tomas_rum
+          - entity: light.julbelysning_tomas_rum #light.tomas_rum
             style:
               left: 82.5%
               top: 10.5%
@@ -167,23 +167,23 @@ cards:
               top: 20.5%
             tap_action: toggle
             type: state-icon
-          - entity: sensor.temp_sallys_rum
+          - entity: sensor.sallys_rum_temp
             style:
               left: 25%
               top: 44%
             type: state-label
-          - entity: binary_sensor.sally_pir
+          - entity: binary_sensor.sallys_rum_pir
             style:
               left: 8.42%
               top: 44%
             type: state-icon
-          - entity: light.sallys_fonster
+          - entity: light.sallys_rum_fonster
             style:
               left: 17.9%
               top: 10.5%
             tap_action: toggle
             type: state-icon
-          - entity: sensor.temp_frys_uppe
+          - entity: sensor.kok_frys_temp
             style:
               left: 73%
               top: 54%
@@ -193,13 +193,13 @@ cards:
               left: 70.2%
               top: 89.45%
             type: state-icon
-          - entity: light.kok_fonster
+          - entity: light.julbelysning_kok_h #light.kok_fonster
             style:
               left: 78.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.kok_lilla_fonster
+          - entity: light.julbelysning_kok_v #light.kok_lilla_fonster
             style:
               left: 92.4%
               top: 58.8%
@@ -214,7 +214,7 @@ cards:
 
       - type: picture-elements
         elements:
-          - entity: sensor.temp_sovrum_nere
+          - entity: sensor.sovrum_temp
             style:
               left: 17.5%
               top: 68%
@@ -225,7 +225,7 @@ cards:
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.sovrum_byra
+          - entity: light.sovrum_brya
             style:
               left: 27.6%
               top: 75.2%
@@ -241,13 +241,13 @@ cards:
               left: 25.6%
               top: 90.2%
             type: state-icon
-          - entity: light.tvrummet_hoger
+          - entity: light.julbelysning_vardagsrum_m #light.tvrum_fonster_hoger
             style:
               left: 47.2%
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.tvrummet_vanster
+          - entity: light.julbelysning_vardagsrum_m #light.tvrum_fonster_vanster
             style:
               left: 57.42%
               top: 90.2%
@@ -258,7 +258,7 @@ cards:
               left: 44%
               top: 50.8%
             type: state-icon
-          - entity: light.tvrummet_vagg
+          - entity: light.tvrum_vagg
             style:
               left: 67%
               top: 50.8%
@@ -284,12 +284,12 @@ cards:
               left: 63%
               top: 50.8%
             type: state-icon
-          - entity: sensor.temp_melkersrum
+          - entity: sensor.melkers_rum_temp
             style:
               left: 80.5%
               top: 68%
             type: state-label
-          - entity: binary_sensor.melker_pir
+          - entity: binary_sensor.melkers_rum_pir
             style:
               left: 73.42%
               top: 90.2%
@@ -311,12 +311,12 @@ cards:
               top: 70.8%
             tap_action: toggle
             type: state-icon
-          - entity: light.melkers_fonster
+          - entity: light.melkers_rum_fonster
             style:
               left: 83.22%
               top: 90.2%
             type: state-icon
-          - entity: sensor.temp_elins_rum
+          - entity: sensor.hobbyrum_temp
             style:
               left: 78.5%
               top: 25%

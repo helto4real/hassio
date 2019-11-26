@@ -2,7 +2,7 @@ title: System
 icon: 'mdi:gauge-low'
 path: system
 cards:
-  
+
     - type: custom:auto-entities
       card:
         type: entities
@@ -27,6 +27,8 @@ cards:
     - type: entities
       entities:
         - group.low_battery_devices
+        - switch.zigbee2mqtt_main_join
+
 
     - type: picture-elements
       image: /local/img/performance_bg.png
@@ -74,7 +76,7 @@ cards:
             left: 4.2%
             top: 9.6%
             transform: none
-          
+
         - type: 'custom:canvas-gauge-card'
           card_height: 125
           entity: sensor.load_1m
@@ -118,7 +120,7 @@ cards:
             left: 52.8%
             top: 9.6%
             transform: none
-          
+
         - type: 'custom:canvas-gauge-card'
           card_height: 125
           entity: sensor.memory_use_percent
@@ -162,7 +164,7 @@ cards:
             left: 4.2%
             top: 57.8%
             transform: none
-          
+
         - type: 'custom:canvas-gauge-card'
           card_height: 125
           entity: sensor.disk_use_percent_home
@@ -206,6 +208,6 @@ cards:
             left: 52.8%
             top: 57.8%
             transform: none
-          
 
-      
+
+

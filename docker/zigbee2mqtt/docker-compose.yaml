@@ -1,16 +1,25 @@
-version: '3'
-
+version: "3"
 services:
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt # zigbee2mqtt
-    restart: always
-    #command: --api --docker # Enables the web UI and tells Traefik to listen to docker
-    #ports:
-    #  - "80:80"     # The HTTP port
-    #  - "8081:8080" # The Web UI (enabled by --api)
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
     volumes:
       - /usr/share/hassio/share/zigbee2mqtt/data:/app/data
-      #- /opt/traefik/data/traefik/acme.json:/acme.json
+      - /run/udev:/run/udev:ro
     devices:
-      - /dev/ttyUSB.ZIG:/dev/ttyACM0
-      
+      - /dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B0018DF325F-if00:/dev/ttyACM0
+    restart: always
+    network_mode: host
+    privileged: true
+    environment:
+      - TZ=Europe/Amsterdam
+# services:
+#   zigbee2mqtt:
+#     image: koenkk/zigbee2mqtt # zigbee2mqtt
+#     restart: always
+
+#     volumes:
+#       - /usr/share/hassio/share/zigbee2mqtt/data:/app/data
+#       #- /opt/traefik/data/traefik/acme.json:/acme.json
+#     devices:
+#       - /dev/ttyUSB.ZIG:/dev/ttyACM0

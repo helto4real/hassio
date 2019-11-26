@@ -2,47 +2,55 @@ light:
   - platform: group
     name: vardagsrum
     entities:
-      - light.vardagsrumet_mitten
-      - light.vardagsrummet_vanster
-      - light.vardagsrummet_hoger
-      - light.hallen_dorr
-      - light.hallen_byra
+      # - light.vardagsrum_fonster_mitten
+      # - light.vardagsrum_fonster_vanster
+      # - light.vardagsrum_fonster_hoger
+      - light.julbelysning_vardagsrum_h
+      - light.julbelysning_vardagsrum_v
+      - light.hall_dorr
+      - light.hall_byra
 
   - platform: group
     name: kok
     entities:
-      - light.kok_fonster
-      - light.kok_lilla_fonster
+      # - light.kok_fonster
+      # - light.kok_lilla_fonster
+      - light.julbelysning_kok_h
+      - light.julbelysning_kok_v
+
 
   - platform: group
     name: tomas_rum
     entities:
-      - light.tomas_fonster
+      # - light.tomas_rum_fonster
+      - light.julbelysning_tomas_rum
 
   - platform: group
     name: melkers_rum
     entities:
-      - light.melkers_fonster
+      - light.melkers_rum_fonster
 
   - platform: group
     name: sallys_rum
     entities:
-      - light.sallys_fonster
+      - light.sallys_rum_fonster
 
   - platform: group
     name: farstukvisten
     entities:
-      - light.osram_led_outdoor1
+      - light.farstukvist_led
 
   - platform: group
     name: tvrummet
     entities:
-      - light.tvrummet_vanster
-      - light.tvrummet_hoger
-      - light.tvrummet_vagg
+      # - light.tvrum_fonster_hoger
+      # - light.tvrum_fonster_vanster
+      - light.julbelysning_vardagsrum_m # Did not bother renaming :)
+      - light.tvrum_vagg
 
   - platform: group
     name: sovrum
     entities:
-      - light.sovrum_byra
-      - light.sovrum_fonster
+      - light.sovrum_brya
+      - light.julbelysning_sovrum
+      # - light.sovrum_fonster

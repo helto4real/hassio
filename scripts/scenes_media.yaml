@@ -34,9 +34,6 @@ film_scene:
     - service: light.turn_off
       entity_id: light.tvrummet
     # Turn off wall lights
-    - service: switch.turn_off
-      entity_id:
-        - switch.osram1 # Tv-room wall
     - service: switch.turn_on
       entity_id:
         - switch.switch7 # Kodi switch on

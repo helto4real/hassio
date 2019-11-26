@@ -22,28 +22,14 @@ morning_scene:
   sequence:
     - service: light.turn_off
       entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
+        - light.ambient
 
 day_scene:
   alias: "Day scene"
   sequence:
     - service: light.turn_off
       entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
+        - light.ambient
 
 evening_scene:
   alias: "Evening scene"
@@ -59,7 +45,7 @@ evening_scene:
       data:
         transition: 0
         brightness: 100
-    - delay: "00:00:01"
+    - delay: "00:00:05"
     - service: light.turn_on
       entity_id:
         - light.tvrummet
@@ -67,34 +53,27 @@ evening_scene:
       data:
         transition: 0
         brightness: 5
-    - delay: "00:00:05"
-    - service: light.turn_on
-      entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
-      data:
-        transition: 0
-        color_temp: 390
+    # - delay: "00:00:05"
+    # - service: light.turn_on
+    #   entity_id:
+    #     - light.vardagsrum
+    #     - light.kok
+    #     - light.tomas_rum
+    #     - light.melkers_rum
+    #     - light.sallys_rum
+    #     - light.farstukvisten
+    #     - light.tvrummet
+    #     - light.sovrum
+    #   data:
+    #     transition: 0
+    #     color_temp: 390
 
 color_scene:
   alias: "Color scene"
   sequence:
     - service: light.turn_on
       entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
+        - light.ambient
       data:
         transition: 0
         color_temp: 390
@@ -104,14 +83,7 @@ cleaning_scene:
   sequence:
     - service: light.turn_on
       entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
+        - light.ambient
       data:
         transition: 0
         brightness: 254
@@ -121,11 +93,4 @@ night_scene:
   sequence:
     - service: light.turn_off
       entity_id:
-        - light.vardagsrum
-        - light.kok
-        - light.tomas_rum
-        - light.melkers_rum
-        - light.sallys_rum
-        - light.farstukvisten
-        - light.tvrummet
-        - light.sovrum
+        - light.ambient

@@ -117,8 +117,8 @@ proximity:
 device_tracker:
   - platform: google_maps
     username: !secret gu
-    # password: !secret gp
-
+  # - platform: bluetooth_tracker
+  # password: !secret gp
   # - platform: googlehome
   #   host: '192.168.1.65'
 
