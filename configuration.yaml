@@ -64,41 +64,33 @@ recorder:
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
+      - media_player.tv_nere
       # tracking
-      - person.sally
-      - person.melker
-      - person.elin
-      - person.tomas
-      - device_tracker.sally_presence
-      - device_tracker.melker_presence
       - device_tracker.elin_presence
       - device_tracker.tomas_presence
-      - sensor.sally_phone_mqtt_bt
-      - sensor.melker_phone_mqtt_bt
-      - sensor.tomas_phone_mqtt_bt
-      - sensor.elin_phone_mqtt_bt
-      - proximity.prox_home_tomas
-      - proximity.prox_home_elin
+      - device_tracker.melker_presence
+      - device_tracker.sally_presence
+
+      - sensor.occupancy
 
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
-      - sensor.temp_outside
-      - sensor.hum_outside
       - sensor.frysnere_temperature #Frys nere
-      - sensor.frysuppe_temperature #Frys uppe
-      - sensor.temp_sovrum_nere
-      - sensor.temp_vardagsrum_2
-      - sensor.temp_sallysrum
-      - sensor.temp_elins_rum
-      - sensor.temp_frys_uppe
-      - binary_sensor.dorr_uppe_magnet
-      - sensor.occupancy
-      - sensor.yr_cloudiness
-      - sensor.yr_wind_speed
-      - sensor.yt_pewdiepie
+      - sensor.kok_frys_temp
+      - sensor.sovrum_temp
+      - sensor.vardagsrum_temp
+      - sensor.sallys_rum_temp
+      - sensor.hobbyrum_temp
+      - binary_sensor.hall_dorr
+      - switch.computer_tomas
+      - remote.tvrummet
+      # nuc stats
+      - sensor.memory_use_percent
+      - sensor.processor_use
       - binary_sensor.wash_mashine
-      - sensor.myfitnesspal_tomas
+
+      - switch.motorvarmare
 
 logger:
   default: info
@@ -116,14 +108,6 @@ influxdb:
   username: !secret influx_username
   password: !secret influx_password
   include:
-    #    domains:
-    #      - climate
-    #      - device_tracker
-    #      - sensor
-    #      - remote
-    #      - media_player
-    #      - input_select
-    #      - binary_sensor
     entities:
       - input_select.house_mode_select
       - media_player.melkers_tv
@@ -134,44 +118,39 @@ influxdb:
       - device_tracker.melker_presence
       - device_tracker.sally_presence
 
-      - sensor.tomas_phone_mqtt_bt # just for reference remove later
-      - device_tracker.tomass8 # just for reference remove later
-      - device_tracker.tomasgps # just for reference remove later
       - sensor.occupancy
 
       # sensors of interest
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
       - sensor.frysnere_temperature #Frys nere
-      - sensor.frysuppe_temperature #Frys uppe
-      - sensor.temp_sovrum_nere
-      - sensor.temp_vardagsrum
-      - sensor.temp_sallysrum
-      - sensor.temp_elins_rum
-      - sensor.temp_frys_uppe
-      - binary_sensor.dorr_uppe_magnet
-      - sensor.kamera_uppe_light_sensor
+      - sensor.kok_frys_temp
+      - sensor.sovrum_temp
+      - sensor.vardagsrum_temp
+      - sensor.sallys_rum_temp
+      - sensor.hobbyrum_temp
+      - binary_sensor.hall_dorr
       - switch.computer_tomas
       - remote.tvrummet
-      - binary_sensor.vardagsrum_pir
       # nuc stats
       - sensor.memory_use_percent
       - sensor.processor_use
       - binary_sensor.wash_mashine
 
+      - switch.motorvarmare
 # Enables a map showing the location of tracked devices
 map:
 
-sensor:
-  - platform: time_date
-  - platform: scrape
-    name: spot_price_sundsvall
-    resource: https://elen.nu/timpriser-pa-el-for-elomrade-se2-sundsvall
-    select: ".elspot-area-price strong"
-    value_template: '{{ ((value.split(" ")[0]) | replace (",", ".")) }}'
-    unit_of_measurement: "öre/kWh"
-    headers:
-      User-Agent: Mozilla/5.0
+# sensor:
+#   - platform: time_date
+#   - platform: scrape
+#     name: spot_price_sundsvall
+#     resource: https://elen.nu/timpriser-pa-el-for-elomrade-se2-sundsvall
+#     select: ".elspot-area-price strong"
+#     value_template: '{{ ((value.split(" ")[0]) | replace (",", ".")) }}'
+#     unit_of_measurement: "öre/kWh"
+#     headers:
+#       User-Agent: Mozilla/5.0
 # Text to speech
 tts:
   - platform: google_cloud
