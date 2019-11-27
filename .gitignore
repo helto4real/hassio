@@ -1,5 +1,6 @@
 secrets.yaml
 appdaemon.yaml
+google_calendars.yaml
 
 # file types
 *.json
