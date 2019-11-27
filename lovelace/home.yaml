@@ -253,7 +253,7 @@ cards:
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.ambient_tv
+          - entity: light.tvrum_bakgrund_tv
             style:
               left: 44%
               top: 50.8%

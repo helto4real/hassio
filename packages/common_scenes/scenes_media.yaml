@@ -14,7 +14,7 @@
 #       # Turn off kodi switch
 #       # switch.switch7: off
 #       # # Turn on the tv ambient blue light
-#       # light.ambient_tv:
+#       # light.tvrum_bakgrund_tv:
 #       #   state: on
 #       #   xy_color: [0.136, 0.04]
 #       #   brightness: 13
@@ -32,7 +32,7 @@
 #       # Turn on kodi switch
 #       switch.switch7: on
 #       # Turn on the tv ambient blue light
-#       light.ambient_tv:
+#       light.tvrum_bakgrund_tv:
 #         state: on
 #         xy_color: [0.136, 0.04]
 #         brightness: 13
@@ -43,4 +43,4 @@
 #       # Turn off kodi switch
 #       switch.switch7: off
 #       # Turn off the tv ambient blue light
-#       light.ambient_tv: off
+#       light.tvrum_bakgrund_tv: off
