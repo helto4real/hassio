@@ -23,6 +23,7 @@ morning_scene:
     - service: light.turn_off
       entity_id:
         - light.ambient
+        - light.sovrum_brya
 
 day_scene:
   alias: "Day scene"
@@ -30,6 +31,7 @@ day_scene:
     - service: light.turn_off
       entity_id:
         - light.ambient
+        - light.sovrum_brya
 
 evening_scene:
   alias: "Evening scene"
@@ -41,7 +43,7 @@ evening_scene:
         - light.tomas_rum
         - light.melkers_rum
         - light.sallys_rum
-        - light.farstukvisten
+        - light.farstukvist_led
       data:
         transition: 0
         brightness: 100
@@ -94,3 +96,4 @@ night_scene:
     - service: light.turn_off
       entity_id:
         - light.ambient
+        - light.sovrum_brya

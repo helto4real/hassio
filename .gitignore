@@ -22,3 +22,7 @@ known_devices.yaml
 
 
 tensorflow
+
+# c#
+obj
+bin

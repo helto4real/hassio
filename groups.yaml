@@ -1,176 +1,174 @@
-# Vyer
-default_view:
-  view: yes
-  icon: mdi:home
-  entities:
-    - group.climate
-    - group.uteclimate
-    - group.upper_floor
-    - group.lower_floor
-    - group.outside
-    - sensor.tomas_alarm
-    - input_select.house_mode_select
-    - input_boolean.good_night_house
-    - sensor.house_mode
-    - group.frysar_temperatur
-    - group.people_status
-    - sensor.occupancy
-    - weather.smhi_hemma
-    - weather.yweather
-    
-room_view:
-  view: yes
-  icon: mdi:home-circle
-  entities:
-    - group.room_koket
-    - group.room_vardagsrum_uppe
-    - group.room_sally
-    - group.room_tomas
-    - group.room_tvnere
-    - group.room_sovrum
-    - group.room_melker
+# # Vyer
+# default_view:
+#   view: yes
+#   icon: mdi:home
+#   entities:
+#     - group.climate
+#     - group.uteclimate
+#     - group.upper_floor
+#     - group.lower_floor
+#     - group.outside
+#     - sensor.tomas_alarm
+#     - input_select.house_mode_select
+#     - input_boolean.good_night_house
+#     - sensor.house_mode
+#     - group.frysar_temperatur
+#     - group.people_status
+#     - sensor.occupancy
+#     - weather.smhi_hemma
+#     - weather.yweather
 
-media_view:
-  view: yes
-  icon: mdi:television
-  entities:
-    - group.googlehomes
-    - group.chromecasts
-    - group.kodis
-    - group.remotes
-    - switch.switch8_melkers_tv 
-    - switch.switch7 #KODI switch
+# room_view:
+#   view: yes
+#   icon: mdi:home-circle
+#   entities:
+#     - group.room_koket
+#     - group.room_vardagsrum_uppe
+#     - group.room_sally
+#     - group.room_tomas
+#     - group.room_tvnere
+#     - group.room_sovrum
+#     - group.room_melker
 
-system_view:
-  view: yes
-  icon: mdi:pi-box
-  entities:
-      - group.system_metrix
-      - group.low_battery_sensors
+# media_view:
+#   view: yes
+#   icon: mdi:television
+#   entities:
+#     - group.googlehomes
+#     - group.chromecasts
+#     - group.kodis
+#     - group.remotes
+#     - switch.switch8_melkers_tv
+#     - switch.switch7 #KODI switch
 
-tracker_view:
-  view: yes
-  icon: mdi:cellphone-wireless
-  entities:
-    - group.tomas_devices
-    - group.elins_devices
-    - group.sallys_devices
-    - group.melkers_devices
-    - group.people_status
-    - sensor.yt_qg8r
+# system_view:
+#   view: yes
+#   icon: mdi:pi-box
+#   entities:
+#       - group.system_metrix
+#       - group.low_battery_sensors
 
-ligths_view:
-  view: yes
-  icon: mdi:lightbulb-outline
-  entities:
-    - light.tomas_fonster
-    - switch.switch2
-    - switch.switch3
-    - switch.switch4_tomas_fan
-    - switch.switch5
-    #- switch.ikea2
-    - switch.switch7
-    - switch.switch8
-    - switch.switch10
-    - light.tvrummet  
+# tracker_view:
+#   view: yes
+#   icon: mdi:cellphone-wireless
+#   entities:
+#     - group.tomas_devices
+#     - group.elins_devices
+#     - group.sallys_devices
+#     - group.melkers_devices
+#     - group.people_status
+#     - sensor.yt_qg8r
 
-uteclimate:
-  name: Klimat ute
-  view: no
-  icon: mdi:temperature-celsius
-  entities:
-    - sensor.utetemp_temperature
-    - sensor.utetemp_humidity
+# ligths_view:
+#   view: yes
+#   icon: mdi:lightbulb-outline
+#   entities:
+#     - light.tomas_fonster
+#     - switch.switch2
+#     - switch.switch3
+#     - switch.switch4_tomas_fan
+#     - switch.switch5
+#     #- switch.ikea2
+#     - switch.switch7
+#     - switch.switch8
+#     - switch.switch10
+#     - light.tvrummet
 
-# Våningar och rum
-upper_floor:
-  name: Övervåning
-  view: no
-  entities:
-    - group.room_tomas
-    - group.room_sally
-    - group.room_vardagsrum_uppe
-    - group.room_koket
-    - sensor.temp_vardagsrum
-    - sensor.temp_sallysrum
-    - binary_sensor.vardagsrum_pir
-    - binary_sensor.dorr_uppe_magnet
-lower_floor:
-  name: Undervåning
-  view: no
-  entities:
-    - group.room_tvnere
-    - group.room_melker
-    - binary_sensor.tvrum_pir
-    - sensor.temp_sovrum_nere
-    - sensor.temp_elins_rum
-outside:
-  name: Ute
-  view: no
-  entities:
-    - switch.osram_ut_1
-room_tvnere:
-  name: TV rummet nere
-  view: no
-  entities:
-    - light.tvrummet 
-    - switch.osram1
-    - binary_sensor.tvrum_pir
+# uteclimate:
+#   name: Klimat ute
+#   view: no
+#   icon: mdi:temperature-celsius
+#   entities:
+#     - sensor.utetemp_temperature
+#     - sensor.utetemp_humidity
+
+# # Våningar och rum
+# upper_floor:
+#   name: Övervåning
+#   view: no
+#   entities:
+#     - group.room_tomas
+#     - group.room_sally
+#     - group.room_vardagsrum_uppe
+#     - group.room_koket
+#     - sensor.temp_vardagsrum
+#     - sensor.temp_sallysrum
+#     - binary_sensor.vardagsrum_pir
+#     - binary_sensor.dorr_uppe_magnet
+# lower_floor:
+#   name: Undervåning
+#   view: no
+#   entities:
+#     - group.room_tvnere
+#     - group.room_melker
+#     - binary_sensor.tvrum_pir
+#     - sensor.temp_sovrum_nere
+#     - sensor.temp_elins_rum
+# outside:
+#   name: Ute
+#   view: no
+#   entities:
+#     - switch.osram_ut_1
+# room_tvnere:
+#   name: TV rummet nere
+#   view: no
+#   entities:
+#     - light.tvrummet
+#     - switch.osram1
+#     - binary_sensor.tvrum_pir
 
 dummy:
   name: dummy
   view: no
-  
-frysar_temperatur:
-  name: Temperatur frysar
-  view: no
-  icon: mdi:fridge
-  entities:
-    - sensor.frysnere_temperature  #Frys nere
-    - sensor.frysuppe_temperature  #Frys uppe
-    - sensor.temp_frys_uppe #zigbee one
+# frysar_temperatur:
+#   name: Temperatur frysar
+#   view: no
+#   icon: mdi:fridge
+#   entities:
+#     - sensor.frysnere_temperature  #Frys nere
+#     - sensor.frysuppe_temperature  #Frys uppe
+#     - sensor.temp_frys_uppe #zigbee one
 
-room_tomas:
-  name: Tomas rum
-  view: no
-  entities:
-    - light.tomas_fonster
-    - switch.computer_tomas # logical switch to see computer status
-    - switch.switch4_tomas_fan
-    - binary_sensor.tomas_pir
-room_melker: 
-  name: Melkers rum
-  view: no
-  entities:
-    - switch.switch5_melkers_fan
-    - switch.switch8_melkers_tv # Melkers tv
-    - binary_sensor.melker_pir
-room_sally:
-  name: Sallys rum
-  view: no
-  entities:
-    - light.sallys_rum
-    - binary_sensor.sally_pir
+# room_tomas:
+#   name: Tomas rum
+#   view: no
+#   entities:
+#     - light.tomas_fonster
+#     - switch.computer_tomas # logical switch to see computer status
+#     - switch.switch4_tomas_fan
+#     - binary_sensor.tomas_pir
+# room_melker:
+#   name: Melkers rum
+#   view: no
+#   entities:
+#     - switch.switch5_melkers_fan
+#     - switch.switch8_melkers_tv # Melkers tv
+#     - binary_sensor.melker_pir
+# room_sally:
+#   name: Sallys rum
+#   view: no
+#   entities:
+#     - light.sallys_rum
+#     - binary_sensor.sally_pir
 
-room_sovrum:
-  name: Sovrummet
-  view: no
-  entities:
-    - light.sovrum
-    - binary_sensor.sovrum_pir
-room_vardagsrum_uppe:
-  name: Vardagsrummet uppe
-  view: no
-  entities:
-    - light.vardagsrum
-    - light.hallen #Hallway
-    - binary_sensor.vardagsrum_pir
-    - binary_sensor.dorr_uppe_magnet
+# room_sovrum:
+#   name: Sovrummet
+#   view: no
+#   entities:
+#     - light.sovrum
+#     - binary_sensor.sovrum_pir
+# room_vardagsrum_uppe:
+#   name: Vardagsrummet uppe
+#   view: no
+#   entities:
+#     - light.vardagsrum
+#     - light.hallen #Hallway
+#     - binary_sensor.vardagsrum_pir
+#     - binary_sensor.dorr_uppe_magnet
 
-room_koket:
-  name: Köket
-  view: no
-  entities:
-    - light.kok
-
+# room_koket:
+#   name: Köket
+#   view: no
+#   entities:
+#     - light.kok
 

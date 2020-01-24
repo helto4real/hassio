@@ -1,4 +1,3 @@
-
 # The heater it self is the "switch.motorvarmare"
 
 # To set the hour and minutes of departure
@@ -23,14 +22,13 @@ input_boolean:
   schedule_on_weekends:
     name: "Kör på helger"
     initial: off
-    
+
 sensor:
   - platform: template
     sensors:
       car_departure_time:
-        friendly_name: 'Avresetid bil'
-        value_template: '{% if states.input_number.car_heater_dep_time_hour.state|round(0)|string|length == 1 %}0{% endif %}{{ states.input_number.car_heater_dep_time_hour.state|round(0)|string }}:{% if states.input_number.car_heater_dep_time_minutes.state|round(0)|string|length == 1 %}0{% endif %}{{ states.input_number.car_heater_dep_time_minutes.state|round(0)|string }}'
+        friendly_name: "Avresetid bil"
+        value_template: "{% if states('input_number.car_heater_dep_time_hour')|round(0)|string|length == 1 %}0{% endif %}{{ states('input_number.car_heater_dep_time_hour')|round(0)|string }}:{% if states.input_number.car_heater_dep_time_minutes.state|round(0)|string|length == 1 %}0{% endif %}{{ states('input_number.car_heater_dep_time_minutes')|round(0)|string }}"
         # entity_id:
         #  - input_number.heater_ak_minutes
         #  - input_number.heater_ak_hour
-

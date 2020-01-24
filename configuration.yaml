@@ -141,6 +141,7 @@ influxdb:
 # Enables a map showing the location of tracked devices
 map:
 
+mobile_app:
 # sensor:
 #   - platform: time_date
 #   - platform: scrape

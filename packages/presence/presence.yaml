@@ -25,7 +25,7 @@ group:
     name: Tomas trackers
     view: no
     entities:
-      - sensor.tomas_phone_mqtt_bt #Bluetooth
+      # - sensor.tomas_phone_mqtt_bt #Bluetooth
       - device_tracker.google_maps_118123190245690142371 #Gps
       - device_tracker.tomas_galaxy_wifi # wifi
 
@@ -33,7 +33,7 @@ group:
     name: Elin trackers
     view: no
     entities:
-      - sensor.elin_phone_mqtt_bt #BT
+      # - sensor.elin_phone_mqtt_bt #BT
       - device_tracker.google_maps_110786808112177763666 #Gps
       - device_tracker.elin_galaxy_wifi #wifi
 
@@ -42,7 +42,7 @@ group:
     view: no
     entities:
       - device_tracker.google_maps_113728439587103002947
-      - sensor.melker_phone_mqtt_bt
+      # - sensor.melker_phone_mqtt_bt
       - device_tracker.melker_huawei_wifi
 
   sallys_devices:
@@ -50,7 +50,7 @@ group:
     view: no
     entities:
       - device_tracker.sally_huawei_wifi
-      - sensor.sally_phone_mqtt_bt
+      # - sensor.sally_phone_mqtt_bt
       - device_tracker.google_maps_115932713534918928318
 
 automation:
@@ -121,52 +121,51 @@ device_tracker:
   # password: !secret gp
   # - platform: googlehome
   #   host: '192.168.1.65'
+# sensor:
+#   - platform: mqtt
+#     name: tomas_phone_mqtt_bt
+#     state_topic: "test/bluetooth/owner/house/A0:10:81:18:E9:AD"
+#     value_template: >
+#       {% if float(value_json.confidence) > 0 %}
+#        home
+#       {% else %}
+#        not_home
+#       {% endif %}
+#     json_attributes:
+#       - "confidence"
 
-sensor:
-  - platform: mqtt
-    name: tomas_phone_mqtt_bt
-    state_topic: "test/bluetooth/owner/house/A0:10:81:18:E9:AD"
-    value_template: >
-      {% if float(value_json.confidence) > 0 %}
-       home
-      {% else %}
-       not_home
-      {% endif %}
-    json_attributes:
-      - "confidence"
+#   - platform: mqtt
+#     name: elin_phone_mqtt_bt
+#     state_topic: "test/bluetooth/owner/house/48:27:EA:3E:9F:8F"
+#     value_template: >
+#       {% if float(value_json.confidence) > 0 %}
+#        home
+#       {% else %}
+#        not_home
+#       {% endif %}
+#     json_attributes:
+#       - "confidence"
 
-  - platform: mqtt
-    name: elin_phone_mqtt_bt
-    state_topic: "test/bluetooth/owner/house/48:27:EA:3E:9F:8F"
-    value_template: >
-      {% if float(value_json.confidence) > 0 %}
-       home
-      {% else %}
-       not_home
-      {% endif %}
-    json_attributes:
-      - "confidence"
+#   - platform: mqtt
+#     name: melker_phone_mqtt_bt
+#     state_topic: "test/bluetooth/owner/house/F8:E6:1A:9A:5C:86"
+#     value_template: >
+#       {% if float(value_json.confidence) > 0 %}
+#        home
+#       {% else %}
+#        not_home
+#       {% endif %}
+#     json_attributes:
+#       - "confidence"
 
-  - platform: mqtt
-    name: melker_phone_mqtt_bt
-    state_topic: "test/bluetooth/owner/house/F8:E6:1A:9A:5C:86"
-    value_template: >
-      {% if float(value_json.confidence) > 0 %}
-       home
-      {% else %}
-       not_home
-      {% endif %}
-    json_attributes:
-      - "confidence"
-
-  - platform: mqtt
-    name: sally_phone_mqtt_bt
-    state_topic: "test/bluetooth/owner/house/A0:57:E3:15:DE:4E"
-    value_template: >
-      {% if float(value_json.confidence) > 0 %}
-       home
-      {% else %}
-       not_home
-      {% endif %}
-    json_attributes:
-      - "confidence"
+#   - platform: mqtt
+#     name: sally_phone_mqtt_bt
+#     state_topic: "test/bluetooth/owner/house/A0:57:E3:15:DE:4E"
+#     value_template: >
+#       {% if float(value_json.confidence) > 0 %}
+#        home
+#       {% else %}
+#        not_home
+#       {% endif %}
+#     json_attributes:
+#       - "confidence"
