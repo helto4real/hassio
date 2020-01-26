@@ -10,6 +10,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///     Following use-cases are implemented
 ///         - Turn on TV and set scene when chromecast is playing and TV is off
 ///         - Turn off TV when nothing is playing for a time
+///         - When remote activity changes, run correct scene (script)
 ///
 /// </remarks>
 public class TVManager : NetDaemonApp
