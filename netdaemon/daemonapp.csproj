@@ -5,7 +5,7 @@
   </PropertyGroup>
 
  <ItemGroup>
-    <PackageReference Include="JoySoftware.NetDaemon.App" Version="0.0.7-alpha" />
+    <PackageReference Include="JoySoftware.NetDaemon.App" Version="0.0.23-alpha" />
  </ItemGroup>
 
 </Project>

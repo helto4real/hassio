@@ -3,7 +3,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 using System.Linq;
 public class BatteryManager : NetDaemonApp
 {
-    public override async Task InitializeAsync()
+    public override Task InitializeAsync()
     {
         foreach (var device in State.Where(n => n.Attribute.battery_level < 20))
         {
@@ -15,5 +15,8 @@ public class BatteryManager : NetDaemonApp
             // Remove 14 characters from end (battery_level) to get entity id
             Log($"{device.EntityId[0..^14]} : {device.State}");
         }
+
+        // No async so just return completed task
+        return Task.CompletedTask;
     }
 }
