@@ -51,6 +51,7 @@ public class TVManager : NetDaemonApp
                 .Call(OnTVTurnedOn)
         .Execute();
 
+        // When ever TV remote activity changes, ie TV, Film, Poweroff call OnTvActivityChange
         Entity(_entityRemoteTVRummet)
             .WhenStateChange((to, from) =>
                 to.Attribute.current_activity != from.Attribute.current_activity)
