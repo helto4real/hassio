@@ -51,6 +51,12 @@ public class TVManager : NetDaemonApp
                 .Call(OnTVTurnedOn)
         .Execute();
 
+        Entity(_entityRemoteTVRummet)
+            .WhenStateChange((to, from) =>
+                to.Attribute.current_activity != from.Attribute.current_activity)
+                .Call(OnTvActivityChange)
+        .Execute();
+
         // This function does not contain any async calls so just return completed task
         return Task.CompletedTask;
     }
@@ -138,4 +144,25 @@ public class TVManager : NetDaemonApp
         }
         _isTurningOnTV = false;
     }
+
+    /// <summary>
+    ///     When TV is activity changes, ie TV, Film or PowerOff.!--
+    ///     This is to manage manual remote activities
+    /// </summary>
+    public async Task OnTvActivityChange(string entityId, EntityState to, EntityState from)
+    {
+        switch (to.Attribute.current_activity)
+        {
+            case "TV":
+                await Script("tv_scene").ExecuteAsync();
+                break;
+            case "Film":
+                await Script("film_scene").ExecuteAsync();
+                break;
+            case "PowerOff":
+                await Script("tv_off_scene").ExecuteAsync();
+                break;
+        }
+    }
+
 }
