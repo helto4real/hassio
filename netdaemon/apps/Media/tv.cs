@@ -10,7 +10,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///     Following use-cases are implemented
 ///         - Turn on TV and set scene when chromecast is playing and TV is off
 ///         - Turn off TV when nothing is playing for a time
-///         - When remote activity changes, run correct scene (script)
+///         - When remote activity changes, run correct scene (RunScript)
 ///
 /// </remarks>
 public class TVManager : NetDaemonApp
@@ -28,7 +28,7 @@ public class TVManager : NetDaemonApp
 
     // True if we are in the process of turning on the TV
     private bool _isTurningOnTV = false;
-    // If this script paused the mediaplayer, it is here
+    // If this RunScript paused the mediaplayer, it is here
     private string _currentlyPausedMediaPlayer;
     // The time when we stopped play media for any of the media players
     private DateTime? _timeStoppedPlaying = null;
@@ -98,7 +98,7 @@ public class TVManager : NetDaemonApp
                         {
                             // Idle timeout went by without any change in state turn off TV
                             Log($"TV been idle for {_idleTimeout} minutes, turning off");
-                            await Script("tv_off_scene")
+                            await RunScript("tv_off_scene")
                                 .ExecuteAsync();
                         }
                         // If the state did has changed after we waited just run to completion
@@ -119,8 +119,8 @@ public class TVManager : NetDaemonApp
             _isTurningOnTV = true;
             Log($"TV is not on, pause media {entityId} and turn on tv!");
 
-            // Tv and light etc is managed through a script
-            await Script("tv_scene")
+            // Tv and light etc is managed through a RunScript
+            await RunScript("tv_scene")
                 .ExecuteAsync();
         }
         if (_isTurningOnTV) // Always pause media if TV is turning on
@@ -138,7 +138,7 @@ public class TVManager : NetDaemonApp
     {
         if (_isTurningOnTV && !string.IsNullOrEmpty(_currentlyPausedMediaPlayer))
         {
-            // We had just turned on tv with this script and have a media player paused
+            // We had just turned on tv with this RunScript and have a media player paused
             // First delay and wait for the TV to get ready
             await Task.Delay(9000);
             await MediaPlayer(_currentlyPausedMediaPlayer)
@@ -156,13 +156,13 @@ public class TVManager : NetDaemonApp
         switch (to.Attribute.current_activity)
         {
             case "TV":
-                await Script("tv_scene").ExecuteAsync();
+                await RunScript("tv_scene").ExecuteAsync();
                 break;
             case "Film":
-                await Script("film_scene").ExecuteAsync();
+                await RunScript("film_scene").ExecuteAsync();
                 break;
             case "PowerOff":
-                await Script("tv_off_scene").ExecuteAsync();
+                await RunScript("tv_off_scene").ExecuteAsync();
                 break;
         }
     }
