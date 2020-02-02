@@ -71,7 +71,6 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     /// </summary>
     private async Task VolumeUp()
     {
-        dynamic data = new FluentExpandoObject();
         await CallService("remote", "send_command", new
         {
             entity_id = _entityRemoteTVRummet,
