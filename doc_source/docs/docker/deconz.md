@@ -50,7 +50,7 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{seria
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A138UEXZ", SYMLINK+="ttyUSB.RFX"
 ```
 
-restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time. 
+restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time.
 check with ``ls /dev`` and check link with ``ls -l /dev/ttyUSB.CON``
 In my example I use rfxtrx usb too.
 
@@ -72,7 +72,7 @@ $ sudo docker run -d \
 
 ```
 
-or 
+or
 
 use my docker compose file in this folder
 ```yaml
@@ -100,13 +100,13 @@ services:
 ```
 # Upgrade IKEA in container
 
-1. Install python 
+1. Install python
 Use portainer to get the command prompt inside the container.
 
 ```bash
-apk update &&
-apk-get install -y python wget &&
-wget https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/ikea-ota-download.py &&
+apt-get update &&
+apt-get install -y python wget &&
+wget https://raw.githubusercontent.com/dresden-elektronik/deconz-rest-plugin/master/ikea-ota-download.py &&
 /usr/bin/python2.7 ikea-ota-download.py
 
 ```
