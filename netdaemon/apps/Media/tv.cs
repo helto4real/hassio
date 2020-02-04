@@ -72,7 +72,7 @@ public class TVManager : NetDaemonApp
     ///     Returns true if any of the media players is playing
     /// </summary>
     /// <returns></returns>
-    public bool MediaIsPlaying => _entityMediaPlayers.Where(n => GetState(n).State == "on").Count() > 0;
+    public bool MediaIsPlaying => _entityMediaPlayers.Where(n => GetState(n).State == "playing").Count() > 0;
 
     /// <summary>
     ///     Called when ever state change for the media_players playing on the TV
