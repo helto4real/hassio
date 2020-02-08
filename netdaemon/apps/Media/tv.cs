@@ -49,7 +49,7 @@ public class TVManager : NetDaemonApp
         // Set up the state management
 
         // When state change on my media players, call OnMediaStateChanged
-        Entity(TvMediaPlayers.ToArray())
+        Entities(TvMediaPlayers)
             .WhenStateChange()
                 .Call(OnMediaStateChanged)
         .Execute();

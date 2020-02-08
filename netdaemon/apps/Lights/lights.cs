@@ -84,7 +84,7 @@ public class LightManager : NetDaemonApp
     private void InitializeNightLights()
     {
         // Living room night lights, turns on when motion
-        Entity(LivingRoomPirs.ToArray())
+        Entities(LivingRoomPirs)
             .WhenStateChange(to: "on")
                 .Call(async (entityId, to, from) =>
                 {
@@ -107,7 +107,7 @@ public class LightManager : NetDaemonApp
                 }).Execute();
 
         // Turn off after som time idle exept if it is morning then keep on untill daytime will turn off
-        Entity(LivingRoomPirs.ToArray())
+        Entities(LivingRoomPirs)
             .WhenStateChange((to, from) =>
                 to?.State == "off" &&
                 from?.State == "on" &&
@@ -131,11 +131,11 @@ public class LightManager : NetDaemonApp
                 .UseEntity("light.kok").TurnOff().WithAttribute("transition", 0).Execute();
 
         // TV Room night lights, only at night and not TV is on
-        Entity(TvRoomPirs.ToArray())
+        Entities(TvRoomPirs)
             .WhenStateChange((to, from) => to?.State == "on" && from?.State == "off" && IsNight && !IsTvOn)
                 .UseEntity("light.tvrummet").TurnOn().WithAttribute("transition", 0).Execute();
 
-        Entity(TvRoomPirs.ToArray())
+        Entities(TvRoomPirs)
             .WhenStateChange((to, from) =>
                 to?.State == "off" &&
                 from?.State == "on"
