@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
@@ -16,12 +17,19 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 public class TVManager : NetDaemonApp
 {
     // The Remote that controls the TV (Harmony Logitech)
-    private readonly string _entityRemoteTVRummet = "remote.tvrummet";
+    // private readonly string _entityRemoteTVRummet = "remote.tvrummet";
 
     // Media players connected to TV
-    private readonly string[] _entityMediaPlayers = {
-        "media_player.tv_nere",
-        "media_player.plex_kodi_add_on_libreelec" };
+    // private readonly string[] _entityMediaPlayers = {
+    //     "media_player.tv_nere",
+    //     "media_player.plex_kodi_add_on_libreelec" };
+
+    #region -- Config properties --
+
+    public string? RemoteTVRummet { get; set; }
+    public IEnumerable<string>? TvMediaPlayers { get; set; }
+
+    #endregion
 
     // 20 minutes idle before turn off TV
     private readonly TimeSpan _idleTimeout = TimeSpan.FromMinutes(20);
@@ -41,19 +49,19 @@ public class TVManager : NetDaemonApp
         // Set up the state management
 
         // When state change on my media players, call OnMediaStateChanged
-        Entity(_entityMediaPlayers)
+        Entity(TvMediaPlayers.ToArray())
             .WhenStateChange()
                 .Call(OnMediaStateChanged)
         .Execute();
 
         // When TV on (remote on), call OnTvTurnedOn
-        Entity(_entityRemoteTVRummet)
+        Entity(RemoteTVRummet)
             .WhenStateChange(to: "on")
                 .Call(OnTVTurnedOn)
         .Execute();
 
         // When ever TV remote activity changes, ie TV, Film, Poweroff call OnTvActivityChange
-        Entity(_entityRemoteTVRummet)
+        Entity(RemoteTVRummet)
             .WhenStateChange((to, from) =>
                 to.Attribute.current_activity != from.Attribute.current_activity)
                 .Call(OnTvActivityChange)
@@ -66,13 +74,13 @@ public class TVManager : NetDaemonApp
     /// <summary>
     ///     Returns true if TV is currently on
     /// </summary>
-    public bool TvIsOn => GetState(_entityRemoteTVRummet).State == "on";
+    public bool TvIsOn => GetState(RemoteTVRummet).State == "on";
 
     /// <summary>
     ///     Returns true if any of the media players is playing
     /// </summary>
     /// <returns></returns>
-    public bool MediaIsPlaying => _entityMediaPlayers.Where(n => GetState(n).State == "playing").Count() > 0;
+    public bool MediaIsPlaying => TvMediaPlayers.Where(n => GetState(n).State == "playing").Count() > 0;
 
     /// <summary>
     ///     Called when ever state change for the media_players playing on the TV

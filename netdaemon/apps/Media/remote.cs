@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
 
@@ -12,11 +13,13 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 /// </summary>
 public class MagicCubeRemoteControlManager : NetDaemonApp
 {
-    private readonly string _entityRemoteTVRummet = "remote.tvrummet";
-    private readonly string _maranzDeviceId = "14329974"; //14329974
-    private readonly string[] _tvMediaPlayers = {
-        "media_player.tv_nere",
-        "media_player.plex_kodi_add_on_libreelec" };
+    #region -- Config properties --
+
+    public string? RemoteTVRummet { get; set; }
+    public int? MaranzDeviceId { get; set; }
+    public IEnumerable<string>? TvMediaPlayers { get; set; }
+
+    #endregion
     public override Task InitializeAsync()
     {
         // 00:15:8d:00:02:69:e8:63
@@ -31,7 +34,7 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
                     switch (gesture)
                     {
                         case 1:         // Shake
-                            await Entity(_entityRemoteTVRummet).Toggle().ExecuteAsync();
+                            await Entity(RemoteTVRummet).Toggle().ExecuteAsync();
                             break;
                         case 3:         // Flip
                             await PlayPauseMedia();
@@ -56,7 +59,7 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     /// </summary>
     private async Task PlayPauseMedia()
     {
-        foreach (var player in _tvMediaPlayers)
+        foreach (var player in TvMediaPlayers)
         {
             var playerState = GetState(player)?.State;
             if (playerState == "playing")
@@ -73,8 +76,8 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     {
         await CallService("remote", "send_command", new
         {
-            entity_id = _entityRemoteTVRummet,
-            device = _maranzDeviceId,
+            entity_id = RemoteTVRummet,
+            device = MaranzDeviceId,
             command = "VolumeUp",
             num_repeats = 10,
             delay_secs = 0.01
@@ -88,8 +91,8 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     {
         await CallService("remote", "send_command", new
         {
-            entity_id = _entityRemoteTVRummet,
-            device = _maranzDeviceId,
+            entity_id = RemoteTVRummet,
+            device = MaranzDeviceId,
             command = "VolumeDown",
             num_repeats = 10,
             delay_secs = 0.01
