@@ -38,7 +38,6 @@ ffmpeg:
 
 group:
   cameras:
-    view: yes
     name: Kameror
     icon: mdi:camera
     entities:

@@ -50,14 +50,12 @@ group:
   # Remote controls
   remotes:
     name: Fjärrkontroller
-    view: no
     entities:
-      - remote.tvrummet  
+      - remote.tvrummet
 
   # Media spelare
   googlehomes:
     name: Google homes
-    view: no
     entities:
       - media_player.house
       - media_player.kok
@@ -67,7 +65,6 @@ group:
 
   chromecasts:
     name: Chrome casts
-    view: no
     entities:
       - media_player.tv_nere
       - media_player.tv_uppe
@@ -75,6 +72,5 @@ group:
 
   kodis:
     name: Kodi media players
-    view: no
     entities:
       - media_player.kodi_tv_nere

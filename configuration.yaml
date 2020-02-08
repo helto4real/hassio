@@ -202,5 +202,5 @@ person:
 
 #cloud:
 
-zone: !include zones.yaml
+# zone: !include zones.yaml
 group: !include groups.yaml

@@ -1,6 +1,6 @@
 google_assistant:
   project_id: hellstroms-home
-  api_key: !secret google_key
+  # api_key: !secret google_key
   expose_by_default: false
   entity_config:
     light.tomas_rum:

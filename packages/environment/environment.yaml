@@ -24,7 +24,6 @@ group:
   # För givare och väder
   climate:
     name: Klimat
-    view: no
     entities:
       - sensor.ute_temperature
       - sensor.hum_altan_ute

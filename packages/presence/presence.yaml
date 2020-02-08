@@ -13,7 +13,6 @@ group:
 
   presence:
     name: Familjens devicestatus
-    view: no
     icon: mdi:home-account
     entities:
       - group.tomas_devices
@@ -23,7 +22,6 @@ group:
 
   tomas_devices:
     name: Tomas trackers
-    view: no
     entities:
       # - sensor.tomas_phone_mqtt_bt #Bluetooth
       - device_tracker.google_maps_118123190245690142371 #Gps
@@ -31,7 +29,6 @@ group:
 
   elins_devices:
     name: Elin trackers
-    view: no
     entities:
       # - sensor.elin_phone_mqtt_bt #BT
       - device_tracker.google_maps_110786808112177763666 #Gps
@@ -39,7 +36,6 @@ group:
 
   melkers_devices:
     name: Melkers trackers
-    view: no
     entities:
       - device_tracker.google_maps_113728439587103002947
       # - sensor.melker_phone_mqtt_bt
@@ -47,7 +43,6 @@ group:
 
   sallys_devices:
     name: Sallys trackers
-    view: no
     entities:
       - device_tracker.sally_huawei_wifi
       # - sensor.sally_phone_mqtt_bt
