@@ -21,12 +21,6 @@ public class LightManager : NetDaemonApp
 
     public string? KitchenPir { get; set; }
     public string? RemoteTvRummet { get; set; }
-    // private readonly string[] _tvRoomPirs = new string[]{
-    //     "binary_sensor.trapp_pir",
-    //     "binary_sensor.tvrum_pir"
-    // };
-    // private readonly string _kitchenPir = "binary_sensor.kok_pir";
-    // private readonly string _entityRemoteTVRummet = "remote.tvrummet";
     public override Task InitializeAsync()
     {
         InitializeNightLights();
