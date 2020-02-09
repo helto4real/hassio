@@ -1,8 +1,0 @@
-# app_welcome_home:
-#   module: welcome_home
-#   class: WelcomeHomeManager
-#   tts_device: 'media_player.vardagsrum'
-#   door_sensor: 'binary_sensor.dorr_uppe_magnet'
-#   dependencies:
-#     - tts_manager
-#     - house_status
