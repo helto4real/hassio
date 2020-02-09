@@ -199,8 +199,9 @@ person:
 #  discovery_prefix: homeassistant
 #  username: !secret mqtt_user
 #  password: !secret mqtt_password
-
+netdaemon:
 #cloud:
 
 # zone: !include zones.yaml
 group: !include groups.yaml
+automation: !include automations.yaml

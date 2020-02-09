@@ -48,20 +48,20 @@ group:
       # - sensor.sally_phone_mqtt_bt
       - device_tracker.google_maps_115932713534918928318
 
-automation:
-  - alias: Send message on away-home notice Tomas
-    trigger:
-      - platform: state
-        entity_id: sensor.tomas_presence
-    condition:
-      - condition: template
-        value_template: "{{ trigger.from_state != None and trigger.from_state.state != trigger.to_state.state }}"
-    action:
-      service: script.notify_greet
-      data_template:
-        person: Tomas
-        title: "Tomas status {{trigger.to_state.state}}"
-        message: "Tomas har ändrat tracking status från state {{trigger.from_state.state}} till state {{trigger.to_state.state}}!"
+# automation old:
+#   - alias: Send message on away-home notice Tomas
+#     trigger:
+#       - platform: state
+#         entity_id: sensor.tomas_presence
+#     condition:
+#       - condition: template
+#         value_template: "{{ trigger.from_state != None and trigger.from_state.state != trigger.to_state.state }}"
+#     action:
+#       service: script.notify_greet
+#       data_template:
+#         person: Tomas
+#         title: "Tomas status {{trigger.to_state.state}}"
+#         message: "Tomas har ändrat tracking status från state {{trigger.from_state.state}} till state {{trigger.to_state.state}}!"
 
 # For aproximity
 proximity:
