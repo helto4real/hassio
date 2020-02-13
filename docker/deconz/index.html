@@ -616,7 +616,7 @@ Make sure your id:s and serial number matches!</p>
 SUBSYSTEM==&quot;tty&quot;, ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6001&quot;, ATTRS{serial}==&quot;A138UEXZ&quot;, SYMLINK+=&quot;ttyUSB.RFX&quot;
 </code></pre>
 
-<p>restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time. 
+<p>restart and you will have two new devices ttyUSB.CON and ttyUSB.RFX that will be correctly mapped every time.
 check with <code>ls /dev</code> and check link with <code>ls -l /dev/ttyUSB.CON</code>
 In my example I use rfxtrx usb too.</p>
 <h2 id="starting-the-deconz-docker-container">Starting the deconz docker container</h2>
@@ -634,7 +634,7 @@ $ sudo docker run -d \
 
 </code></pre>
 
-<p>or </p>
+<p>or</p>
 <p>use my docker compose file in this folder</p>
 <pre><code class="yaml">
 version: &quot;2&quot;
@@ -661,12 +661,12 @@ services:
 
 <h1 id="upgrade-ikea-in-container">Upgrade IKEA in container</h1>
 <ol>
-<li>Install python 
+<li>Install python
 Use portainer to get the command prompt inside the container.</li>
 </ol>
-<pre><code class="bash">apk update &amp;&amp;
-apk-get install -y python wget &amp;&amp;
-wget https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/ikea-ota-download.py &amp;&amp;
+<pre><code class="bash">apt-get update &amp;&amp;
+apt-get install -y python wget &amp;&amp;
+wget https://raw.githubusercontent.com/dresden-elektronik/deconz-rest-plugin/master/ikea-ota-download.py &amp;&amp;
 /usr/bin/python2.7 ikea-ota-download.py
 
 </code></pre>
