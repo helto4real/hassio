@@ -83,7 +83,7 @@ public class WelcomeHomeManager : NetDaemonApp
         if (!OkToGreet(nameOfPersion))
             return;                     // We can not greet person just yet
 
-        await Speak(HallwayMediaPlayer!, GetGreeting(nameOfPersion));
+        Speak(HallwayMediaPlayer!, GetGreeting(nameOfPersion));
     }
 
     private bool OkToGreet(string nameOfPersion)

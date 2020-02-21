@@ -1,0 +1,4 @@
+apptest:
+  class: BatteryManager
+  TestProp: hello world
+  TestSecret: !secret secret_string

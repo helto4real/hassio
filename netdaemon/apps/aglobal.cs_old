@@ -1,0 +1,10 @@
+public class Domain
+{
+    public static string Script { get; set; } = "script";
+
+}
+
+public class Service
+{
+    public static string TurnOn { get; set; } = "turn_on";
+}
