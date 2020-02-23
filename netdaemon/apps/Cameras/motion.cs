@@ -18,10 +18,16 @@ public class CameraMotionApp : NetDaemonApp
 
     public override async Task InitializeAsync()
     {
+        var state = Storage.SomeSavedState ?? 0;
+        state += 1;
+
+        Storage.SomeSavedState = state;
+
+        Log($"Saved state is {Storage.SomeSavedState}");
         // Todo: add motion logic, this just takes snapshot at startup for test
-        foreach (var camera in Cameras!)
-        {
-            await this.CameraTakeSnapshotAndNotify(camera);
-        }
+        // foreach (var camera in Cameras!)
+        // {
+        //     await this.CameraTakeSnapshotAndNotify(camera);
+        // }
     }
 }

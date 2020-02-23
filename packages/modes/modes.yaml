@@ -10,13 +10,21 @@ input_select:
       - Morgon
       - Städning
 
+  house_mode_select_test:
+    name: Husstatus test
+    options:
+      - Dag
+      - Natt
+      - Kväll
+      - Morgon
+      - Städning
 
 sensor:
   - platform: template
     sensors:
       house_mode:
         value_template: '{{ states("input_select.house_mode_select") }}'
-        friendly_name: 'Hus status'
+        friendly_name: "Hus status"
 
 script:
   setnightmode:
@@ -24,5 +32,4 @@ script:
       - service: input_select.select_option
         data_template:
           entity_id: input_select.house_mode_select
-          option:  "Natt"
-
+          option: "Natt"

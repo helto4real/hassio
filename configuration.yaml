@@ -63,6 +63,7 @@ recorder:
       - climate
     entities:
       - input_select.house_mode_select
+      - input_select.house_mode_select_test
       - media_player.melkers_tv
       - media_player.tv_nere
       # tracking
