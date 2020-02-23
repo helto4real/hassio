@@ -32,7 +32,7 @@ public class HouseStateManager : NetDaemonApp
 
     private void InitDayTime()
     {
-        Scheduler.RunDaily(DayTime!, () => SetHouseState(HouseState.Morning));
+        Scheduler.RunDaily(DayTime!, () => SetHouseState(HouseState.Day));
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class HouseStateManager : NetDaemonApp
                         else
                         {
                             Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
-                            Scheduler.RunIn(TimeSpan.FromMinutes(5),
+                            Scheduler.RunIn(TimeSpan.FromMinutes(45),
                                 () => SetHouseState(HouseState.Evening));
                         }
                     }).Execute();
@@ -111,11 +111,11 @@ public class HouseStateManager : NetDaemonApp
                         if (!IsCloudy)
                         {
                             await SetHouseState(HouseState.Morning);
-                            Log("It is evening {DateTime.Now}");
+                            Log($"It is evening {DateTime.Now}");
                         }
                         else
                         {
-                            Log("It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
+                            Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
                             Scheduler.RunIn(TimeSpan.FromMinutes(45),
                                 () => SetHouseState(HouseState.Morning));
                         }
