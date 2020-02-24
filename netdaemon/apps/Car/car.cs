@@ -41,8 +41,6 @@ public class CarHeaterManager : NetDaemonApp
 
     #endregion
 
-    // True if the heater is started or stopped outside this script
-    private bool _manualOverride = false;
     // True if the script just turn on the heater,
     // used to prohibit logic being run on state change
     private bool _appChangedState = false;
@@ -59,7 +57,6 @@ public class CarHeaterManager : NetDaemonApp
     public override Task InitializeAsync()
     {
         // Get the state if manually started from statestorage
-        _manualOverride = Storage.IsManualState ?? false;
 
         Scheduler.RunEveryMinute(0, () => HandleCarHeater());
 
@@ -68,9 +65,13 @@ public class CarHeaterManager : NetDaemonApp
             if (_appChangedState == false)
             {
                 // It is manually turned on
-                _manualOverride = true;
                 Storage.IsManualState = true;
             }
+            else
+            {
+                Storage.IsManualState = false;
+            }
+
             _appChangedState = false;
             return Task.CompletedTask;
         }).Execute();
@@ -173,7 +174,7 @@ public class CarHeaterManager : NetDaemonApp
             }
 
             // If not manually started and heater is on, turn heater off
-            if (GetState(HeaterSwitch!)?.State == "on" && !_manualOverride)
+            if (GetState(HeaterSwitch!)?.State == "on" && !Storage.IsManualState ?? false)
             {
                 Log("Turning off heater");
                 _appChangedState = true;
@@ -203,7 +204,6 @@ public class CarHeaterManager : NetDaemonApp
             if (GetState(HeaterSwitch!)?.State != "on")
             {
                 // Flag that this script actually turn the heater on and non manually
-                _manualOverride = false;
                 _appChangedState = true;
 
                 Log($"{DateTime.Now} : Turn on heater temp ({currentOutsideTemp})");

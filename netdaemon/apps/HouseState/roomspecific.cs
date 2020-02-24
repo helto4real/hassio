@@ -21,7 +21,7 @@ public class RoomSpecificManager : NetDaemonApp
 
     private void SetupTurnOffKidsLightsEarly()
     {
-        Scheduler.RunDaily("10:00:00", () =>
+        Scheduler.RunDaily("22:00:00", () =>
             Entities(KidsLights!).TurnOff().ExecuteAsync());
     }
 

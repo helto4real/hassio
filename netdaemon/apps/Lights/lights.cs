@@ -11,11 +11,6 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 /// </summary>
 public class LightManager : NetDaemonApp
 {
-    // private readonly string[] _livingRoomPirs = new string[]{
-    //     "binary_sensor.trapp_pir",
-    //     "binary_sensor.vardagsrum_pir"
-    // };
-
     public IEnumerable<string>? LivingRoomPirs { get; set; }
     public IEnumerable<string>? TvRoomPirs { get; set; }
 

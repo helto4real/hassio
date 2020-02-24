@@ -13,7 +13,8 @@ public class HouseStateManager : NetDaemonApp
     public string? WeekdayNight { get; set; }
     public string? WeekendNight { get; set; }
     public string? DayTime { get; set; }
-    public double? Elevation { get; set; }
+    public double? ElevationEvening { get; set; }
+    public double? ElevationMorning { get; set; }
 
     public string? HouseStateInputSelect { get; set; }
     #endregion
@@ -32,7 +33,8 @@ public class HouseStateManager : NetDaemonApp
 
     private void InitDayTime()
     {
-        Scheduler.RunDaily(DayTime!, () => SetHouseState(HouseState.Day));
+        Log($"Setting daytime: {DayTime}");
+        Scheduler.RunDaily(DayTime!, async () => await SetHouseState(HouseState.Day));
     }
 
     /// <summary>
@@ -40,6 +42,7 @@ public class HouseStateManager : NetDaemonApp
     /// </summary>
     private void InitNightTimeOnWeekdays()
     {
+        Log($"Setting weekday night time: {WeekdayNight}");
         Scheduler.RunDaily(WeekdayNight!, new DayOfWeek[]
         {
             DayOfWeek.Sunday,
@@ -48,7 +51,7 @@ public class HouseStateManager : NetDaemonApp
             DayOfWeek.Wednesday,
             DayOfWeek.Thursday,
         }
-        , () => SetHouseState(HouseState.Night));
+        , async () => await SetHouseState(HouseState.Night));
     }
 
     /// <summary>
@@ -56,12 +59,13 @@ public class HouseStateManager : NetDaemonApp
     /// </summary>
     private void InitNightTimeOnWeekends()
     {
+        Log($"Setting weekend night time: {WeekendNight}");
         Scheduler.RunDaily(WeekendNight!, new DayOfWeek[]
         {
             DayOfWeek.Friday,
             DayOfWeek.Saturday,
         }
-        , () => SetHouseState(HouseState.Night));
+        , async () => await SetHouseState(HouseState.Night));
     }
 
     /// <summary>
@@ -73,10 +77,10 @@ public class HouseStateManager : NetDaemonApp
         // when elevation <9 and counting cloudiness set evening state
         Entity("sun.sun")
             .WhenStateChange((n, o) =>
-                n?.Attribute?.elevation <= Elevation &&
+                n?.Attribute?.elevation <= ElevationEvening &&
                 n?.Attribute?.rising == false &&
-                o?.Attribute?.elevation > Elevation)
-                    .Call(async (entityId, oldState, newState) =>
+                o?.Attribute?.elevation > ElevationEvening)
+                    .Call(async (entityId, newState, oldState) =>
                     {
                         // If not cloudy, set evening else wait 45 minutes
                         if (IsCloudy)
@@ -88,7 +92,7 @@ public class HouseStateManager : NetDaemonApp
                         {
                             Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
                             Scheduler.RunIn(TimeSpan.FromMinutes(45),
-                                () => SetHouseState(HouseState.Evening));
+                                async () => await SetHouseState(HouseState.Evening));
                         }
                     }).Execute();
     }
@@ -102,10 +106,10 @@ public class HouseStateManager : NetDaemonApp
         // when elevation <9 and counting cloudiness set evening state
         Entity("sun.sun")
             .WhenStateChange((n, o) =>
-                n?.Attribute?.elevation >= Elevation &&
+                n?.Attribute?.elevation >= ElevationMorning &&
                 n?.Attribute?.rising == true &&
-                o?.Attribute?.elevation < Elevation)
-                    .Call(async (entityId, oldState, newState) =>
+                o?.Attribute?.elevation < ElevationMorning)
+                    .Call(async (entityId, newState, oldState) =>
                     {
                         // If not cloudy, set evening else wait 45 minutes
                         if (!IsCloudy)
@@ -117,7 +121,7 @@ public class HouseStateManager : NetDaemonApp
                         {
                             Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
                             Scheduler.RunIn(TimeSpan.FromMinutes(45),
-                                () => SetHouseState(HouseState.Morning));
+                                async () => await SetHouseState(HouseState.Morning));
                         }
                     }).Execute();
     }
@@ -128,6 +132,7 @@ public class HouseStateManager : NetDaemonApp
     /// <param name="state">State to set</param>
     private async Task SetHouseState(HouseState state)
     {
+        Log($"Housestate: {state}");
         var select_state = state switch
         {
             HouseState.Morning => "Morgon",
@@ -136,7 +141,14 @@ public class HouseStateManager : NetDaemonApp
             HouseState.Night => "Natt",
             _ => throw new ArgumentException("Not supported", nameof(state))
         };
-        await SetState(HouseStateInputSelect!, select_state);
+        Log($"Setting housestate: {select_state} to {HouseStateInputSelect}");
+        // Get the state now
+        var currentState = GetState(HouseStateInputSelect);
+        if (currentState?.State != select_state)
+        {
+            this.InputSelectSetOption(HouseStateInputSelect, select_state);
+        }
+
     }
 
 }

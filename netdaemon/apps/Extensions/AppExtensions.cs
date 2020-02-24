@@ -29,4 +29,10 @@ public static class DaemonAppExtensions
             target = "511278310584746008"
         });
     }
+
+    public async static Task InputSelectSetOption(this NetDaemonApp app, string entityId, string option)
+    {
+        await app.CallService("input_select", "select_option",
+            new { entity_id = entityId, option = option });
+    }
 }
