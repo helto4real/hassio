@@ -1,5 +1,4 @@
 ---
-scene_automations_manager:
-  module: scenes
-  class: SceneAutomations
-  
+# scene_automations_manager:
+#   module: scenes
+#   class: SceneAutomations

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
 public static class DaemonAppExtensions
@@ -34,5 +35,19 @@ public static class DaemonAppExtensions
     {
         await app.CallService("input_select", "select_option",
             new { entity_id = entityId, option = option });
+    }
+
+    public static string PrettyPrintDictData(this NetDaemonApp app, IDictionary<string, object>? dict)
+    {
+
+        if (dict == null)
+            return string.Empty;
+
+        var builder = new StringBuilder(100);
+        foreach (var key in dict.Keys)
+        {
+            builder.AppendLine($"{key}:{dict[key]}");
+        }
+        return builder.ToString();
     }
 }

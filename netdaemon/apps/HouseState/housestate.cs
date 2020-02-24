@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
 
@@ -27,8 +28,30 @@ public class HouseStateManager : NetDaemonApp
         InitNightTimeOnWeekdays();
         InitNightTimeOnWeekends();
         InitMorningSchedule();
-
+        InitHouseStateSceneManagement();
         return Task.CompletedTask;
+    }
+
+    private void InitHouseStateSceneManagement()
+    {
+        // Make dummy scenes set house state
+        ListenServiceCall("scene", "turn_on", async (data) =>
+        {
+            var sceneEntityId = (string?)data?.entity_id;
+
+            var houseState = sceneEntityId switch
+            {
+                "scene.dag" => HouseState.Day,
+                "scene.kvall" => HouseState.Evening,
+                "scene.natt" => HouseState.Night,
+                "scene.morgon" => HouseState.Morning,
+                "scene.stadning" => HouseState.Cleaning,
+                _ => HouseState.Unknown
+            };
+
+            if (houseState != HouseState.Unknown)
+                await SetHouseState(houseState);
+        });
     }
 
     private void InitDayTime()
@@ -132,21 +155,21 @@ public class HouseStateManager : NetDaemonApp
     /// <param name="state">State to set</param>
     private async Task SetHouseState(HouseState state)
     {
-        Log($"Housestate: {state}");
         var select_state = state switch
         {
             HouseState.Morning => "Morgon",
             HouseState.Day => "Dag",
             HouseState.Evening => "Kväll",
             HouseState.Night => "Natt",
+            HouseState.Cleaning => "Städning",
             _ => throw new ArgumentException("Not supported", nameof(state))
         };
         Log($"Setting housestate: {select_state} to {HouseStateInputSelect}");
         // Get the state now
-        var currentState = GetState(HouseStateInputSelect);
+        var currentState = GetState(HouseStateInputSelect!);
         if (currentState?.State != select_state)
         {
-            this.InputSelectSetOption(HouseStateInputSelect, select_state);
+            await this.InputSelectSetOption(HouseStateInputSelect!, select_state);
         }
 
     }
@@ -158,5 +181,7 @@ public enum HouseState
     Morning,
     Day,
     Evening,
-    Night
+    Night,
+    Cleaning,
+    Unknown
 }
