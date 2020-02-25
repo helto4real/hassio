@@ -31,11 +31,11 @@ public static class DaemonAppExtensions
         });
     }
 
-    public async static Task InputSelectSetOption(this NetDaemonApp app, string entityId, string option)
-    {
-        await app.CallService("input_select", "select_option",
-            new { entity_id = entityId, option = option });
-    }
+    // public async static Task InputSelectSetOption(this NetDaemonApp app, string entityId, string option)
+    // {
+    //     await app.CallService("input_select", "select_option",
+    //         new { entity_id = entityId, option = option });
+    // }
 
     public static string PrettyPrintDictData(this NetDaemonApp app, IDictionary<string, object>? dict)
     {

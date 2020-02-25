@@ -169,7 +169,9 @@ public class HouseStateManager : NetDaemonApp
         var currentState = GetState(HouseStateInputSelect!);
         if (currentState?.State != select_state)
         {
-            await this.InputSelectSetOption(HouseStateInputSelect!, select_state);
+            await InputSelect(HouseStateInputSelect!)
+                .SetOption(select_state)
+                .ExecuteAsync();
         }
 
     }
