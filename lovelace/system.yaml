@@ -1,213 +1,225 @@
 title: System
-icon: 'mdi:gauge-low'
+icon: "mdi:gauge-low"
 path: system
 cards:
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Battery warning
+    filter:
+      include:
+        - domain: device_tracker
+          options:
+            secondary_info: last-changed
+          attributes:
+            battery_level: "< 20"
+          entity_id: "*presence"
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Sensors
+    filter:
+      include:
+        - group: group.low_battery_devices
 
-    - type: custom:auto-entities
-      card:
-        type: entities
-        title: Battery warning
-      filter:
-        include:
-          - domain: device_tracker
-            options:
-              secondary_info: last-changed
-            attributes:
-              battery_level: "< 20"
-            entity_id: "*presence"
-    - type: custom:auto-entities
-      card:
-        type: entities
-        title: Sensors
-      filter:
-        include:
-          - group: group.low_battery_devices
+  - type: entities
+    entities:
+      - group.low_battery_devices
+      - switch.zigbee2mqtt_main_join
 
+  - type: picture-elements
+    image: /local/img/performance_bg.png
+    elements:
+      - type: "custom:canvas-gauge-card"
+        card_height: 125
+        entity: sensor.processor_use
+        gauge:
+          # colorValueBoxBackground: "#000"
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          animationDuration: 1500
+          animationRule: linear
+          borders: false
+          colorPlate: "#ddd"
+          height: 210
+          highlights:
+            - color: "rgba(200, 50, 50, .75)"
+              from: 80
+              to: 100
+          majorTicks:
+            - "0"
+            - "10"
+            - "20"
+            - "30"
+            - "40"
+            - "50"
+            - "60"
+            - "70"
+            - "80"
+            - "90"
+            - "100"
+          maxValue: 100
+          minValue: 0
+          minorTicks: 2
+          needleCircleInner: false
+          needleCircleOuter: true
+          needleCircleSize: 7
+          needleType: arrow
+          needleWidth: 2
+          startAngle: 90
+          strokeTicks: true
+          ticksAngle: 180
+          type: radial-gauge
+          valueBox: false
+          width: 210
+        style:
+          left: 4.2%
+          top: 9.6%
+          transform: none
 
-    - type: entities
-      entities:
-        - group.low_battery_devices
-        - switch.zigbee2mqtt_main_join
+      - type: "custom:canvas-gauge-card"
+        card_height: 125
+        entity: sensor.load_1m
+        gauge:
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          animationDuration: 1500
+          animationRule: linear
+          borders: false
+          colorPlate: "#ddd"
+          height: 210
+          highlights:
+            - color: "rgba(200, 50, 50, .75)"
+              from: 80
+              to: 100
+          majorTicks:
+            - "0"
+            - "10"
+            - "20"
+            - "30"
+            - "40"
+            - "50"
+            - "60"
+            - "70"
+            - "80"
+            - "90"
+            - "100"
+          maxValue: 100
+          minValue: 0
+          minorTicks: 2
+          needleCircleInner: false
+          needleCircleOuter: true
+          needleCircleSize: 7
+          needleType: arrow
+          needleWidth: 2
+          startAngle: 90
+          strokeTicks: true
+          ticksAngle: 180
+          type: radial-gauge
+          valueBox: false
+          width: 210
+        style:
+          left: 52.8%
+          top: 9.6%
+          transform: none
 
+      - type: "custom:canvas-gauge-card"
+        card_height: 125
+        # background_color: red
+        entity: sensor.memory_use_percent
+        gauge:
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          animationDuration: 1500
+          animationRule: linear
+          borders: false
+          colorPlate: "#ddd"
+          height: 210
+          highlights:
+            - color: "rgba(200, 50, 50, .75)"
+              from: 80
+              to: 100
+          majorTicks:
+            - "0"
+            - "10"
+            - "20"
+            - "30"
+            - "40"
+            - "50"
+            - "60"
+            - "70"
+            - "80"
+            - "90"
+            - "100"
+          maxValue: 100
+          minValue: 0
+          minorTicks: 2
+          needleCircleInner: false
+          needleCircleOuter: true
+          needleCircleSize: 7
+          needleType: arrow
+          needleWidth: 2
+          startAngle: 90
+          strokeTicks: true
+          ticksAngle: 180
+          type: radial-gauge
+          valueBox: false
+          width: 210
+        style:
+          left: 4.2%
+          top: 57.8%
+          transform: none
 
-    - type: picture-elements
-      image: /local/img/performance_bg.png
-      elements:
-        - type: 'custom:canvas-gauge-card'
-          card_height: 125
-          entity: sensor.processor_use
-          gauge:
-            animationDuration: 1500
-            animationRule: linear
-            borders: false
-            colorPlate: '#ddd'
-            height: 210
-            highlights:
-              - color: 'rgba(200, 50, 50, .75)'
-                from: 80
-                to: 100
-            majorTicks:
-              - '0'
-              - '10'
-              - '20'
-              - '30'
-              - '40'
-              - '50'
-              - '60'
-              - '70'
-              - '80'
-              - '90'
-              - '100'
-            maxValue: 100
-            minValue: 0
-            minorTicks: 2
-            needleCircleInner: false
-            needleCircleOuter: true
-            needleCircleSize: 7
-            needleType: arrow
-            needleWidth: 2
-            startAngle: 90
-            strokeTicks: true
-            ticksAngle: 180
-            type: radial-gauge
-            valueBox: false
-            width: 210
-          style:
-            left: 4.2%
-            top: 9.6%
-            transform: none
-
-        - type: 'custom:canvas-gauge-card'
-          card_height: 125
-          entity: sensor.load_1m
-          gauge:
-            animationDuration: 1500
-            animationRule: linear
-            borders: false
-            colorPlate: '#ddd'
-            height: 210
-            highlights:
-              - color: 'rgba(200, 50, 50, .75)'
-                from: 80
-                to: 100
-            majorTicks:
-              - '0'
-              - '10'
-              - '20'
-              - '30'
-              - '40'
-              - '50'
-              - '60'
-              - '70'
-              - '80'
-              - '90'
-              - '100'
-            maxValue: 100
-            minValue: 0
-            minorTicks: 2
-            needleCircleInner: false
-            needleCircleOuter: true
-            needleCircleSize: 7
-            needleType: arrow
-            needleWidth: 2
-            startAngle: 90
-            strokeTicks: true
-            ticksAngle: 180
-            type: radial-gauge
-            valueBox: false
-            width: 210
-          style:
-            left: 52.8%
-            top: 9.6%
-            transform: none
-
-        - type: 'custom:canvas-gauge-card'
-          card_height: 125
-          entity: sensor.memory_use_percent
-          gauge:
-            animationDuration: 1500
-            animationRule: linear
-            borders: false
-            colorPlate: '#ddd'
-            height: 210
-            highlights:
-              - color: 'rgba(200, 50, 50, .75)'
-                from: 80
-                to: 100
-            majorTicks:
-              - '0'
-              - '10'
-              - '20'
-              - '30'
-              - '40'
-              - '50'
-              - '60'
-              - '70'
-              - '80'
-              - '90'
-              - '100'
-            maxValue: 100
-            minValue: 0
-            minorTicks: 2
-            needleCircleInner: false
-            needleCircleOuter: true
-            needleCircleSize: 7
-            needleType: arrow
-            needleWidth: 2
-            startAngle: 90
-            strokeTicks: true
-            ticksAngle: 180
-            type: radial-gauge
-            valueBox: false
-            width: 210
-          style:
-            left: 4.2%
-            top: 57.8%
-            transform: none
-
-        - type: 'custom:canvas-gauge-card'
-          card_height: 125
-          entity: sensor.disk_use_percent_home
-          gauge:
-            animationDuration: 1500
-            animationRule: linear
-            borders: false
-            colorPlate: '#ddd'
-            height: 210
-            highlights:
-              - color: 'rgba(200, 50, 50, .75)'
-                from: 80
-                to: 100
-            majorTicks:
-              - '0'
-              - '10'
-              - '20'
-              - '30'
-              - '40'
-              - '50'
-              - '60'
-              - '70'
-              - '80'
-              - '90'
-              - '100'
-            maxValue: 100
-            minValue: 0
-            minorTicks: 2
-            needleCircleInner: false
-            needleCircleOuter: true
-            needleCircleSize: 7
-            needleType: arrow
-            needleWidth: 2
-            startAngle: 90
-            strokeTicks: true
-            ticksAngle: 180
-            type: radial-gauge
-            valueBox: false
-            width: 210
-          style:
-            left: 52.8%
-            top: 57.8%
-            transform: none
-
-
-
+      - type: "custom:canvas-gauge-card"
+        card_height: 125
+        entity: sensor.disk_use_percent_home
+        gauge:
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          animationDuration: 1500
+          animationRule: linear
+          borders: false
+          colorPlate: "#ddd"
+          height: 210
+          highlights:
+            - color: "rgba(200, 50, 50, .75)"
+              from: 80
+              to: 100
+          majorTicks:
+            - "0"
+            - "10"
+            - "20"
+            - "30"
+            - "40"
+            - "50"
+            - "60"
+            - "70"
+            - "80"
+            - "90"
+            - "100"
+          maxValue: 100
+          minValue: 0
+          minorTicks: 2
+          needleCircleInner: false
+          needleCircleOuter: true
+          needleCircleSize: 7
+          needleType: arrow
+          needleWidth: 2
+          startAngle: 90
+          strokeTicks: true
+          ticksAngle: 180
+          type: radial-gauge
+          valueBox: false
+          width: 210
+        style:
+          left: 52.8%
+          top: 57.8%
+          transform: none
