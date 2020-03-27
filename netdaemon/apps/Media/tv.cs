@@ -44,7 +44,7 @@ public class TVManager : NetDaemonApp
     /// <summary>
     ///     Initialize, is automatically run by the daemon
     /// </summary>
-    public override Task InitializeAsync()
+    public override async Task InitializeAsync()
     {
         // Set up the state management
 
@@ -68,7 +68,7 @@ public class TVManager : NetDaemonApp
         .Execute();
 
         // This function does not contain any async calls so just return completed task
-        return Task.CompletedTask;
+        // return Task.CompletedTask;
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
+using Helto4real.Powertools;
 public static class DaemonAppExtensions
 {
 
@@ -12,42 +13,32 @@ public static class DaemonAppExtensions
     /// <param name="camera">Unique id of the camera</param>
     public async static Task CameraTakeSnapshotAndNotify(this NetDaemonApp app, string camera)
     {
-        var dict = new Dictionary<string, IEnumerable<string>>
-        {
-            ["images"] = new List<string> { $"/config/www/motion/{camera}_latest.jpg" }
-        };
+        var imagePath = await app.CameraSnapshot(camera);
 
-        await app.CallService("camera", "snapshot", new
-        {
-            entity_id = camera,
-            filename = $"/config/www/motion/{camera}_latest.jpg"
-        });
+        await app.NotifyImage(camera, imagePath);
+    }
 
+    public async static Task Notify(this NetDaemonApp app, string message)
+    {
         await app.CallService("notify", "hass_discord", new
         {
-            data = dict,
-            message = $"{camera}",
+            message = message,
             target = "511278310584746008"
         });
     }
 
-    // public async static Task InputSelectSetOption(this NetDaemonApp app, string entityId, string option)
-    // {
-    //     await app.CallService("input_select", "select_option",
-    //         new { entity_id = entityId, option = option });
-    // }
-
-    public static string PrettyPrintDictData(this NetDaemonApp app, IDictionary<string, object>? dict)
+    public async static Task NotifyImage(this NetDaemonApp app, string message, string imagePath)
     {
-
-        if (dict == null)
-            return string.Empty;
-
-        var builder = new StringBuilder(100);
-        foreach (var key in dict.Keys)
+        var dict = new Dictionary<string, IEnumerable<string>>
         {
-            builder.AppendLine($"{key}:{dict[key]}");
-        }
-        return builder.ToString();
+            ["images"] = new List<string> { imagePath }
+        };
+
+        await app.CallService("notify", "hass_discord", new
+        {
+            data = dict,
+            message = message,
+            target = "511278310584746008"
+        });
     }
 }

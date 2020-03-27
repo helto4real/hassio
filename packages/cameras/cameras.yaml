@@ -30,6 +30,8 @@ amcrest:
     username: !secret camera_user
     password: !secret camera_password
     name: kamera_3
+    binary_sensors:
+      - motion_detected
   # - host: !secret camera_4_ip
   #   username: !secret camera_user
   #   password: !secret camera_password

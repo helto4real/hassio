@@ -143,6 +143,7 @@ influxdb:
 map:
 
 mobile_app:
+
 # sensor:
 #   - platform: time_date
 #   - platform: scrape
@@ -173,7 +174,29 @@ hassio:
 
 lovelace:
   mode: yaml
-
+  resources:
+    - url: /local/custom_cards/custom-cards.js?v=1.106
+      type: module
+    - url: /hacsfiles/canvas-gauge-card/canvas-gauge-card.js?v=0.0.21
+      type: module
+    # - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
+    #   type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js?v=0.0.1
+      type: module
+    # - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
+    #   type: module
+    - url: /hacsfiles/krisinfo-card/krisinfo-card.js
+      type: js
+    # - url: /community_plugin/weather-card/weather-card.js?v1.0
+    #   type: js
+    - url: /hacsfiles/weather-card-mod/weather-card-mod.js?v0.5
+      type: module
+    # - url: /local/custom_cards/card-tools.js?v1.1
+    #   type: js
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: js
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: js
 # hacs:
 #   token: !secret github_token_hacs
 

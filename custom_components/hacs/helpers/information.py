@@ -63,7 +63,10 @@ async def get_releases(repository, prerelease=False, returnlimit=5):
 
 async def get_integration_manifest(repository):
     """Return the integration manifest."""
-    manifest_path = f"{repository.content.path.remote}/manifest.json"
+    if repository.data.content_in_root:
+        manifest_path = "manifest.json"
+    else:
+        manifest_path = f"{repository.content.path.remote}/manifest.json"
     if not manifest_path in [x.full_path for x in repository.tree]:
         raise HacsException(f"No file found '{manifest_path}'")
     try:
@@ -142,7 +145,7 @@ def get_file_name_plugin(repository):
                 if f"{location+'/' if location else ''}{filename}" in [
                     x.full_path for x in tree
                 ]:
-                    repository.data.file_name = filename
+                    repository.data.file_name = filename.split("/")[-1]
                     repository.content.path.remote = location
                     break
 

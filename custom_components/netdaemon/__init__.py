@@ -3,30 +3,22 @@ DOMAIN = "netdaemon"
 ATTR_CLASS = "class"
 ATTR_METHOD = "method"
 
-# SERVICE_ADD_URL_SCHEMA = vol.Schema(
-#     {vol.Required(CONF_NAME): cv.string, vol.Required(CONF_URL): cv.url}
-# )
-
-
 async def async_setup(hass, config):
-    async def handle_register_service(call):
-        """ Handles the service call """
 
+    async def handle_register_service(call):
         daemon_class = call.data.get(ATTR_CLASS, "no class provided")
         daemon_method = call.data.get(ATTR_METHOD, "no method provided")
 
         print("Register service {}_{}".format(daemon_class, daemon_method))
-        hass.services.async_register(
-            DOMAIN, "{}_{}".format(daemon_class, daemon_method), handle_class_methodcall
-        )
-        #  hass.states.async_set("hello_service.hello", name)
+        hass.services.async_register(DOMAIN, "{}_{}".format(daemon_class, daemon_method), netdaemon_noop)
 
-    async def handle_class_methodcall(call):
-        """ Handle the class method call """
-        # Do nothing for now, the netdaemon intersects
+    async def netdaemon_noop(call):
+        # Do nothing for now, the netdaemon subscribes to this service
+        pass
 
-    hass.states.async_set("hello_state.world", "Paulus")
-
+    # Register companion services
     hass.services.async_register(DOMAIN, "register_service", handle_register_service)
+    hass.services.async_register(DOMAIN, "reload_apps", netdaemon_noop)
+
     # Return boolean to indicate that initialization was successful.
     return True

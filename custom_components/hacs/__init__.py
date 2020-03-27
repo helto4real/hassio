@@ -30,6 +30,7 @@ from custom_components.hacs.setup import (
 )
 
 from custom_components.hacs.globals import get_hacs
+
 from custom_components.hacs.helpers.network import internet_connectivity_check
 
 SCHEMA = hacs_base_config_schema()
@@ -165,6 +166,8 @@ async def hacs_startup():
     hacs.common.categories = ELEMENT_TYPES
     if hacs.configuration.appdaemon:
         hacs.common.categories.append("appdaemon")
+    if hacs.configuration.netdaemon:
+        hacs.common.categories.append("netdaemon")
     if hacs.configuration.python_script:
         hacs.configuration.python_script = False
         if hacs.configuration.config_type == "yaml":

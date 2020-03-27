@@ -1,27 +1,3 @@
-resources:
-  - url: /local/custom_cards/custom-cards.js?v=1.106
-    type: module
-  - url: /community_plugin/canvas-gauge-card/canvas-gauge-card.js?v=0.0.21
-    type: module
-  # - url: /local/custom_cards/mini-graph-card-bundle.js?v=0.2.4
-  #   type: module
-  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js?v=0.0.1
-    type: module
-  # - url: /local/custom_cards/smhi-forecast-card.js?v=0.0.26
-  #   type: module
-  - url: /community_plugin/krisinfo-card/krisinfo-card.js
-    type: js
-  # - url: /community_plugin/weather-card/weather-card.js?v1.0
-  #   type: js
-  - url: /community_plugin/weather-card-mod/weather-card-mod.js?v0.5
-    type: module
-  # - url: /local/custom_cards/card-tools.js?v1.1
-  #   type: js
-  - url: /community_plugin/lovelace-card-tools/card-tools.js
-    type: js
-  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
-    type: js
-
 title: Hellströms home
 views:
   - !include lovelace/home.yaml

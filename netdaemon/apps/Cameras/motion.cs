@@ -16,18 +16,19 @@ public class CameraMotionApp : NetDaemonApp
     /// </summary>
     public IEnumerable<string>? Cameras { get; set; }
 
-    public override async Task InitializeAsync()
+    public override Task InitializeAsync()
     {
-        var state = Storage.SomeSavedState ?? 0;
-        state += 1;
+        Entity("binary_sensor.kamera_3_motion_detected").WhenStateChange("on").Call(async (entityId, to, from) =>
+        {
+            if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 23)
+            {
+                await Task.Delay(1000); // Delay one secod before snapshot to get better pictures
+                await this.CameraTakeSnapshotAndNotify("camera.kamera_3");
+            }
 
-        Storage.SomeSavedState = state;
 
-        Log($"Saved state is {Storage.SomeSavedState}");
-        // Todo: add motion logic, this just takes snapshot at startup for test
-        // foreach (var camera in Cameras!)
-        // {
-        //     await this.CameraTakeSnapshotAndNotify(camera);
-        // }
+        }).Execute();
+
+        return Task.CompletedTask;
     }
 }
