@@ -17,6 +17,13 @@
 # - light.tvrummet_vanster
 # - light.tvrummet_vagg
 
+# 1506605108667:
+#   alias: "Numbertest"
+#   sequence:
+#     - service: light.turn_on
+#       entity_id:
+#         - tomas_rum
+
 morning_scene:
   alias: "Morning scene"
   sequence:

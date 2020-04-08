@@ -13,3 +13,18 @@
       - light.tvrummet
       - light.sovrum
     service: light.turn_on
+'1586349954491':
+  alias: Test script
+  sequence:
+  - data: {}
+    entity_id: light.tomas_rum
+    service: light.turn_on
+  - device_id: ''
+    domain: ''
+    entity_id: ''
+'1586350051032':
+  alias: Test
+  sequence:
+  - data: {}
+    entity_id: light.tomas_rum
+    service: light.turn_on

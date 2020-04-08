@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
 
+// using Netdaemon.Generated.Extensions;
+
 /// <summary>
 ///     Manage default lights and implements the following use-cases:
 ///         - Nightlights turn on in the night
@@ -18,6 +20,8 @@ public class LightManager : NetDaemonApp
     public string? RemoteTvRummet { get; set; }
     public override Task InitializeAsync()
     {
+        // await this.LightEx().TomasRum.Toggle().ExecuteAsync();
+
         InitializeNightLights();
 
         InitializeTimeOfDayScenes();
@@ -41,6 +45,7 @@ public class LightManager : NetDaemonApp
     /// </summary>
     private void InitializeTimeOfDayScenes()
     {
+
         Entity("input_select.house_mode_select")
             .WhenStateChange(to: "Dag")
                 .RunScript("day_scene")
