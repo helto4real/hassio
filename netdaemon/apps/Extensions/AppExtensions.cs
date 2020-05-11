@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 using Helto4real.Powertools;
 public static class DaemonAppExtensions
 {
@@ -11,30 +11,30 @@ public static class DaemonAppExtensions
     /// </summary>
     /// <param name="app">NetDaemonApp to extend</param>
     /// <param name="camera">Unique id of the camera</param>
-    public async static Task CameraTakeSnapshotAndNotify(this NetDaemonApp app, string camera)
+    public static void CameraTakeSnapshotAndNotify(this NetDaemonRxApp app, string camera)
     {
-        var imagePath = await app.CameraSnapshot(camera);
+        var imagePath = app.CameraSnapshot(camera);
 
-        await app.NotifyImage(camera, imagePath);
+        app.NotifyImage(camera, imagePath);
     }
 
-    public async static Task Notify(this NetDaemonApp app, string message)
+    public static void Notify(this NetDaemonRxApp app, string message)
     {
-        await app.CallService("notify", "hass_discord", new
+        app.CallService("notify", "hass_discord", new
         {
             message = message,
             target = "511278310584746008"
         });
     }
 
-    public async static Task NotifyImage(this NetDaemonApp app, string message, string imagePath)
+    public static void NotifyImage(this NetDaemonRxApp app, string message, string imagePath)
     {
         var dict = new Dictionary<string, IEnumerable<string>>
         {
             ["images"] = new List<string> { imagePath }
         };
 
-        await app.CallService("notify", "hass_discord", new
+        app.CallService("notify", "hass_discord", new
         {
             data = dict,
             message = message,

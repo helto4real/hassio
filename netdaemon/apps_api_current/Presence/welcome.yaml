@@ -1,0 +1,22 @@
+welcome_home:
+    class: WelcomeHomeManager
+    presence_criteria: '_presence'
+    hallway_media_player: media_player.vardagsrum
+    door_sensor: binary_sensor.hall_dorr
+    greetings:
+        - "Hej {namn}, vad roligt att du kommer hem. Det har varit fruktansvärt tråkigt att bara vara hemma själv."
+        - "{namn}, Dags att komma nu va? Hur tror du att jag känner det? Jag är faktiskt väldig väldigt ensam här på dagarna!"
+        - "{namn} är den jag älskar allra mest, fast du ser ut som en häst!"
+        - "Om ja kunde sjunga en kääääärlekssång, så skulle jag sjunga den för {namn}, skojar bara!"
+        - "En dålig dag blev plötsligt sämre! {namn} kom hem. Suck suck."
+        - "Vem kan segla för utom vind, jag vet inte men {namn} är ofta ute och seglar. Då menar jag inte havet. hahaha."
+        - "Dåligt att inte komma hem tidigare än så, {namn} tänker mest bara på sig själv"
+        - "{namn}, vi måste planera. Diska, damsuga. Hua hur det ser ut här!"
+        - "Zingo är så fin, men {namn} är fulare. Ja, vad trodde du jag skulle säga?"
+        - "Hej {namn}, du ser inte glad ut, just det ja! Du har ju inga kompisar förutom mobilen. Tragiskt!"
+        - "Älskade {namn}, så jag har längtat efter att någon drar ur strömmen för nu blev det så mycket tråkigare."
+        - "{namn} är min favoritperson. Nu är min dag räddad."
+        - "{namn} gör disken! Men först ge mig en kram."
+        - "Notering till mig själv, ignorera {namn} som precis kom hem."
+        - "{namn} håller jag mycket högt rankad, en jätte bland pygméer."
+        - "{namn}, vilken hjälte du är. Du kunde öppna dörren. Inte dåligt! Nästa gång kanske du kan plocka undan efter dig också!"

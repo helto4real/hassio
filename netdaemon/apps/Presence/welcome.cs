@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using System.Reactive.Linq;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 
 /// <summary>
 ///     Greets (or insults) people when coming home :)
 /// </summary>
-public class WelcomeHomeManager : NetDaemonApp
+public class WelcomeHomeManager : NetDaemonRxApp
 {
 
     #region -- Config properties --
@@ -34,34 +35,37 @@ public class WelcomeHomeManager : NetDaemonApp
             return Task.CompletedTask;
 
         Entity(DoorSensor!)
-            .WhenStateChange(to: "on")
-                .Call(GreetIfJustArrived).Execute();
+            .StateChanges
+            .Where(e => e.New?.State == "on")
+            .Subscribe(s => GreetIfJustArrived(s.New.EntityId));
 
-        Entities(n => n.EntityId.EndsWith(PresenceCriteria!))
-            .WhenStateChange(to: "Nyss anlänt")
-                .Call(GreetIfJustArrived).Execute();
+        StateChanges
+            .Where(
+                e => e.New.EntityId.EndsWith(PresenceCriteria!) &&
+                     e.New?.State == "Nyss anlänt")
+            .Subscribe(s => GreetIfJustArrived(s.New.EntityId));
 
         return Task.CompletedTask;
     }
 
-    private async Task GreetIfJustArrived(string entityId, EntityState? to, EntityState? from)
+    private void GreetIfJustArrived(string entityId)
     {
         if (entityId.StartsWith("binary_sensor."))
         {
             // The door opened, lets check if someone just arrived
-            var trackerJustArrived = State.Where(n => n.EntityId.EndsWith(PresenceCriteria!) && n.State == "Nyss anlänt");
+            var trackerJustArrived = States.Where(n => n.EntityId.EndsWith(PresenceCriteria!) && n.State == "Nyss anlänt");
             foreach (var tracker in trackerJustArrived)
             {
-                await Greet(tracker.EntityId);
+                Greet(tracker.EntityId);
             }
         }
         else if (entityId.StartsWith("device_tracker."))
         {
-            var dorrSensorState = GetState(DoorSensor!);
+            var dorrSensorState = State(DoorSensor!);
             if (dorrSensorState?.State == "on")
             {
                 // Door is open, greet
-                await Greet(entityId);
+                Greet(entityId);
             }
             else if (dorrSensorState?.State == "off")
             {
@@ -69,13 +73,13 @@ public class WelcomeHomeManager : NetDaemonApp
                 if (DateTime.Now.Subtract(dorrSensorState.LastChanged) <= TimeSpan.FromMinutes(5))
                 {
                     // It was recently opened, probably when someone got home
-                    await Greet(entityId);
+                    Greet(entityId);
                 }
             }
         }
     }
 
-    private async Task Greet(string tracker)
+    private void Greet(string tracker)
     {
         // Get the name from tracker i.e. device_tracer.name_presense
         var nameOfPersion = tracker[15..^PresenceCriteria!.Length];

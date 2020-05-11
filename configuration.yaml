@@ -96,6 +96,8 @@ recorder:
 logger:
   default: info
   # logs:
+  #   homeassistant.components.websocket_api: debug
+  #   aiohttp: debug
   #   pydeconz: debug
   #   homeassistant.components.deconz: debug
   #homeassistant.components.scrape: debug
@@ -197,6 +199,8 @@ lovelace:
       type: js
     - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: js
+    - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: module
 # hacs:
 #   token: !secret github_token_hacs
 

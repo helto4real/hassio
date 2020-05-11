@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Reactive.Linq;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using System.Threading;
 
 /// <summary>
 ///     Following use-case is implemented
@@ -9,7 +12,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 /// </summary>
 
 
-public class CameraMotionApp : NetDaemonApp
+public class CameraMotionApp : NetDaemonRxApp
 {
     /// <summary>
     ///     The cameras being managed, se yaml file
@@ -18,16 +21,15 @@ public class CameraMotionApp : NetDaemonApp
 
     public override Task InitializeAsync()
     {
-        Entity("binary_sensor.kamera_3_motion_detected").WhenStateChange("on").Call(async (entityId, to, from) =>
-        {
-            if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 23)
+        Entity("binary_sensor.kamera_3_motion_detected")
+            .StateChanges
+            .Where(e => e.New.State == "on")
+            .Where(e => DateTime.Now.Hour > 8 && DateTime.Now.Hour < 23)
+            .Delay(TimeSpan.FromSeconds(1)) // Delay one second before snapshot to get better pictures
+            .Subscribe(s =>
             {
-                await Task.Delay(1000); // Delay one secod before snapshot to get better pictures
-                await this.CameraTakeSnapshotAndNotify("camera.kamera_3");
-            }
-
-
-        }).Execute();
+                this.CameraTakeSnapshotAndNotify("camera.kamera_3");
+            });
 
         return Task.CompletedTask;
     }

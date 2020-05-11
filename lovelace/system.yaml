@@ -223,3 +223,35 @@ cards:
           left: 52.8%
           top: 57.8%
           transform: none
+
+  - type: vertical-stack
+    cards:
+      - type: "custom:auto-entities"
+        card:
+          show_header_toggle: false
+          title: Netdaemon
+          type: entities
+        filter:
+          include:
+            - entities:
+                - icon: "mdi:reload"
+                  name: Reload
+                  tap_action:
+                    action: call-service
+                    service: netdaemon.reload_apps
+                - icon: "mdi:reload"
+                  name: Restart
+                  tap_action:
+                    action: call-service
+                    service: hassio.addon_restart
+                    service_data:
+                      addon: c6a2317c_netdaemon
+              entity: netdaemon.status
+              entity_id: netdaemon.status
+              name: Status
+              secondary_info:
+                attribute: number_of_running_apps
+                name: "Apps running:"
+              type: "custom:multiple-entity-row"
+            - entity_id: switch.netdaemon*
+        show_empty: true

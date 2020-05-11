@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using System.Reactive.Linq;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 
 // using Netdaemon.Generated.Extensions;
 
@@ -11,65 +12,59 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///         - Nightlights turn on in the night
 ///         - Activates the correct scene (RunScript) depending on time of day
 /// </summary>
-public class LightManager : NetDaemonApp
+public class LightManager : NetDaemonRxApp
 {
     public IEnumerable<string>? LivingRoomPirs { get; set; }
     public IEnumerable<string>? TvRoomPirs { get; set; }
 
     public string? KitchenPir { get; set; }
     public string? RemoteTvRummet { get; set; }
-    public override Task InitializeAsync()
+    public override void Initialize()
     {
-        // await this.LightEx().TomasRum.Toggle().ExecuteAsync();
-
         InitializeNightLights();
 
         InitializeTimeOfDayScenes();
-
-        // No async so just return completed task
-        return Task.CompletedTask;
     }
 
     /// <summary>
     ///     Returns true if it is currently night
     /// </summary>
-    public bool IsNight => GetState("input_select.house_mode_select")?.State == "Natt";
+    public bool IsNight => State("input_select.house_mode_select")?.State == "Natt";
 
     /// <summary>
     ///     Returns true if TV is currently on
     /// </summary>
-    public bool IsTvOn => GetState(RemoteTvRummet)?.State == "on";
+    public bool IsTvOn => State(RemoteTvRummet!)?.State == "on";
 
     /// <summary>
     ///     Initialize the scenes to call depending on time of day
     /// </summary>
     private void InitializeTimeOfDayScenes()
     {
+        Entity("input_select.house_mode_select")
+            .StateChanges
+            .Where(e => e.New.State == "Dag")
+            .Subscribe(s => RunScript("day_scene"));
 
         Entity("input_select.house_mode_select")
-            .WhenStateChange(to: "Dag")
-                .RunScript("day_scene")
-        .Execute();
+            .StateChanges
+            .Where(e => e.New.State == "Kväll")
+            .Subscribe(s => RunScript("evening_scene"));
 
         Entity("input_select.house_mode_select")
-            .WhenStateChange(to: "Kväll")
-                .RunScript("evening_scene")
-        .Execute();
+            .StateChanges
+            .Where(e => e.New.State == "Natt")
+            .Subscribe(s => RunScript("night_scene"));
 
         Entity("input_select.house_mode_select")
-            .WhenStateChange(to: "Natt")
-                .RunScript("night_scene")
-        .Execute();
+            .StateChanges
+            .Where(e => e.New.State == "Morgon")
+            .Subscribe(s => RunScript("morning_scene"));
 
         Entity("input_select.house_mode_select")
-            .WhenStateChange(to: "Morgon")
-                .RunScript("morning_scene")
-        .Execute();
-
-        Entity("input_select.house_mode_select")
-            .WhenStateChange(to: "Städning")
-                .RunScript("cleaning_scene")
-        .Execute();
+            .StateChanges
+            .Where(e => e.New.State == "Städning")
+            .Subscribe(s => RunScript("cleaning_scene"));
     }
 
     /// <summary>
@@ -78,66 +73,73 @@ public class LightManager : NetDaemonApp
     private void InitializeNightLights()
     {
         // Living room night lights, turns on when motion
-        Entities(LivingRoomPirs)
-            .WhenStateChange(to: "on")
-                .Call(async (entityId, to, from) =>
+        Entities(LivingRoomPirs!)
+            .StateChanges
+            .Where(e => e.New?.State == "on")
+            .Where(e => IsNight)
+            .Subscribe(s =>
                 {
-                    if (IsNight)
+                    // If morning time then turn on more lights
+                    if (IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
                     {
-                        // If morning time then turn on more lights
-                        if (IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
-                        {
-                            await Entity("light.vardagsrum")
-                                .TurnOn()
-                                    .WithAttribute("transition", 0).ExecuteAsync();
-                        }
-                        else
-                        {
-                            await Entity("light.hall_byra")
-                                .TurnOn()
-                                    .WithAttribute("transition", 0).ExecuteAsync();
-                        }
+                        Entity("light.vardagsrum").TurnOn(new { transition = 0 });
                     }
-                }).Execute();
+                    else
+                    {
+                        Entity("light.hall_byra").TurnOn(new { transition = 0 });
+                    }
+                });
 
-        // Turn off after som time idle exept if it is morning then keep on untill daytime will turn off
-        Entities(LivingRoomPirs)
-            .WhenStateChange((to, from) =>
-                to?.State == "off" &&
-                from?.State == "on" &&
+        // Turn off after som time idle except if it is morning then keep on until daytime will turn off
+        Entities(LivingRoomPirs!)
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "off" &&
+                e.Old?.State == "on" &&
                 IsNight &&
                 !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
-            .AndNotChangeFor(TimeSpan.FromMinutes(15))
-                .UseEntity("light.vardagsrum").TurnOff().WithAttribute("transition", 0).Execute();
+            .NDSameStateFor(TimeSpan.FromMinutes(15))
+            .Subscribe(s => Entity("light.vardagsrum").TurnOff(new { transition = 0 }));
 
         // Kitchen night lights
-        Entity(KitchenPir)
-            .WhenStateChange((to, from) => to?.State == "on" && from?.State == "off" && IsNight)
-                .UseEntity("light.kok").TurnOn().WithAttribute("transition", 0).Execute();
+        Entity(KitchenPir!)
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "on" &&
+                e.Old?.State == "off" &&
+                IsNight)
+            .Subscribe(s => Entity("light.kok").TurnOn(new { transition = 0 }));
 
-        Entity(KitchenPir)
-            .WhenStateChange((to, from) =>
-                    to?.State == "off" &&
-                    from?.State == "on" &&
-                    IsNight &&
-                    !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
-            .AndNotChangeFor(TimeSpan.FromMinutes(15))
-                .UseEntity("light.kok").TurnOff().WithAttribute("transition", 0).Execute();
+        Entity(KitchenPir!)
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "off" &&
+                e.Old?.State == "on" &&
+                IsNight &&
+                !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
+            .NDSameStateFor(TimeSpan.FromMinutes(15))
+            .Subscribe(s => Entity("light.kok").TurnOff(new { transition = 0 }));
 
         // TV Room night lights, only at night and not TV is on
-        Entities(TvRoomPirs)
-            .WhenStateChange((to, from) => to?.State == "on" && from?.State == "off" && IsNight && !IsTvOn)
-                .UseEntity("light.tvrummet").TurnOn().WithAttribute("transition", 0).Execute();
+        Entities(TvRoomPirs!)
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "on" &&
+                e.Old?.State == "off" &&
+                !IsTvOn
+            )
+            .Subscribe(s => Entity("light.tvrummet").TurnOn(new { transition = 0 }));
 
-        Entities(TvRoomPirs)
-            .WhenStateChange((to, from) =>
-                to?.State == "off" &&
-                from?.State == "on"
+        Entities(TvRoomPirs!)
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "off" &&
+                e.Old?.State == "on"
                 && IsNight &&
                 !IsTvOn &&
                 !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
-            .AndNotChangeFor(TimeSpan.FromMinutes(15))
-                .UseEntity("light.tvrummet").TurnOff().WithAttribute("transition", 0).Execute();
+            .NDSameStateFor(TimeSpan.FromMinutes(15))
+            .Subscribe(s => Entity("light.tvrummet").TurnOff(new { transition = 0 }));
     }
 
     // Todo, make this part of Fluent API

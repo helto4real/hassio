@@ -1,0 +1,5 @@
+room_specific:
+    class: RoomSpecificManager
+    kids_lights:
+        - light.melkers_rum
+        - light.sallys_rum

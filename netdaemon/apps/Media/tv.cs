@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reactive.Linq;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 using JoySoftware.HomeAssistant.NetDaemon.Common;
+using System.Threading;
 
 /// <summary>
 ///     Manage the media in the tv room
@@ -14,7 +17,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///         - When remote activity changes, run correct scene (RunScript)
 ///
 /// </remarks>
-public class TVManager : NetDaemonApp
+public class TVManager : NetDaemonRxApp
 {
     // The Remote that controls the TV (Harmony Logitech)
     // private readonly string _entityRemoteTVRummet = "remote.tvrummet";
@@ -37,35 +40,33 @@ public class TVManager : NetDaemonApp
     // True if we are in the process of turning on the TV
     private bool _isTurningOnTV = false;
     // If this RunScript paused the mediaplayer, it is here
-    private string _currentlyPausedMediaPlayer;
+    private string? _currentlyPausedMediaPlayer;
     // The time when we stopped play media for any of the media players
     private DateTime? _timeStoppedPlaying = null;
 
     /// <summary>
     ///     Initialize, is automatically run by the daemon
     /// </summary>
-    public override async Task InitializeAsync()
+    public override void Initialize()
     {
         // Set up the state management
 
         // When state change on my media players, call OnMediaStateChanged
-        Entities(TvMediaPlayers)
-            .WhenStateChange()
-                .Call(OnMediaStateChanged)
-        .Execute();
+        Entities(TvMediaPlayers!)
+            .StateChanges
+            .Subscribe(s => OnMediaStateChanged(s.New, s.Old));
 
         // When TV on (remote on), call OnTvTurnedOn
-        Entity(RemoteTVRummet)
-            .WhenStateChange(to: "on")
-                .Call(OnTVTurnedOn)
-        .Execute();
+        Entity(RemoteTVRummet!)
+            .StateChanges
+            .Where(e => e.New?.State == "on")
+            .Subscribe(s => OnTVTurnedOn());
 
         // When ever TV remote activity changes, ie TV, Film, Poweroff call OnTvActivityChange
-        Entity(RemoteTVRummet)
-            .WhenStateChange((to, from) =>
-                to.Attribute.current_activity != from.Attribute.current_activity)
-                .Call(OnTvActivityChange)
-        .Execute();
+        Entity(RemoteTVRummet!)
+            .StateAllChanges
+            .Where(e => e.New?.Attribute?.current_activity != e.Old?.Attribute?.current_activity)
+            .Subscribe(s => OnTvActivityChange(s.New));
 
         // This function does not contain any async calls so just return completed task
         // return Task.CompletedTask;
@@ -74,44 +75,44 @@ public class TVManager : NetDaemonApp
     /// <summary>
     ///     Returns true if TV is currently on
     /// </summary>
-    public bool TvIsOn => GetState(RemoteTVRummet).State == "on";
+    public bool TvIsOn => State(RemoteTVRummet!)?.State == "on";
 
     /// <summary>
     ///     Returns true if any of the media players is playing
     /// </summary>
     /// <returns></returns>
-    public bool MediaIsPlaying => TvMediaPlayers.Where(n => GetState(n).State == "playing").Count() > 0;
+    public bool MediaIsPlaying => TvMediaPlayers.Where(n => State(n)?.State == "playing").Count() > 0;
 
     /// <summary>
     ///     Called when ever state change for the media_players playing on the TV
     /// </summary>
-    public async Task OnMediaStateChanged(string entityId, EntityState to, EntityState from)
+    public void OnMediaStateChanged(EntityState to, EntityState from)
     {
-        if (to.State == "playing")
+        if (to?.State == "playing")
         {
             _timeStoppedPlaying = null;
-            await TurnOnTvIfOff(entityId);
+            TurnOnTvIfOff(to.EntityId);
         }
         else
         {
-            if (from.State == "playing")
+            if (from?.State == "playing")
             {
                 _timeStoppedPlaying = DateTime.Now;
                 // Check in 20 minutes if TV is on and nothing still playing
-                Scheduler.RunIn(_idleTimeout, async () =>
-                {
-                    if (TvIsOn && !MediaIsPlaying && _timeStoppedPlaying != null)
+                RunIn(_idleTimeout)
+                    .Subscribe(s =>
                     {
-                        if (DateTime.Now.Subtract(_timeStoppedPlaying.Value) >= _idleTimeout)
+                        if (TvIsOn && !MediaIsPlaying && _timeStoppedPlaying != null)
                         {
-                            // Idle timeout went by without any change in state turn off TV
-                            Log($"TV been idle for {_idleTimeout} minutes, turning off");
-                            await RunScript("tv_off_scene")
-                                .ExecuteAsync();
+                            if (DateTime.Now.Subtract(_timeStoppedPlaying.Value) >= _idleTimeout)
+                            {
+                                // Idle timeout went by without any change in state turn off TV
+                                Log($"TV been idle for {_idleTimeout} minutes, turning off");
+                                RunScript("tv_off_scene");
+                            }
+                            // If the state did has changed after we waited just run to completion
                         }
-                        // If the state did has changed after we waited just run to completion
-                    }
-                });
+                    });
             }
         }
     }
@@ -119,7 +120,7 @@ public class TVManager : NetDaemonApp
     /// <summary>
     ///     Turns the TV on if not on and pauses any playing media until TV is fully on
     /// </summary>
-    private async Task TurnOnTvIfOff(string entityId)
+    private void TurnOnTvIfOff(string entityId)
     {
         if (!TvIsOn && !_isTurningOnTV)
         {
@@ -128,29 +129,26 @@ public class TVManager : NetDaemonApp
             Log($"TV is not on, pause media {entityId} and turn on tv!");
 
             // Tv and light etc is managed through a RunScript
-            await RunScript("tv_scene")
-                .ExecuteAsync();
+            RunScript("tv_scene");
         }
         if (_isTurningOnTV) // Always pause media if TV is turning on
         {
             _currentlyPausedMediaPlayer = entityId;
-            await MediaPlayer(entityId)
-                    .Pause().ExecuteAsync();
+            CallService("media_player", "pause", new { entity_id = entityId });
         }
     }
 
     /// <summary>
     ///     When TV is on and we have paused media, play it
     /// </summary>
-    public async Task OnTVTurnedOn(string entityId, EntityState to, EntityState from)
+    public void OnTVTurnedOn()
     {
         if (_isTurningOnTV && !string.IsNullOrEmpty(_currentlyPausedMediaPlayer))
         {
             // We had just turned on tv with this RunScript and have a media player paused
             // First delay and wait for the TV to get ready
-            await Task.Delay(9000);
-            await MediaPlayer(_currentlyPausedMediaPlayer)
-                    .Play().ExecuteAsync();
+            Thread.Sleep(9000);
+            CallService("media_player", "play", new { entity_id = _currentlyPausedMediaPlayer });
         }
         _isTurningOnTV = false;
     }
@@ -159,18 +157,18 @@ public class TVManager : NetDaemonApp
     ///     When TV is activity changes, ie TV, Film or PowerOff.!--
     ///     This is to manage manual remote activities
     /// </summary>
-    public async Task OnTvActivityChange(string entityId, EntityState to, EntityState from)
+    public void OnTvActivityChange(EntityState to)
     {
-        switch (to.Attribute.current_activity)
+        switch (to?.Attribute?.current_activity)
         {
             case "TV":
-                await RunScript("tv_scene").ExecuteAsync();
+                RunScript("tv_scene");
                 break;
             case "Film":
-                await RunScript("film_scene").ExecuteAsync();
+                RunScript("film_scene");
                 break;
             case "PowerOff":
-                await RunScript("tv_off_scene").ExecuteAsync();
+                RunScript("tv_off_scene");
                 break;
         }
     }

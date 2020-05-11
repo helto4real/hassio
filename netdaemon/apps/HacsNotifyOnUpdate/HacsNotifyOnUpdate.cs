@@ -1,31 +1,33 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using System.Reactive.Linq;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 
-namespace hacs 
+namespace hacs
 {
-    public class NotifyOnUpdate : NetDaemonApp
+    public class NotifyOnUpdate : NetDaemonRxApp
     {
-        public async override Task InitializeAsync() => Entity("sensor.hacs")
-                .WhenStateChange((n, o) =>
-                    o?.State != n?.State && n?.State > 0)
-                        .Call(async (entityId, newState, oldState) =>
-                        {
-                            var serviceDataTitle = "Updates pending in HACS";
-                            var serviceDataMessage = "There are updates pending in [HACS](/hacs)\n\n";
+        public override void Initialize() => Entity("sensor.hacs")
+                .StateChanges
+                .Where(e => e.New.State is Double) // Avoid error when "Unknown"
+                .Subscribe(s =>
+                {
+                    var serviceDataTitle = "Updates pending in HACS";
+                    var serviceDataMessage = "There are updates pending in [HACS](/hacs)\n\n";
 
+                    List<object> repositories = s.New?.Attribute?.repositories || new List<object>();
+                    foreach (IDictionary<string, object?> item in repositories)
+                    {
+                        if (item.TryGetValue("display_name", out var name))
+                            serviceDataMessage += $"- {name?.ToString()}\n";
+                    }
 
-                            List<object> repositories = newState?.Attribute?.repositories || new List<object>();
-                            foreach (IDictionary<string, object?> item in repositories)
-                            {
-                                serviceDataMessage += $"- {item?["display_name"].ToString()}\n";
-                            }
-
-                            await CallService("persistent_notification", "create", new
-                            {
-                                title = serviceDataTitle,
-                                message = serviceDataMessage
-                            }, true);
-                        }).Execute();
+                    CallService("persistent_notification", "create", new
+                    {
+                        title = serviceDataTitle,
+                        message = serviceDataMessage
+                    });
+                });
     }
 }

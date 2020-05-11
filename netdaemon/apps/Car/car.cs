@@ -1,7 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using System.Reactive.Linq;
 
 /// <summary>
 ///     Application manage the carheater. Implements following use-cases:
@@ -14,7 +15,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///     The application is running every minute and decides if the heater is
 ///     going to be on or off. This logic will work also after restart.
 /// </remarks>
-public class CarHeaterManager : NetDaemonApp
+public class CarHeaterManager : NetDaemonRxApp
 {
     // The entities used in the automation
     // private readonly string _heaterSwitch = "switch.motorvarmare";
@@ -47,6 +48,8 @@ public class CarHeaterManager : NetDaemonApp
     // Used for logging at startup and no more
     private bool _appJustStarted = true;
 
+    IObservable<long> EveryMinute = Observable.Timer(TimeSpan.FromSeconds(60 - DateTime.Now.Second), TimeSpan.FromMinutes(1));
+
     /// <summary>
     ///     Initialize the automations
     /// </summary>
@@ -54,13 +57,15 @@ public class CarHeaterManager : NetDaemonApp
     ///     - Schedules check every minute if heater should be on or off depending on temperature
     ///     - Set the manually started flag if heater is turn on and not turned on by this script
     /// </remarks>
-    public override Task InitializeAsync()
+    public override void Initialize()
     {
         // Get the state if manually started from statestorage
+        EveryMinute.Subscribe(e => HandleCarHeater());
 
-        Scheduler.RunEveryMinute(0, () => HandleCarHeater());
-
-        Entity(HeaterSwitch!).WhenStateChange(to: "on").Call((e, to, from) =>
+        Entity(HeaterSwitch!)
+            .StateChanges
+            .Where(e => e.New.State == "on")
+            .Subscribe(s =>
         {
             if (_appChangedState == false)
             {
@@ -71,32 +76,26 @@ public class CarHeaterManager : NetDaemonApp
             {
                 Storage.IsManualState = false;
             }
-
             _appChangedState = false;
-            return Task.CompletedTask;
-        }).Execute();
 
-        // No async so return completed task
-        return Task.CompletedTask;
+        });
     }
-
-
 
     /// <summary>
     ///     Handle the logic run every minute if heater
     ///     should be on or off
     /// </summary>
-    private async Task HandleCarHeater()
+    private void HandleCarHeater()
     {
         try
         {
             // First do the failsave logic, no heater should run for more than 3 hours
-            await TurnOffHeaterIfOnMoreThanThreeHours();
+            TurnOffHeaterIfOnMoreThanThreeHours();
 
             // Get relevant states
-            var currentOutsideTemp = (double?)GetState(TempSensor!)?.State;
-            var configuredDepartureTime = GetState(DepartureTimeSensor!)?.State;
-            var scheduleOnWeekend = GetState(ScheduleOneWeekendsInputBoolean!)?.State == "on" ? true : false;
+            var currentOutsideTemp = (double?)State(TempSensor!)?.State;
+            var configuredDepartureTime = State(DepartureTimeSensor!)?.State;
+            var scheduleOnWeekend = State(ScheduleOneWeekendsInputBoolean!)?.State == "on" ? true : false;
 
             // Calculate correct set departure time
             var now = DateTime.Now;
@@ -131,7 +130,7 @@ public class CarHeaterManager : NetDaemonApp
                 // Within 30 minutes
                 if (totalMinutesUntilDeparture <= 30)
                 {
-                    await TurnOnHeater();
+                    TurnOnHeater();
                     return;
                 }
 
@@ -141,7 +140,7 @@ public class CarHeaterManager : NetDaemonApp
                 // Within one hour
                 if (totalMinutesUntilDeparture <= 60)
                 {
-                    await TurnOnHeater();
+                    TurnOnHeater();
                     return;
                 }
             }
@@ -150,7 +149,7 @@ public class CarHeaterManager : NetDaemonApp
                 // Within 1.5 hour
                 if (totalMinutesUntilDeparture <= 90)
                 {
-                    await TurnOnHeater();
+                    TurnOnHeater();
                     return;
                 }
             }
@@ -159,7 +158,7 @@ public class CarHeaterManager : NetDaemonApp
                 // Within two hours
                 if (totalMinutesUntilDeparture <= 120)
                 {
-                    await TurnOnHeater();
+                    TurnOnHeater();
                     return;
                 }
             }
@@ -168,25 +167,25 @@ public class CarHeaterManager : NetDaemonApp
                 // Within three hours
                 if (totalMinutesUntilDeparture <= 180)
                 {
-                    await TurnOnHeater();
+                    TurnOnHeater();
                     return;
                 }
             }
 
             // If not manually started and heater is on, turn heater off
-            if (GetState(HeaterSwitch!)?.State == "on" && !Storage.IsManualState ?? false)
+            if (State(HeaterSwitch!)?.State == "on" && !Storage.IsManualState ?? false)
             {
                 Log("Turning off heater");
                 _appChangedState = true;
-                await Entity(HeaterSwitch!).TurnOff().ExecuteAsync();
-                Log($"Next departure is {nextDeparture}");
+                Entity(HeaterSwitch!).TurnOff();
+                Log("Next departure is {nextDeparture}", nextDeparture);
             }
 
         }
         catch (System.Exception e)
         {
             // Log all errors!
-            Log("Error in car heater app", e, LogLevel.Error);
+            Log(e, "Error in car heater app", LogLevel.Error);
         }
 
     }
@@ -194,27 +193,25 @@ public class CarHeaterManager : NetDaemonApp
     /// <summary>
     ///     Turn the heater on if it is not already on
     /// </summary>
-    private async Task TurnOnHeater()
+    private void TurnOnHeater()
     {
         try
         {
             // Temp is debuginformation to make sure the logic works, will be removed
-            var currentOutsideTemp = (double?)GetState(TempSensor!)?.State;
+            var currentOutsideTemp = (double?)State(TempSensor!)?.State;
 
-            if (GetState(HeaterSwitch!)?.State != "on")
+            if (State(HeaterSwitch!)?.State != "on")
             {
                 // Flag that this script actually turn the heater on and non manually
                 _appChangedState = true;
 
-                Log($"{DateTime.Now} : Turn on heater temp ({currentOutsideTemp})");
-                await Entity(HeaterSwitch!)
-                    .TurnOn()
-                        .ExecuteAsync();
+                Log("{time} : Turn on heater temp ({temp})", DateTime.Now, currentOutsideTemp.ToString() ?? "unavailable");
+                Entity(HeaterSwitch!).TurnOn();
             }
         }
         catch (System.Exception e)
         {
-            Log("Error turn on heater", e, LogLevel.Error);
+            Log(e, "Error turn on heater", LogLevel.Error);
         }
     }
 
@@ -227,20 +224,20 @@ public class CarHeaterManager : NetDaemonApp
     ///     the heater being on accidentally
     /// </remarks>
     /// <returns></returns>
-    private async Task TurnOffHeaterIfOnMoreThanThreeHours()
+    private void TurnOffHeaterIfOnMoreThanThreeHours()
     {
         try
         {
             // Turn off heater if it has been on for more than 3 hours
-            await Entities(n =>
+            Entities(n =>
                 n.EntityId == HeaterSwitch
                 && n.State == "on"
                 && DateTime.Now.Subtract(n.LastChanged) > TimeSpan.FromHours(3))
-                .TurnOff().ExecuteAsync();
+                .TurnOff();
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            Log("Error doing failsafe", e, LogLevel.Error);
+            Log(e, "Error doing failsafe", LogLevel.Error);
         }
 
     }

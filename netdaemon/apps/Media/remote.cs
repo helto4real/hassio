@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using System.Reactive.Linq;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 
 /// <summary>
 ///     Manage remote control using a xiaomi magic cube.
@@ -11,7 +12,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common;
 ///     - Turn counter clockwise, volume down
 ///     - Flip, pause/play
 /// </summary>
-public class MagicCubeRemoteControlManager : NetDaemonApp
+public class MagicCubeRemoteControlManager : NetDaemonRxApp
 {
     #region -- Config properties --
 
@@ -20,61 +21,60 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     public IEnumerable<string>? TvMediaPlayers { get; set; }
 
     #endregion
-    public override Task InitializeAsync()
+    public override void Initialize()
     {
         // 00:15:8d:00:02:69:e8:63
-        Events(n => n.EventId == "deconz_event" && n.Data?.id == "tvrum_cube")
-            .Call(async (ev, data) =>
+        EventChanges
+            .Where(
+                e => e.Event == "deconz_event" &&
+                     e.Data?.id == "tvrum_cube")
+            .Subscribe(s =>
+            {
+                if (s.Data?.gesture == null)
+                    return; // Should have some logging here dooh
+
+                double gesture = s.Data?.gesture;
+
+                switch (gesture)
                 {
-                    if (data?.gesture == null)
-                        return; // Should have some logging here dooh
-
-                    double gesture = data?.gesture;
-
-                    switch (gesture)
-                    {
-                        case 1:         // Shake
-                            await Entity(RemoteTVRummet).Toggle().ExecuteAsync();
-                            break;
-                        case 3:         // Flip
-                            await PlayPauseMedia();
-                            break;
-                        case 7:         // Turn clockwise
-                            await VolumeUp();
-                            break;
-                        case 8:         // Turn counter clockwise
-                            await VolumeDown();
-                            break;
-                    }
-
-                })
-            .Execute();
-
-        // No async calls so just return completed task
-        return Task.CompletedTask;
+                    case 1:         // Shake
+                        Entity(RemoteTVRummet!).Toggle();
+                        break;
+                    case 3:         // Flip
+                        PlayPauseMedia();
+                        break;
+                    case 7:         // Turn clockwise
+                        VolumeUp();
+                        break;
+                    case 8:         // Turn counter clockwise
+                        VolumeDown();
+                        break;
+                }
+            }
+            );
     }
 
     /// <summary>
     ///     Pauses any media playing, play any paused media connected to TV
     /// </summary>
-    private async Task PlayPauseMedia()
+    private void PlayPauseMedia()
     {
-        foreach (var player in TvMediaPlayers)
+        foreach (var player in TvMediaPlayers!)
         {
-            var playerState = GetState(player)?.State;
+            var playerState = State(player)?.State;
             if (playerState == "playing")
-                await MediaPlayer(player).Pause().ExecuteAsync();
+                CallService("media_player", "pause", new { entity_id = player });
             else if (playerState == "paused")
-                await MediaPlayer(player).Play().ExecuteAsync();
+                CallService("media_player", "play", new { entity_id = player });
         }
     }
 
     /// <summary>
     ///     Turn volume up on Maranz receiver
     /// </summary>
-    private async Task VolumeUp()
+    private void VolumeUp()
     {
-        await CallService("remote", "send_command", new
+        CallService("remote", "send_command", new
         {
             entity_id = RemoteTVRummet,
             device = MaranzDeviceId,
@@ -87,9 +87,9 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     /// <summary>
     ///     Turn volume down on Maranz receiver
     /// </summary>
-    private async Task VolumeDown()
+    private void VolumeDown()
     {
-        await CallService("remote", "send_command", new
+        CallService("remote", "send_command", new
         {
             entity_id = RemoteTVRummet,
             device = MaranzDeviceId,

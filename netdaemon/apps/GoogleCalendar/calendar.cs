@@ -1,25 +1,25 @@
 using System;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using System.Reactive.Linq;
 
 /// <summary>
 ///     App docs
 /// </summary>
-public class GoogleCalendarManager : NetDaemonApp
+public class GoogleCalendarManager : NetDaemonRxApp
 {
 
     public string? Calendar { get; set; }
     public override Task InitializeAsync()
     {
         Entity(Calendar!)
-            .WhenStateChange(to: "on")
-                .Call((entityId, newState, oldState) =>
-               {
-                   Speak("media_player.huset", "Viktigt meddelande"); // Important message
-                   Speak("media_player.huset", newState?.Attribute?.message);
-                   Speak("media_player.huset", newState?.Attribute?.description);
-                   return Task.CompletedTask;
-               }).Execute();
+            .StateChanges.Where(e => e.New.State == "on")
+            .Subscribe(s =>
+            {
+                Speak("media_player.huset", "Viktigt meddelande"); // Important message
+                Speak("media_player.huset", s.New?.Attribute?.message);
+                Speak("media_player.huset", s.New?.Attribute?.description);
+            });
 
         return Task.CompletedTask;
     }
