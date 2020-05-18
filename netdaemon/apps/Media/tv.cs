@@ -99,8 +99,8 @@ public class TVManager : NetDaemonRxApp
             {
                 _timeStoppedPlaying = DateTime.Now;
                 // Check in 20 minutes if TV is on and nothing still playing
-                RunIn(_idleTimeout)
-                    .Subscribe(s =>
+                RunIn(_idleTimeout,
+                    () =>
                     {
                         if (TvIsOn && !MediaIsPlaying && _timeStoppedPlaying != null)
                         {
@@ -134,7 +134,7 @@ public class TVManager : NetDaemonRxApp
         if (_isTurningOnTV) // Always pause media if TV is turning on
         {
             _currentlyPausedMediaPlayer = entityId;
-            CallService("media_player", "pause", new { entity_id = entityId });
+            CallService("media_player", "media_pause", new { entity_id = entityId });
         }
     }
 
@@ -148,7 +148,7 @@ public class TVManager : NetDaemonRxApp
             // We had just turned on tv with this RunScript and have a media player paused
             // First delay and wait for the TV to get ready
             Thread.Sleep(9000);
-            CallService("media_player", "play", new { entity_id = _currentlyPausedMediaPlayer });
+            CallService("media_player", "media_play", new { entity_id = _currentlyPausedMediaPlayer });
         }
         _isTurningOnTV = false;
     }

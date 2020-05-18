@@ -122,7 +122,7 @@ public class HouseStateManager : NetDaemonApp
                         {
                             Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
                             Scheduler.RunIn(TimeSpan.FromMinutes(45),
-                                async () => await SetHouseState(HouseState.Evening));
+                                () => SetHouseState(HouseState.Evening));
                         }
                     }).Execute();
     }

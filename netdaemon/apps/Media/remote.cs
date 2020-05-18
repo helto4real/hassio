@@ -63,9 +63,9 @@ public class MagicCubeRemoteControlManager : NetDaemonRxApp
         {
             var playerState = State(player)?.State;
             if (playerState == "playing")
-                CallService("media_player", "pause", new { entity_id = player });
+                CallService("media_player", "media_pause", new { entity_id = player });
             else if (playerState == "paused")
-                CallService("media_player", "play", new { entity_id = player });
+                CallService("media_player", "media_play", new { entity_id = player });
         }
     }
 

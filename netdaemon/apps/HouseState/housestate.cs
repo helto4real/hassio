@@ -47,6 +47,7 @@ public class HouseStateManager : NetDaemonRxApp
         InitNightTimeOnWeekends();
         InitMorningSchedule();
         InitHouseStateSceneManagement();
+
         return Task.CompletedTask;
     }
 
@@ -77,7 +78,7 @@ public class HouseStateManager : NetDaemonRxApp
     private void InitDayTime()
     {
         Log($"Setting daytime: {DayTime}");
-        RunDaily(DayTime!).Subscribe(s => SetHouseState(HouseState.Day));
+        RunDaily(DayTime!, () => SetHouseState(HouseState.Day));
     }
 
     /// <summary>
@@ -86,9 +87,12 @@ public class HouseStateManager : NetDaemonRxApp
     private void InitNightTimeOnWeekdays()
     {
         Log($"Setting weekday night time: {WeekdayNight}");
-        RunDaily(WeekdayNight!)
-            .Where(e => NormalNightDays.Contains(DateTime.Now.DayOfWeek))
-            .Subscribe(s => SetHouseState(HouseState.Night));
+        RunDaily(WeekdayNight!, () =>
+        {
+            if (NormalNightDays.Contains(DateTime.Now.DayOfWeek))
+                SetHouseState(HouseState.Night);
+        });
+
     }
 
     /// <summary>
@@ -98,9 +102,11 @@ public class HouseStateManager : NetDaemonRxApp
     {
         Log($"Setting weekend night time: {WeekendNight}");
 
-        RunDaily(WeekdayNight!)
-            .Where(e => LateNightDays.Contains(DateTime.Now.DayOfWeek))
-            .Subscribe(s => SetHouseState(HouseState.Night));
+        RunDaily(WeekdayNight!, () =>
+        {
+            if (LateNightDays.Contains(DateTime.Now.DayOfWeek))
+                SetHouseState(HouseState.Night);
+        });
     }
 
     /// <summary>
@@ -111,7 +117,7 @@ public class HouseStateManager : NetDaemonRxApp
     {
         // when elevation <9 and counting cloudiness set evening state
         Entity("sun.sun")
-            .StateChanges
+            .StateAllChanges
             .Where(e =>
                 e.New?.Attribute?.elevation <= ElevationEvening &&
                 e.New?.Attribute?.rising == false &&
@@ -127,7 +133,7 @@ public class HouseStateManager : NetDaemonRxApp
                 else
                 {
                     Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
-                    RunIn(TimeSpan.FromMinutes(45)).Subscribe(s => SetHouseState(HouseState.Evening));
+                    RunIn(TimeSpan.FromMinutes(45), () => SetHouseState(HouseState.Evening));
                 }
             });
     }
@@ -140,7 +146,7 @@ public class HouseStateManager : NetDaemonRxApp
     {
         // when elevation <9 and counting cloudiness set evening state
         Entity("sun.sun")
-            .StateChanges
+            .StateAllChanges
             .Where(e =>
                 e.New?.Attribute?.elevation >= ElevationEvening &&
                 e.New?.Attribute?.rising == true &&
@@ -156,7 +162,7 @@ public class HouseStateManager : NetDaemonRxApp
                         else
                         {
                             Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
-                            RunIn(TimeSpan.FromMinutes(45)).Subscribe(s => SetHouseState(HouseState.Morning));
+                            RunIn(TimeSpan.FromMinutes(45), () => SetHouseState(HouseState.Morning));
                         }
                     });
     }

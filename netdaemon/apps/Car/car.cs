@@ -48,7 +48,6 @@ public class CarHeaterManager : NetDaemonRxApp
     // Used for logging at startup and no more
     private bool _appJustStarted = true;
 
-    IObservable<long> EveryMinute = Observable.Timer(TimeSpan.FromSeconds(60 - DateTime.Now.Second), TimeSpan.FromMinutes(1));
 
     /// <summary>
     ///     Initialize the automations
@@ -60,7 +59,7 @@ public class CarHeaterManager : NetDaemonRxApp
     public override void Initialize()
     {
         // Get the state if manually started from statestorage
-        EveryMinute.Subscribe(e => HandleCarHeater());
+        RunEveryMinute(0, () => HandleCarHeater());
 
         Entity(HeaterSwitch!)
             .StateChanges

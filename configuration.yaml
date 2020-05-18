@@ -106,7 +106,7 @@ history:
 
 # View all events in a logbook
 logbook:
-
+uilogs:
 influxdb:
   username: !secret influx_username
   password: !secret influx_password
@@ -141,7 +141,7 @@ influxdb:
       - binary_sensor.wash_mashine
 
       - switch.motorvarmare
-# Enables a map showing the location of tracked devices
+# Enables  map showing the location of tracked devices
 map:
 
 mobile_app:

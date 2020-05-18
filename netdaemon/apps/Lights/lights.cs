@@ -126,6 +126,7 @@ public class LightManager : NetDaemonRxApp
             .Where(e =>
                 e.New?.State == "on" &&
                 e.Old?.State == "off" &&
+                IsNight &&
                 !IsTvOn
             )
             .Subscribe(s => Entity("light.tvrummet").TurnOn(new { transition = 0 }));

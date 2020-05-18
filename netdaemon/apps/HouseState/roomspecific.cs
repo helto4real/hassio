@@ -20,18 +20,16 @@ public class RoomSpecificManager : NetDaemonRxApp
 
     private void SetupTurnOffKidsLightsEarly()
     {
-        RunDaily("22:00:00")
-            .Subscribe(s => Entities(KidsLights!).TurnOff());
+        RunDaily("22:00:00", () => Entities(KidsLights!).TurnOff());
     }
 
     private void SetupManageMelkersChromecast()
     {
-        RunDaily("01:30:00")
-            .Subscribe(s =>
+        RunDaily("01:30:00", () =>
             {
                 // Every night reset Melkers chromecast so the TV will auto shut off
                 Entity("switch.switch8_melkers_tv").TurnOff();
-                RunIn(TimeSpan.FromMinutes(5)).Subscribe(s => Entity("switch.switch8_melkers_tv").TurnOn());
+                RunIn(TimeSpan.FromMinutes(5), () => Entity("switch.switch8_melkers_tv").TurnOn());
             });
 
     }
@@ -44,14 +42,18 @@ public class RoomSpecificManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 e.New?.State == "on" &&
+                State("switch.computer_tomas")?.State == "off" &&
                 TomasIsHome)
-            .Subscribe(s => Entity("switch.computer_tomas").TurnOn());
+            .Subscribe(
+                s => Entity("switch.computer_tomas").TurnOn(),
+                () => Log("TOMAS_COMPUTER_DONE"));
 
         // Turn off computer if no movement for one hour en Tomas room
         Entity("binary_sensor.tomas_rum_pir")
             .StateChanges
             .Where(e => e.New.State == "off")
             .NDSameStateFor(TimeSpan.FromHours(1))
-            .Subscribe(s => Entity("switch.computer_tomas").TurnOff());
+            .Subscribe(s => Entity("switch.computer_tomas").TurnOff(),
+            () => Log("TOMAS_COMPUTER_DONE2"));
     }
 }
