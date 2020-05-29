@@ -18,7 +18,7 @@ namespace Helto4real.Powertools
         public async static Task<string> CameraSnapshot(this NetDaemonApp app, string camera)
         {
             var resultingFilename = $"/config/www/motion/{camera}_latest.jpg";
-            await app.CallServiceAsync("camera", "snapshot", new
+            await app.CallService("camera", "snapshot", new
             {
                 entity_id = camera,
                 filename = resultingFilename
@@ -34,7 +34,7 @@ namespace Helto4real.Powertools
         /// <param name="camera">Unique id of the camera</param>
         public async static Task CameraSnapshot(this NetDaemonApp app, string camera, string snapshotPath)
         {
-            await app.CallServiceAsync("camera", "snapshot", new
+            await app.CallService("camera", "snapshot", new
             {
                 entity_id = camera,
                 filename = snapshotPath

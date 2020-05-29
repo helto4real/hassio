@@ -7,7 +7,7 @@ sensor:
       - type: processor_use
       - type: last_boot
       - type: network_out
-        arg: 'wlp2s0'
+        arg: "wlp2s0"
       - type: load_1m
       - type: load_5m
       - type: load_15m
@@ -27,4 +27,3 @@ group:
       - sensor.load_1m
       - sensor.load_5m
       - sensor.load_15m
-      

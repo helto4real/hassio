@@ -1,0 +1,9 @@
+# lock:
+#   - platform: "mqtt"
+#     name: las_uppe
+#     state_topic: "zigbee2mqtt/0x000b57fffe59d498"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     command_topic: "zigbee2mqtt/0x000b57fffe59d498/set"
+#     value_template: "{{ value_json.state }}"
+#     state_locked: "LOCK"
+#     state_unlocked: "UNLOCK"

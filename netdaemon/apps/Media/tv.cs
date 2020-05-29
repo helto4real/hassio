@@ -169,6 +169,7 @@ public class TVManager : NetDaemonRxApp
                 break;
             case "PowerOff":
                 RunScript("tv_off_scene");
+                Entities(TvMediaPlayers!).TurnOff();
                 break;
         }
     }

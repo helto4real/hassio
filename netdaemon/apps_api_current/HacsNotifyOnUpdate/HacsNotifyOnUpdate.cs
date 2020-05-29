@@ -21,7 +21,7 @@ namespace hacs
                                 serviceDataMessage += $"- {item?["display_name"].ToString()}\n";
                             }
 
-                            await CallServiceAsync("persistent_notification", "create", new
+                            await CallService("persistent_notification", "create", new
                             {
                                 title = serviceDataTitle,
                                 message = serviceDataMessage

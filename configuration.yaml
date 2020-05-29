@@ -201,6 +201,9 @@ lovelace:
       type: js
     - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
       type: module
+    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+      type: module
+
 # hacs:
 #   token: !secret github_token_hacs
 
@@ -221,12 +224,13 @@ person:
     id: melkertracker
     device_trackers:
       - device_tracker.melker_presence
-#mqtt:
-#  broker: !secret mqqtt_broker
-#  discovery: true
-#  discovery_prefix: homeassistant
-#  username: !secret mqtt_user
-#  password: !secret mqtt_password
+mqtt:
+  broker: !secret mqqtt_broker
+  discovery: false
+  discovery_prefix: homeassistant
+  username: !secret mqtt_user
+  password: !secret mqtt_password
+
 netdaemon:
 #cloud:
 

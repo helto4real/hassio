@@ -94,9 +94,14 @@ cards:
               left: 35.42%
               top: 44.45%
             type: state-icon
+          - entity: lock.las_uppe
+            style:
+              left: 52.0%
+              top: 10.5%
+            type: state-icon
           - entity: binary_sensor.hall_dorr
             style:
-              left: 48.5%
+              left: 47.5%
               top: 10.5%
             type: state-icon
           - entity: light.vardagsrum_fonster_hoger #light.julbelysning_vardagsrum_h
@@ -129,7 +134,7 @@ cards:
             type: state-icon
           - entity: light.hall_dorr
             style:
-              left: 55.5%
+              left: 56.5%
               top: 10.5%
             tap_action: toggle
             type: state-icon
@@ -149,7 +154,7 @@ cards:
               left: 78.5%
               top: 44%
             type: state-icon
-          - entity: light.tomas_rum  #light.julbelysning_tomas_rum
+          - entity: light.tomas_rum #light.julbelysning_tomas_rum
             style:
               left: 82.5%
               top: 10.5%
@@ -193,7 +198,7 @@ cards:
               left: 70.2%
               top: 89.45%
             type: state-icon
-          - entity: light.kok_fonster  #light.julbelysning_kok_h
+          - entity: light.kok_fonster #light.julbelysning_kok_h
             style:
               left: 78.2%
               top: 89.45%
@@ -225,7 +230,7 @@ cards:
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.sovrum_brya
+          - entity: light.sovrum_byra
             style:
               left: 27.6%
               top: 75.2%
@@ -243,13 +248,25 @@ cards:
             type: state-icon
           - entity: light.tvrum_fonster_hoger #light.julbelysning_vardagsrum_m
             style:
-              left: 47.2%
+              left: 49.2%
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.tvrum_fonster_vanster  #light.julbelysning_vardagsrum_m
+          - entity: cover.tvrum_rullgardin_hoger #light.julbelysning_vardagsrum_m
             style:
-              left: 57.42%
+              left: 45.2%
+              top: 90.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.tvrum_fonster_vanster #light.julbelysning_vardagsrum_m
+            style:
+              left: 59.8%
+              top: 90.2%
+            tap_action: toggle
+            type: state-icon
+          - entity: cover.tvrum_rullgardin_vanster #light.julbelysning_vardagsrum_m
+            style:
+              left: 55.8%
               top: 90.2%
             tap_action: toggle
             type: state-icon

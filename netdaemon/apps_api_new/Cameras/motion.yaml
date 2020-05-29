@@ -1,0 +1,4 @@
+motion:
+  class: CameraMotionApp
+  cameras:
+    - camera.kamera_3

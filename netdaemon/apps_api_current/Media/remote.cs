@@ -23,26 +23,26 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     public override Task InitializeAsync()
     {
         // 00:15:8d:00:02:69:e8:63
-        Events(n => n.EventId == "deconz_event" && n.Data?.id == "tvrum_cube")
+        Events(n => n.EventId == "zha_event" && n.Data?.device_ieee == "00:15:8d:00:02:69:e8:63")
             .Call(async (ev, data) =>
                 {
-                    if (data?.gesture == null)
+                    if (data?.command == null)
                         return; // Should have some logging here dooh
 
-                    double gesture = data?.gesture;
+                    string gesture = data?.command;
 
                     switch (gesture)
                     {
-                        case 1:         // Shake
+                        case "shake":         // Shake
                             await Entity(RemoteTVRummet).Toggle().ExecuteAsync();
                             break;
-                        case 3:         // Flip
+                        case "flip":         // Flip
                             await PlayPauseMedia();
                             break;
-                        case 7:         // Turn clockwise
+                        case "rotate_right":         // Turn clockwise
                             await VolumeUp();
                             break;
-                        case 8:         // Turn counter clockwise
+                        case "rotate_left":         // Turn counter clockwise
                             await VolumeDown();
                             break;
                     }
@@ -74,7 +74,7 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     /// </summary>
     private async Task VolumeUp()
     {
-        await CallServiceAsync("remote", "send_command", new
+        await CallService("remote", "send_command", new
         {
             entity_id = RemoteTVRummet,
             device = MaranzDeviceId,
@@ -89,7 +89,7 @@ public class MagicCubeRemoteControlManager : NetDaemonApp
     /// </summary>
     private async Task VolumeDown()
     {
-        await CallServiceAsync("remote", "send_command", new
+        await CallService("remote", "send_command", new
         {
             entity_id = RemoteTVRummet,
             device = MaranzDeviceId,

@@ -20,7 +20,10 @@ tv_scene:
       entity_id: remote.tvrummet
       data:
         activity: TV
-
+    - service: cover.close_cover
+      entity_id: cover.tvrum_rullgardin_vanster
+    - service: cover.close_cover
+      entity_id: cover.tvrum_rullgardin_hoger
 film_scene:
   alias: "Film scene"
   sequence:
@@ -42,7 +45,10 @@ film_scene:
       entity_id: remote.tvrummet
       data:
         activity: Film
-
+    - service: cover.close_cover
+      entity_id: cover.tvrum_rullgardin_vanster
+    - service: cover.close_cover
+      entity_id: cover.tvrum_rullgardin_hoger
 tv_off_scene:
   alias: "TV off scene"
   sequence:
@@ -55,3 +61,7 @@ tv_off_scene:
     # Turn on TV using remote
     - service: remote.turn_off
       entity_id: remote.tvrummet
+    - service: cover.open_cover
+      entity_id: cover.tvrum_rullgardin_vanster
+    - service: cover.open_cover
+      entity_id: cover.tvrum_rullgardin_hoger

@@ -28,6 +28,7 @@ cards:
       - switch.zigbee2mqtt_main_join
 
   - type: picture-elements
+    state_filter: []
     image: /local/img/performance_bg.png
     elements:
       - type: "custom:canvas-gauge-card"
@@ -253,5 +254,6 @@ cards:
                 attribute: number_of_running_apps
                 name: "Apps running:"
               type: "custom:multiple-entity-row"
+
             - entity_id: switch.netdaemon*
         show_empty: true

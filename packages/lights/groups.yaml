@@ -1,4 +1,26 @@
 light:
+  # - platform: group
+  #   name: ambient
+  #   entities:
+  #     - light.vardagsrum_fonster_mitten
+  #     - light.vardagsrum_fonster_vanster
+  #     - light.vardagsrum_fonster_hoger
+  #     - light.hall_dorr
+  #     - light.hall_byra
+  #     - light.kok_fonster
+  #     - light.kok_lilla_fonster
+  #     - light.tomas_rum_fonster
+  #     - light.melkers_rum_fonster
+  #     - light.farstukvist_led
+  #     - light.tvrum_fonster_hoger
+  #     - light.tvrum_fonster_vanster
+  #     # - light.julbelysning_vardagsrum_m # Did not bother renaming :)
+  #     - light.tvrum_vagg
+  #     - light.sovrum_byra
+  #     # - light.julbelysning_sovrum
+  #     - light.sovrum_fonster
+  #     - light.sallys_rum_fonster
+
   - platform: group
     name: vardagsrum
     entities:
@@ -17,7 +39,6 @@ light:
       - light.kok_lilla_fonster
       #- light.julbelysning_kok_h
       #- light.julbelysning_kok_v
-
 
   - platform: group
     name: tomas_rum
@@ -51,6 +72,6 @@ light:
   - platform: group
     name: sovrum
     entities:
-      - light.sovrum_brya
+      - light.sovrum_byra
       # - light.julbelysning_sovrum
       - light.sovrum_fonster

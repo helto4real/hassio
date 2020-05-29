@@ -1,0 +1,9 @@
+# light:
+#   - platform: "mqtt"
+#     name: hall_byra
+#     state_topic: "zigbee2mqtt/0x000b57fffec982b8"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/0x000b57fffec982b8/set"
+#     brightness_scale: 254

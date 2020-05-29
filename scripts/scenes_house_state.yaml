@@ -1,44 +1,23 @@
 # Scenes for common time of day and
 
-# - light.hallen_byra
-# - light.hallen_dorr
-# - light.kok_fonster
-# - light.kok_lilla_fonster
-# - light.osram_led_outdoor1
-# - light.sovrum_byra
-# - light.sovrum_fonster
-# - light.vardagsrumet_mitten
-# - light.vardagsrummet_hoger
-# - light.vardagsrummet_vanster
-# - light.tomas_fonster
-# - light.sallys_fonster
-# - light.melkers_fonster
-# - light.tvrummet_hoger
-# - light.tvrummet_vanster
-# - light.tvrummet_vagg
-
-# 1506605108667:
-#   alias: "Numbertest"
-#   sequence:
-#     - service: light.turn_on
-#       entity_id:
-#         - tomas_rum
-
 morning_scene:
   alias: "Morning scene"
   sequence:
     - service: light.turn_off
       entity_id:
         - light.ambient
-        - light.sovrum_brya
-
+        - light.sovrum_byra
+      data:
+        transition: 0
 day_scene:
   alias: "Day scene"
   sequence:
     - service: light.turn_off
       entity_id:
         - light.ambient
-        - light.sovrum_brya
+        - light.sovrum_byra
+      data:
+        transition: 0
 
 evening_scene:
   alias: "Evening scene"
@@ -62,21 +41,6 @@ evening_scene:
       data:
         transition: 0
         brightness: 5
-    # - delay: "00:00:05"
-    # - service: light.turn_on
-    #   entity_id:
-    #     - light.vardagsrum
-    #     - light.kok
-    #     - light.tomas_rum
-    #     - light.melkers_rum
-    #     - light.sallys_rum
-    #     - light.farstukvisten
-    #     - light.tvrummet
-    #     - light.sovrum
-    #   data:
-    #     transition: 0
-    #     color_temp: 390
-
 color_scene:
   alias: "Color scene"
   sequence:
@@ -103,4 +67,6 @@ night_scene:
     - service: light.turn_off
       entity_id:
         - light.ambient
-        - light.sovrum_brya
+        - light.sovrum_byra
+      data:
+        transition: 0

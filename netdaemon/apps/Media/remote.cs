@@ -31,7 +31,7 @@ public class MagicCubeRemoteControlManager : NetDaemonRxApp
             .Subscribe(s =>
             {
                 if (s.Data?.gesture == null)
-                    return; // Should have some logging here dooh
+                    return;
 
                 double gesture = s.Data?.gesture;
 

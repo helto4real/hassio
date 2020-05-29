@@ -20,7 +20,7 @@ public static class DaemonAppExtensions
 
     public async static Task Notify(this NetDaemonApp app, string message)
     {
-        await app.CallServiceAsync("notify", "hass_discord", new
+        await app.CallService("notify", "hass_discord", new
         {
             message = message,
             target = "511278310584746008"
@@ -34,7 +34,7 @@ public static class DaemonAppExtensions
             ["images"] = new List<string> { imagePath }
         };
 
-        await app.CallServiceAsync("notify", "hass_discord", new
+        await app.CallService("notify", "hass_discord", new
         {
             data = dict,
             message = message,

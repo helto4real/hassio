@@ -1,0 +1,6 @@
+cover:
+  - platform: group
+    name: tvrum
+    entities:
+      - cover.tvrum_rullgardin_vanster
+      - cover.tvrum_rullgardin_hoger

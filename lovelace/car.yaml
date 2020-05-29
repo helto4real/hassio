@@ -12,18 +12,18 @@ cards:
           left: 10.7%
           top: 95%
 
-      - type: 'custom:hui-input-number-entity-row'
+      - type: "custom:slider-entity-row"
         entity: input_number.car_heater_dep_time_hour
         icon: none
-        name: ' '
+        name: " "
         style:
           left: 18%
           top: 80%
 
-      - type: 'custom:hui-input-number-entity-row'
+      - type: "custom:slider-entity-row"
         entity: input_number.car_heater_dep_time_minutes
         icon: none
-        name: ' '
+        name: " "
         style:
           left: 18%
           top: 89%
@@ -31,8 +31,8 @@ cards:
       - type: image
         entity: switch.motorvarmare
         state_image:
-          'off': /local/img/car/heater_off.png
-          'on': /local/img/car/heater_on.png
+          "off": /local/img/car/heater_off.png
+          "on": /local/img/car/heater_on.png
           unavailable: /local/img/car/heater_unavailable.png
         style:
           left: 73%
@@ -42,9 +42,8 @@ cards:
       - type: image
         entity: input_boolean.schedule_on_weekends
         state_image:
-          'off': /local/img/car/weekend-off.png
-          'on': /local/img/car/weekend-on.png
+          "off": /local/img/car/weekend-off.png
+          "on": /local/img/car/weekend-on.png
         style:
           left: 51%
           top: 83.5%
-
