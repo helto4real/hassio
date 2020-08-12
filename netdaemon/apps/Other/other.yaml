@@ -1,0 +1,6 @@
+frys:
+  class: OtherApp
+  dependencies:
+    - house_state_manager
+
+

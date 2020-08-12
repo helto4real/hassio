@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common;
 
 /// <summary>
 ///     Application manage the carheater. Implements following use-cases:

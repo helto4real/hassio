@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
-using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using NetDaemon.Common.Reactive;
 
 /// <summary>
 ///     Greets (or insults) people when coming home :)

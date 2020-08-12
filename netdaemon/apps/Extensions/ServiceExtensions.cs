@@ -1,7 +1,7 @@
 
 using System;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common;
 
 // public static class ServiceCallExtensions
 // {

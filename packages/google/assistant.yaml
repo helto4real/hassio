@@ -39,7 +39,7 @@ google_assistant:
     switch.motorvarmare:
       name: "motorvärmaren"
       expose: true
-    switch.switch7:
+    switch.kodi:
       name: "kodi"
       expose: true
     switch.tv:

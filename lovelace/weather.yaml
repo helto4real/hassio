@@ -64,6 +64,6 @@ cards:
       - type: custom:weather-card-mod
         entity: weather.smhi_hemma
         #tempsource: sensor.temp_altan_ute
-        icons: "/community_plugin/weather-card-mod/icons/"
+        icons: "/local/community/weather-card-mod/icons/"
       - type: custom:krisinfo-card
         entity: sensor.krisinformation_vasternorrland

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
-using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common.Reactive;
+using Netdaemon.Generated.Reactive;
+using NetDaemon.Common;
 using System.Threading;
 
 /// <summary>
@@ -59,8 +60,11 @@ public class TVManager : NetDaemonRxApp
         // When TV on (remote on), call OnTvTurnedOn
         Entity(RemoteTVRummet!)
             .StateChanges
-            .Where(e => e.New?.State == "on")
+            .Where(e =>
+                e.Old?.State == "off" &&
+                e.New?.State == "on")
             .Subscribe(s => OnTVTurnedOn());
+
 
         // When ever TV remote activity changes, ie TV, Film, Poweroff call OnTvActivityChange
         Entity(RemoteTVRummet!)
@@ -170,6 +174,7 @@ public class TVManager : NetDaemonRxApp
             case "PowerOff":
                 RunScript("tv_off_scene");
                 Entities(TvMediaPlayers!).TurnOff();
+                Light.Tvrummet.TurnOn(new { transition = 0 });
                 break;
         }
     }

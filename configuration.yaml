@@ -33,7 +33,7 @@ http:
   #  api_password: !secret http_password
   ip_ban_enabled: True
   login_attempts_threshold: 7
-  use_x_forwarded_for: True
+  use_x_forwarded_for: False
   trusted_proxies: !secret hassioip
 
 # Checks for available updates
@@ -63,7 +63,6 @@ recorder:
       - climate
     entities:
       - input_select.house_mode_select
-      - input_select.house_mode_select_test
       - media_player.melkers_tv
       - media_player.tv_nere
       # tracking
@@ -92,6 +91,7 @@ recorder:
       - binary_sensor.wash_mashine
 
       - switch.motorvarmare
+      - sensor.light_outside
 
 logger:
   default: info
@@ -108,6 +108,8 @@ history:
 logbook:
 uilogs:
 influxdb:
+  host: a0d7b954-influxdb
+  port: 8086 
   username: !secret influx_username
   password: !secret influx_password
   include:
@@ -141,6 +143,7 @@ influxdb:
       - binary_sensor.wash_mashine
 
       - switch.motorvarmare
+      - sensor.light_outside
 # Enables  map showing the location of tracked devices
 map:
 
@@ -224,6 +227,7 @@ person:
     id: melkertracker
     device_trackers:
       - device_tracker.melker_presence
+
 mqtt:
   broker: !secret mqqtt_broker
   discovery: false

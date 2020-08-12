@@ -14,6 +14,7 @@ cards:
             image: /local/img/presence/tomas_presence_away.jpg
             name: " "
             state_image:
+              Borta: /local/img/presence/tomas_presence_away.jpg
               Hemma: /local/img/presence/tomas_presence.jpg
               Nyss anlänt: /local/img/presence/tomas_presence.jpg
 
@@ -23,6 +24,7 @@ cards:
             font_color: white
             image: /local/img/presence/elin_presence_away.jpg
             state_image:
+              Borta: /local/img/presence/elin_presence_away.jpg
               Hemma: /local/img/presence/elin_presence.jpg
               Nyss anlänt: /local/img/presence/elin_presence.jpg
 
@@ -32,6 +34,7 @@ cards:
             font_color: white
             image: /local/img/presence/sally_presence_away.jpg
             state_image:
+              Borta: /local/img/presence/sally_presence_away.jpg
               Hemma: /local/img/presence/sally_presence.jpg
               Nyss anlänt: /local/img/presence/sally_presence.jpg
 
@@ -41,6 +44,7 @@ cards:
             font_color: white
             image: /local/img/presence/melker_presence_away.jpg
             state_image:
+              Borta: /local/img/presence/melker_presence_away.jpg
               Hemma: /local/img/presence/melker_presence.jpg
               Nyss anlänt: /local/img/presence/melker_presence.jpg
 

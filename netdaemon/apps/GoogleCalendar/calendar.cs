@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using NetDaemon.Common.Reactive;
 using System.Reactive.Linq;
 
 /// <summary>

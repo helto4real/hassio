@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
-using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
+using NetDaemon.Common.Reactive;
 
 /// <summary>
 ///     Manage remote control using a xiaomi magic cube.

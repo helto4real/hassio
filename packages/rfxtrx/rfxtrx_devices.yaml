@@ -1,67 +1,148 @@
 rfxtrx:
   device: /dev/ttyUSB.RFX  #/dev/serial/by-id/usb-RFXCOM_RFXtrx433_A138UEXZ-if00-port0
-
-sensor:
-  - platform: rfxtrx
-    automatic_add: True
-    devices:
-      08500703a70080fc59:
-        name: frysnere
-      08500702970080d669:
-        name: frysuppe
-      0a52099eb700005c490379:
-        name: utetemp
-        data_type:
-          - Humidity
-          - Temperature
-
-switch:
-  platform: rfxtrx
-  automatic_add: True
-  signal_repetitions: 4
   devices:
+    08500703a70080fc59:
+#      device_class: sensor
+   #   name: frysnere
+    08500702970080d669:
+ #     device_class: sensor
+    #  name: frysuppe
+    0a52099eb700005c490379:
+ #     device_class: sensor
+    #  name: utetemp
+   #   data_type:
+    #    - Humidity
+    #    - Temperature
+
     0b11000402bc0cfe01010f70:
-      name: testswitch
+#      device_class: switch
+   #   name: testswitch
     0b11000451bc0cfe08010f70:
-      name: switch1 #Julbelysning kök lilla fönster
+#      device_class: switch
+   #   name: switch1 #Julbelysning kök lilla fönster
     0b11000329bc0cfe06010f70:
-      name: switch2
+#      device_class: switch
+    #  name: switch2
     0b11000115bc0cfe01010f70:
-      name: switch3 # Julbelysning köket Rum           
+#      device_class: switch
+  #    name: switch3 # Julbelysning köket Rum           
     0b11000534bc0cfe06010f70:
-      name: switch4_tomas_fan
+#      device_class: switch
+  #    name: switch4_tomas_fan
     0b11000152bc0cfe01010f70:
-      name: switch5_melkers_fan
+ #     device_class: switch
+    #  name: switch5_melkers_fan
     0b11000544bc0cfe01010f70:
-      name: switch66 # Julbelysning kök
+ #     device_class: switch
+  #    name: switch66 # Julbelysning kök
     0b11000693bc0cfe02010f70:
-      name: switch7 # The switch for rpi with plex
+ #     device_class: switch
+   #   name: switch7 # The switch for rpi with plex
     0b11000172bc0cfe02010f70:
-      name: switch8_melkers_tv
+ #     device_class: switch
+  #    name: switch8_melkers_tv
     0b11000467bc0cfe04010f70:
-      name: switch9outdoor
+ #     device_class: switch
+  #    name: switch9outdoor
     0b11000555bc0cfe07010f70:
-      name: switch10
+  #    device_class: switch
+   #   name: switch10
     0b11000381bc0cfe01010f70:
-      name: switch11 #Julbelysning vardagsrum vänster
+   #   device_class: switch
+  #    name: switch11 #Julbelysning vardagsrum vänster
     0b11000239bc0cfe07010f70:
-      name: switch12 #Julbelysning vardagsrum mitten
+  #    device_class: switch
+  #    name: switch12 #Julbelysning vardagsrum mitten
     0b11000250bc0cfe08010f70:
-      name: switch13 #Julbelysning vardagsrum höger
+   #   device_class: switch
+  #    name: switch13 #Julbelysning vardagsrum höger
     0b11000163bc0cfe09010f70:
-      name: switch14 #Julbelysning tvrum vänster
+    #  device_class: switch
+  #   name: switch14 #Julbelysning tvrum vänster
     0b11000136bc0cfe08010f70:
-      name: switch15 #Julbelysning tvrum höger
+   #   device_class: switch
+  #    name: switch15 #Julbelysning tvrum höger
     0b11000651bc0cfe04010f70:
-      name: switch16 #Julbelysning sovrum fönster
+  #    device_class: switch
+    #  name: switch16 #Julbelysning sovrum fönster
     0b110000018ce3620b000060:
-      name: switch_1_lb
+   #   device_class: switch
+  #    name: switch_1_lb
     0b110010018ce3620c000070:
-      name: switch_1_rb
+   #   device_class: switch
+    #  name: switch_1_rb
     # Telldus small remote 1
     0b1100100294734610010f40:
-      name: remote_1_b1
+   #   device_class: switch
+   #   name: remote_1_b1
     0b11001c029473460f010f60:
-      name: remote_1_b2
+     # device_class: switch
+ #     name: remote_1_b2
     0b110022029473460e010f60:
-      name: remote_1_b3
+    #  device_class: switch
+  #    name: remote_1_b3
+
+# sensor:
+#   - platform: rfxtrx
+#     automatic_add: True
+#     devices:
+#       08500703a70080fc59:
+#         name: frysnere
+#       08500702970080d669:
+#         name: frysuppe
+#       0a52099eb700005c490379:
+#         name: utetemp
+#         data_type:
+#           - Humidity
+#           - Temperature
+
+# switch:
+#   platform: rfxtrx
+#   automatic_add: True
+#   signal_repetitions: 4
+#   devices:
+#     0b11000402bc0cfe01010f70:
+#       name: testswitch
+#     0b11000451bc0cfe08010f70:
+#       name: switch1 #Julbelysning kök lilla fönster
+#     0b11000329bc0cfe06010f70:
+#       name: switch2
+#     0b11000115bc0cfe01010f70:
+#       name: switch3 # Julbelysning köket Rum           
+#     0b11000534bc0cfe06010f70:
+#       name: switch4_tomas_fan
+#     0b11000152bc0cfe01010f70:
+#       name: switch5_melkers_fan
+#     0b11000544bc0cfe01010f70:
+#       name: switch66 # Julbelysning kök
+#     0b11000693bc0cfe02010f70:
+#       name: switch7 # The switch for rpi with plex
+#     0b11000172bc0cfe02010f70:
+#       name: switch8_melkers_tv
+#     0b11000467bc0cfe04010f70:
+#       name: switch9outdoor
+#     0b11000555bc0cfe07010f70:
+#       name: switch10
+#     0b11000381bc0cfe01010f70:
+#       name: switch11 #Julbelysning vardagsrum vänster
+#     0b11000239bc0cfe07010f70:
+#       name: switch12 #Julbelysning vardagsrum mitten
+#     0b11000250bc0cfe08010f70:
+#       name: switch13 #Julbelysning vardagsrum höger
+#     0b11000163bc0cfe09010f70:
+#       name: switch14 #Julbelysning tvrum vänster
+#     0b11000136bc0cfe08010f70:
+#       name: switch15 #Julbelysning tvrum höger
+#     0b11000651bc0cfe04010f70:
+#       name: switch16 #Julbelysning sovrum fönster
+#     0b110000018ce3620b000060:
+#       name: switch_1_lb
+#     0b110010018ce3620c000070:
+#       name: switch_1_rb
+#     # Telldus small remote 1
+#     0b1100100294734610010f40:
+#       name: remote_1_b1
+#     0b11001c029473460f010f60:
+#       name: remote_1_b2
+#     0b110022029473460e010f60:
+#       name: remote_1_b3

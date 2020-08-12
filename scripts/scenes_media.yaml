@@ -13,7 +13,7 @@ tv_scene:
     # Turn off kodi swich and wall lights
     - service: switch.turn_off
       entity_id:
-        - switch.switch7 # Kodi switch off
+        - switch.kodi # Kodi switch off
         - switch.osram1 # Tv-room wall
     # Turn on TV using remote
     - service: remote.turn_on
@@ -39,7 +39,7 @@ film_scene:
     # Turn off wall lights
     - service: switch.turn_on
       entity_id:
-        - switch.switch7 # Kodi switch on
+        - switch.kodi # Kodi switch on
     # Turn on TV using remote
     - service: remote.turn_on
       entity_id: remote.tvrummet
@@ -57,11 +57,11 @@ tv_off_scene:
       entity_id: light.tvrum_bakgrund_tv
     # Turn off kodi swich and wall lights
     - service: switch.turn_off
-      entity_id: switch.switch7 # Kodi switch off
+      entity_id: switch.kodi # Kodi switch off
     # Turn on TV using remote
     - service: remote.turn_off
       entity_id: remote.tvrummet
-    - service: cover.open_cover
-      entity_id: cover.tvrum_rullgardin_vanster
-    - service: cover.open_cover
-      entity_id: cover.tvrum_rullgardin_hoger
+    # - service: cover.open_cover
+    #   entity_id: cover.tvrum_rullgardin_vanster
+    # - service: cover.open_cover
+    #   entity_id: cover.tvrum_rullgardin_hoger

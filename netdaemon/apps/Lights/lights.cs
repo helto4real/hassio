@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
-using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
-
+using NetDaemon.Common.Reactive;
+using Netdaemon.Generated.Reactive;
 // using Netdaemon.Generated.Extensions;
 
 /// <summary>
@@ -12,7 +12,7 @@ using JoySoftware.HomeAssistant.NetDaemon.Common.Reactive;
 ///         - Nightlights turn on in the night
 ///         - Activates the correct scene (RunScript) depending on time of day
 /// </summary>
-public class LightManager : NetDaemonRxApp
+public class LightManager : GeneratedAppBase
 {
     public IEnumerable<string>? LivingRoomPirs { get; set; }
     public IEnumerable<string>? TvRoomPirs { get; set; }
@@ -29,7 +29,7 @@ public class LightManager : NetDaemonRxApp
     /// <summary>
     ///     Returns true if it is currently night
     /// </summary>
-    public bool IsNight => State("input_select.house_mode_select")?.State == "Natt";
+    public bool IsNight => InputSelect.HouseModeSelect?.State == "Natt";
 
     /// <summary>
     ///     Returns true if TV is currently on
@@ -82,11 +82,11 @@ public class LightManager : NetDaemonRxApp
                     // If morning time then turn on more lights
                     if (IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
                     {
-                        Entity("light.vardagsrum").TurnOn(new { transition = 0 });
+                        Light.Vardagsrum.TurnOn(new { transition = 0 });
                     }
                     else
                     {
-                        Entity("light.hall_byra").TurnOn(new { transition = 0 });
+                        Light.HallByra.TurnOn(new { transition = 0 });
                     }
                 });
 
@@ -99,7 +99,7 @@ public class LightManager : NetDaemonRxApp
                 IsNight &&
                 !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
             .NDSameStateFor(TimeSpan.FromMinutes(15))
-            .Subscribe(s => Entity("light.vardagsrum").TurnOff(new { transition = 0 }));
+            .Subscribe(s => Light.Vardagsrum.TurnOff(new { transition = 0 }));
 
         // Kitchen night lights
         Entity(KitchenPir!)
@@ -108,7 +108,7 @@ public class LightManager : NetDaemonRxApp
                 e.New?.State == "on" &&
                 e.Old?.State == "off" &&
                 IsNight)
-            .Subscribe(s => Entity("light.kok").TurnOn(new { transition = 0 }));
+            .Subscribe(s => Light.Kok.TurnOn(new { transition = 0 }));
 
         Entity(KitchenPir!)
             .StateChanges
@@ -118,7 +118,7 @@ public class LightManager : NetDaemonRxApp
                 IsNight &&
                 !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
             .NDSameStateFor(TimeSpan.FromMinutes(15))
-            .Subscribe(s => Entity("light.kok").TurnOff(new { transition = 0 }));
+            .Subscribe(s => Light.Kok.TurnOff(new { transition = 0 }));
 
         // TV Room night lights, only at night and not TV is on
         Entities(TvRoomPirs!)
@@ -129,7 +129,7 @@ public class LightManager : NetDaemonRxApp
                 IsNight &&
                 !IsTvOn
             )
-            .Subscribe(s => Entity("light.tvrummet").TurnOn(new { transition = 0 }));
+            .Subscribe(s => Light.Tvrummet.TurnOn(new { transition = 0 }));
 
         Entities(TvRoomPirs!)
             .StateChanges
@@ -140,7 +140,7 @@ public class LightManager : NetDaemonRxApp
                 !IsTvOn &&
                 !IsTimeNowBetween(TimeSpan.FromHours(5), TimeSpan.FromHours(10)))
             .NDSameStateFor(TimeSpan.FromMinutes(15))
-            .Subscribe(s => Entity("light.tvrummet").TurnOff(new { transition = 0 }));
+            .Subscribe(s => Light.Tvrummet.TurnOff(new { transition = 0 })); //Entity("light.tvrummet")
     }
 
     // Todo, make this part of Fluent API

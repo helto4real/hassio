@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common;
 
 /// <summary>
 ///     App docs

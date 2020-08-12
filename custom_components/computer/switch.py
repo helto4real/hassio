@@ -10,7 +10,7 @@ import aiohttp
 import async_timeout
 #import voluptuous as vol
 
-from homeassistant.components.switch import SwitchDevice
+from homeassistant.components.switch import SwitchEntity
 from homeassistant.helpers import aiohttp_client
 from homeassistant.util import Throttle
 """
@@ -54,7 +54,7 @@ async def async_setup_platform(hass, config, add_devices, discovery_info=None):
     add_devices(devices, True)
 
 
-class ComputerSwitch(SwitchDevice):
+class ComputerSwitch(SwitchEntity):
     """Representation of a computer device (on/off)."""
 
     def __init__(self, hass, session: aiohttp.ClientSession, name: str, ip: str, mac: str):

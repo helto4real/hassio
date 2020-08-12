@@ -9,7 +9,7 @@ cards:
       - type: entities
         entities:
           - remote.tvrummet
-          - switch.switch7
+          - switch.kodi
           - switch.switch8_melkers_tv
           - sensor.yt_qg8r
       - type: sensor

@@ -76,7 +76,7 @@ switch.switch4_tomas_fan:
 switch.switch5_melkers_fan:
   friendly_name: Melkers fläkt
   icon: mdi:fan
-switch.switch7:
+switch.kodi:
   friendly_name: KODI Switch
   icon: mdi:filmstrip
 switch.switch8_melkers_tv:

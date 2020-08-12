@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common;
 
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names

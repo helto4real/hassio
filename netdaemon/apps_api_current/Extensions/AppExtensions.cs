@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using JoySoftware.HomeAssistant.NetDaemon.Common;
+using NetDaemon.Common;
 using Helto4real.Powertools;
 public static class DaemonAppExtensions
 {
