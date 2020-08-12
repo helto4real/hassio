@@ -18,7 +18,7 @@ using System.Threading;
 ///         - When remote activity changes, run correct scene (RunScript)
 ///
 /// </remarks>
-public class TVManager : NetDaemonRxApp
+public class TVManager : GeneratedAppBase
 {
     // The Remote that controls the TV (Harmony Logitech)
     // private readonly string _entityRemoteTVRummet = "remote.tvrummet";
@@ -44,6 +44,11 @@ public class TVManager : NetDaemonRxApp
     private string? _currentlyPausedMediaPlayer;
     // The time when we stopped play media for any of the media players
     private DateTime? _timeStoppedPlaying = null;
+
+    /// <summary>
+    ///     Returns true if it is currently night
+    /// </summary>
+    public bool IsNight => InputSelect.HouseModeSelect?.State == "Natt";
 
     /// <summary>
     ///     Initialize, is automatically run by the daemon
@@ -174,7 +179,8 @@ public class TVManager : NetDaemonRxApp
             case "PowerOff":
                 RunScript("tv_off_scene");
                 Entities(TvMediaPlayers!).TurnOff();
-                Light.Tvrummet.TurnOn(new { transition = 0 });
+                if (IsNight)
+                    Light.Tvrummet.TurnOn(new { transition = 0 });
                 break;
         }
     }

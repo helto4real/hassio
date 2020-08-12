@@ -17,19 +17,18 @@ public class OtherApp : NetDaemonRxApp
 
     public override void Initialize()
     {
-        RunEvery(TimeSpan.FromMinutes(30), () =>
-        {
-            var tempFreezer = State("sensor.kok_frys_temp")?.State;
-
-            if (tempFreezer is double)
+        Entity("sensor.kok_frys_temp")
+            .StateChanges
+            .Where(e => e.New?.State is double && e.New?.State > -15)
+            .Throttle(TimeSpan.FromMinutes(10))
+            .Subscribe(s =>
             {
-                if (tempFreezer > -15.0)
+                if (State("sensor.kok_frys_temp")?.State > -15.0)
                 {
                     Speak("media_player.huset", "Viktigt meddelande, Frysen uppe har får låg temperatur"); // Important message
                     this.Notify("Viktigt meddelande, Frysen uppe har får låg temperatur!");
                 }
             }
-
-        });
+            );
     }
 }
