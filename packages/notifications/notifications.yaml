@@ -13,9 +13,9 @@ notify:
     name: hass_discord
     token: !secret discord_bot_secret
 
-  - name: th
-    platform: pushbullet
-    api_key: !secret pushbullet_api_key
+  # - name: th
+  #   platform: pushbullet
+  #   api_key: !secret pushbullet_api_key
 
 script:
   notify:

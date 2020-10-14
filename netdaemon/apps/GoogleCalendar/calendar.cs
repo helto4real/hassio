@@ -4,7 +4,7 @@ using NetDaemon.Common.Reactive;
 using System.Reactive.Linq;
 
 /// <summary>
-///     App docs
+///     Pushes important calendar events to TTS.
 /// </summary>
 public class GoogleCalendarManager : NetDaemonRxApp
 {

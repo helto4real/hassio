@@ -10,14 +10,12 @@ using System.Threading;
 
 /// <summary>
 ///     Manage the media in the tv room
-/// </summary>
-/// <remarks>
+//
 ///     Following use-cases are implemented
 ///         - Turn on TV and set scene when chromecast is playing and TV is off
 ///         - Turn off TV when nothing is playing for a time
 ///         - When remote activity changes, run correct scene (RunScript)
-///
-/// </remarks>
+/// </summary>
 public class TVManager : GeneratedAppBase
 {
     // The Remote that controls the TV (Harmony Logitech)

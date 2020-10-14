@@ -10,11 +10,10 @@ using System.Reactive.Linq;
 ///         - Reads departure time and turn on heater a specific time
 ///           before depending on temperature
 ///         - Can be turned on/off depending if it is a weekday or weekend
-/// </summary>
-/// <remarks>
+///
 ///     The application is running every minute and decides if the heater is
 ///     going to be on or off. This logic will work also after restart.
-/// </remarks>
+/// </summary>
 public class CarHeaterManager : NetDaemonRxApp
 {
     // The entities used in the automation

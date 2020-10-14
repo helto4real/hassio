@@ -1,0 +1,31 @@
+
+# switch:
+#   # IKEA TRADFRI control outlet
+#   - platform: "mqtt"
+#     name: sallys_rum_fonster
+#     state_topic: "zigbee2mqtt/switch.sallys_fonster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_off: "OFF"
+#     payload_on: "ON"
+#     value_template: "{{ value_json.state }}"
+#     command_topic: "zigbee2mqtt/switch.sallys_fonster/set"
+#   # IKEA TRADFRI control outlet
+#   - platform: "mqtt"
+#     name: melkers_rum_fonster
+#     state_topic: "zigbee2mqtt/switch.melkers_fonster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_off: "OFF"
+#     payload_on: "ON"
+#     value_template: "{{ value_json.state }}"
+#     command_topic: "zigbee2mqtt/switch.melkers_fonster/set"
+    
+    
+#     # OSRAM Smart+ plug
+#   - platform: "mqtt"
+#     name: tvrum_vagg
+#     state_topic: "zigbee2mqtt/switch.tvrumm_vagg"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_off: "OFF"
+#     payload_on: "ON"
+#     value_template: "{{ value_json.state }}"
+#     command_topic: "zigbee2mqtt/switch.tvrumm_vagg/set"

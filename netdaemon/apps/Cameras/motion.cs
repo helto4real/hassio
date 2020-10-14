@@ -15,7 +15,7 @@ using System.Threading;
 public class CameraMotionApp : NetDaemonRxApp
 {
     /// <summary>
-    ///     The cameras being managed, se yaml file
+    ///     Handles motion capture from cameras.
     /// </summary>
     public IEnumerable<string>? Cameras { get; set; }
 

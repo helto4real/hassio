@@ -257,3 +257,15 @@ cards:
 
             - entity_id: switch.netdaemon*
         show_empty: true
+        
+      - type: 'custom:auto-entities'
+        card:
+          title: Uppdateringar
+        filter:
+          exclude:
+            - state: 'off'
+          include:
+            - entity_id: binary_sensor.*update_available
+        show_empty: false
+        
+        unique: true

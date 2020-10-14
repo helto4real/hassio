@@ -28,6 +28,11 @@ cards:
     name: ESPCAM
     entity: camera.my_camera
     camera_view: "live"
+
+  - type: picture-entity
+    name: Test
+    entity: camera.framsidan_profile000_mainstream
+    camera_view: "live"
   # - type: picture-entity
   #   name: tensorflow
   #   entity: camera.live_view

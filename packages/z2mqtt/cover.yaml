@@ -1,0 +1,17 @@
+# cover:
+#   # IKEY FYRTUR
+#   - platform: "mqtt"
+#     name: tvrum_rullgardin_vanster
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     command_topic: "zigbee2mqtt/cover.tvrum_rullgardin_vanster/set"
+#     position_topic: "zigbee2mqtt/cover.tvrum_rullgardin_vanster"
+#     set_position_template: "{ \"position\": {{ position }} }"
+#     value_template: "{{ value_json.position }}"
+#   # IKEY FYRTUR
+#   - platform: "mqtt"
+#     name: tvrum_rullgardin_hoger
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     command_topic: "zigbee2mqtt/cover.tvrum_rullgardin_hoger/set"
+#     position_topic: "zigbee2mqtt/cover.tvrum_rullgardin_hoger"
+#     set_position_template: "{ \"position\": {{ position }} }"
+#     value_template: "{{ value_json.position }}"

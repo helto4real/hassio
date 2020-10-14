@@ -1,10 +1,9 @@
 ---
-
 occupancy_manager:
   module: occupancy
   class: OccupancyManager
   motion_detectors:
-    - binary_sensor.melkers_rum_pir
+    - binary_sensor.melkers_rum_pir_occupancy
     - binary_sensor.tvrum_pir
     - binary_sensor.sallys_rum_pir
     - binary_sensor.sovrum_pir

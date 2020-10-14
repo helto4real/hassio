@@ -1,0 +1,58 @@
+
+# #
+
+# binary_sensor:
+#   #TRADFRI motion sensor
+#   - platform: "mqtt"
+#     name: tomas_rum_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.tomas_rum_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"
+#   #TRADFRI motion sensor
+#   - platform: "mqtt"
+#     name: sallys_rum_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.sallys_rum_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"
+#   #TRADFRI motion sensor
+#   - platform: "mqtt"
+#     name: sovrum_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.sovrum_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"
+#   # Xiaomi, Aqara human body movement and illuminance sensor
+#   - platform: "mqtt"
+#     name: kok_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.kok_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"
+#   # Xiaomi, Aqara human body movement and illuminance sensor
+#   - platform: "mqtt"
+#     name: trapp_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.trapp_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"
+#   # Xiaomi, Aqara human body movement and illuminance sensor
+#   - platform: "mqtt"
+#     name: tvrum_pir
+#     state_topic: "zigbee2mqtt/binary_sensor.tvrum_pir"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     payload_on: true
+#     payload_off: false
+#     value_template: "{{ value_json.occupancy }}"
+#     device_class: "motion"

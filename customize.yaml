@@ -66,9 +66,8 @@ switch.ikea2:
 #   # ambient: true
 # light.tvrummet_vagg:
 #   friendly_name: Lampor vägg TV-rummet nere
-  # ambient: false
-  # icon: mdi:lightbulb
-
+# ambient: false
+# icon: mdi:lightbulb
 
 switch.switch4_tomas_fan:
   friendly_name: Tomas fläkt
@@ -82,7 +81,6 @@ switch.kodi:
 switch.switch8_melkers_tv:
   friendly_name: Melkers TV switch
   icon: mdi:google-chrome
-
 
 group.tomas_devices:
   friendly_name: Tomas mobil
@@ -160,7 +158,7 @@ binary_sensor.tomas_rum_pir:
 binary_sensor.sallys_rum_pir:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Sallys rum
-binary_sensor.melkers_rum_pir:
+binary_sensor.melkers_rum_pir_occupancy:
   icon: mdi:run-fast
   friendly_name: Rörelsedetektor Melkers rum
 binary_sensor.sovrum_pir:
@@ -179,8 +177,8 @@ sensor.utetemp_temperature:
   friendly_name: Temp Ute
 sensor.utetemp_humidity:
   friendly_name: Fukt Ute
-sensor.yr_symbol:
-  friendly_name: Väder
+#sensor.yr_symbol:
+#  friendly_name: Väder
 sensor.sovrum_temp:
   friendly_name: Temperatur sovrum nere
 sensor.vardagsrum_temp:

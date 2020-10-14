@@ -24,29 +24,34 @@ public class MagicCubeRemoteControlManager : NetDaemonRxApp
     public override void Initialize()
     {
         // 00:15:8d:00:02:69:e8:63
-        EventChanges
-            .Where(
-                e => e.Event == "deconz_event" &&
-                     e.Data?.id == "tvrum_cube")
+        Entity("sensor.tvrum_cube")
+            .StateChanges
+            // .Where(
+            //     e => e.Event == "deconz_event" &&
+            //          e.Data?.id == "tvrum_cube")
             .Subscribe(s =>
             {
-                if (s.Data?.gesture == null)
-                    return;
+                // if (s.New is object)
+                //     Log("CUBE: state: {state}\r\n   action:{action}\r\n   side: {side}\r\n   angle: {angle}", 
+                //         s.New?.State,
+                //         s.New?.Attribute?.action,
+                //         s.New?.Attribute?.side,
+                //         s.New?.Attribute?.angle);
+                if (s.New?.State is null)
+                     return;
 
-                double gesture = s.Data?.gesture;
-
-                switch (gesture)
+                switch (s.New?.State)
                 {
-                    case 1:         // Shake
+                    case "shake":         // Shake
                         Entity(RemoteTVRummet!).Toggle();
                         break;
-                    case 3:         // Flip
+                    case "flip90":         // Flip
                         PlayPauseMedia();
                         break;
-                    case 7:         // Turn clockwise
+                    case "rotate_right":         // Turn clockwise
                         VolumeUp();
                         break;
-                    case 8:         // Turn counter clockwise
+                    case "rotate_left":         // Turn counter clockwise
                         VolumeDown();
                         break;
                 }

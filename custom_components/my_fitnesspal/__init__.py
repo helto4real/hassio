@@ -43,8 +43,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     password = config_entry.data.get(CONF_PASSWORD)
     display_name = config_entry.data.get(CONF_NAME)
 
+    # Lib does I/O in the init...
+    def wrap_client():
+        """Wrap the fitnesspal client."""
+        return ext_myfitnesspal.Client(username, password)
+
+    client = await hass.async_add_executor_job(wrap_client)
+
     coordinator = MyFitnessPalDataUpdateCoordinator(
-        hass, username=username, password=password, display_name=display_name
+        hass, client=client, display_name=display_name
     )
     await coordinator.async_refresh()
 
@@ -93,18 +100,16 @@ class MyFitnessPalDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching data from the API."""
 
     def __init__(
-        self, hass: HomeAssistant, username: str, password: str, display_name: str
+        self, hass: HomeAssistant, client: ext_myfitnesspal.Client, display_name: str
     ):
         """Initialize."""
 
-        self._username = username
-        self._password = password
+        self.client = client
         self.display_name = display_name
 
         if len(self.display_name) == 0:
             self.display_name = self._username
 
-        self._client = ext_myfitnesspal.Client(self._username, self._password)
         self.platforms = []
 
         super().__init__(
@@ -124,9 +129,9 @@ class MyFitnessPalDataUpdateCoordinator(DataUpdateCoordinator):
 
         today = date.today()
 
-        info = self._client.get_date(today.year, today.month, today.day)
+        info = self.client.get_date(today.year, today.month, today.day)
 
-        weights = self._client.get_measurements("Weight")
+        weights = self.client.get_measurements("Weight")
 
         goal_calories = info.goals.get("calories", 0)
         goal_carbohydrates = info.goals.get("carbohydrates", 0)

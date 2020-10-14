@@ -6,6 +6,9 @@ using NetDaemon.Common.Reactive;
 
 namespace hacs
 {
+    /// <summary>
+    ///     Notifies of new updates in HACS
+    /// </summary>
     public class NotifyOnUpdate : NetDaemonRxApp
     {
         public override void Initialize() => Entity("sensor.hacs")

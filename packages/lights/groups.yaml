@@ -1,25 +1,14 @@
 light:
-  # - platform: group
-  #   name: ambient
-  #   entities:
-  #     - light.vardagsrum_fonster_mitten
-  #     - light.vardagsrum_fonster_vanster
-  #     - light.vardagsrum_fonster_hoger
-  #     - light.hall_dorr
-  #     - light.hall_byra
-  #     - light.kok_fonster
-  #     - light.kok_lilla_fonster
-  #     - light.tomas_rum_fonster
-  #     - light.melkers_rum_fonster
-  #     - light.farstukvist_led
-  #     - light.tvrum_fonster_hoger
-  #     - light.tvrum_fonster_vanster
-  #     # - light.julbelysning_vardagsrum_m # Did not bother renaming :)
-  #     - light.tvrum_vagg
-  #     - light.sovrum_byra
-  #     # - light.julbelysning_sovrum
-  #     - light.sovrum_fonster
-  #     - light.sallys_rum_fonster
+  - platform: group
+    name: ambient
+    entities:
+      - light.vardagsrum
+      - light.kok
+      - light.tomas_rum
+      - light.melkers_rum
+      - light.sallys_rum
+      - light.farstukvist_led
+      - light.tvrummet
 
   - platform: group
     name: vardagsrum

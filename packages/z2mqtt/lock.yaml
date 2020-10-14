@@ -1,9 +1,10 @@
 # lock:
+#     #Danalock BT/ZB smartlock
 #   - platform: "mqtt"
 #     name: las_uppe
-#     state_topic: "zigbee2mqtt/0x000b57fffe59d498"
+#     state_topic: "zigbee2mqtt/lock.las_uppe"
 #     availability_topic: "zigbee2mqtt/bridge/state"
-#     command_topic: "zigbee2mqtt/0x000b57fffe59d498/set"
+#     command_topic: "zigbee2mqtt/lock.las_uppe/set"
 #     value_template: "{{ value_json.state }}"
 #     state_locked: "LOCK"
 #     state_unlocked: "UNLOCK"

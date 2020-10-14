@@ -29,34 +29,34 @@ cards:
                 color: "#590000"
             entities:
               - sensor.utetemp_humidity
-      - type: horizontal-stack
-        cards:
-          - type: custom:mini-graph-card
-            name: "Vind (m/s)"
-            color_thresholds:
-              - value: 0
-                color: "#003300"
-              - value: 10
-                color: "#555500"
-              - value: 20
-                color: "#590000"
-            entities:
-              - sensor.yr_wind_speed
-          - type: custom:mini-graph-card
-            name: "Molninghet"
-            color_thresholds:
-              - value: 0
-                color: "#003300"
-              - value: 50
-                color: "#555500"
-              - value: 100
-                color: "#590000"
-            entities:
-              - sensor.yr_cloudiness
+#      - type: horizontal-stack
+#        cards:
+#          - type: custom:mini-graph-card
+#            name: "Vind (m/s)"
+ #           color_thresholds:
+#              - value: 0
+#                color: "#003300"
+#              - value: 10
+#                color: "#555500"
+#              - value: 20
+#                color: "#590000"
+#            entities:
+#              - sensor.yr_wind_speed
+#          - type: custom:mini-graph-card
+#            name: "Molninghet"
+#            color_thresholds:
+#              - value: 0
+#                color: "#003300"
+#              - value: 50
+#                color: "#555500"
+#              - value: 100
+#                color: "#590000"
+#            entities:
+#              - sensor.yr_cloudiness
       - type: entities
         entities:
           - sun.sun
-          - sensor.yr_symbol
+#          - sensor.yr_symbol
 
       - type: picture
         image: >-

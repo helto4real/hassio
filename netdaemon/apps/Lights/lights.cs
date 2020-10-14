@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Reactive.Linq;
 using NetDaemon.Common.Reactive;
 using Netdaemon.Generated.Reactive;
@@ -44,27 +45,69 @@ public class LightManager : GeneratedAppBase
         Entity("input_select.house_mode_select")
             .StateChanges
             .Where(e => e.New.State == "Dag")
-            .Subscribe(s => RunScript("day_scene"));
+            .Subscribe(s => TurnOffAmbient());
 
         Entity("input_select.house_mode_select")
             .StateChanges
             .Where(e => e.New.State == "Kväll")
-            .Subscribe(s => RunScript("evening_scene"));
+            .Subscribe(s => TurnOnAmbient());
 
         Entity("input_select.house_mode_select")
             .StateChanges
             .Where(e => e.New.State == "Natt")
-            .Subscribe(s => RunScript("night_scene"));
+            .Subscribe(s => TurnOffAmbient());
 
         Entity("input_select.house_mode_select")
             .StateChanges
             .Where(e => e.New.State == "Morgon")
-            .Subscribe(s => RunScript("morning_scene"));
+            .Subscribe(s => TurnOffAmbient());
 
         Entity("input_select.house_mode_select")
             .StateChanges
             .Where(e => e.New.State == "Städning")
             .Subscribe(s => RunScript("cleaning_scene"));
+    }
+
+
+    private void TurnOffAmbient()
+    {
+        Entity("light.vardagsrum").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.kok").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.tomas_rum").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.melkers_rum").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.sallys_rum").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.tvrummet").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.farstukvist_led").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.tvrummet").TurnOff(new {transition= 0});
+        Thread.Sleep(100);
+        Entity("light.sovrum").TurnOff(new {transition= 0});
+    }
+
+    private void TurnOnAmbient()
+    {
+        Entity("light.vardagsrum").TurnOn(new {transition= 0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.kok").TurnOn(new {transition=0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.tomas_rum").TurnOn(new {transition= 0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.melkers_rum").TurnOn(new {transition= 0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.sallys_rum").TurnOn(new {transition= 0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.tvrummet").TurnOn(new {transition= 0, brightness=130});
+        Thread.Sleep(100);
+        Entity("light.farstukvist_led").TurnOn(new {transition= 0, brightness=150});
+        Thread.Sleep(100);
+        Entity("light.sovrum").TurnOn(new {transition= 0, brightness=100});
+        Thread.Sleep(100);
     }
 
     /// <summary>

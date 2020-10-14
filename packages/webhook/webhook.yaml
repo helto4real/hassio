@@ -1,0 +1,9 @@
+automation:
+  trigger:
+    platform: webhook
+    webhook_id: a_webhook
+  action:
+    service: netdaemon.webhookmanager_onwebhook
+    data_template:
+      data: '{{ trigger.data.formdata }}'
+      query: '{{ trigger.query.testquery }}'

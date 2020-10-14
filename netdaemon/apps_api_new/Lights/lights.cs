@@ -67,6 +67,19 @@ public class LightManager : NetDaemonRxApp
             .Subscribe(s => RunScript("cleaning_scene"));
     }
 
+    private void SetDayScene()
+    {
+    //           - light.vardagsrum
+    //   - light.kok
+    //   - light.tomas_rum
+    //   - light.melkers_rum
+    //   - light.sallys_rum
+    //   - light.farstukvist_led
+    //   - light.tvrummet
+        Entity('light.vardagsrum').TurnOff(new {transition: 0});
+        Entity('light.vardagsrum').TurnOff(new {transition: 0});
+    }
+
     /// <summary>
     ///     Setup the night lights.
     /// </summary>

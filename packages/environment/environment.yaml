@@ -5,12 +5,12 @@ sun:
 
 # Weather prediction
 sensor:
-  - platform: yr # Wheather
-    monitored_conditions:
-      - temperature
-      - symbol
-      - cloudiness
-      - windSpeed
+#  - platform: yr # Wheather
+#    monitored_conditions:
+#      - temperature
+#      - symbol
+#      - cloudiness
+#      - windSpeed
   - platform: template
     sensors:
       temp_outside:
@@ -28,6 +28,6 @@ group:
       - sensor.ute_temperature
       - sensor.hum_altan_ute
       - sun.sun
-      - sensor.yr_symbol
-      - sensor.yr_cloudiness
-      - sensor.yr_wind_speed
+#      - sensor.yr_symbol
+#      - sensor.yr_cloudiness
+#      - sensor.yr_wind_speed

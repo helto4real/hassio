@@ -1,9 +1,14 @@
-customElements.whenDefined('card-tools').then(() => {
-let cardTools = customElements.get('card-tools');
+const LitElement = customElements.get('home-assistant-main')
+? Object.getPrototypeOf(customElements.get('home-assistant-main'))
+: Object.getPrototypeOf(customElements.get('hui-view'));
+const html = LitElement.prototype.html;
+const css = LitElement.prototype.css;
+
   
-class KrisinfoCard extends cardTools.LitElement {
+class KrisinfoCard extends LitElement {
   
   setConfig(config) {
+
     if (!config.entity) {
       throw new Error('Please define entity');
     }
@@ -11,50 +16,61 @@ class KrisinfoCard extends cardTools.LitElement {
   }
   
   render(){
-    return cardTools.LitHtml
+    if (!this.entity)
+      return html`
+      <hui-warning>
+        ${this._hass.localize("ui.panel.lovelace.warning.entity_not_found",
+          "entity",
+          this.config.entity
+        )}
+      </hui-warning>
+      `
+    return html
     `
-      ${this._renderStyle()}
       ${this.config.only_alerts == false || this.config.only_alerts == null
-        ? cardTools.LitHtml
+        ? html
         `<ha-card>
-          <div class="header">
+          <div class="card-header">
             <div class="name">
               ${this.header}
             </div>
           </div>
+          <div class="card-content">
           ${this.messages.length == 0
-            ? cardTools.LitHtml`<p>Inga meddelanden just nu</p>`
+            ? html`<p>Inga meddelanden just nu</p>`
             : this.messages.map(message => 
-              cardTools.LitHtml`<div class="message">
+              html`<div class="message">
                       <span>${message.SenderName}</span>
                         </br><span>Skickat: ${message.Published}</span>
-                        <h3>${message.Event == "Alert" ? cardTools.LitHtml`<ha-icon id="state-icon" icon="mdi:alert"></ha-icon>` : ''}${message.Headline}</h3>
+                        <h3>${message.Event == "Alert" ? html`<ha-icon id="state-icon" icon="mdi:alert"></ha-icon>` : ''}${message.Headline}</h3>
                       <p class="">${message.Message}</p>
                       <a target="_blank" href="${message.Web}">Läs mer</a>
                     </div>
               `)}
+              </div>
           </ha-card>`
         : // if only alerts
-        cardTools.LitHtml
+        html
         `
         ${this.state == "Alert" ?
-          cardTools.LitHtml
+          html
           `
             <ha-card>
-              <div class="header">
+              <div class="card-header">
                 <div class="name">
                   ${this.state} - ${this.header}
                 </div>
               </div>
+              <div class="card-content">
               ${this.messages.length == 0
-                ? cardTools.LitHtml`<p>Inga meddelanden just nu</p>`
+                ? html`<p>Inga meddelanden just nu</p>`
                 : this.messages.map(message => 
-                  cardTools.LitHtml`
+                  html`
                   ${message.Event == "Alert" ?
-                    cardTools.LitHtml`<div class="message">
+                    html`<div class="message">
                             <span>${message.SenderName}</span>
                               </br><span>Skickat: ${message.Published}</span>
-                              <h3>${message.Event == "Alert" ? cardTools.LitHtml`<ha-icon id="state-icon" icon="mdi:alert"></ha-icon>` : ''}${message.Headline}</h3>
+                              <h3>${message.Event == "Alert" ? html`<ha-icon id="state-icon" icon="mdi:alert"></ha-icon>` : ''}${message.Headline}</h3>
                             <p class="">${message.Message}</p>
                             <a target="_blank" href="${message.Web}">Läs mer</a>
                           </div>
@@ -62,7 +78,7 @@ class KrisinfoCard extends cardTools.LitElement {
                   : ''}`
                   )
               
-                }
+                }</div>
             </ha-card>
           `
           : ''
@@ -72,13 +88,9 @@ class KrisinfoCard extends cardTools.LitElement {
     `;
   }    
 
-  _renderStyle() {
-      return cardTools.LitHtml
+  static get styles() {
+      return css
       `
-        <style>
-          ha-card {
-            padding: 16px;
-          }
           .header {
             padding: 0;
             @apply --paper-font-headline;
@@ -109,17 +121,19 @@ class KrisinfoCard extends cardTools.LitElement {
             color: red;
             padding-right: 7px;
           }
-        </style>
       `;
     }
   
   set hass(hass) {
     this._hass = hass;
+    this.entity = this.config.entity in hass.states ? hass.states[this.config.entity] : null;
+    if(this.entity)
+    {
+      this.header = this.entity.attributes.friendly_name;
+      this.messages = this.entity.attributes.messages;
+      this.state = this.entity.state
+    }
 
-    const entity = hass.states[this.config.entity];
-    this.header = entity.attributes.friendly_name;
-    this.messages = entity.attributes.messages;
-    this.state = entity.state
     this.requestUpdate();
   }
 
@@ -132,11 +146,3 @@ class KrisinfoCard extends cardTools.LitElement {
 }
 
 customElements.define('krisinfo-card', KrisinfoCard);
-});
-
-window.setTimeout(() => {
-  if(customElements.get('card-tools')) return;
-  customElements.define('krisinfo-card', class extends HTMLElement{
-    setConfig() { throw new Error("Can't find card-tools. See https://github.com/thomasloven/lovelace-card-tools");}
-  });
-}, 2000);

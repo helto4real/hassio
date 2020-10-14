@@ -10,6 +10,8 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Stockholm
+  external_url: https://hassio.hellstrom.space
+  internal_url: http://192.168.1.7:8123
   # Customization file
   customize: !include customize.yaml
   packages: !include_dir_named packages
@@ -22,7 +24,6 @@ script: !include_dir_merge_named scripts/
 
 # Enables the frontend
 frontend:
-  javascript_version: latest
   themes: !include_dir_named themes
 # Enables configuration UI
 config:
@@ -78,7 +79,7 @@ recorder:
       - sensor.utetemp_humidity
       - sensor.frysnere_temperature #Frys nere
       - sensor.kok_frys_temp
-      - sensor.sovrum_temp
+      - sensor.sovrum_temp_temperature
       - sensor.vardagsrum_temp
       - sensor.sallys_rum_temp
       - sensor.hobbyrum_temp
@@ -95,11 +96,11 @@ recorder:
 
 logger:
   default: info
-  # logs:
+  #logs:
   #   homeassistant.components.websocket_api: debug
   #   aiohttp: debug
-  #   pydeconz: debug
-  #   homeassistant.components.deconz: debug
+  #  pydeconz: debug
+  #  homeassistant.components.deconz: debug
   #homeassistant.components.scrape: debug
 # Enables support for tracking state changes over time
 history:
@@ -129,8 +130,8 @@ influxdb:
       - sensor.utetemp_temperature
       - sensor.utetemp_humidity
       - sensor.frysnere_temperature #Frys nere
-      - sensor.kok_frys_temp
-      - sensor.sovrum_temp
+      - sensor.kok_frys_temp_temperature
+      - sensor.sovrum_temp_temperature
       - sensor.vardagsrum_temp
       - sensor.sallys_rum_temp
       - sensor.hobbyrum_temp
@@ -228,12 +229,12 @@ person:
     device_trackers:
       - device_tracker.melker_presence
 
-mqtt:
-  broker: !secret mqqtt_broker
-  discovery: false
-  discovery_prefix: homeassistant
-  username: !secret mqtt_user
-  password: !secret mqtt_password
+# mqtt:
+#   broker: !secret mqqtt_broker
+#   discovery: false
+#   discovery_prefix: homeassistant
+#   username: !secret mqtt_user
+#   password: !secret mqtt_password
 
 netdaemon:
 #cloud:

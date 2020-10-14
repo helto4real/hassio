@@ -65,11 +65,11 @@ cards:
               left: 24.8%
               top: 47%
             type: state-label
-          - entity: sensor.yr_symbol
-            style:
-              left: 40%
-              top: 52%
-            type: state-icon
+#          - entity: sensor.yr_symbol
+#            style:
+#              left: 40%
+#              top: 52%
+#            type: state-icon
         image: /local/img/weather_bg.jpg
       - type: picture-entity
         entity: input_select.house_mode_select
@@ -310,7 +310,7 @@ cards:
               left: 80.5%
               top: 68%
             type: state-label
-          - entity: binary_sensor.melkers_rum_pir
+          - entity: binary_sensor.melkers_rum_pir_occupancy
             style:
               left: 73.42%
               top: 90.2%

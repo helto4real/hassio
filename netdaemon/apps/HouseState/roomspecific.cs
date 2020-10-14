@@ -5,7 +5,7 @@ using System.Reactive.Linq;
 using NetDaemon.Common.Reactive;
 
 /// <summary>
-///     App docs
+///     Room specific automations.
 /// </summary>
 public class RoomSpecificManager : NetDaemonRxApp
 {

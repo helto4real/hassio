@@ -1,0 +1,94 @@
+
+
+# sensor:
+#   #MiJia temperature & humidity sensor
+#   - platform: "mqtt"
+#     name: ute_temp
+#     state_topic: "zigbee2mqtt/sensor.ute_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "°C"
+#     device_class: "temperature"
+#     value_template: "{{ value_json.temperature }}"
+#   - platform: "mqtt"
+#     name: ute_hum
+#     state_topic: "zigbee2mqtt/sensor.ute_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "humidity"
+#     value_template: "{{ value_json.humidity }}"
+#   #MiJia temperature & humidity sensor
+#   - platform: "mqtt"
+#     name: vardagsrum_temp
+#     state_topic: "zigbee2mqtt/sensor.vardagsrum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "°C"
+#     device_class: "temperature"
+#     value_template: "{{ value_json.temperature }}"
+#   - platform: "mqtt"
+#     name: vardagsrum_hum
+#     state_topic: "zigbee2mqtt/sensor.vardagsrum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "humidity"
+#     value_template: "{{ value_json.humidity }}"
+#   #MiJia temperature & humidity sensor
+#   - platform: "mqtt"
+#     name: sovrum_temp
+#     state_topic: "zigbee2mqtt/sensor.sovrum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "°C"
+#     device_class: "temperature"
+#     value_template: "{{ value_json.temperature }}"
+#   - platform: "mqtt"
+#     name: sovrum_hum
+#     state_topic: "zigbee2mqtt/sensor.sovrum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "humidity"
+#     value_template: "{{ value_json.humidity }}"
+#   #MiJia temperature & humidity sensor
+#   - platform: "mqtt"
+#     name: melkers_rum_temp
+#     state_topic: "zigbee2mqtt/sensor.melkers_rum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "°C"
+#     device_class: "temperature"
+#     value_template: "{{ value_json.temperature }}"
+#   - platform: "mqtt"
+#     name: sensor.melkers_rum_hum
+#     state_topic: "zigbee2mqtt/sensor.melkers_rum_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "humidity"
+#     value_template: "{{ value_json.humidity }}"
+#   #MiJia temperature & humidity sensor
+#   - platform: "mqtt"
+#     name: kok_frys_temp
+#     state_topic: "zigbee2mqtt/sensor.kok_frys_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "°C"
+#     device_class: "temperature"
+#     value_template: "{{ value_json.temperature }}"
+#   - platform: "mqtt"
+#     name: sensor.kok_frys_hum
+#     state_topic: "zigbee2mqtt/sensor.kok_frys_temp"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "humidity"
+#     value_template: "{{ value_json.humidity }}"
+#   # "MiJia light intensity sensor
+#   - platform: "mqtt"
+#     name: light_outside
+#     state_topic: "zigbee2mqtt/sensor.light_outside"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "lx"
+#     device_class: "illuminance"
+#     value_template: "{{ value_json.illuminance_lux }}"
+#   # Danalock battery
+#   - platform: "mqtt"
+#     name: las_uppe_batt
+#     state_topic: "zigbee2mqtt/lock.las_uppe"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     unit_of_measurement: "%"
+#     device_class: "battery"
+#     value_template: "{{ value_json.battery }}"

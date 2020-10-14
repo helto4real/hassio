@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 
 /// <summary>
-///     App docs
+///     Manage state of morning, house, day, evening, night and cleaning
 /// </summary>
 public class HouseStateManager : NetDaemonRxApp
 {
@@ -38,7 +38,7 @@ public class HouseStateManager : NetDaemonRxApp
 
     #endregion
 
-    public bool IsCloudy => State("sensor.yr_cloudiness")?.State > 90.0;
+    public bool IsCloudy => State("weather.smhi_hemma")?.Attribute?.cloudiness > 90.0;
     public override Task InitializeAsync()
     {
         InitDayTime();
@@ -47,7 +47,7 @@ public class HouseStateManager : NetDaemonRxApp
         InitNightTimeOnWeekends();
         InitMorningSchedule();
         InitHouseStateSceneManagement();
-        
+
         return Task.CompletedTask;
     }
 
@@ -115,26 +115,23 @@ public class HouseStateManager : NetDaemonRxApp
     /// </summary>
     private void InitEveningSchedule()
     {
-        // when elevation <9 and counting cloudiness set evening state
-        Entity("sun.sun")
-            .StateAllChanges
+        // Entity("sensor.light_outside")
+        //     .StateChanges
+        //     .Subscribe(s => Log("Light sensor value {state}, type: {type}, housestate: {housestate}", s.New?.State, s.New?.State.GetType().Name, State(HouseStateInputSelect!)?.State));
+
+        Entity("sensor.light_outside")
+            .StateChanges
             .Where(e =>
-                e.New?.Attribute?.elevation <= ElevationEvening &&
-                e.New?.Attribute?.rising == false &&
-                e.Old?.Attribute?.elevation > ElevationEvening)
+                (
+                    e.New?.State is double && e.New.State < 100.0 ||
+                    e.New?.State is long && e.New.State < 100
+                ) &&
+                State(HouseStateInputSelect!)?.State == "Dag"
+            )
             .Subscribe(s =>
             {
-                // If not cloudy, set evening else wait 45 minutes
-                if (IsCloudy)
-                {
-                    SetHouseState(HouseState.Evening);
-                    Log($"It is evening {DateTime.Now}");
-                }
-                else
-                {
-                    Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
-                    RunIn(TimeSpan.FromMinutes(45), () => SetHouseState(HouseState.Evening));
-                }
+                SetHouseState(HouseState.Evening);
+                Log($"It is evening {DateTime.Now}");
             });
     }
 
@@ -145,25 +142,19 @@ public class HouseStateManager : NetDaemonRxApp
     private void InitMorningSchedule()
     {
         // when elevation <9 and counting cloudiness set evening state
-        Entity("sun.sun")
-            .StateAllChanges
+        Entity("sensor.light_outside")
+            .StateChanges
             .Where(e =>
-                e.New?.Attribute?.elevation >= ElevationEvening &&
-                e.New?.Attribute?.rising == true &&
-                e.Old?.Attribute?.elevation < ElevationEvening)
+                (
+                    e.New?.State is double && e.New.State >= 25.0 ||
+                    e.New?.State is long && e.New.State >= 25
+                ) &&
+                State(HouseStateInputSelect!)?.State == "Natt"
+            )
             .Subscribe(s =>
                     {
-                        // If not cloudy, set evening else wait 45 minutes
-                        if (!IsCloudy)
-                        {
-                            SetHouseState(HouseState.Morning);
-                            Log($"It is evening {DateTime.Now}");
-                        }
-                        else
-                        {
-                            Log($"It is evening {DateTime.Now} not cloudy set evening in 45 minuts!");
-                            RunIn(TimeSpan.FromMinutes(45), () => SetHouseState(HouseState.Morning));
-                        }
+                        SetHouseState(HouseState.Morning);
+                        Log($"It is morning {DateTime.Now}");
                     });
     }
 

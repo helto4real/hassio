@@ -1,9 +1,133 @@
 # light:
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
 #   - platform: "mqtt"
 #     name: hall_byra
-#     state_topic: "zigbee2mqtt/0x000b57fffec982b8"
+#     state_topic: "zigbee2mqtt/light.hall_byra"
 #     availability_topic: "zigbee2mqtt/bridge/state"
 #     brightness: true
 #     schema: "json"
-#     command_topic: "zigbee2mqtt/0x000b57fffec982b8/set"
+#     command_topic: "zigbee2mqtt/light.hall_byra/set"
 #     brightness_scale: 254
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: hall_dorr
+#     state_topic: "zigbee2mqtt/light.hall_dorr"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.hall_dorr/set"
+#     brightness_scale: 254
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+#   - platform: "mqtt"
+#     name: vardagsrum_fonster_vanster
+#     state_topic: "zigbee2mqtt/light.vardagsrum_vanster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.vardagsrum_vanster/set"
+#     brightness_scale: 254
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+#   - platform: "mqtt"
+#     name: vardagsrum_fonster_mitten
+#     state_topic: "zigbee2mqtt/light.vardagsrum_mitten"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.vardagsrum_mitten/set"
+#     brightness_scale: 254
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+#   - platform: "mqtt"
+#     name: vardagsrum_fonster_hoger
+#     state_topic: "zigbee2mqtt/light.vardagsrum_hoger"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.vardagsrum_hoger/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: kok_lilla_fonster
+#     state_topic: "zigbee2mqtt/light.kok_fonster_lilla"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.kok_fonster_lilla/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: kok_fonster
+#     state_topic: "zigbee2mqtt/light.kok_fonster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.kok_fonster/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: tvrum_fonster_vanster
+#     state_topic: "zigbee2mqtt/light.tvrum_vanster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.tvrum_vanster/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: tvrum_fonster_hoger
+#     state_topic: "zigbee2mqtt/light.tvrum_hoger"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.tvrum_hoger/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white 
+#   - platform: "mqtt"
+#     name: sovrum_byra
+#     state_topic: "zigbee2mqtt/light.sovrum_byra"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.sovrum_byra/set"
+#     brightness_scale: 254
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+#   - platform: "mqtt"
+#     name: sovrum_fonster
+#     state_topic: "zigbee2mqtt/light.sovrum_fonster"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.sovrum_fonster/set"
+#     brightness_scale: 254
+
+#   # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+#   - platform: "mqtt"
+#     name: tomas_rum_fonster
+#     state_topic: "zigbee2mqtt/light.tomas_rum"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.tomas_rum/set"
+#     brightness_scale: 254
+
+#   - platform: "mqtt"
+#     name: tvrum_bakgrund_tv
+#     state_topic: "zigbee2mqtt/light.tvrum_bakgrund_tv"
+#     availability_topic: "zigbee2mqtt/bridge/state"
+#     brightness: true
+#     color_temp: true
+#     xy: true
+#     schema: "json"
+#     command_topic: "zigbee2mqtt/light.tvrum_bakgrund_tv/set"
+#     brightness_scale: 254
+    

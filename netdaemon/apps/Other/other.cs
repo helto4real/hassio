@@ -10,8 +10,6 @@ using System.Threading;
 ///     Following use-case is implemented
 ///     - If no one is home and motion is detected, notify the discord channel
 /// </summary>
-
-
 public class OtherApp : NetDaemonRxApp
 {
 
@@ -19,11 +17,12 @@ public class OtherApp : NetDaemonRxApp
     {
         Entity("sensor.kok_frys_temp")
             .StateChanges
-            .Where(e => e.New?.State is double && e.New?.State > -15)
-            .Throttle(TimeSpan.FromMinutes(10))
+            .Where(e => e.New?.State is double && e.New?.State > -11.0 || e.New?.State is long && e.New?.State > -11)
+            .Throttle(TimeSpan.FromMinutes(30))
             .Subscribe(s =>
             {
-                if (State("sensor.kok_frys_temp")?.State > -15.0)
+                var temp = State("sensor.kok_frys_temp")?.State;
+                if (temp is double && temp > -11.0 || temp is long && temp > -11)
                 {
                     Speak("media_player.huset", "Viktigt meddelande, Frysen uppe har får låg temperatur"); // Important message
                     this.Notify("Viktigt meddelande, Frysen uppe har får låg temperatur!");
