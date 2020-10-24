@@ -195,7 +195,7 @@ lovelace:
       type: js
     # - url: /community_plugin/weather-card/weather-card.js?v1.0
     #   type: js
-    - url: /hacsfiles/weather-card-mod/weather-card-mod.js?v0.5
+    - url: /hacsfiles/weather-card-mod/weather-card-mod.js?v0.7
       type: module
     # - url: /local/custom_cards/card-tools.js?v1.1
     #   type: js
