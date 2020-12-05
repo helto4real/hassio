@@ -3,12 +3,11 @@ magic_cube:
     RemoteTVRummet: remote.tvrummet
     MaranzDeviceId: 14329974
     TvMediaPlayers:
-        - media_player.tv_nere
-        - media_player.plex_kodi_add_on_libreelec
+        - media_player.shield_tv
 
 tv:
     class: TVManager
     RemoteTVRummet: remote.tvrummet
     TvMediaPlayers:
-        - media_player.tv_nere
-        - media_player.plex_kodi_add_on_libreelec
+        - media_player.shield_tv
+

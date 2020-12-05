@@ -40,12 +40,17 @@ switch:
         ip: !secret tomas_pc_ip
 
 media_player:
-  - platform: kodi
-    host: !secret kodi_tv_nere_ip
-    username: !secret kodi_tv_nere_username
-    password: !secret kodi_tv_nere_password
-    name: kodi_tv_nere
-
+  # - platform: kodi
+  #   host: !secret kodi_tv_nere_ip
+  #   username: !secret kodi_tv_nere_username
+  #   password: !secret kodi_tv_nere_password
+  #  name: kodi_tv_nere
+  - platform: androidtv
+    name: Shield TV
+    host: 192.168.1.22
+    apps:
+      com.hbo_android_tv: HBO Nordic
+      se.cmore.bonnier: C MORE
 group:
   # Remote controls
   remotes:
@@ -66,7 +71,7 @@ group:
   chromecasts:
     name: Chrome casts
     entities:
-      - media_player.tv_nere
+      - media_player.shield_tv
       - media_player.tv_uppe
       - media_player.melkers_tv
 

@@ -72,42 +72,42 @@ public class LightManager : GeneratedAppBase
     private void TurnOffAmbient()
     {
         Entity("light.vardagsrum").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.kok").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.tomas_rum").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.melkers_rum").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.sallys_rum").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.tvrummet").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.farstukvist_led").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.tvrummet").TurnOff(new {transition= 0});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.sovrum").TurnOff(new {transition= 0});
     }
 
     private void TurnOnAmbient()
     {
         Entity("light.vardagsrum").TurnOn(new {transition= 0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.kok").TurnOn(new {transition=0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.tomas_rum").TurnOn(new {transition= 0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.melkers_rum").TurnOn(new {transition= 0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.sallys_rum").TurnOn(new {transition= 0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.tvrummet").TurnOn(new {transition= 0, brightness=130});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.farstukvist_led").TurnOn(new {transition= 0, brightness=150});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
         Entity("light.sovrum").TurnOn(new {transition= 0, brightness=100});
-        Thread.Sleep(100);
+        Thread.Sleep(200);
     }
 
     /// <summary>

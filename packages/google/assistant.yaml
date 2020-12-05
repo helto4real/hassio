@@ -30,6 +30,9 @@ google_assistant:
     light.sallys_rum:
       name: sallys rum
       expose: true
+    light.gym_led:
+        name: gym led
+        expose: true
     switch.computer_tomas:
       name: "tomas dator"
       expose: true

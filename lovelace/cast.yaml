@@ -15,7 +15,7 @@ cards:
       - type: sensor
         entity: sensor.yt_qg8r
       - type: "custom:media-player-card"
-        entity: media_player.tv_nere
+        entity: media_player.shield_tv
         image_folder: /local/custom_cards/img
 
       - type: "custom:media-player-card"

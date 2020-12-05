@@ -55,6 +55,18 @@ public class TVManager : GeneratedAppBase
     {
         // Set up the state management
 
+        // When chromecast is going off
+        // Entities("media_player.tv_nere")
+        //     .StateChanges
+        //     .Where(e => e.New?.State == "off" && e.Old?.State is object )
+        //     .Subscribe(s =>
+        //    {
+        //        if (TvIsOn)
+        //        {
+        //            Log('TV is off, turnin off shield and tv')
+        //            RunScript("tv_off_scene");
+        //        }
+        //    });
         // When state change on my media players, call OnMediaStateChanged
         Entities(TvMediaPlayers!)
             .StateChanges

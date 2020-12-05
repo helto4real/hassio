@@ -123,8 +123,8 @@ public class HouseStateManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 (
-                    e.New?.State is double && e.New.State < 100.0 ||
-                    e.New?.State is long && e.New.State < 100
+                    e.New?.State is double && e.New.State < 25.0 ||
+                    e.New?.State is long && e.New.State < 25
                 ) &&
                 State(HouseStateInputSelect!)?.State == "Dag"
             )

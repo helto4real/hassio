@@ -9,6 +9,10 @@ light:
     name: tvrum_vagg
     entity_id: switch.tvrum_vagg
 
+  # Klar
+  - platform: switch
+    name: julbelysning_vardagsrum_h
+    entity_id: switch.julbelysning_vardagsrum_h
   - platform: switch
     name: julbelysning_kok_h
     entity_id: switch.julbelysning_kok_h
@@ -16,20 +20,22 @@ light:
     name: julbelysning_kok_v
     entity_id: switch.julbelysning_kok_v
   - platform: switch
-    name: julbelysning_vardagsrum_h
-    entity_id: switch.julbelysning_vardagsrum_h
-  - platform: switch
-    name: julbelysning_vardagsrum_m
-    entity_id: switch.julbelysning_vardagsrum_m
-  - platform: switch
     name: julbelysning_vardagsrum_v
     entity_id: switch.julbelysning_vardagsrum_v
+  - platform: switch
+    name: julbelysning_tvrummet
+    entity_id: switch.julbelysning_tvrummet
+  # Ej klar
+
+  # - platform: switch
+  #   name: julbelysning_vardagsrum_m
+  #   entity_id: switch.julbelysning_vardagsrum_m
   - platform: switch
     name: julbelysning_tomas_rum
     entity_id: switch.julbelysning_tomas_rum
   - platform: switch
     name: julbelysning_sovrum
-    entity_id: switch.julbelysning_sovrum
+    entity_id: switch.ac_2bc0cfe_1 #switch.julbelysning_sovrum
 
 
   # - platform: mqtt

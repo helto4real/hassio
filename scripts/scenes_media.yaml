@@ -6,7 +6,7 @@ tv_scene:
       entity_id: light.tvrum_bakgrund_tv
       data:
         xy_color: [0.136, 0.04]
-        brightness: 50
+        brightness: 80
     # Turn off ligt in the room
     - service: light.turn_off
       entity_id: light.tvrummet

@@ -1,15 +1,15 @@
-sensor:
-  - platform: youtube
-    entities:
-      qg8r:
-          channel_id: 'UCVo5TLYz57tTAM9F3jyZD0w'
-          key: !secret google_api
-      me4le:
-          channel_id: 'UCkzirJ9AkoLqssMzfllZMEg'
-          key: !secret google_api
-      helto:
-          channel_id: 'UCMxSJuAU_4N94bh4zW9rUtg'
-          key: !secret google_api
-      pewdiepie:
-          channel_id: 'UC-lHJZR3Gqxm24_Vd_AJ5Yw'
-          key: !secret google_api
+#sensor:
+#  - platform: youtube
+#    entities:
+#      #qg8r:
+#      #    channel_id: 'UCVo5TLYz57tTAM9F3jyZD0w'
+#      #    key: !secret google_api
+#      #me4le:
+#      #    channel_id: 'UCkzirJ9AkoLqssMzfllZMEg'
+#      #    key: !secret google_api
+#      helto:
+#          channel_id: 'UCMxSJuAU_4N94bh4zW9rUtg'
+#          key: !secret google_api
+#      pewdiepie:
+#          channel_id: 'UC-lHJZR3Gqxm24_Vd_AJ5Yw'
+#          key: !secret google_api
