@@ -123,11 +123,14 @@ public class HouseStateManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 (
-                    e.New?.State is double && e.New.State < 25.0 ||
-                    e.New?.State is long && e.New.State < 25
+                    (e.New?.State is double && e.New.State <= 20.0 ||
+                    e.New?.State is long && e.New.State <= 20) &&
+                    (e.Old?.State is double && e.Old.State > 20.0 ||
+                    e.Old?.State is long && e.Old.State > 20) 
                 ) &&
                 State(HouseStateInputSelect!)?.State == "Dag"
             )
+            .Throttle(TimeSpan.FromMinutes(20))
             .Subscribe(s =>
             {
                 SetHouseState(HouseState.Evening);
@@ -146,11 +149,14 @@ public class HouseStateManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 (
-                    e.New?.State is double && e.New.State >= 25.0 ||
-                    e.New?.State is long && e.New.State >= 25
+                    (e.New?.State is double && e.New.State >= 25.0 ||
+                    e.New?.State is long && e.New.State >= 25) &&
+                    (e.Old?.State is double && e.Old.State < 25.0 ||
+                    e.Old?.State is long && e.Old.State < 25)
                 ) &&
                 State(HouseStateInputSelect!)?.State == "Natt"
             )
+            .Throttle(TimeSpan.FromMinutes(20))
             .Subscribe(s =>
                     {
                         SetHouseState(HouseState.Morning);
