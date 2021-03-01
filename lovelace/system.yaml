@@ -247,7 +247,7 @@ cards:
                     service: hassio.addon_restart
                     service_data:
                       addon: c6a2317c_netdaemon
-              entity: netdaemon.status
+              entity: sensor.netdaemon_status
               entity_id: netdaemon.status
               name: Status
               secondary_info:
@@ -257,15 +257,15 @@ cards:
 
             - entity_id: switch.netdaemon*
         show_empty: true
-        
-      - type: 'custom:auto-entities'
+
+      - type: "custom:auto-entities"
         card:
           title: Uppdateringar
         filter:
           exclude:
-            - state: 'off'
+            - state: "off"
           include:
             - entity_id: binary_sensor.*update_available
         show_empty: false
-        
+
         unique: true

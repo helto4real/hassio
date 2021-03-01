@@ -29,7 +29,7 @@ cards:
           top: 89%
 
       - type: image
-        entity: switch.motorvarmare
+        entity: switch.motorvarmare_hoger
         state_image:
           "off": /local/img/car/heater_off.png
           "on": /local/img/car/heater_on.png

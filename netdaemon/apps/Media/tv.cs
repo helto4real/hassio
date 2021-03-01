@@ -70,7 +70,10 @@ public class TVManager : GeneratedAppBase
         // When state change on my media players, call OnMediaStateChanged
         Entities(TvMediaPlayers!)
             .StateChanges
-            .Subscribe(s => OnMediaStateChanged(s.New, s.Old));
+            .Subscribe(s => 
+            {
+                OnMediaStateChanged(s.New, s.Old);
+            });
 
         // When TV on (remote on), call OnTvTurnedOn
         Entity(RemoteTVRummet!)
@@ -78,22 +81,29 @@ public class TVManager : GeneratedAppBase
             .Where(e =>
                 e.Old?.State == "off" &&
                 e.New?.State == "on")
-            .Subscribe(s => OnTVTurnedOn());
+            .Subscribe(s =>
+            {
+                LogDebug("TV remote status change from {from} to {to}", s.Old?.State, s.New?.State); 
+                OnTVTurnedOn();
+            });
 
 
         // When ever TV remote activity changes, ie TV, Film, Poweroff call OnTvActivityChange
         Entity(RemoteTVRummet!)
             .StateAllChanges
             .Where(e => e.New?.Attribute?.current_activity != e.Old?.Attribute?.current_activity)
-            .Subscribe(s => OnTvActivityChange(s.New));
+            .Subscribe(s => 
+            {
+                LogDebug("TV remote activity change from {from} to {to}", s.Old?.Attribute?.current_activity, s.New?.Attribute?.current_activity);
+                OnTvActivityChange(s.New);
+            });
 
-        // This function does not contain any async calls so just return completed task
-        // return Task.CompletedTask;
     }
 
     /// <summary>
     ///     Returns true if TV is currently on
-    /// </summary>
+    /// </summary>to?.Attribute?.current_activity
+    // public bool TvIsOn => State(RemoteTVRummet!)?.Attribute?.current_activity == "TV";
     public bool TvIsOn => State(RemoteTVRummet!)?.State == "on";
 
     /// <summary>
@@ -166,10 +176,16 @@ public class TVManager : GeneratedAppBase
         {
             // We had just turned on tv with this RunScript and have a media player paused
             // First delay and wait for the TV to get ready
-            Thread.Sleep(9000);
-            CallService("media_player", "media_play", new { entity_id = _currentlyPausedMediaPlayer });
+            LogDebug("TV is turning on.. Wait 9 seconds to complete...");
+            RunIn(TimeSpan.FromSeconds(9), ()=>
+            {
+                _isTurningOnTV = false;
+                if (!MediaIsPlaying)
+                {
+                    CallService("media_player", "media_play", new { entity_id = _currentlyPausedMediaPlayer });
+                }
+            });
         }
-        _isTurningOnTV = false;
     }
 
     /// <summary>

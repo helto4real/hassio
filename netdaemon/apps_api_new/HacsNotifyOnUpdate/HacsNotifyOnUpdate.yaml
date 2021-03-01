@@ -1,2 +1,0 @@
-hacs_notify_on_update:
-  class: hacs.NotifyOnUpdate

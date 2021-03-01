@@ -3,4 +3,4 @@ motorvarmare:
     TempSensor: sensor.ute_temp
     DepartureTimeSensor: sensor.car_departure_time
     ScheduleOneWeekendsInputBoolean: input_boolean.schedule_on_weekends
-    HeaterSwitch: "switch.motorvarmare"
+    HeaterSwitch: "switch.motorvarmare_hoger"

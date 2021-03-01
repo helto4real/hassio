@@ -65,11 +65,11 @@ cards:
               left: 24.8%
               top: 47%
             type: state-label
-#          - entity: sensor.yr_symbol
-#            style:
-#              left: 40%
-#              top: 52%
-#            type: state-icon
+          - entity: sensor.light_outside
+            style:
+              left: 40%
+              top: 52%
+            type: state-label
         image: /local/img/weather_bg.jpg
       - type: picture-entity
         entity: input_select.house_mode_select
@@ -108,19 +108,19 @@ cards:
               left: 47.5%
               top: 10.5%
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_h #light.vardagsrum_fonster_hoger
+          - entity: light.vardagsrum_fonster_hoger #light.julbelysning_vardagsrum_h
             style:
               left: 17.9%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_h #vardagsrum_fonster_mitten
+          - entity: light.vardagsrum_fonster_mitten #light.julbelysning_vardagsrum_h
             style:
               left: 38.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_v #light.vardagsrum_fonster_vanster
+          - entity: light.vardagsrum_fonster_vanster #light.julbelysning_vardagsrum_v
             style:
               left: 60.5%
               top: 89.45%
@@ -202,13 +202,13 @@ cards:
               left: 70.2%
               top: 89.45%
             type: state-icon
-          - entity: light.julbelysning_kok_h #light.kok_fonster
+          - entity: light.kok_fonster #light.julbelysning_kok_h
             style:
               left: 78.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_kok_v #light.kok_lilla_fonster
+          - entity: light.kok_lilla_fonster #light.julbelysning_kok_v
             style:
               left: 92.4%
               top: 58.8%
@@ -228,7 +228,7 @@ cards:
               left: 17.5%
               top: 68%
             type: state-label
-          - entity: light.julbelysning_sovrum #light.sovrum_fonster
+          - entity: light.sovrum_fonster #light.julbelysning_sovrum
             style:
               left: 16.6%
               top: 90.2%
@@ -250,25 +250,25 @@ cards:
               left: 25.6%
               top: 90.2%
             type: state-icon
-          - entity: light.julbelysning_tvrummet #light.tvrum_fonster_hoger #light.julbelysning_vardagsrum_m
+          - entity: light.tvrum_fonster_hoger #light.julbelysning_tvrummet
             style:
               left: 49.2%
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: cover.tvrum_rullgardin_hoger #light.julbelysning_vardagsrum_m
+          - entity: cover.tvrum_rullgardin_hoger
             style:
               left: 45.2%
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_tvrummet #light.tvrum_fonster_vanster #light.julbelysning_vardagsrum_m
+          - entity: light.tvrum_fonster_vanster #light.julbelysning_tvrummet
             style:
               left: 59.8%
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: cover.tvrum_rullgardin_vanster #light.julbelysning_vardagsrum_m
+          - entity: cover.tvrum_rullgardin_vanster
             style:
               left: 55.8%
               top: 90.2%

@@ -93,7 +93,7 @@ recorder:
       - sensor.processor_use
       - binary_sensor.wash_mashine
 
-      - switch.motorvarmare
+      - switch.motorvarmare_hoger
       - sensor.light_outside
 
 logger:
@@ -109,7 +109,6 @@ history:
 
 # View all events in a logbook
 logbook:
-uilogs:
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
@@ -120,6 +119,7 @@ influxdb:
       - input_select.house_mode_select
       - media_player.melkers_tv
       - media_player.shield_tv
+
       # tracking
       - device_tracker.elin_presence
       - device_tracker.tomas_presence
@@ -129,15 +129,7 @@ influxdb:
       - sensor.occupancy
 
       # sensors of interest
-      - sensor.utetemp_temperature
-      - sensor.utetemp_humidity
       - sensor.frysnere_temperature #Frys nere
-      - sensor.kok_frys_temp_temperature
-      - sensor.sovrum_temp_temperature
-      - sensor.vardagsrum_temp
-      - sensor.sallys_rum_temp
-      - sensor.melkers_rum_temp
-      - sensor.hobbyrum_temp
       - binary_sensor.hall_dorr
       - switch.computer_tomas
       - remote.tvrummet
@@ -145,9 +137,16 @@ influxdb:
       - sensor.memory_use_percent
       - sensor.processor_use
       - binary_sensor.wash_mashine
-
-      - switch.motorvarmare
+      # Temperatures
+      - sensor.hobbyrum_temp
+      - sensor.kok_frys_temp
+      - sensor.melkers_rum_temp
+      - sensor.sallys_rum_temp
+      - sensor.sovrum_temp
+      - sensor.temp_outside
       - sensor.light_outside
+      - sensor.vardagsrum_temp
+      - switch.motorvarmare_hoger
 # Enables  map showing the location of tracked devices
 map:
 
@@ -238,7 +237,7 @@ person:
 #   username: !secret mqtt_user
 #   password: !secret mqtt_password
 
-netdaemon:
+# netdaemon:
 #cloud:
 
 # zone: !include zones.yaml

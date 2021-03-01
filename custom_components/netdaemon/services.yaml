@@ -5,6 +5,47 @@ register_service:
       description: The class that implements the service call
     method:
       description: The method to call
+
 reload_daemons:
   description: Forces the netdamon to reload the apps from the code folder. Only enabled apps are instanciated.
-  
+
+entity_create:
+  description: Create an entity
+  fields:
+    entity_id:
+      description: The entity ID of the entity
+      example: sensor.awesome
+    state:
+      description: The state of the entity
+      example: Lorem ipsum
+    icon:
+      description: The icon for the entity
+      example: "mdi:rocket-launch-outline"
+    unit:
+      description: The unit of measurement for the entity
+    attributes:
+      description: The attributes of the entity
+
+entity_update:
+  description: Create an entity
+  fields:
+    entity_id:
+      description: The entity ID of the entity
+      example: sensor.awesome
+    state:
+      description: The state of the entity
+      example: Lorem ipsum
+    icon:
+      description: The icon for the entity
+      example: "mdi:rocket-launch-outline"
+    unit:
+      description: The unit of measurement for the entity
+    attributes:
+      description: The attributes of the entity
+
+entity_remove:
+  description: Create an entity
+  fields:
+    entity_id:
+      description: The entity ID of the entity
+      example: sensor.awesome

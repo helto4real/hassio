@@ -1,6 +1,5 @@
 google_assistant:
   project_id: hellstroms-home
-  # api_key: !secret google_key
   expose_by_default: false
   entity_config:
     light.tomas_rum:
@@ -31,15 +30,15 @@ google_assistant:
       name: sallys rum
       expose: true
     light.gym_led:
-        name: gym led
-        expose: true
+      name: gym led
+      expose: true
     switch.computer_tomas:
       name: "tomas dator"
       expose: true
     switch.kaffebryggaren:
       name: kaffebryggaren
       expose: true
-    switch.motorvarmare:
+    switch.motorvarmare_hoger:
       name: "motorvärmaren"
       expose: true
     switch.kodi:

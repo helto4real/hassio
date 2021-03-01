@@ -1,3 +1,0 @@
-calendar_trash:
-    class: GoogleCalendarManager
-    calendar: calendar.ta_ut_sopor
