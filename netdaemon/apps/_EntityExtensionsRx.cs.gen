@@ -1,203 +1,37 @@
-using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using NetDaemon.Common.Reactive.Services;
 using NetDaemon.Common.Reactive;
-using NetDaemon.Common;
 
-namespace Netdaemon.Generated.Reactive
+namespace NetDaemon.Generated.Reactive
 {
     public class GeneratedAppBase : NetDaemonRxApp
     {
-        public MediaPlayerEntities MediaPlayer => new(this);
         public SensorEntities Sensor => new(this);
-        public WeatherEntities Weather => new(this);
-        public GroupEntities Group => new(this);
-        public DeviceTrackerEntities DeviceTracker => new(this);
-        public LightEntities Light => new(this);
-        public SwitchEntities Switch => new(this);
         public AutomationEntities Automation => new(this);
-        public ZoneEntities Zone => new(this);
-        public SunEntities Sun => new(this);
-        public ScriptEntity Script => new(this, new string[]{""});
-        public BinarySensorEntities BinarySensor => new(this);
-        public RemoteEntities Remote => new(this);
-        public CameraEntities Camera => new(this);
-        public InputTextEntities InputText => new(this);
-        public PersonEntities Person => new(this);
-        public LockEntities Lock => new(this);
-        public InputBooleanEntities InputBoolean => new(this);
-        public SceneEntities Scene => new(this);
-        public InputSelectEntities InputSelect => new(this);
+        public SwitchEntities Switch => new(this);
+        public DeviceTrackerEntities DeviceTracker => new(this);
         public ProximityEntities Proximity => new(this);
+        public BinarySensorEntities BinarySensor => new(this);
+        public LightEntities Light => new(this);
+        public MediaPlayerEntities MediaPlayer => new(this);
         public CalendarEntities Calendar => new(this);
-        public TimerEntities Timer => new(this);
-        public CoverEntities Cover => new(this);
+        public CameraEntities Camera => new(this);
         public InputNumberEntities InputNumber => new(this);
-    }
-
-    public partial class ScriptEntity : NetDaemon.Common.Reactive.Services.ScriptEntity
-    {
-        public ScriptEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
-        {
-        }
-
-        public void MorningScene(dynamic? data = null)
-        {
-            CallService("script", "morning_scene", serviceData, False);
-        }
-
-        public void DayScene(dynamic? data = null)
-        {
-            CallService("script", "day_scene", serviceData, False);
-        }
-
-        public void EveningScene(dynamic? data = null)
-        {
-            CallService("script", "evening_scene", serviceData, False);
-        }
-
-        public void ColorScene(dynamic? data = null)
-        {
-            CallService("script", "color_scene", serviceData, False);
-        }
-
-        public void CleaningScene(dynamic? data = null)
-        {
-            CallService("script", "cleaning_scene", serviceData, False);
-        }
-
-        public void NightScene(dynamic? data = null)
-        {
-            CallService("script", "night_scene", serviceData, False);
-        }
-
-        public void TvScene(dynamic? data = null)
-        {
-            CallService("script", "tv_scene", serviceData, False);
-        }
-
-        public void FilmScene(dynamic? data = null)
-        {
-            CallService("script", "film_scene", serviceData, False);
-        }
-
-        public void TvOffScene(dynamic? data = null)
-        {
-            CallService("script", "tv_off_scene", serviceData, False);
-        }
-
-        public void S1586350051032(dynamic? data = null)
-        {
-            CallService("script", "1586350051032", serviceData, False);
-        }
-
-        public void Setnightmode(dynamic? data = null)
-        {
-            CallService("script", "setnightmode", serviceData, False);
-        }
-
-        public void Zigbee2mqttRename(dynamic? data = null)
-        {
-            CallService("script", "zigbee2mqtt_rename", serviceData, False);
-        }
-
-        public void Zigbee2mqttRemove(dynamic? data = null)
-        {
-            CallService("script", "zigbee2mqtt_remove", serviceData, False);
-        }
-
-        public void Notify(dynamic? data = null)
-        {
-            CallService("script", "notify", serviceData, False);
-        }
-
-        public void NotifyGreet(dynamic? data = null)
-        {
-            CallService("script", "notify_greet", serviceData, False);
-        }
-    }
-
-    public partial class RemoteEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
-    {
-        public RemoteEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
-        {
-        }
-
-        public void SendCommand(dynamic? data = null)
-        {
-            CallService("remote", "send_command", serviceData, True);
-        }
-
-        public void LearnCommand(dynamic? data = null)
-        {
-            CallService("remote", "learn_command", serviceData, True);
-        }
-
-        public void DeleteCommand(dynamic? data = null)
-        {
-            CallService("remote", "delete_command", serviceData, True);
-        }
-    }
-
-    public partial class InputTextEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
-    {
-        public InputTextEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
-        {
-        }
-
-        public void Reload(dynamic? data = null)
-        {
-            CallService("input_text", "reload", serviceData, False);
-        }
-
-        public void SetValue(dynamic? data = null)
-        {
-            CallService("input_text", "set_value", serviceData, True);
-        }
-    }
-
-    public partial class InputSelectEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
-    {
-        public InputSelectEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
-        {
-        }
-
-        public void Reload(dynamic? data = null)
-        {
-            CallService("input_select", "reload", serviceData, False);
-        }
-
-        public void SelectOption(dynamic? data = null)
-        {
-            CallService("input_select", "select_option", serviceData, True);
-        }
-
-        public void SelectNext(dynamic? data = null)
-        {
-            CallService("input_select", "select_next", serviceData, True);
-        }
-
-        public void SelectPrevious(dynamic? data = null)
-        {
-            CallService("input_select", "select_previous", serviceData, True);
-        }
-
-        public void SelectFirst(dynamic? data = null)
-        {
-            CallService("input_select", "select_first", serviceData, True);
-        }
-
-        public void SelectLast(dynamic? data = null)
-        {
-            CallService("input_select", "select_last", serviceData, True);
-        }
-
-        public void SetOptions(dynamic? data = null)
-        {
-            CallService("input_select", "set_options", serviceData, True);
-        }
+        public GroupEntities Group => new(this);
+        public PersonEntities Person => new(this);
+        public ScriptEntity Script => new(this, new string[]{""});
+        public SunEntities Sun => new(this);
+        public ZoneEntities Zone => new(this);
+        public TimerEntities Timer => new(this);
+        public InputBooleanEntities InputBoolean => new(this);
+        public InputTextEntities InputText => new(this);
+        public LockEntities Lock => new(this);
+        public CoverEntities Cover => new(this);
+        public InputSelectEntities InputSelect => new(this);
+        public SceneEntities Scene => new(this);
+        public WeatherEntities Weather => new(this);
+        public RemoteEntities Remote => new(this);
+        public PersistentNotificationEntities PersistentNotification => new(this);
     }
 
     public partial class ProximityEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
@@ -207,42 +41,27 @@ namespace Netdaemon.Generated.Reactive
         }
     }
 
+    public partial class MediaPlayerEntity : NetDaemon.Common.Reactive.Services.MediaPlayerEntity
+    {
+        public MediaPlayerEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
+        {
+        }
+
+        public void Join(dynamic? data = null)
+        {
+            CallService("media_player", "join", data, false);
+        }
+
+        public void Unjoin(dynamic? data = null)
+        {
+            CallService("media_player", "unjoin", data, false);
+        }
+    }
+
     public partial class CalendarEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
     {
         public CalendarEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
         {
-        }
-    }
-
-    public partial class TimerEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
-    {
-        public TimerEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
-        {
-        }
-
-        public void Reload(dynamic? data = null)
-        {
-            CallService("timer", "reload", serviceData, False);
-        }
-
-        public void Start(dynamic? data = null)
-        {
-            CallService("timer", "start", serviceData, True);
-        }
-
-        public void Pause(dynamic? data = null)
-        {
-            CallService("timer", "pause", serviceData, True);
-        }
-
-        public void Cancel(dynamic? data = null)
-        {
-            CallService("timer", "cancel", serviceData, True);
-        }
-
-        public void Finish(dynamic? data = null)
-        {
-            CallService("timer", "finish", serviceData, True);
         }
     }
 
@@ -254,59 +73,218 @@ namespace Netdaemon.Generated.Reactive
 
         public void Reload(dynamic? data = null)
         {
-            CallService("input_number", "reload", serviceData, False);
+            CallService("input_number", "reload", data, false);
         }
 
         public void SetValue(dynamic? data = null)
         {
-            CallService("input_number", "set_value", serviceData, True);
+            CallService("input_number", "set_value", data, false);
         }
 
         public void Increment(dynamic? data = null)
         {
-            CallService("input_number", "increment", serviceData, True);
+            CallService("input_number", "increment", data, false);
         }
 
         public void Decrement(dynamic? data = null)
         {
-            CallService("input_number", "decrement", serviceData, True);
+            CallService("input_number", "decrement", data, false);
         }
     }
 
-    public partial class MediaPlayerEntities
+    public partial class ScriptEntity : NetDaemon.Common.Reactive.Services.ScriptEntity
     {
-        private readonly NetDaemonRxApp _app;
-        public MediaPlayerEntities(NetDaemonRxApp app)
+        public ScriptEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
         {
-            _app = app;
         }
 
-        public MediaPlayerEntity MelkersRum => new(_app, new string[]{"media_player.melkers_rum"});
-        public MediaPlayerEntity TvGym => new(_app, new string[]{"media_player.tv_gym"});
-        public MediaPlayerEntity PlexPlexWebChrome => new(_app, new string[]{"media_player.plex_plex_web_chrome"});
-        public MediaPlayerEntity TvNere => new(_app, new string[]{"media_player.tv_nere"});
-        public MediaPlayerEntity Nestaudio0573 => new(_app, new string[]{"media_player.nestaudio0573"});
-        public MediaPlayerEntity PlexPlexForAndroidTvShieldAndroidTv => new(_app, new string[]{"media_player.plex_plex_for_android_tv_shield_android_tv"});
-        public MediaPlayerEntity Vardagsrum => new(_app, new string[]{"media_player.vardagsrum"});
-        public MediaPlayerEntity PlexPlexCastChromecast => new(_app, new string[]{"media_player.plex_plex_cast_chromecast"});
-        public MediaPlayerEntity PlexChrome => new(_app, new string[]{"media_player.plex_chrome"});
-        public MediaPlayerEntity ShieldTv => new(_app, new string[]{"media_player.shield_tv"});
-        public MediaPlayerEntity PlexPlexWebChromeLinux2 => new(_app, new string[]{"media_player.plex_plex_web_chrome_linux_2"});
-        public MediaPlayerEntity TvRummetGh => new(_app, new string[]{"media_player.tv_rummet_gh"});
-        public MediaPlayerEntity MelkersTv => new(_app, new string[]{"media_player.melkers_tv"});
-        public MediaPlayerEntity PlexKodiAddOnLibreelec => new(_app, new string[]{"media_player.plex_kodi_add_on_libreelec"});
-        public MediaPlayerEntity PlexPlexWebChromeLinux => new(_app, new string[]{"media_player.plex_plex_web_chrome_linux"});
-        public MediaPlayerEntity PlexChrome2 => new(_app, new string[]{"media_player.plex_chrome_2"});
-        public MediaPlayerEntity PlexChromecast => new(_app, new string[]{"media_player.plex_chromecast"});
-        public MediaPlayerEntity PlexTomasIpad => new(_app, new string[]{"media_player.plex_tomas_ipad"});
-        public MediaPlayerEntity Kok => new(_app, new string[]{"media_player.kok"});
-        public MediaPlayerEntity TvUppe => new(_app, new string[]{"media_player.tv_uppe"});
-        public MediaPlayerEntity Sovrum => new(_app, new string[]{"media_player.sovrum"});
-        public MediaPlayerEntity PlexChrome3 => new(_app, new string[]{"media_player.plex_chrome_3"});
-        public MediaPlayerEntity Gym => new(_app, new string[]{"media_player.gym"});
-        public MediaPlayerEntity Huset => new(_app, new string[]{"media_player.huset"});
-        public MediaPlayerEntity SallysHogtalare => new(_app, new string[]{"media_player.sallys_hogtalare"});
-        public MediaPlayerEntity Shield => new(_app, new string[]{"media_player.shield"});
+        public void MorningScene(dynamic? data = null)
+        {
+            CallService("script", "morning_scene", data, false);
+        }
+
+        public void DayScene(dynamic? data = null)
+        {
+            CallService("script", "day_scene", data, false);
+        }
+
+        public void EveningScene(dynamic? data = null)
+        {
+            CallService("script", "evening_scene", data, false);
+        }
+
+        public void ColorScene(dynamic? data = null)
+        {
+            CallService("script", "color_scene", data, false);
+        }
+
+        public void CleaningScene(dynamic? data = null)
+        {
+            CallService("script", "cleaning_scene", data, false);
+        }
+
+        public void NightScene(dynamic? data = null)
+        {
+            CallService("script", "night_scene", data, false);
+        }
+
+        public void TvScene(dynamic? data = null)
+        {
+            CallService("script", "tv_scene", data, false);
+        }
+
+        public void FilmScene(dynamic? data = null)
+        {
+            CallService("script", "film_scene", data, false);
+        }
+
+        public void TvOffScene(dynamic? data = null)
+        {
+            CallService("script", "tv_off_scene", data, false);
+        }
+
+        public void S1586350051032(dynamic? data = null)
+        {
+            CallService("script", "1586350051032", data, false);
+        }
+
+        public void Setnightmode(dynamic? data = null)
+        {
+            CallService("script", "setnightmode", data, false);
+        }
+
+        public void Zigbee2mqttRename(dynamic? data = null)
+        {
+            CallService("script", "zigbee2mqtt_rename", data, false);
+        }
+
+        public void Zigbee2mqttRemove(dynamic? data = null)
+        {
+            CallService("script", "zigbee2mqtt_remove", data, false);
+        }
+
+        public void Notify(dynamic? data = null)
+        {
+            CallService("script", "notify", data, false);
+        }
+
+        public void NotifyGreet(dynamic? data = null)
+        {
+            CallService("script", "notify_greet", data, false);
+        }
+    }
+
+    public partial class TimerEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
+    {
+        public TimerEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
+        {
+        }
+
+        public void Reload(dynamic? data = null)
+        {
+            CallService("timer", "reload", data, false);
+        }
+
+        public void Start(dynamic? data = null)
+        {
+            CallService("timer", "start", data, false);
+        }
+
+        public void Pause(dynamic? data = null)
+        {
+            CallService("timer", "pause", data, false);
+        }
+
+        public void Cancel(dynamic? data = null)
+        {
+            CallService("timer", "cancel", data, false);
+        }
+
+        public void Finish(dynamic? data = null)
+        {
+            CallService("timer", "finish", data, false);
+        }
+    }
+
+    public partial class InputTextEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
+    {
+        public InputTextEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
+        {
+        }
+
+        public void Reload(dynamic? data = null)
+        {
+            CallService("input_text", "reload", data, false);
+        }
+
+        public void SetValue(dynamic? data = null)
+        {
+            CallService("input_text", "set_value", data, false);
+        }
+    }
+
+    public partial class InputSelectEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
+    {
+        public InputSelectEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
+        {
+        }
+
+        public void Reload(dynamic? data = null)
+        {
+            CallService("input_select", "reload", data, false);
+        }
+
+        public void SelectOption(dynamic? data = null)
+        {
+            CallService("input_select", "select_option", data, false);
+        }
+
+        public void SelectNext(dynamic? data = null)
+        {
+            CallService("input_select", "select_next", data, false);
+        }
+
+        public void SelectPrevious(dynamic? data = null)
+        {
+            CallService("input_select", "select_previous", data, false);
+        }
+
+        public void SelectFirst(dynamic? data = null)
+        {
+            CallService("input_select", "select_first", data, false);
+        }
+
+        public void SelectLast(dynamic? data = null)
+        {
+            CallService("input_select", "select_last", data, false);
+        }
+
+        public void SetOptions(dynamic? data = null)
+        {
+            CallService("input_select", "set_options", data, false);
+        }
+    }
+
+    public partial class RemoteEntity : NetDaemon.Common.Reactive.Services.RxEntityBase
+    {
+        public RemoteEntity(INetDaemonRxApp daemon, IEnumerable<string> entityIds): base(daemon, entityIds)
+        {
+        }
+
+        public void SendCommand(dynamic? data = null)
+        {
+            CallService("remote", "send_command", data, true);
+        }
+
+        public void LearnCommand(dynamic? data = null)
+        {
+            CallService("remote", "learn_command", data, true);
+        }
+
+        public void DeleteCommand(dynamic? data = null)
+        {
+            CallService("remote", "delete_command", data, true);
+        }
     }
 
     public partial class SensorEntities
@@ -317,266 +295,693 @@ namespace Netdaemon.Generated.Reactive
             _app = app;
         }
 
-        public SensorEntity GymLedUpdateState => new(_app, new string[]{"sensor.gym_led_update_state"});
-        public SensorEntity MelkersRumPirUpdateState => new(_app, new string[]{"sensor.melkers_rum_pir_update_state"});
-        public SensorEntity LightOutside => new(_app, new string[]{"sensor.light_outside"});
-        public SensorEntity JulbelysningKokVCurrent => new(_app, new string[]{"sensor.julbelysning_kok_v_current"});
-        public SensorEntity MotorvarmareHogerUpdateState => new(_app, new string[]{"sensor.motorvarmare_hoger_update_state"});
-        public SensorEntity JulbelysningKokVLinkquality => new(_app, new string[]{"sensor.julbelysning_kok_v_linkquality"});
-        public SensorEntity HouseMode => new(_app, new string[]{"sensor.house_mode"});
-        public SensorEntity SovrumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.sovrum_pir_requested_brightness_percent"});
-        public SensorEntity LasUppeBattery => new(_app, new string[]{"sensor.las_uppe_battery"});
-        public SensorEntity VardagsrumTempLinkquality => new(_app, new string[]{"sensor.vardagsrum_temp_linkquality"});
-        public SensorEntity LightOutsideIlluminance => new(_app, new string[]{"sensor.light_outside_illuminance"});
-        public SensorEntity FarstukvistLedLinkquality => new(_app, new string[]{"sensor.farstukvist_led_linkquality"});
-        public SensorEntity Ac72bc0cfe2RssiNumeric => new(_app, new string[]{"sensor.ac_72bc0cfe_2_rssi_numeric"});
-        public SensorEntity TomasRumLinkquality => new(_app, new string[]{"sensor.tomas_rum_linkquality"});
-        public SensorEntity Viking0203502038B700Humidity => new(_app, new string[]{"sensor.viking_0203502038_b7_00_humidity"});
-        public SensorEntity YtHelto => new(_app, new string[]{"sensor.yt_helto"});
-        public SensorEntity TvrumPirIlluminance => new(_app, new string[]{"sensor.tvrum_pir_illuminance"});
-        public SensorEntity NetdaemonStatus => new(_app, new string[]{"sensor.netdaemon_status"});
-        public SensorEntity TvrumRullgardinHogerUpdateState => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_update_state"});
-        public SensorEntity HallByraUpdateState => new(_app, new string[]{"sensor.hall_byra_update_state"});
-        public SensorEntity VardagsrumTempBattery => new(_app, new string[]{"sensor.vardagsrum_temp_battery"});
-        public SensorEntity JulbelysningKokHLinkquality => new(_app, new string[]{"sensor.julbelysning_kok_h_linkquality"});
-        public SensorEntity TvrumFonsterHogerUpdateState => new(_app, new string[]{"sensor.tvrum_fonster_hoger_update_state"});
-        public SensorEntity ConnectionType => new(_app, new string[]{"sensor.connection_type"});
-        public SensorEntity Ac18ce36211RssiNumeric => new(_app, new string[]{"sensor.ac_18ce362_11_rssi_numeric"});
-        public SensorEntity YtMe4le => new(_app, new string[]{"sensor.yt_me4le"});
-        public SensorEntity JulbelysningTomasRumPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_tomas_rum_power_on_behavior"});
-        public SensorEntity KokPirBattery => new(_app, new string[]{"sensor.kok_pir_battery"});
-        public SensorEntity SmG986bAudioSensor => new(_app, new string[]{"sensor.sm_g986b_audio_sensor"});
-        public SensorEntity VardagsrumFonsterHogerUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_hoger_update_state"});
-        public SensorEntity TomasRumPirUpdateState => new(_app, new string[]{"sensor.tomas_rum_pir_update_state"});
-        public SensorEntity BatteryState => new(_app, new string[]{"sensor.battery_state"});
-        public SensorEntity SallysRumTemp => new(_app, new string[]{"sensor.sallys_rum_temp"});
-        public SensorEntity Ssid => new(_app, new string[]{"sensor.ssid"});
-        public SensorEntity SmG986bPressureSensor => new(_app, new string[]{"sensor.sm_g986b_pressure_sensor"});
-        public SensorEntity SallysRumHum => new(_app, new string[]{"sensor.sallys_rum_hum"});
-        public SensorEntity Ac294734615RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_15_rssi_numeric"});
-        public SensorEntity VardagsrumFonsterMittenUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_mitten_update_state"});
-        public SensorEntity Ac81bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_81bc0cfe_1_rssi_numeric"});
-        public SensorEntity Viking0203502038B700HumidityStatus => new(_app, new string[]{"sensor.viking_0203502038_b7_00_humidity_status"});
-        public SensorEntity SmG986bNextAlarm => new(_app, new string[]{"sensor.sm_g986b_next_alarm"});
-        public SensorEntity JulbelysningVardagsrumVUpdateState => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_update_state"});
-        public SensorEntity Ac2bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_2bc0cfe_1_rssi_numeric"});
-        public SensorEntity JulbelysningKokVPower => new(_app, new string[]{"sensor.julbelysning_kok_v_power"});
-        public SensorEntity SallysRumPirBattery => new(_app, new string[]{"sensor.sallys_rum_pir_battery"});
-        public SensorEntity Ac50bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_50bc0cfe_8_rssi_numeric"});
-        public SensorEntity VardagsrumTemp => new(_app, new string[]{"sensor.vardagsrum_temp"});
-        public SensorEntity SmG975fBatteryState => new(_app, new string[]{"sensor.sm_g975f_battery_state"});
-        public SensorEntity Ac51bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_51bc0cfe_8_rssi_numeric"});
-        public SensorEntity TvrumVansterLinkquality => new(_app, new string[]{"sensor.tvrum_vanster_linkquality"});
-        public SensorEntity SmG975fBatteryLevel => new(_app, new string[]{"sensor.sm_g975f_battery_level"});
-        public SensorEntity TrappPirIlluminanceLux => new(_app, new string[]{"sensor.trapp_pir_illuminance_lux"});
-        public SensorEntity SovrumFonsterUpdateState => new(_app, new string[]{"sensor.sovrum_fonster_update_state"});
-        public SensorEntity E0x00158d00020b7df4Linkquality => new(_app, new string[]{"sensor.0x00158d00020b7df4_linkquality"});
-        public SensorEntity GymLedLinkquality => new(_app, new string[]{"sensor.gym_led_linkquality"});
-        public SensorEntity Viking0203502038B700 => new(_app, new string[]{"sensor.viking_0203502038_b7_00"});
-        public SensorEntity SallysFonsterPowerOnBehavior => new(_app, new string[]{"sensor.sallys_fonster_power_on_behavior"});
-        public SensorEntity Ac36bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_36bc0cfe_8_rssi_numeric"});
-        public SensorEntity JulbelysningKokHUpdateState => new(_app, new string[]{"sensor.julbelysning_kok_h_update_state"});
-        public SensorEntity TomasRumPirBattery => new(_app, new string[]{"sensor.tomas_rum_pir_battery"});
-        public SensorEntity SovrumPirBattery => new(_app, new string[]{"sensor.sovrum_pir_battery"});
-        public SensorEntity UteTemp => new(_app, new string[]{"sensor.ute_temp"});
-        public SensorEntity SovrumTempLinkquality => new(_app, new string[]{"sensor.sovrum_temp_linkquality"});
-        public SensorEntity TomasIpadStorage => new(_app, new string[]{"sensor.tomas_ipad_storage"});
-        public SensorEntity Ac294734616RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_16_rssi_numeric"});
-        public SensorEntity HumOutside => new(_app, new string[]{"sensor.hum_outside"});
-        public SensorEntity Ac51bc0cfe4RssiNumeric => new(_app, new string[]{"sensor.ac_51bc0cfe_4_rssi_numeric"});
-        public SensorEntity FarstukvistLedUpdateState => new(_app, new string[]{"sensor.farstukvist_led_update_state"});
-        public SensorEntity HallDorrLinkquality => new(_app, new string[]{"sensor.hall_dorr_linkquality"});
-        public SensorEntity VardagsrumPirMotionSensitivity => new(_app, new string[]{"sensor.vardagsrum_pir_motion_sensitivity"});
-        public SensorEntity HallByraLinkquality => new(_app, new string[]{"sensor.hall_byra_linkquality"});
-        public SensorEntity SallysRumPirUpdateState => new(_app, new string[]{"sensor.sallys_rum_pir_update_state"});
-        public SensorEntity SovrumByraLinkquality => new(_app, new string[]{"sensor.sovrum_byra_linkquality"});
-        public SensorEntity JulbelysningTvrummetPower => new(_app, new string[]{"sensor.julbelysning_tvrummet_power"});
-        public SensorEntity Ac34bc0cfe6RssiNumeric => new(_app, new string[]{"sensor.ac_34bc0cfe_6_rssi_numeric"});
-        public SensorEntity SmG986bProximitySensor => new(_app, new string[]{"sensor.sm_g986b_proximity_sensor"});
-        public SensorEntity JulbelysningHogerUpdateState => new(_app, new string[]{"sensor.julbelysning_hoger_update_state"});
-        public SensorEntity HobbyrumTempLinkquality => new(_app, new string[]{"sensor.hobbyrum_temp_linkquality"});
-        public SensorEntity VardagsrumPirBattery => new(_app, new string[]{"sensor.vardagsrum_pir_battery"});
-        public SensorEntity HallDorrUpdateState => new(_app, new string[]{"sensor.hall_dorr_update_state"});
-        public SensorEntity LightOutsideBattery => new(_app, new string[]{"sensor.light_outside_battery"});
-        public SensorEntity Ac67bc0cfe4RssiNumeric => new(_app, new string[]{"sensor.ac_67bc0cfe_4_rssi_numeric"});
-        public SensorEntity DiodTemp => new(_app, new string[]{"sensor.diod_temp"});
-        public SensorEntity MelkersRumTempHumidity => new(_app, new string[]{"sensor.melkers_rum_temp_humidity"});
-        public SensorEntity Viking0203502038B700BatteryNumeric => new(_app, new string[]{"sensor.viking_0203502038_b7_00_battery_numeric"});
-        public SensorEntity KokPirIlluminance => new(_app, new string[]{"sensor.kok_pir_illuminance"});
-        public SensorEntity Zigbee2mqttBridgeState => new(_app, new string[]{"sensor.zigbee2mqtt_bridge_state"});
-        public SensorEntity SnapshotBackup => new(_app, new string[]{"sensor.snapshot_backup"});
         public SensorEntity VardagsrumPirLinkquality => new(_app, new string[]{"sensor.vardagsrum_pir_linkquality"});
-        public SensorEntity BatteryLevel => new(_app, new string[]{"sensor.battery_level"});
-        public SensorEntity MemoryUsePercent => new(_app, new string[]{"sensor.memory_use_percent"});
-        public SensorEntity TrappPirBattery => new(_app, new string[]{"sensor.trapp_pir_battery"});
-        public SensorEntity Viking028119700BatteryNumeric => new(_app, new string[]{"sensor.viking_02811_97_00_battery_numeric"});
-        public SensorEntity SmG986bLastReboot => new(_app, new string[]{"sensor.sm_g986b_last_reboot"});
-        public SensorEntity HobbyrumTemp => new(_app, new string[]{"sensor.hobbyrum_temp"});
-        public SensorEntity TomasRumUpdateState => new(_app, new string[]{"sensor.tomas_rum_update_state"});
-        public SensorEntity KokFrysTempLinkquality => new(_app, new string[]{"sensor.kok_frys_temp_linkquality"});
-        public SensorEntity MelkersRumTemp => new(_app, new string[]{"sensor.melkers_rum_temp"});
-        public SensorEntity TomasIpadActivity => new(_app, new string[]{"sensor.tomas_ipad_activity"});
-        public SensorEntity VardagsrumPirIlluminanceLux => new(_app, new string[]{"sensor.vardagsrum_pir_illuminance_lux"});
-        public SensorEntity TomasRumPirLinkquality => new(_app, new string[]{"sensor.tomas_rum_pir_linkquality"});
-        public SensorEntity SmG986bDoNotDisturbSensor => new(_app, new string[]{"sensor.sm_g986b_do_not_disturb_sensor"});
-        public SensorEntity VardagsrumPirIlluminance => new(_app, new string[]{"sensor.vardagsrum_pir_illuminance"});
-        public SensorEntity SallysFonsterLinkquality => new(_app, new string[]{"sensor.sallys_fonster_linkquality"});
-        public SensorEntity Awesome => new(_app, new string[]{"sensor.awesome"});
-        public SensorEntity TvrumPirIlluminanceLux => new(_app, new string[]{"sensor.tvrum_pir_illuminance_lux"});
-        public SensorEntity SmG986bWifiConnection => new(_app, new string[]{"sensor.sm_g986b_wifi_connection"});
-        public SensorEntity JulbelysningTvrummetLinkquality => new(_app, new string[]{"sensor.julbelysning_tvrummet_linkquality"});
-        public SensorEntity JulbelysningHogerLinkquality => new(_app, new string[]{"sensor.julbelysning_hoger_linkquality"});
-        public SensorEntity VardagsrumPirOccupancyTimeout => new(_app, new string[]{"sensor.vardagsrum_pir_occupancy_timeout"});
-        public SensorEntity SmG986bBluetoothConnection => new(_app, new string[]{"sensor.sm_g986b_bluetooth_connection"});
-        public SensorEntity SmG986bStorageSensor => new(_app, new string[]{"sensor.sm_g986b_storage_sensor"});
-        public SensorEntity TrappPirLinkquality => new(_app, new string[]{"sensor.trapp_pir_linkquality"});
-        public SensorEntity SmG975fGeocodedLocation => new(_app, new string[]{"sensor.sm_g975f_geocoded_location"});
-        public SensorEntity JulbelysningVardagsrumHPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_vardagsrum_h_power_on_behavior"});
-        public SensorEntity KokFonsterLillaUpdateState => new(_app, new string[]{"sensor.kok_fonster_lilla_update_state"});
-        public SensorEntity SmG986bGeocodedLocation => new(_app, new string[]{"sensor.sm_g986b_geocoded_location"});
-        public SensorEntity SmG986bBatteryState => new(_app, new string[]{"sensor.sm_g986b_battery_state"});
-        public SensorEntity SmG986bBatteryLevel => new(_app, new string[]{"sensor.sm_g986b_battery_level"});
-        public SensorEntity YtQg8r => new(_app, new string[]{"sensor.yt_qg8r"});
-        public SensorEntity SovrumTempHumidity => new(_app, new string[]{"sensor.sovrum_temp_humidity"});
-        public SensorEntity Viking0203502038B700Temperature => new(_app, new string[]{"sensor.viking_0203502038_b7_00_temperature"});
-        public SensorEntity SovrumByraUpdateState => new(_app, new string[]{"sensor.sovrum_byra_update_state"});
-        public SensorEntity Ac15bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_15bc0cfe_1_rssi_numeric"});
-        public SensorEntity CoordinatorVersion => new(_app, new string[]{"sensor.coordinator_version"});
-        public SensorEntity E0x00158d0001c09b01Linkquality => new(_app, new string[]{"sensor.0x00158d0001c09b01_linkquality"});
-        public SensorEntity TvrumFonsterVansterUpdateState => new(_app, new string[]{"sensor.tvrum_fonster_vanster_update_state"});
-        public SensorEntity KrisinformationVasternorrland => new(_app, new string[]{"sensor.krisinformation_vasternorrland"});
-        public SensorEntity KokPirLinkquality => new(_app, new string[]{"sensor.kok_pir_linkquality"});
-        public SensorEntity SallysRumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.sallys_rum_pir_requested_brightness_level"});
-        public SensorEntity KokPirIlluminanceLux => new(_app, new string[]{"sensor.kok_pir_illuminance_lux"});
-        public SensorEntity TvrummVaggUpdateState => new(_app, new string[]{"sensor.tvrumm_vagg_update_state"});
-        public SensorEntity MelkersRumTempLinkquality => new(_app, new string[]{"sensor.melkers_rum_temp_linkquality"});
-        public SensorEntity Ac93bc0cfe2RssiNumeric => new(_app, new string[]{"sensor.ac_93bc0cfe_2_rssi_numeric"});
-        public SensorEntity KokFonsterUpdateState => new(_app, new string[]{"sensor.kok_fonster_update_state"});
-        public SensorEntity E0x00158d00020b7df4Battery => new(_app, new string[]{"sensor.0x00158d00020b7df4_battery"});
-        public SensorEntity LastBoot => new(_app, new string[]{"sensor.last_boot"});
-        public SensorEntity Viking02811A700Temperature => new(_app, new string[]{"sensor.viking_02811_a7_00_temperature"});
-        public SensorEntity JulbelysningTomasRumUpdateState => new(_app, new string[]{"sensor.julbelysning_tomas_rum_update_state"});
-        public SensorEntity Viking028119700RssiNumeric => new(_app, new string[]{"sensor.viking_02811_97_00_rssi_numeric"});
-        public SensorEntity MotorvarmareHogerLinkquality => new(_app, new string[]{"sensor.motorvarmare_hoger_linkquality"});
-        public SensorEntity Viking02811A700RssiNumeric => new(_app, new string[]{"sensor.viking_02811_a7_00_rssi_numeric"});
-        public SensorEntity SmG975fWifiConnection => new(_app, new string[]{"sensor.sm_g975f_wifi_connection"});
-        public SensorEntity Viking02811A700BatteryNumeric => new(_app, new string[]{"sensor.viking_02811_a7_00_battery_numeric"});
-        public SensorEntity Ac44bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_44bc0cfe_1_rssi_numeric"});
-        public SensorEntity UteTempBattery => new(_app, new string[]{"sensor.ute_temp_battery"});
-        public SensorEntity UteHum => new(_app, new string[]{"sensor.ute_hum"});
-        public SensorEntity NetworkOutWlp2s0 => new(_app, new string[]{"sensor.network_out_wlp2s0"});
-        public SensorEntity TvrumRullgardinVansterUpdateState => new(_app, new string[]{"sensor.tvrum_rullgardin_vanster_update_state"});
-        public SensorEntity SmG986bLightSensor => new(_app, new string[]{"sensor.sm_g986b_light_sensor"});
-        public SensorEntity Load15m => new(_app, new string[]{"sensor.load_15m"});
-        public SensorEntity TempOutside => new(_app, new string[]{"sensor.temp_outside"});
-        public SensorEntity JulbelysningKokVVoltage => new(_app, new string[]{"sensor.julbelysning_kok_v_voltage"});
-        public SensorEntity UteTempLinkquality => new(_app, new string[]{"sensor.ute_temp_linkquality"});
-        public SensorEntity SallysRumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.sallys_rum_pir_requested_brightness_percent"});
-        public SensorEntity FrysnereTemperature => new(_app, new string[]{"sensor.frysnere_temperature"});
-        public SensorEntity Ac55bc0cfe7RssiNumeric => new(_app, new string[]{"sensor.ac_55bc0cfe_7_rssi_numeric"});
-        public SensorEntity TomasRumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.tomas_rum_pir_requested_brightness_level"});
-        public SensorEntity PlexPlex => new(_app, new string[]{"sensor.plex_plex"});
-        public SensorEntity HobbyrumTempHum => new(_app, new string[]{"sensor.hobbyrum_temp_hum"});
-        public SensorEntity VardagsrumPirTemperature => new(_app, new string[]{"sensor.vardagsrum_pir_temperature"});
-        public SensorEntity VardagsrumFonsterVansterUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_vanster_update_state"});
-        public SensorEntity JulbelysningKokVEnergy => new(_app, new string[]{"sensor.julbelysning_kok_v_energy"});
-        public SensorEntity JulbelysningKokHPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_kok_h_power_on_behavior"});
-        public SensorEntity TvrumPirBattery => new(_app, new string[]{"sensor.tvrum_pir_battery"});
-        public SensorEntity MelkersRumPirOccupancyRequestedBrightnessPercent => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_requested_brightness_percent"});
-        public SensorEntity TomasIpadConnectionType => new(_app, new string[]{"sensor.tomas_ipad_connection_type"});
-        public SensorEntity SovrumTempBattery => new(_app, new string[]{"sensor.sovrum_temp_battery"});
-        public SensorEntity TomasIpadStorage2 => new(_app, new string[]{"sensor.tomas_ipad_storage_2"});
+        public SensorEntity TvrumCubeActionFromSide => new(_app, new string[]{"sensor.tvrum_cube_action_from_side"});
+        public SensorEntity SmG975fBatteryLevel => new(_app, new string[]{"sensor.sm_g975f_battery_level"});
+        public SensorEntity VardagsrumTemp => new(_app, new string[]{"sensor.vardagsrum_temp"});
         public SensorEntity TvrumPirLinkquality => new(_app, new string[]{"sensor.tvrum_pir_linkquality"});
-        public SensorEntity TvrumHogerLinkquality => new(_app, new string[]{"sensor.tvrum_hoger_linkquality"});
-        public SensorEntity VardagsrumTempHumidity => new(_app, new string[]{"sensor.vardagsrum_temp_humidity"});
-        public SensorEntity KokFrysTempHumidity => new(_app, new string[]{"sensor.kok_frys_temp_humidity"});
-        public SensorEntity JulbelysningTomasRumLinkquality => new(_app, new string[]{"sensor.julbelysning_tomas_rum_linkquality"});
-        public SensorEntity SovrumPirUpdateState => new(_app, new string[]{"sensor.sovrum_pir_update_state"});
-        public SensorEntity SallysRumPirLinkquality => new(_app, new string[]{"sensor.sallys_rum_pir_linkquality"});
-        public SensorEntity Ac52bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_52bc0cfe_1_rssi_numeric"});
-        public SensorEntity Hacs => new(_app, new string[]{"sensor.hacs"});
-        public SensorEntity SovrumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.sovrum_pir_requested_brightness_level"});
-        public SensorEntity TomasIpadGeocodedLocation => new(_app, new string[]{"sensor.tomas_ipad_geocoded_location"});
-        public SensorEntity Viking028119700 => new(_app, new string[]{"sensor.viking_02811_97_00"});
-        public SensorEntity MelkersFonsterUpdateState => new(_app, new string[]{"sensor.melkers_fonster_update_state"});
+        public SensorEntity ConnectionType => new(_app, new string[]{"sensor.connection_type"});
+        public SensorEntity HallDorrLinkquality => new(_app, new string[]{"sensor.hall_dorr_linkquality"});
         public SensorEntity MelkersRumPirOccupancyLinkquality => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_linkquality"});
-        public SensorEntity SovrumPirLinkquality => new(_app, new string[]{"sensor.sovrum_pir_linkquality"});
-        public SensorEntity Zigbee2mqttVersion => new(_app, new string[]{"sensor.zigbee2mqtt_version"});
-        public SensorEntity VardagsrumVansterLinkquality => new(_app, new string[]{"sensor.vardagsrum_vanster_linkquality"});
-        public SensorEntity CarDepartureTime => new(_app, new string[]{"sensor.car_departure_time"});
-        public SensorEntity KokFrysTemp => new(_app, new string[]{"sensor.kok_frys_temp"});
-        public SensorEntity Ac18ce36212RssiNumeric => new(_app, new string[]{"sensor.ac_18ce362_12_rssi_numeric"});
-        public SensorEntity Viking028119700Temperature => new(_app, new string[]{"sensor.viking_02811_97_00_temperature"});
-        public SensorEntity TomasIpadBatteryLevel => new(_app, new string[]{"sensor.tomas_ipad_battery_level"});
-        public SensorEntity JulbelysningVardagsrumVLinkquality => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_linkquality"});
-        public SensorEntity MelkersRumPirOccupancyBattery => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_battery"});
-        public SensorEntity GeocodedLocation => new(_app, new string[]{"sensor.geocoded_location"});
-        public SensorEntity SallysFonsterUpdateState => new(_app, new string[]{"sensor.sallys_fonster_update_state"});
-        public SensorEntity Bssid => new(_app, new string[]{"sensor.bssid"});
-        public SensorEntity SovrumFonsterLinkquality => new(_app, new string[]{"sensor.sovrum_fonster_linkquality"});
-        public SensorEntity VardagsrumMittenLinkquality => new(_app, new string[]{"sensor.vardagsrum_mitten_linkquality"});
-        public SensorEntity SovrumTemp => new(_app, new string[]{"sensor.sovrum_temp"});
-        public SensorEntity JulbelysningTvrummetCurrent => new(_app, new string[]{"sensor.julbelysning_tvrummet_current"});
-        public SensorEntity TomasRumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.tomas_rum_pir_requested_brightness_percent"});
-        public SensorEntity TvrumCubeBatt => new(_app, new string[]{"sensor.tvrum_cube_batt"});
-        public SensorEntity Load5m => new(_app, new string[]{"sensor.load_5m"});
-        public SensorEntity TvrumCube => new(_app, new string[]{"sensor.tvrum_cube"});
-        public SensorEntity TomasIpadBssid => new(_app, new string[]{"sensor.tomas_ipad_bssid"});
-        public SensorEntity LastUpdateTrigger => new(_app, new string[]{"sensor.last_update_trigger"});
-        public SensorEntity KokFrysTempBattery => new(_app, new string[]{"sensor.kok_frys_temp_battery"});
-        public SensorEntity KokFonsterLinkquality => new(_app, new string[]{"sensor.kok_fonster_linkquality"});
-        public SensorEntity SallysRumTempBatt => new(_app, new string[]{"sensor.sallys_rum_temp_batt"});
-        public SensorEntity TvrummVaggLinkquality => new(_app, new string[]{"sensor.tvrumm_vagg_linkquality"});
-        public SensorEntity Ac39bc0cfe7RssiNumeric => new(_app, new string[]{"sensor.ac_39bc0cfe_7_rssi_numeric"});
-        public SensorEntity KokFonsterLillaLinkquality => new(_app, new string[]{"sensor.kok_fonster_lilla_linkquality"});
-        public SensorEntity MelkersRumTempBattery => new(_app, new string[]{"sensor.melkers_rum_temp_battery"});
-        public SensorEntity MotorvarmareHogerLinkqualityOld => new(_app, new string[]{"sensor.motorvarmare_hoger_linkquality_old"});
-        public SensorEntity MelkersFonsterLinkquality => new(_app, new string[]{"sensor.melkers_fonster_linkquality"});
-        public SensorEntity VardagsrumPirUpdateState => new(_app, new string[]{"sensor.vardagsrum_pir_update_state"});
-        public SensorEntity Viking0203502038B700RssiNumeric => new(_app, new string[]{"sensor.viking_0203502038_b7_00_rssi_numeric"});
-        public SensorEntity LightOutsideLinkquality => new(_app, new string[]{"sensor.light_outside_linkquality"});
-        public SensorEntity MelkersRumPirOccupancyRequestedBrightnessLevel => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_requested_brightness_level"});
-        public SensorEntity DiskUsePercentHome => new(_app, new string[]{"sensor.disk_use_percent_home"});
-        public SensorEntity TvrumRullgardinHogerLinkquality => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_linkquality"});
-        public SensorEntity TomasIpadLastUpdateTrigger => new(_app, new string[]{"sensor.tomas_ipad_last_update_trigger"});
-        public SensorEntity TrappPirIlluminance => new(_app, new string[]{"sensor.trapp_pir_illuminance"});
-        public SensorEntity TomasIpadSsid => new(_app, new string[]{"sensor.tomas_ipad_ssid"});
-        public SensorEntity MyfitnesspalHelto4real => new(_app, new string[]{"sensor.myfitnesspal_helto4real"});
-        public SensorEntity TomasIpadBatteryState => new(_app, new string[]{"sensor.tomas_ipad_battery_state"});
-        public SensorEntity TvrumRullgardinVansterBattery => new(_app, new string[]{"sensor.tvrum_rullgardin_vanster_battery"});
-        public SensorEntity HobbyrumTempBattery => new(_app, new string[]{"sensor.hobbyrum_temp_battery"});
-        public SensorEntity SmG986bBatteryHealth => new(_app, new string[]{"sensor.sm_g986b_battery_health"});
-        public SensorEntity VardagsrumHogerLinkquality => new(_app, new string[]{"sensor.vardagsrum_hoger_linkquality"});
-        public SensorEntity Activity => new(_app, new string[]{"sensor.activity"});
-        public SensorEntity TvrumBakgrundTvLinkquality => new(_app, new string[]{"sensor.tvrum_bakgrund_tv_linkquality"});
-        public SensorEntity JulbelysningVardagsrumVPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_power_on_behavior"});
-        public SensorEntity JulbelysningTvrummetEnergy => new(_app, new string[]{"sensor.julbelysning_tvrummet_energy"});
-        public SensorEntity YtPewdiepie => new(_app, new string[]{"sensor.yt_pewdiepie"});
-        public SensorEntity Ac29bc0cfe6RssiNumeric => new(_app, new string[]{"sensor.ac_29bc0cfe_6_rssi_numeric"});
-        public SensorEntity TvrumRullgardinHogerBattery => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_battery"});
-        public SensorEntity TvrumCubeLinkquality => new(_app, new string[]{"sensor.tvrum_cube_linkquality"});
-        public SensorEntity LasUppeLinkquality => new(_app, new string[]{"sensor.las_uppe_linkquality"});
-        public SensorEntity SmG986bChargerType => new(_app, new string[]{"sensor.sm_g986b_charger_type"});
-        public SensorEntity MotorvarmareHogerUpdateStateOld => new(_app, new string[]{"sensor.motorvarmare_hoger_update_state_old"});
-        public SensorEntity Ac294734614RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_14_rssi_numeric"});
-        public SensorEntity TvrumBakgrundTvUpdateState => new(_app, new string[]{"sensor.tvrum_bakgrund_tv_update_state"});
-        public SensorEntity ProcessorUse => new(_app, new string[]{"sensor.processor_use"});
-        public SensorEntity Ac63bc0cfe9RssiNumeric => new(_app, new string[]{"sensor.ac_63bc0cfe_9_rssi_numeric"});
-        public SensorEntity MelkersFonsterPowerOnBehavior => new(_app, new string[]{"sensor.melkers_fonster_power_on_behavior"});
+        public SensorEntity TvrumCubeActionAngle => new(_app, new string[]{"sensor.tvrum_cube_action_angle"});
+        public SensorEntity SmG986bWifiConnection => new(_app, new string[]{"sensor.sm_g986b_wifi_connection"});
         public SensorEntity JulbelysningTvrummetVoltage => new(_app, new string[]{"sensor.julbelysning_tvrummet_voltage"});
-        public SensorEntity Load1m => new(_app, new string[]{"sensor.load_1m"});
+        public SensorEntity Viking0203502038B700HumidityStatus => new(_app, new string[]{"sensor.viking_0203502038_b7_00_humidity_status"});
+        public SensorEntity MyfitnesspalHelto4real => new(_app, new string[]{"sensor.myfitnesspal_helto4real"});
+        public SensorEntity TvrumPirTemperature => new(_app, new string[]{"sensor.tvrum_pir_temperature"});
+        public SensorEntity Viking02811A700BatteryNumeric => new(_app, new string[]{"sensor.viking_02811_a7_00_battery_numeric"});
+        public SensorEntity YtMe4le => new(_app, new string[]{"sensor.yt_me4le"});
+        public SensorEntity TvrumCubeBatt => new(_app, new string[]{"sensor.tvrum_cube_batt"});
+        public SensorEntity Viking0203502038B700Humidity => new(_app, new string[]{"sensor.viking_0203502038_b7_00_humidity"});
+        public SensorEntity TvrumRullgardinHogerBattery => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_battery"});
+        public SensorEntity MemoryUsePercent => new(_app, new string[]{"sensor.memory_use_percent"});
+        public SensorEntity KokFrysTempVoltage => new(_app, new string[]{"sensor.kok_frys_temp_voltage"});
+        public SensorEntity SmG986bLastReboot => new(_app, new string[]{"sensor.sm_g986b_last_reboot"});
+        public SensorEntity TvrumPirIlluminance => new(_app, new string[]{"sensor.tvrum_pir_illuminance"});
+        public SensorEntity Ac81bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_81bc0cfe_1_rssi_numeric"});
+        public SensorEntity Viking0203502038B700 => new(_app, new string[]{"sensor.viking_0203502038_b7_00"});
+        public SensorEntity MotorvarmareHogerLinkquality => new(_app, new string[]{"sensor.motorvarmare_hoger_linkquality"});
+        public SensorEntity HobbyrumTempBattery => new(_app, new string[]{"sensor.hobbyrum_temp_battery"});
+        public SensorEntity KokFrysTemp => new(_app, new string[]{"sensor.kok_frys_temp"});
+        public SensorEntity SnapshotBackup => new(_app, new string[]{"sensor.snapshot_backup"});
+        public SensorEntity TrappPirIlluminance => new(_app, new string[]{"sensor.trapp_pir_illuminance"});
+        public SensorEntity SmG986bStorageSensor => new(_app, new string[]{"sensor.sm_g986b_storage_sensor"});
+        public SensorEntity KokPirBattery => new(_app, new string[]{"sensor.kok_pir_battery"});
+        public SensorEntity HobbyrumTempVoltage => new(_app, new string[]{"sensor.hobbyrum_temp_voltage"});
+        public SensorEntity TvrummVaggLinkquality => new(_app, new string[]{"sensor.tvrumm_vagg_linkquality"});
+        public SensorEntity TomasIpadStorage => new(_app, new string[]{"sensor.tomas_ipad_storage"});
+        public SensorEntity KokFonsterLillaUpdateState => new(_app, new string[]{"sensor.kok_fonster_lilla_update_state"});
+        public SensorEntity MelkersRumPirUpdateState => new(_app, new string[]{"sensor.melkers_rum_pir_update_state"});
+        public SensorEntity KokPirIlluminanceLux => new(_app, new string[]{"sensor.kok_pir_illuminance_lux"});
+        public SensorEntity PlexPlex => new(_app, new string[]{"sensor.plex_plex"});
+        public SensorEntity VardagsrumPirTemperature => new(_app, new string[]{"sensor.vardagsrum_pir_temperature"});
+        public SensorEntity Ac44bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_44bc0cfe_1_rssi_numeric"});
+        public SensorEntity VardagsrumPirBattery => new(_app, new string[]{"sensor.vardagsrum_pir_battery"});
+        public SensorEntity E0x00158d0001c09b01Linkquality => new(_app, new string[]{"sensor.0x00158d0001c09b01_linkquality"});
+        public SensorEntity SmG986bPressureSensor => new(_app, new string[]{"sensor.sm_g986b_pressure_sensor"});
+        public SensorEntity VardagsrumFonsterMittenUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_mitten_update_state"});
+        public SensorEntity SmG986bBatteryTemperature => new(_app, new string[]{"sensor.sm_g986b_battery_temperature"});
+        public SensorEntity TrappPirVoltage => new(_app, new string[]{"sensor.trapp_pir_voltage"});
+        public SensorEntity TempOutside => new(_app, new string[]{"sensor.temp_outside"});
+        public SensorEntity SovrumByraLinkquality => new(_app, new string[]{"sensor.sovrum_byra_linkquality"});
+        public SensorEntity TvrumFonsterHogerUpdateState => new(_app, new string[]{"sensor.tvrum_fonster_hoger_update_state"});
+        public SensorEntity TrappPirBattery => new(_app, new string[]{"sensor.trapp_pir_battery"});
+        public SensorEntity JulbelysningHogerUpdateState => new(_app, new string[]{"sensor.julbelysning_hoger_update_state"});
+        public SensorEntity JulbelysningVardagsrumVLinkquality => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_linkquality"});
+        public SensorEntity SmG975fBatteryState => new(_app, new string[]{"sensor.sm_g975f_battery_state"});
+        public SensorEntity KokPirTemperature => new(_app, new string[]{"sensor.kok_pir_temperature"});
+        public SensorEntity KokFrysTempBattery => new(_app, new string[]{"sensor.kok_frys_temp_battery"});
+        public SensorEntity Zigbee2mqttBridgeState => new(_app, new string[]{"sensor.zigbee2mqtt_bridge_state"});
+        public SensorEntity TomasRumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.tomas_rum_pir_requested_brightness_level"});
+        public SensorEntity SallysRumPirLinkquality => new(_app, new string[]{"sensor.sallys_rum_pir_linkquality"});
+        public SensorEntity JulbelysningKokVVoltage => new(_app, new string[]{"sensor.julbelysning_kok_v_voltage"});
+        public SensorEntity Ac52bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_52bc0cfe_1_rssi_numeric"});
+        public SensorEntity SovrumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.sovrum_pir_requested_brightness_percent"});
+        public SensorEntity HobbyrumTempHum => new(_app, new string[]{"sensor.hobbyrum_temp_hum"});
+        public SensorEntity MotorvarmareHogerUpdateState => new(_app, new string[]{"sensor.motorvarmare_hoger_update_state"});
+        public SensorEntity TomasIpadGeocodedLocation => new(_app, new string[]{"sensor.tomas_ipad_geocoded_location"});
+        public SensorEntity BatteryState => new(_app, new string[]{"sensor.battery_state"});
+        public SensorEntity TvrumRullgardinHogerUpdateState => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_update_state"});
+        public SensorEntity UteTemp => new(_app, new string[]{"sensor.ute_temp"});
+        public SensorEntity TomasIpadConnectionType => new(_app, new string[]{"sensor.tomas_ipad_connection_type"});
+        public SensorEntity TomasIpadBssid => new(_app, new string[]{"sensor.tomas_ipad_bssid"});
+        public SensorEntity KokPirLinkquality => new(_app, new string[]{"sensor.kok_pir_linkquality"});
+        public SensorEntity LasUppeLinkquality => new(_app, new string[]{"sensor.las_uppe_linkquality"});
+        public SensorEntity TvrumFonsterVansterUpdateState => new(_app, new string[]{"sensor.tvrum_fonster_vanster_update_state"});
+        public SensorEntity SallysRumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.sallys_rum_pir_requested_brightness_percent"});
+        public SensorEntity TrappPirIlluminanceLux => new(_app, new string[]{"sensor.trapp_pir_illuminance_lux"});
+        public SensorEntity TomasRumUpdateState => new(_app, new string[]{"sensor.tomas_rum_update_state"});
+        public SensorEntity LightOutsideIlluminance => new(_app, new string[]{"sensor.light_outside_illuminance"});
+        public SensorEntity LightOutsideLinkquality => new(_app, new string[]{"sensor.light_outside_linkquality"});
+        public SensorEntity VardagsrumTempVoltage => new(_app, new string[]{"sensor.vardagsrum_temp_voltage"});
+        public SensorEntity SovrumByraUpdateState => new(_app, new string[]{"sensor.sovrum_byra_update_state"});
+        public SensorEntity LightOutside => new(_app, new string[]{"sensor.light_outside"});
+        public SensorEntity JulbelysningHogerLinkquality => new(_app, new string[]{"sensor.julbelysning_hoger_linkquality"});
+        public SensorEntity CoordinatorVersion => new(_app, new string[]{"sensor.coordinator_version"});
+        public SensorEntity GeocodedLocation => new(_app, new string[]{"sensor.geocoded_location"});
+        public SensorEntity DiskUsePercentHome => new(_app, new string[]{"sensor.disk_use_percent_home"});
+        public SensorEntity TvrumRullgardinVansterUpdateState => new(_app, new string[]{"sensor.tvrum_rullgardin_vanster_update_state"});
+        public SensorEntity UteTempBattery => new(_app, new string[]{"sensor.ute_temp_battery"});
+        public SensorEntity MelkersRumTemp => new(_app, new string[]{"sensor.melkers_rum_temp"});
+        public SensorEntity MelkersFonsterPowerOnBehavior => new(_app, new string[]{"sensor.melkers_fonster_power_on_behavior"});
+        public SensorEntity Awesome => new(_app, new string[]{"sensor.awesome"});
         public SensorEntity TvrumRullgardinVansterLinkquality => new(_app, new string[]{"sensor.tvrum_rullgardin_vanster_linkquality"});
+        public SensorEntity JulbelysningVardagsrumHPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_vardagsrum_h_power_on_behavior"});
+        public SensorEntity SallysRumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.sallys_rum_pir_requested_brightness_level"});
+        public SensorEntity JulbelysningVardagsrumVUpdateState => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_update_state"});
+        public SensorEntity SallysRumTempBatt => new(_app, new string[]{"sensor.sallys_rum_temp_batt"});
+        public SensorEntity JulbelysningKokVEnergy => new(_app, new string[]{"sensor.julbelysning_kok_v_energy"});
+        public SensorEntity TomasIpadSsid => new(_app, new string[]{"sensor.tomas_ipad_ssid"});
+        public SensorEntity Activity => new(_app, new string[]{"sensor.activity"});
+        public SensorEntity Ac294734615RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_15_rssi_numeric"});
+        public SensorEntity LastBoot => new(_app, new string[]{"sensor.last_boot"});
+        public SensorEntity Ac55bc0cfe7RssiNumeric => new(_app, new string[]{"sensor.ac_55bc0cfe_7_rssi_numeric"});
+        public SensorEntity JulbelysningVardagsrumVPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_vardagsrum_v_power_on_behavior"});
+        public SensorEntity JulbelysningTomasRumLinkquality => new(_app, new string[]{"sensor.julbelysning_tomas_rum_linkquality"});
+        public SensorEntity SallysRumHum => new(_app, new string[]{"sensor.sallys_rum_hum"});
+        public SensorEntity Viking02811A700RssiNumeric => new(_app, new string[]{"sensor.viking_02811_a7_00_rssi_numeric"});
+        public SensorEntity YtQg8r => new(_app, new string[]{"sensor.yt_qg8r"});
+        public SensorEntity Ac29bc0cfe6RssiNumeric => new(_app, new string[]{"sensor.ac_29bc0cfe_6_rssi_numeric"});
+        public SensorEntity JulbelysningTvrummetLinkquality => new(_app, new string[]{"sensor.julbelysning_tvrummet_linkquality"});
+        public SensorEntity Viking0203502038B700RssiNumeric => new(_app, new string[]{"sensor.viking_0203502038_b7_00_rssi_numeric"});
+        public SensorEntity TomasIpadBatteryState => new(_app, new string[]{"sensor.tomas_ipad_battery_state"});
+        public SensorEntity FarstukvistLedUpdateState => new(_app, new string[]{"sensor.farstukvist_led_update_state"});
+        public SensorEntity Viking028119700RssiNumeric => new(_app, new string[]{"sensor.viking_02811_97_00_rssi_numeric"});
+        public SensorEntity Ac2bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_2bc0cfe_1_rssi_numeric"});
+        public SensorEntity VardagsrumVansterLinkquality => new(_app, new string[]{"sensor.vardagsrum_vanster_linkquality"});
+        public SensorEntity VardagsrumPirOccupancyTimeout => new(_app, new string[]{"sensor.vardagsrum_pir_occupancy_timeout"});
+        public SensorEntity Ac93bc0cfe2RssiNumeric => new(_app, new string[]{"sensor.ac_93bc0cfe_2_rssi_numeric"});
+        public SensorEntity JulbelysningTomasRumUpdateState => new(_app, new string[]{"sensor.julbelysning_tomas_rum_update_state"});
+        public SensorEntity TvrummVaggUpdateState => new(_app, new string[]{"sensor.tvrumm_vagg_update_state"});
+        public SensorEntity SmG975fGeocodedLocation => new(_app, new string[]{"sensor.sm_g975f_geocoded_location"});
+        public SensorEntity JulbelysningKokHPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_kok_h_power_on_behavior"});
+        public SensorEntity Ac18ce36211RssiNumeric => new(_app, new string[]{"sensor.ac_18ce362_11_rssi_numeric"});
+        public SensorEntity Viking028119700 => new(_app, new string[]{"sensor.viking_02811_97_00"});
+        public SensorEntity SmG986bBatteryHealth => new(_app, new string[]{"sensor.sm_g986b_battery_health"});
+        public SensorEntity MelkersRumTempHumidity => new(_app, new string[]{"sensor.melkers_rum_temp_humidity"});
+        public SensorEntity SovrumPirBattery => new(_app, new string[]{"sensor.sovrum_pir_battery"});
+        public SensorEntity Load5m => new(_app, new string[]{"sensor.load_5m"});
+        public SensorEntity Viking0203502038B700Temperature => new(_app, new string[]{"sensor.viking_0203502038_b7_00_temperature"});
+        public SensorEntity TvrumPirIlluminanceLux => new(_app, new string[]{"sensor.tvrum_pir_illuminance_lux"});
+        public SensorEntity MelkersRumPirOccupancyRequestedBrightnessPercent => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_requested_brightness_percent"});
+        public SensorEntity TvrumBakgrundTvLinkquality => new(_app, new string[]{"sensor.tvrum_bakgrund_tv_linkquality"});
+        public SensorEntity Ac51bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_51bc0cfe_8_rssi_numeric"});
+        public SensorEntity SovrumFonsterUpdateState => new(_app, new string[]{"sensor.sovrum_fonster_update_state"});
+        public SensorEntity Hacs => new(_app, new string[]{"sensor.hacs"});
+        public SensorEntity VardagsrumFonsterVansterUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_vanster_update_state"});
+        public SensorEntity GymLedUpdateState => new(_app, new string[]{"sensor.gym_led_update_state"});
+        public SensorEntity KokFrysTempLinkquality => new(_app, new string[]{"sensor.kok_frys_temp_linkquality"});
+        public SensorEntity NetworkOutWlp2s0 => new(_app, new string[]{"sensor.network_out_wlp2s0"});
+        public SensorEntity TrappPirTemperature => new(_app, new string[]{"sensor.trapp_pir_temperature"});
+        public SensorEntity HallDorrSensorTemperature => new(_app, new string[]{"sensor.hall_dorr_sensor_temperature"});
+        public SensorEntity Ac294734614RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_14_rssi_numeric"});
+        public SensorEntity HallDorrSensorVoltage => new(_app, new string[]{"sensor.hall_dorr_sensor_voltage"});
+        public SensorEntity SovrumPirLinkquality => new(_app, new string[]{"sensor.sovrum_pir_linkquality"});
+        public SensorEntity TvrumCubeActionSide => new(_app, new string[]{"sensor.tvrum_cube_action_side"});
+        public SensorEntity MelkersRumTempLinkquality => new(_app, new string[]{"sensor.melkers_rum_temp_linkquality"});
+        public SensorEntity CarDepartureTime => new(_app, new string[]{"sensor.car_departure_time"});
+        public SensorEntity VardagsrumMittenLinkquality => new(_app, new string[]{"sensor.vardagsrum_mitten_linkquality"});
+        public SensorEntity Viking02811A700Temperature => new(_app, new string[]{"sensor.viking_02811_a7_00_temperature"});
+        public SensorEntity HouseMode => new(_app, new string[]{"sensor.house_mode"});
+        public SensorEntity ProcessorUse => new(_app, new string[]{"sensor.processor_use"});
+        public SensorEntity KrisinformationVasternorrland => new(_app, new string[]{"sensor.krisinformation_vasternorrland"});
+        public SensorEntity UteHum => new(_app, new string[]{"sensor.ute_hum"});
+        public SensorEntity MelkersRumTempBattery => new(_app, new string[]{"sensor.melkers_rum_temp_battery"});
+        public SensorEntity SmG986bProximitySensor => new(_app, new string[]{"sensor.sm_g986b_proximity_sensor"});
+        public SensorEntity Viking0203502038B700BatteryNumeric => new(_app, new string[]{"sensor.viking_0203502038_b7_00_battery_numeric"});
+        public SensorEntity HobbyrumTempLinkquality => new(_app, new string[]{"sensor.hobbyrum_temp_linkquality"});
+        public SensorEntity TvrumCubeLinkquality => new(_app, new string[]{"sensor.tvrum_cube_linkquality"});
+        public SensorEntity Ac51bc0cfe4RssiNumeric => new(_app, new string[]{"sensor.ac_51bc0cfe_4_rssi_numeric"});
+        public SensorEntity Zigbee2mqttVersion => new(_app, new string[]{"sensor.zigbee2mqtt_version"});
+        public SensorEntity DiodTemp => new(_app, new string[]{"sensor.diod_temp"});
+        public SensorEntity Ac63bc0cfe9RssiNumeric => new(_app, new string[]{"sensor.ac_63bc0cfe_9_rssi_numeric"});
+        public SensorEntity SallysRumTemp => new(_app, new string[]{"sensor.sallys_rum_temp"});
+        public SensorEntity KokFonsterLillaLinkquality => new(_app, new string[]{"sensor.kok_fonster_lilla_linkquality"});
+        public SensorEntity VardagsrumHogerLinkquality => new(_app, new string[]{"sensor.vardagsrum_hoger_linkquality"});
+        public SensorEntity Ac67bc0cfe4RssiNumeric => new(_app, new string[]{"sensor.ac_67bc0cfe_4_rssi_numeric"});
+        public SensorEntity VardagsrumPirUpdateState => new(_app, new string[]{"sensor.vardagsrum_pir_update_state"});
+        public SensorEntity MelkersRumPirOccupancyRequestedBrightnessLevel => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_requested_brightness_level"});
+        public SensorEntity SallysFonsterLinkquality => new(_app, new string[]{"sensor.sallys_fonster_linkquality"});
+        public SensorEntity SovrumTempVoltage => new(_app, new string[]{"sensor.sovrum_temp_voltage"});
+        public SensorEntity Ac50bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_50bc0cfe_8_rssi_numeric"});
+        public SensorEntity LastUpdateTrigger => new(_app, new string[]{"sensor.last_update_trigger"});
+        public SensorEntity TvrumHogerLinkquality => new(_app, new string[]{"sensor.tvrum_hoger_linkquality"});
+        public SensorEntity MelkersFonsterUpdateState => new(_app, new string[]{"sensor.melkers_fonster_update_state"});
+        public SensorEntity TvrumRullgardinHogerLinkquality => new(_app, new string[]{"sensor.tvrum_rullgardin_hoger_linkquality"});
+        public SensorEntity TvrumBakgrundTvUpdateState => new(_app, new string[]{"sensor.tvrum_bakgrund_tv_update_state"});
+        public SensorEntity SmG986bLightSensor => new(_app, new string[]{"sensor.sm_g986b_light_sensor"});
+        public SensorEntity SmG986bChargerType => new(_app, new string[]{"sensor.sm_g986b_charger_type"});
+        public SensorEntity SallysRumPirUpdateState => new(_app, new string[]{"sensor.sallys_rum_pir_update_state"});
+        public SensorEntity TomasIpadActivity => new(_app, new string[]{"sensor.tomas_ipad_activity"});
+        public SensorEntity Ac34bc0cfe6RssiNumeric => new(_app, new string[]{"sensor.ac_34bc0cfe_6_rssi_numeric"});
+        public SensorEntity Ac36bc0cfe8RssiNumeric => new(_app, new string[]{"sensor.ac_36bc0cfe_8_rssi_numeric"});
+        public SensorEntity JulbelysningKokVCurrent => new(_app, new string[]{"sensor.julbelysning_kok_v_current"});
+        public SensorEntity SovrumPirRequestedBrightnessLevel => new(_app, new string[]{"sensor.sovrum_pir_requested_brightness_level"});
+        public SensorEntity Viking028119700BatteryNumeric => new(_app, new string[]{"sensor.viking_02811_97_00_battery_numeric"});
+        public SensorEntity VardagsrumPirIlluminance => new(_app, new string[]{"sensor.vardagsrum_pir_illuminance"});
+        public SensorEntity JulbelysningKokVPower => new(_app, new string[]{"sensor.julbelysning_kok_v_power"});
+        public SensorEntity SallysFonsterPowerOnBehavior => new(_app, new string[]{"sensor.sallys_fonster_power_on_behavior"});
+        public SensorEntity SmG986bDoNotDisturbSensor => new(_app, new string[]{"sensor.sm_g986b_do_not_disturb_sensor"});
+        public SensorEntity SallysFonsterUpdateState => new(_app, new string[]{"sensor.sallys_fonster_update_state"});
+        public SensorEntity UteTempLinkquality => new(_app, new string[]{"sensor.ute_temp_linkquality"});
+        public SensorEntity BatteryLevel => new(_app, new string[]{"sensor.battery_level"});
+        public SensorEntity HallByraLinkquality => new(_app, new string[]{"sensor.hall_byra_linkquality"});
+        public SensorEntity SovrumPirUpdateState => new(_app, new string[]{"sensor.sovrum_pir_update_state"});
+        public SensorEntity TomasIpadLastUpdateTrigger => new(_app, new string[]{"sensor.tomas_ipad_last_update_trigger"});
+        public SensorEntity Bssid => new(_app, new string[]{"sensor.bssid"});
+        public SensorEntity YtPewdiepie => new(_app, new string[]{"sensor.yt_pewdiepie"});
+        public SensorEntity MelkersRumPirOccupancyBattery => new(_app, new string[]{"sensor.melkers_rum_pir_occupancy_battery"});
+        public SensorEntity TomasRumPirLinkquality => new(_app, new string[]{"sensor.tomas_rum_pir_linkquality"});
+        public SensorEntity JulbelysningTvrummetEnergy => new(_app, new string[]{"sensor.julbelysning_tvrummet_energy"});
+        public SensorEntity SmG986bBluetoothConnection => new(_app, new string[]{"sensor.sm_g986b_bluetooth_connection"});
+        public SensorEntity VardagsrumTempHumidity => new(_app, new string[]{"sensor.vardagsrum_temp_humidity"});
+        public SensorEntity TvrumCubeActionToSide => new(_app, new string[]{"sensor.tvrum_cube_action_to_side"});
+        public SensorEntity TvrumPirVoltage => new(_app, new string[]{"sensor.tvrum_pir_voltage"});
+        public SensorEntity Load1m => new(_app, new string[]{"sensor.load_1m"});
+        public SensorEntity SovrumTemp => new(_app, new string[]{"sensor.sovrum_temp"});
+        public SensorEntity TomasIpadBatteryLevel => new(_app, new string[]{"sensor.tomas_ipad_battery_level"});
+        public SensorEntity HallByraUpdateState => new(_app, new string[]{"sensor.hall_byra_update_state"});
+        public SensorEntity TvrumVansterLinkquality => new(_app, new string[]{"sensor.tvrum_vanster_linkquality"});
+        public SensorEntity LightOutsideBattery => new(_app, new string[]{"sensor.light_outside_battery"});
+        public SensorEntity JulbelysningTvrummetCurrent => new(_app, new string[]{"sensor.julbelysning_tvrummet_current"});
+        public SensorEntity E0x00158d00020b7df4Battery => new(_app, new string[]{"sensor.0x00158d00020b7df4_battery"});
+        public SensorEntity JulbelysningTvrummetPower => new(_app, new string[]{"sensor.julbelysning_tvrummet_power"});
+        public SensorEntity MelkersFonsterLinkquality => new(_app, new string[]{"sensor.melkers_fonster_linkquality"});
+        public SensorEntity SovrumTempLinkquality => new(_app, new string[]{"sensor.sovrum_temp_linkquality"});
+        public SensorEntity TomasRumPirUpdateState => new(_app, new string[]{"sensor.tomas_rum_pir_update_state"});
+        public SensorEntity JulbelysningKokVLinkquality => new(_app, new string[]{"sensor.julbelysning_kok_v_linkquality"});
+        public SensorEntity LasUppeBattery => new(_app, new string[]{"sensor.las_uppe_battery"});
+        public SensorEntity TvrumPirBattery => new(_app, new string[]{"sensor.tvrum_pir_battery"});
+        public SensorEntity SmG986bBatteryLevel => new(_app, new string[]{"sensor.sm_g986b_battery_level"});
+        public SensorEntity SmG975fWifiConnection => new(_app, new string[]{"sensor.sm_g975f_wifi_connection"});
+        public SensorEntity KokFonsterUpdateState => new(_app, new string[]{"sensor.kok_fonster_update_state"});
+        public SensorEntity SmG986bAudioSensor => new(_app, new string[]{"sensor.sm_g986b_audio_sensor"});
+        public SensorEntity SmG986bBatteryState => new(_app, new string[]{"sensor.sm_g986b_battery_state"});
+        public SensorEntity VardagsrumFonsterHogerUpdateState => new(_app, new string[]{"sensor.vardagsrum_fonster_hoger_update_state"});
+        public SensorEntity HobbyrumTemp => new(_app, new string[]{"sensor.hobbyrum_temp"});
+        public SensorEntity HallDorrUpdateState => new(_app, new string[]{"sensor.hall_dorr_update_state"});
+        public SensorEntity KokFrysTempHumidity => new(_app, new string[]{"sensor.kok_frys_temp_humidity"});
+        public SensorEntity TvrumCubeVoltage => new(_app, new string[]{"sensor.tvrum_cube_voltage"});
+        public SensorEntity KokPirIlluminance => new(_app, new string[]{"sensor.kok_pir_illuminance"});
+        public SensorEntity TvrumCube => new(_app, new string[]{"sensor.tvrum_cube"});
+        public SensorEntity JulbelysningKokHLinkquality => new(_app, new string[]{"sensor.julbelysning_kok_h_linkquality"});
+        public SensorEntity SallysRumPirBattery => new(_app, new string[]{"sensor.sallys_rum_pir_battery"});
+        public SensorEntity YtHelto => new(_app, new string[]{"sensor.yt_helto"});
+        public SensorEntity JulbelysningKokHUpdateState => new(_app, new string[]{"sensor.julbelysning_kok_h_update_state"});
+        public SensorEntity Ac15bc0cfe1RssiNumeric => new(_app, new string[]{"sensor.ac_15bc0cfe_1_rssi_numeric"});
+        public SensorEntity JulbelysningTomasRumPowerOnBehavior => new(_app, new string[]{"sensor.julbelysning_tomas_rum_power_on_behavior"});
+        public SensorEntity Ssid => new(_app, new string[]{"sensor.ssid"});
+        public SensorEntity MotorvarmareHogerUpdateStateOld => new(_app, new string[]{"sensor.motorvarmare_hoger_update_state_old"});
+        public SensorEntity Ac18ce36212RssiNumeric => new(_app, new string[]{"sensor.ac_18ce362_12_rssi_numeric"});
+        public SensorEntity SovrumTempBattery => new(_app, new string[]{"sensor.sovrum_temp_battery"});
+        public SensorEntity HumOutside => new(_app, new string[]{"sensor.hum_outside"});
+        public SensorEntity NetdaemonStatus => new(_app, new string[]{"sensor.netdaemon_status"});
+        public SensorEntity KokPirVoltage => new(_app, new string[]{"sensor.kok_pir_voltage"});
+        public SensorEntity Load15m => new(_app, new string[]{"sensor.load_15m"});
+        public SensorEntity TomasRumLinkquality => new(_app, new string[]{"sensor.tomas_rum_linkquality"});
+        public SensorEntity SovrumTempHumidity => new(_app, new string[]{"sensor.sovrum_temp_humidity"});
+        public SensorEntity MotorvarmareHogerLinkqualityOld => new(_app, new string[]{"sensor.motorvarmare_hoger_linkquality_old"});
+        public SensorEntity TrappPirLinkquality => new(_app, new string[]{"sensor.trapp_pir_linkquality"});
+        public SensorEntity Ac39bc0cfe7RssiNumeric => new(_app, new string[]{"sensor.ac_39bc0cfe_7_rssi_numeric"});
+        public SensorEntity SmG986bGeocodedLocation => new(_app, new string[]{"sensor.sm_g986b_geocoded_location"});
+        public SensorEntity FarstukvistLedLinkquality => new(_app, new string[]{"sensor.farstukvist_led_linkquality"});
+        public SensorEntity FrysnereTemperature => new(_app, new string[]{"sensor.frysnere_temperature"});
+        public SensorEntity Ac72bc0cfe2RssiNumeric => new(_app, new string[]{"sensor.ac_72bc0cfe_2_rssi_numeric"});
+        public SensorEntity SovrumFonsterLinkquality => new(_app, new string[]{"sensor.sovrum_fonster_linkquality"});
+        public SensorEntity E0x00158d00020b7df4Linkquality => new(_app, new string[]{"sensor.0x00158d00020b7df4_linkquality"});
+        public SensorEntity VardagsrumPirMotionSensitivity => new(_app, new string[]{"sensor.vardagsrum_pir_motion_sensitivity"});
+        public SensorEntity KokFonsterLinkquality => new(_app, new string[]{"sensor.kok_fonster_linkquality"});
+        public SensorEntity VardagsrumTempLinkquality => new(_app, new string[]{"sensor.vardagsrum_temp_linkquality"});
+        public SensorEntity Viking028119700Temperature => new(_app, new string[]{"sensor.viking_02811_97_00_temperature"});
+        public SensorEntity MelkersRumTempVoltage => new(_app, new string[]{"sensor.melkers_rum_temp_voltage"});
+        public SensorEntity SallysRumTempVoltage => new(_app, new string[]{"sensor.sallys_rum_temp_voltage"});
+        public SensorEntity UteTempVoltage => new(_app, new string[]{"sensor.ute_temp_voltage"});
+        public SensorEntity Ac294734616RssiNumeric => new(_app, new string[]{"sensor.ac_2947346_16_rssi_numeric"});
+        public SensorEntity TomasIpadStorage2 => new(_app, new string[]{"sensor.tomas_ipad_storage_2"});
+        public SensorEntity TvrumRullgardinVansterBattery => new(_app, new string[]{"sensor.tvrum_rullgardin_vanster_battery"});
+        public SensorEntity SmG986bNextAlarm => new(_app, new string[]{"sensor.sm_g986b_next_alarm"});
+        public SensorEntity TomasRumPirBattery => new(_app, new string[]{"sensor.tomas_rum_pir_battery"});
+        public SensorEntity TomasRumPirRequestedBrightnessPercent => new(_app, new string[]{"sensor.tomas_rum_pir_requested_brightness_percent"});
+        public SensorEntity VardagsrumTempBattery => new(_app, new string[]{"sensor.vardagsrum_temp_battery"});
+        public SensorEntity VardagsrumPirIlluminanceLux => new(_app, new string[]{"sensor.vardagsrum_pir_illuminance_lux"});
+        public SensorEntity GymLedLinkquality => new(_app, new string[]{"sensor.gym_led_linkquality"});
     }
 
-    public partial class WeatherEntities
+    public partial class AutomationEntities
     {
         private readonly NetDaemonRxApp _app;
-        public WeatherEntities(NetDaemonRxApp app)
+        public AutomationEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public WeatherEntity SmhiHemma => new(_app, new string[]{"weather.smhi_hemma"});
+        public AutomationEntity SetThemeAtStartup => new(_app, new string[]{"automation.set_theme_at_startup"});
+        public AutomationEntity ZigbeeJoinEnabled => new(_app, new string[]{"automation.zigbee_join_enabled"});
+        public AutomationEntity Automation3 => new(_app, new string[]{"automation.automation_3"});
+        public AutomationEntity Zigbee2mqttLogLevel => new(_app, new string[]{"automation.zigbee2mqtt_log_level"});
+        public AutomationEntity ZigbeeJoinDisabled => new(_app, new string[]{"automation.zigbee_join_disabled"});
+    }
+
+    public partial class SwitchEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public SwitchEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public SwitchEntity MotorvarmareHogerOld => new(_app, new string[]{"switch.motorvarmare_hoger_old"});
+        public SwitchEntity NetdaemonLightManager => new(_app, new string[]{"switch.netdaemon_light_manager"});
+        public SwitchEntity TvrummetTv => new(_app, new string[]{"switch.tvrummet_tv"});
+        public SwitchEntity Ac93bc0cfe2 => new(_app, new string[]{"switch.ac_93bc0cfe_2"});
+        public SwitchEntity Ac55bc0cfe7 => new(_app, new string[]{"switch.ac_55bc0cfe_7"});
+        public SwitchEntity JulbelysningKokH => new(_app, new string[]{"switch.julbelysning_kok_h"});
+        public SwitchEntity Sonoff1Relay => new(_app, new string[]{"switch.sonoff1_relay"});
+        public SwitchEntity Ac34bc0cfe6 => new(_app, new string[]{"switch.ac_34bc0cfe_6"});
+        public SwitchEntity Kodi => new(_app, new string[]{"switch.kodi"});
+        public SwitchEntity NetdaemonFrys => new(_app, new string[]{"switch.netdaemon_frys"});
+        public SwitchEntity Ac15bc0cfe1 => new(_app, new string[]{"switch.ac_15bc0cfe_1"});
+        public SwitchEntity JulbelysningVardagsrumH => new(_app, new string[]{"switch.julbelysning_vardagsrum_h"});
+        public SwitchEntity Ac294734614 => new(_app, new string[]{"switch.ac_2947346_14"});
+        public SwitchEntity NetdaemonRoomSpecific => new(_app, new string[]{"switch.netdaemon_room_specific"});
+        public SwitchEntity ComputerTomas => new(_app, new string[]{"switch.computer_tomas"});
+        public SwitchEntity NetdaemonTv => new(_app, new string[]{"switch.netdaemon_tv"});
+        public SwitchEntity JulbelysningTvrummet => new(_app, new string[]{"switch.julbelysning_tvrummet"});
+        public SwitchEntity JulbelysningKokV => new(_app, new string[]{"switch.julbelysning_kok_v"});
+        public SwitchEntity Ac294734615 => new(_app, new string[]{"switch.ac_2947346_15"});
+        public SwitchEntity NetdaemonWelcomeHome => new(_app, new string[]{"switch.netdaemon_welcome_home"});
+        public SwitchEntity Ac39bc0cfe7 => new(_app, new string[]{"switch.ac_39bc0cfe_7"});
+        public SwitchEntity Ac294734616 => new(_app, new string[]{"switch.ac_2947346_16"});
+        public SwitchEntity Tv => new(_app, new string[]{"switch.tv"});
+        public SwitchEntity Ac29bc0cfe6 => new(_app, new string[]{"switch.ac_29bc0cfe_6"});
+        public SwitchEntity ShellyRelay => new(_app, new string[]{"switch.shelly_relay"});
+        public SwitchEntity Ac36bc0cfe8 => new(_app, new string[]{"switch.ac_36bc0cfe_8"});
+        public SwitchEntity JulbelysningVardagsrumV => new(_app, new string[]{"switch.julbelysning_vardagsrum_v"});
+        public SwitchEntity NetdaemonMotorvarmare => new(_app, new string[]{"switch.netdaemon_motorvarmare"});
+        public SwitchEntity Ac51bc0cfe4 => new(_app, new string[]{"switch.ac_51bc0cfe_4"});
+        public SwitchEntity NetdaemonWebhook => new(_app, new string[]{"switch.netdaemon_webhook"});
+        public SwitchEntity Switch8MelkersTv => new(_app, new string[]{"switch.switch8_melkers_tv"});
+        public SwitchEntity NetdaemonMagicCube => new(_app, new string[]{"switch.netdaemon_magic_cube"});
+        public SwitchEntity Ac52bc0cfe1 => new(_app, new string[]{"switch.ac_52bc0cfe_1"});
+        public SwitchEntity Ac67bc0cfe4 => new(_app, new string[]{"switch.ac_67bc0cfe_4"});
+        public SwitchEntity NetdaemonCalendarTrash => new(_app, new string[]{"switch.netdaemon_calendar_trash"});
+        public SwitchEntity SallysRumFonster => new(_app, new string[]{"switch.sallys_rum_fonster"});
+        public SwitchEntity Ac81bc0cfe1 => new(_app, new string[]{"switch.ac_81bc0cfe_1"});
+        public SwitchEntity MelkersRumFonster => new(_app, new string[]{"switch.melkers_rum_fonster"});
+        public SwitchEntity NetdaemonHouseStateManager => new(_app, new string[]{"switch.netdaemon_house_state_manager"});
+        public SwitchEntity NetdaemonMotion => new(_app, new string[]{"switch.netdaemon_motion"});
+        public SwitchEntity TvrumVagg => new(_app, new string[]{"switch.tvrum_vagg"});
+        public SwitchEntity JulbelysningTomasRum => new(_app, new string[]{"switch.julbelysning_tomas_rum"});
+        public SwitchEntity Ac2bc0cfe1 => new(_app, new string[]{"switch.ac_2bc0cfe_1"});
+        public SwitchEntity ADiod => new(_app, new string[]{"switch.a_diod"});
+        public SwitchEntity Ac18ce36211 => new(_app, new string[]{"switch.ac_18ce362_11"});
+        public SwitchEntity Ac18ce36212 => new(_app, new string[]{"switch.ac_18ce362_12"});
+        public SwitchEntity NetdaemonHacsNotifyOnUpdate => new(_app, new string[]{"switch.netdaemon_hacs_notify_on_update"});
+        public SwitchEntity MotorvarmareHoger => new(_app, new string[]{"switch.motorvarmare_hoger"});
+        public SwitchEntity Ac50bc0cfe8 => new(_app, new string[]{"switch.ac_50bc0cfe_8"});
+        public SwitchEntity Zigbee2mqttMainJoin => new(_app, new string[]{"switch.zigbee2mqtt_main_join"});
+        public SwitchEntity Ac51bc0cfe8 => new(_app, new string[]{"switch.ac_51bc0cfe_8"});
+        public SwitchEntity Film => new(_app, new string[]{"switch.film"});
+        public SwitchEntity Ac44bc0cfe1 => new(_app, new string[]{"switch.ac_44bc0cfe_1"});
+    }
+
+    public partial class DeviceTrackerEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public DeviceTrackerEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public DeviceTrackerEntity Piserver8 => new(_app, new string[]{"device_tracker.piserver_8"});
+        public DeviceTrackerEntity TomasIpad4 => new(_app, new string[]{"device_tracker.tomas_ipad_4"});
+        public DeviceTrackerEntity Esp12Test => new(_app, new string[]{"device_tracker.esp_12_test"});
+        public DeviceTrackerEntity TomasIpad6 => new(_app, new string[]{"device_tracker.tomas_ipad_6"});
+        public DeviceTrackerEntity HuaweiMate10LiteD2b0a => new(_app, new string[]{"device_tracker.huawei_mate_10_lite_d2b0a"});
+        public DeviceTrackerEntity Chromecast => new(_app, new string[]{"device_tracker.chromecast"});
+        public DeviceTrackerEntity Tomasipad => new(_app, new string[]{"device_tracker.tomasipad"});
+        public DeviceTrackerEntity Chromecast2 => new(_app, new string[]{"device_tracker.chromecast_2"});
+        public DeviceTrackerEntity XboxSystemos => new(_app, new string[]{"device_tracker.xbox_systemos"});
+        public DeviceTrackerEntity GoogleMapsTomash277hassioGmailCom => new(_app, new string[]{"device_tracker.google_maps_tomash277hassio_gmail_com"});
+        public DeviceTrackerEntity Sallygps => new(_app, new string[]{"device_tracker.sallygps"});
+        public DeviceTrackerEntity HuaweiMate20Pro3c5327 => new(_app, new string[]{"device_tracker.huawei_mate_20_pro_3c5327"});
+        public DeviceTrackerEntity NestAudio2 => new(_app, new string[]{"device_tracker.nest_audio_2"});
+        public DeviceTrackerEntity GalaxywatchBc7b => new(_app, new string[]{"device_tracker.galaxywatch_bc7b"});
+        public DeviceTrackerEntity Melkergps => new(_app, new string[]{"device_tracker.melkergps"});
+        public DeviceTrackerEntity GoogleHomeMini3 => new(_app, new string[]{"device_tracker.google_home_mini_3"});
+        public DeviceTrackerEntity E0024E451550a => new(_app, new string[]{"device_tracker.00_24_e4_51_55_0a"});
+        public DeviceTrackerEntity Unifi862c82A4F469Default => new(_app, new string[]{"device_tracker.unifi_86_2c_82_a4_f4_69_default"});
+        public DeviceTrackerEntity ElinPresence => new(_app, new string[]{"device_tracker.elin_presence"});
+        public DeviceTrackerEntity TomasIpad3 => new(_app, new string[]{"device_tracker.tomas_ipad_3"});
+        public DeviceTrackerEntity WledWled => new(_app, new string[]{"device_tracker.wled_wled"});
+        public DeviceTrackerEntity Shelly1 => new(_app, new string[]{"device_tracker.shelly_1"});
+        public DeviceTrackerEntity NestAudio => new(_app, new string[]{"device_tracker.nest_audio"});
+        public DeviceTrackerEntity Chromecast5 => new(_app, new string[]{"device_tracker.chromecast_5"});
+        public DeviceTrackerEntity Piserver7 => new(_app, new string[]{"device_tracker.piserver_7"});
+        public DeviceTrackerEntity ElgatoKeyLightAirAcae => new(_app, new string[]{"device_tracker.elgato_key_light_air_acae"});
+        public DeviceTrackerEntity SallyIphone2 => new(_app, new string[]{"device_tracker.sally_iphone_2"});
+        public DeviceTrackerEntity SallyPresence => new(_app, new string[]{"device_tracker.sally_presence"});
+        public DeviceTrackerEntity SonoffTest => new(_app, new string[]{"device_tracker.sonoff_test"});
+        public DeviceTrackerEntity Unifi04D3B0632d29Default => new(_app, new string[]{"device_tracker.unifi_04_d3_b0_63_2d_29_default"});
+        public DeviceTrackerEntity SmG975f => new(_app, new string[]{"device_tracker.sm_g975f"});
+        public DeviceTrackerEntity Harmony => new(_app, new string[]{"device_tracker.harmony"});
+        public DeviceTrackerEntity Ipad2 => new(_app, new string[]{"device_tracker.ipad_2"});
+        public DeviceTrackerEntity Ipad => new(_app, new string[]{"device_tracker.ipad"});
+        public DeviceTrackerEntity GoogleHome => new(_app, new string[]{"device_tracker.google_home"});
+        public DeviceTrackerEntity EspKamera1 => new(_app, new string[]{"device_tracker.esp_kamera_1"});
+        public DeviceTrackerEntity Tomass8 => new(_app, new string[]{"device_tracker.tomass8"});
+        public DeviceTrackerEntity ElinsIpad => new(_app, new string[]{"device_tracker.elins_ipad"});
+        public DeviceTrackerEntity TomasGamlaPad => new(_app, new string[]{"device_tracker.tomas_gamla_pad"});
+        public DeviceTrackerEntity Dafang => new(_app, new string[]{"device_tracker.dafang"});
+        public DeviceTrackerEntity Uppe => new(_app, new string[]{"device_tracker.uppe"});
+        public DeviceTrackerEntity TomasIpad2 => new(_app, new string[]{"device_tracker.tomas_ipad_2"});
+        public DeviceTrackerEntity Piserver3 => new(_app, new string[]{"device_tracker.piserver_3"});
+        public DeviceTrackerEntity Octopi => new(_app, new string[]{"device_tracker.octopi"});
+        public DeviceTrackerEntity TomasGalaxyWifi => new(_app, new string[]{"device_tracker.tomas_galaxy_wifi"});
+        public DeviceTrackerEntity NintendoWiiU2 => new(_app, new string[]{"device_tracker.nintendo_wii_u_2"});
+        public DeviceTrackerEntity Elinsipad => new(_app, new string[]{"device_tracker.elinsipad"});
+        public DeviceTrackerEntity Tomaspc => new(_app, new string[]{"device_tracker.tomaspc"});
+        public DeviceTrackerEntity ElinsIpad2 => new(_app, new string[]{"device_tracker.elins_ipad_2"});
+        public DeviceTrackerEntity Xboxsystemos => new(_app, new string[]{"device_tracker.xboxsystemos"});
+        public DeviceTrackerEntity Sonoff1 => new(_app, new string[]{"device_tracker.sonoff1"});
+        public DeviceTrackerEntity MelkerPresence => new(_app, new string[]{"device_tracker.melker_presence"});
+        public DeviceTrackerEntity Unifi2c2617B78551Default => new(_app, new string[]{"device_tracker.unifi_2c_26_17_b7_85_51_default"});
+        public DeviceTrackerEntity Chromecast4 => new(_app, new string[]{"device_tracker.chromecast_4"});
+        public DeviceTrackerEntity UnifiAcFdCe031c4aDefault => new(_app, new string[]{"device_tracker.unifi_ac_fd_ce_03_1c_4a_default"});
+        public DeviceTrackerEntity WledWled2 => new(_app, new string[]{"device_tracker.wled_wled_2"});
+        public DeviceTrackerEntity Raspberrypi3 => new(_app, new string[]{"device_tracker.raspberrypi_3"});
+        public DeviceTrackerEntity ElinsIpad3 => new(_app, new string[]{"device_tracker.elins_ipad_3"});
+        public DeviceTrackerEntity GalaxyTabA => new(_app, new string[]{"device_tracker.galaxy_tab_a"});
+        public DeviceTrackerEntity EspKamera12 => new(_app, new string[]{"device_tracker.esp_kamera_1_2"});
+        public DeviceTrackerEntity GoogleHomeMini4 => new(_app, new string[]{"device_tracker.google_home_mini_4"});
+        public DeviceTrackerEntity GoogleMaps113728439587103002947 => new(_app, new string[]{"device_tracker.google_maps_113728439587103002947"});
+        public DeviceTrackerEntity Samsunggalaxys7 => new(_app, new string[]{"device_tracker.samsunggalaxys7"});
+        public DeviceTrackerEntity E1921681104F83f512eB4E6 => new(_app, new string[]{"device_tracker.192_168_1_104_f8_3f_51_2e_b4_e6"});
+        public DeviceTrackerEntity Piserver2 => new(_app, new string[]{"device_tracker.piserver_2"});
+        public DeviceTrackerEntity Piserver4 => new(_app, new string[]{"device_tracker.piserver_4"});
+        public DeviceTrackerEntity MelkerGalaxyWifi => new(_app, new string[]{"device_tracker.melker_galaxy_wifi"});
+        public DeviceTrackerEntity GoogleMaps118123190245690142371 => new(_app, new string[]{"device_tracker.google_maps_118123190245690142371"});
+        public DeviceTrackerEntity TomasIpad => new(_app, new string[]{"device_tracker.tomas_ipad"});
+        public DeviceTrackerEntity TomasGalaxyWifiOld => new(_app, new string[]{"device_tracker.tomas_galaxy_wifi_old"});
+        public DeviceTrackerEntity Hpg2e024 => new(_app, new string[]{"device_tracker.hpg2e024"});
+        public DeviceTrackerEntity Tomasgps => new(_app, new string[]{"device_tracker.tomasgps"});
+        public DeviceTrackerEntity UnifiC417Fe4d8f42Default => new(_app, new string[]{"device_tracker.unifi_c4_17_fe_4d_8f_42_default"});
+        public DeviceTrackerEntity EspD6983d => new(_app, new string[]{"device_tracker.esp_d6983d"});
+        public DeviceTrackerEntity GoogleMaps115932713534918928318 => new(_app, new string[]{"device_tracker.google_maps_115932713534918928318"});
+        public DeviceTrackerEntity SamsungGalaxyS7 => new(_app, new string[]{"device_tracker.samsung_galaxy_s7"});
+        public DeviceTrackerEntity Raspberrypi => new(_app, new string[]{"device_tracker.raspberrypi"});
+        public DeviceTrackerEntity MelkerHuaweiWifi => new(_app, new string[]{"device_tracker.melker_huawei_wifi"});
+        public DeviceTrackerEntity Chromecast3 => new(_app, new string[]{"device_tracker.chromecast_3"});
+        public DeviceTrackerEntity E5cg8292f67 => new(_app, new string[]{"device_tracker.5cg8292f67"});
+        public DeviceTrackerEntity GalaxyS8 => new(_app, new string[]{"device_tracker.galaxy_s8"});
+        public DeviceTrackerEntity EfraimsIphone => new(_app, new string[]{"device_tracker.efraims_iphone"});
+        public DeviceTrackerEntity GalaxyTabA2 => new(_app, new string[]{"device_tracker.galaxy_tab_a_2"});
+        public DeviceTrackerEntity TomasIpad5 => new(_app, new string[]{"device_tracker.tomas_ipad_5"});
+        public DeviceTrackerEntity Raspberrypi2 => new(_app, new string[]{"device_tracker.raspberrypi_2"});
+        public DeviceTrackerEntity YeelinkLightColor1Miio867704 => new(_app, new string[]{"device_tracker.yeelink_light_color1_miio867704"});
+        public DeviceTrackerEntity Unifi0024E451550aDefault => new(_app, new string[]{"device_tracker.unifi_00_24_e4_51_55_0a_default"});
+        public DeviceTrackerEntity SallyHuaweiWifi => new(_app, new string[]{"device_tracker.sally_huawei_wifi"});
+        public DeviceTrackerEntity Googlehome2 => new(_app, new string[]{"device_tracker.googlehome_2"});
+        public DeviceTrackerEntity GalaxyTabA3 => new(_app, new string[]{"device_tracker.galaxy_tab_a_3"});
+        public DeviceTrackerEntity EspA82880 => new(_app, new string[]{"device_tracker.esp_a82880"});
+        public DeviceTrackerEntity Piserver => new(_app, new string[]{"device_tracker.piserver"});
+        public DeviceTrackerEntity TomasPresence => new(_app, new string[]{"device_tracker.tomas_presence"});
+        public DeviceTrackerEntity ElinGalaxyWifi => new(_app, new string[]{"device_tracker.elin_galaxy_wifi"});
+        public DeviceTrackerEntity ElgatoKeyLightAirA847 => new(_app, new string[]{"device_tracker.elgato_key_light_air_a847"});
+        public DeviceTrackerEntity Piserver6 => new(_app, new string[]{"device_tracker.piserver_6"});
+        public DeviceTrackerEntity GoogleHomeMini2 => new(_app, new string[]{"device_tracker.google_home_mini_2"});
+        public DeviceTrackerEntity ElinGalaxyWifiOld => new(_app, new string[]{"device_tracker.elin_galaxy_wifi_old"});
+        public DeviceTrackerEntity UnifiE0D4E80330F9Default => new(_app, new string[]{"device_tracker.unifi_e0_d4_e8_03_30_f9_default"});
+        public DeviceTrackerEntity Googlehome3 => new(_app, new string[]{"device_tracker.googlehome_3"});
+        public DeviceTrackerEntity EmelieIphone => new(_app, new string[]{"device_tracker.emelie_iphone"});
+        public DeviceTrackerEntity GalaxyS10 => new(_app, new string[]{"device_tracker.galaxy_s10"});
+        public DeviceTrackerEntity NintendoWiiU => new(_app, new string[]{"device_tracker.nintendo_wii_u"});
+        public DeviceTrackerEntity ElinGalaxyWifiOldOold => new(_app, new string[]{"device_tracker.elin_galaxy_wifi_old_oold"});
+        public DeviceTrackerEntity GoogleMaps110786808112177763666 => new(_app, new string[]{"device_tracker.google_maps_110786808112177763666"});
+        public DeviceTrackerEntity GoogleHomeMini => new(_app, new string[]{"device_tracker.google_home_mini"});
+        public DeviceTrackerEntity E5cg709284w => new(_app, new string[]{"device_tracker.5cg709284w"});
+        public DeviceTrackerEntity E5cg81709hj => new(_app, new string[]{"device_tracker.5cg81709hj"});
+        public DeviceTrackerEntity Nere => new(_app, new string[]{"device_tracker.nere"});
+        public DeviceTrackerEntity SallyIphone => new(_app, new string[]{"device_tracker.sally_iphone"});
+        public DeviceTrackerEntity Piserver5 => new(_app, new string[]{"device_tracker.piserver_5"});
+        public DeviceTrackerEntity SmG986b => new(_app, new string[]{"device_tracker.sm_g986b"});
+        public DeviceTrackerEntity GoogleHomeMini5 => new(_app, new string[]{"device_tracker.google_home_mini_5"});
+    }
+
+    public partial class ProximityEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public ProximityEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public ProximityEntity ProxHomeSally => new(_app, new string[]{"proximity.prox_home_sally"});
+        public ProximityEntity ProxHomeMelker => new(_app, new string[]{"proximity.prox_home_melker"});
+        public ProximityEntity ProxHomeElin => new(_app, new string[]{"proximity.prox_home_elin"});
+        public ProximityEntity ProxHomeTomas => new(_app, new string[]{"proximity.prox_home_tomas"});
+    }
+
+    public partial class BinarySensorEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public BinarySensorEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public BinarySensorEntity Ac52bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_52bc0cfe_1"});
+        public BinarySensorEntity TomasRumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.tomas_rum_pir_update_available"});
+        public BinarySensorEntity Ac67bc0cfe4 => new(_app, new string[]{"binary_sensor.ac_67bc0cfe_4"});
+        public BinarySensorEntity MelkersRumPirOccupancy => new(_app, new string[]{"binary_sensor.melkers_rum_pir_occupancy"});
+        public BinarySensorEntity TvrumPir => new(_app, new string[]{"binary_sensor.tvrum_pir"});
+        public BinarySensorEntity KokFonsterLillaUpdateAvailable => new(_app, new string[]{"binary_sensor.kok_fonster_lilla_update_available"});
+        public BinarySensorEntity Ac2bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_2bc0cfe_1"});
+        public BinarySensorEntity Ac294734615 => new(_app, new string[]{"binary_sensor.ac_2947346_15"});
+        public BinarySensorEntity VardagsrumPirLedIndication => new(_app, new string[]{"binary_sensor.vardagsrum_pir_led_indication"});
+        public BinarySensorEntity TvrumRullgardinHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_rullgardin_hoger_update_available"});
+        public BinarySensorEntity Ac18ce36211 => new(_app, new string[]{"binary_sensor.ac_18ce362_11"});
+        public BinarySensorEntity SweRecyclingMatfors => new(_app, new string[]{"binary_sensor.swe_recycling_matfors"});
+        public BinarySensorEntity Sonoff1Button => new(_app, new string[]{"binary_sensor.sonoff1_button"});
+        public BinarySensorEntity KokFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.kok_fonster_update_available"});
+        public BinarySensorEntity Kamera3MotionDetected => new(_app, new string[]{"binary_sensor.kamera_3_motion_detected"});
+        public BinarySensorEntity VardagsrumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_pir_update_available"});
+        public BinarySensorEntity MelkersFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.melkers_fonster_update_available"});
+        public BinarySensorEntity Ac18ce36212 => new(_app, new string[]{"binary_sensor.ac_18ce362_12"});
+        public BinarySensorEntity JulbelysningVardagsrumVUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_vardagsrum_v_update_available"});
+        public BinarySensorEntity Ac29bc0cfe6 => new(_app, new string[]{"binary_sensor.ac_29bc0cfe_6"});
+        public BinarySensorEntity TomasRumUpdateAvailable => new(_app, new string[]{"binary_sensor.tomas_rum_update_available"});
+        public BinarySensorEntity FarstukvistLedUpdateAvailable => new(_app, new string[]{"binary_sensor.farstukvist_led_update_available"});
+        public BinarySensorEntity JulbelysningKokHUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_kok_h_update_available"});
+        public BinarySensorEntity VardagsrumVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_vanster_update_available"});
+        public BinarySensorEntity SallysRumPir => new(_app, new string[]{"binary_sensor.sallys_rum_pir"});
+        public BinarySensorEntity SovrumByraUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_byra_update_available"});
+        public BinarySensorEntity JulbelysningTomasRumUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_tomas_rum_update_available"});
+        public BinarySensorEntity Ac51bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_51bc0cfe_8"});
+        public BinarySensorEntity Ac294734614 => new(_app, new string[]{"binary_sensor.ac_2947346_14"});
+        public BinarySensorEntity Ac34bc0cfe6 => new(_app, new string[]{"binary_sensor.ac_34bc0cfe_6"});
+        public BinarySensorEntity Ac51bc0cfe4 => new(_app, new string[]{"binary_sensor.ac_51bc0cfe_4"});
+        public BinarySensorEntity VardagsrumHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_hoger_update_available"});
+        public BinarySensorEntity Ac294734616 => new(_app, new string[]{"binary_sensor.ac_2947346_16"});
+        public BinarySensorEntity TvrumHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_hoger_update_available"});
+        public BinarySensorEntity TvrummVaggUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrumm_vagg_update_available"});
+        public BinarySensorEntity VardagsrumMittenUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_mitten_update_available"});
+        public BinarySensorEntity KokPir => new(_app, new string[]{"binary_sensor.kok_pir"});
+        public BinarySensorEntity Ac63bc0cfe9 => new(_app, new string[]{"binary_sensor.ac_63bc0cfe_9"});
+        public BinarySensorEntity SovrumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_pir_update_available"});
+        public BinarySensorEntity SnapshotsStale => new(_app, new string[]{"binary_sensor.snapshots_stale"});
+        public BinarySensorEntity Ac44bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_44bc0cfe_1"});
+        public BinarySensorEntity HallByraUpdateAvailable => new(_app, new string[]{"binary_sensor.hall_byra_update_available"});
+        public BinarySensorEntity HallDorr => new(_app, new string[]{"binary_sensor.hall_dorr"});
+        public BinarySensorEntity Ac39bc0cfe7 => new(_app, new string[]{"binary_sensor.ac_39bc0cfe_7"});
+        public BinarySensorEntity MotorvarmareHogerUpdateAvailableOld => new(_app, new string[]{"binary_sensor.motorvarmare_hoger_update_available_old"});
+        public BinarySensorEntity Ac55bc0cfe7 => new(_app, new string[]{"binary_sensor.ac_55bc0cfe_7"});
+        public BinarySensorEntity TvrumRullgardinVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_rullgardin_vanster_update_available"});
+        public BinarySensorEntity Ac93bc0cfe2 => new(_app, new string[]{"binary_sensor.ac_93bc0cfe_2"});
+        public BinarySensorEntity TvrumVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_vanster_update_available"});
+        public BinarySensorEntity Ac50bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_50bc0cfe_8"});
+        public BinarySensorEntity SmG986bIsCharging => new(_app, new string[]{"binary_sensor.sm_g986b_is_charging"});
+        public BinarySensorEntity GymLedUpdateAvailable => new(_app, new string[]{"binary_sensor.gym_led_update_available"});
+        public BinarySensorEntity Ac15bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_15bc0cfe_1"});
+        public BinarySensorEntity HallDorrUpdateAvailable => new(_app, new string[]{"binary_sensor.hall_dorr_update_available"});
+        public BinarySensorEntity SallysRumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.sallys_rum_pir_update_available"});
+        public BinarySensorEntity Ac81bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_81bc0cfe_1"});
+        public BinarySensorEntity JulbelysningHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_hoger_update_available"});
+        public BinarySensorEntity Updater => new(_app, new string[]{"binary_sensor.updater"});
+        public BinarySensorEntity VardagsrumPir => new(_app, new string[]{"binary_sensor.vardagsrum_pir"});
+        public BinarySensorEntity SovrumPir => new(_app, new string[]{"binary_sensor.sovrum_pir"});
+        public BinarySensorEntity MotorvarmareHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.motorvarmare_hoger_update_available"});
+        public BinarySensorEntity SweRecyclingVattjom => new(_app, new string[]{"binary_sensor.swe_recycling_vattjom"});
+        public BinarySensorEntity TomasRumPir => new(_app, new string[]{"binary_sensor.tomas_rum_pir"});
+        public BinarySensorEntity SallysFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.sallys_fonster_update_available"});
+        public BinarySensorEntity TrappPir => new(_app, new string[]{"binary_sensor.trapp_pir"});
+        public BinarySensorEntity SovrumFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_fonster_update_available"});
+        public BinarySensorEntity TvrumBakgrundTvUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_bakgrund_tv_update_available"});
+        public BinarySensorEntity SwInput => new(_app, new string[]{"binary_sensor.sw_input"});
+        public BinarySensorEntity MelkersRumPirOccupancyUpdateAvailable => new(_app, new string[]{"binary_sensor.melkers_rum_pir_occupancy_update_available"});
+        public BinarySensorEntity Ac72bc0cfe2 => new(_app, new string[]{"binary_sensor.ac_72bc0cfe_2"});
+        public BinarySensorEntity Ac36bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_36bc0cfe_8"});
+    }
+
+    public partial class LightEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public LightEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public LightEntity KokFonster => new(_app, new string[]{"light.kok_fonster"});
+        public LightEntity HallDorr => new(_app, new string[]{"light.hall_dorr"});
+        public LightEntity TvrumFonsterHoger => new(_app, new string[]{"light.tvrum_fonster_hoger"});
+        public LightEntity Farstukvisten => new(_app, new string[]{"light.farstukvisten"});
+        public LightEntity SallysRum => new(_app, new string[]{"light.sallys_rum"});
+        public LightEntity JulbelysningKokV => new(_app, new string[]{"light.julbelysning_kok_v"});
+        public LightEntity VardagsrumFonsterMitten => new(_app, new string[]{"light.vardagsrum_fonster_mitten"});
+        public LightEntity JulbelysningSovrum => new(_app, new string[]{"light.julbelysning_sovrum"});
+        public LightEntity MelkersRum => new(_app, new string[]{"light.melkers_rum"});
+        public LightEntity KokLillaFonster => new(_app, new string[]{"light.kok_lilla_fonster"});
+        public LightEntity VardagsrumFonsterHoger => new(_app, new string[]{"light.vardagsrum_fonster_hoger"});
+        public LightEntity JulbelysningVardagsrumH => new(_app, new string[]{"light.julbelysning_vardagsrum_h"});
+        public LightEntity TomasRumFonster => new(_app, new string[]{"light.tomas_rum_fonster"});
+        public LightEntity TvrumVagg => new(_app, new string[]{"light.tvrum_vagg"});
+        public LightEntity Vardagsrum => new(_app, new string[]{"light.vardagsrum"});
+        public LightEntity Ambient => new(_app, new string[]{"light.ambient"});
+        public LightEntity TvrumFonsterVanster => new(_app, new string[]{"light.tvrum_fonster_vanster"});
+        public LightEntity Sovrum => new(_app, new string[]{"light.sovrum"});
+        public LightEntity GymLed => new(_app, new string[]{"light.gym_led"});
+        public LightEntity VardagsrumFonsterVanster => new(_app, new string[]{"light.vardagsrum_fonster_vanster"});
+        public LightEntity JulbelysningVardagsrumV => new(_app, new string[]{"light.julbelysning_vardagsrum_v"});
+        public LightEntity SovrumFonster => new(_app, new string[]{"light.sovrum_fonster"});
+        public LightEntity FarstukvistLed => new(_app, new string[]{"light.farstukvist_led"});
+        public LightEntity TomasRum => new(_app, new string[]{"light.tomas_rum"});
+        public LightEntity Kok => new(_app, new string[]{"light.kok"});
+        public LightEntity HallByra => new(_app, new string[]{"light.hall_byra"});
+        public LightEntity SallysRumFonster => new(_app, new string[]{"light.sallys_rum_fonster"});
+        public LightEntity SovrumByra => new(_app, new string[]{"light.sovrum_byra"});
+        public LightEntity TvrumBakgrundTv => new(_app, new string[]{"light.tvrum_bakgrund_tv"});
+        public LightEntity JulbelysningTvrummet => new(_app, new string[]{"light.julbelysning_tvrummet"});
+        public LightEntity JulbelysningTomasRum => new(_app, new string[]{"light.julbelysning_tomas_rum"});
+        public LightEntity JulbelysningKokH => new(_app, new string[]{"light.julbelysning_kok_h"});
+        public LightEntity MelkersRumFonster => new(_app, new string[]{"light.melkers_rum_fonster"});
+        public LightEntity Tvrummet => new(_app, new string[]{"light.tvrummet"});
+    }
+
+    public partial class MediaPlayerEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public MediaPlayerEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public MediaPlayerEntity TvNere => new(_app, new string[]{"media_player.tv_nere"});
+        public MediaPlayerEntity PlexChromecast => new(_app, new string[]{"media_player.plex_chromecast"});
+        public MediaPlayerEntity Sovrum => new(_app, new string[]{"media_player.sovrum"});
+        public MediaPlayerEntity TvGym => new(_app, new string[]{"media_player.tv_gym"});
+        public MediaPlayerEntity TvRummetGh => new(_app, new string[]{"media_player.tv_rummet_gh"});
+        public MediaPlayerEntity Kok => new(_app, new string[]{"media_player.kok"});
+        public MediaPlayerEntity MelkersRum => new(_app, new string[]{"media_player.melkers_rum"});
+        public MediaPlayerEntity Huset => new(_app, new string[]{"media_player.huset"});
+        public MediaPlayerEntity PlexPlexForAndroidTvShieldAndroidTv => new(_app, new string[]{"media_player.plex_plex_for_android_tv_shield_android_tv"});
+        public MediaPlayerEntity PlexPlexWebChromeLinux => new(_app, new string[]{"media_player.plex_plex_web_chrome_linux"});
+        public MediaPlayerEntity PlexKodiAddOnLibreelec => new(_app, new string[]{"media_player.plex_kodi_add_on_libreelec"});
+        public MediaPlayerEntity SallysHogtalare => new(_app, new string[]{"media_player.sallys_hogtalare"});
+        public MediaPlayerEntity Nestaudio0573 => new(_app, new string[]{"media_player.nestaudio0573"});
+        public MediaPlayerEntity TvUppe => new(_app, new string[]{"media_player.tv_uppe"});
+        public MediaPlayerEntity Shield => new(_app, new string[]{"media_player.shield"});
+        public MediaPlayerEntity PlexPlexWebChromeLinux2 => new(_app, new string[]{"media_player.plex_plex_web_chrome_linux_2"});
+        public MediaPlayerEntity Vardagsrum => new(_app, new string[]{"media_player.vardagsrum"});
+        public MediaPlayerEntity PlexTomasIpad => new(_app, new string[]{"media_player.plex_tomas_ipad"});
+        public MediaPlayerEntity MelkersTv => new(_app, new string[]{"media_player.melkers_tv"});
+        public MediaPlayerEntity Gym => new(_app, new string[]{"media_player.gym"});
+        public MediaPlayerEntity PlexChrome => new(_app, new string[]{"media_player.plex_chrome"});
+        public MediaPlayerEntity PlexPlexCastChromecast => new(_app, new string[]{"media_player.plex_plex_cast_chromecast"});
+        public MediaPlayerEntity PlexChrome2 => new(_app, new string[]{"media_player.plex_chrome_2"});
+        public MediaPlayerEntity PlexPlexWebChrome => new(_app, new string[]{"media_player.plex_plex_web_chrome"});
+        public MediaPlayerEntity ShieldTv => new(_app, new string[]{"media_player.shield_tv"});
+        public MediaPlayerEntity PlexChrome3 => new(_app, new string[]{"media_player.plex_chrome_3"});
+    }
+
+    public partial class CalendarEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public CalendarEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public CalendarEntity FamiljenHellstrom => new(_app, new string[]{"calendar.familjen_hellstrom"});
+        public CalendarEntity TaUtSopor => new(_app, new string[]{"calendar.ta_ut_sopor"});
+        public CalendarEntity SundsvallsFotoklubb => new(_app, new string[]{"calendar.sundsvalls_fotoklubb"});
+        public CalendarEntity Tomash277GmailCom => new(_app, new string[]{"calendar.tomash277_gmail_com"});
+    }
+
+    public partial class CameraEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public CameraEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public CameraEntity MyCamera => new(_app, new string[]{"camera.my_camera"});
+        public CameraEntity Kamera3 => new(_app, new string[]{"camera.kamera_3"});
+        public CameraEntity FramsidanProfile000Mainstream => new(_app, new string[]{"camera.framsidan_profile000_mainstream"});
+        public CameraEntity KameraStream => new(_app, new string[]{"camera.kamera_stream"});
+        public CameraEntity FramsidanProfile000Mainstream2 => new(_app, new string[]{"camera.framsidan_profile000_mainstream_2"});
+    }
+
+    public partial class InputNumberEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public InputNumberEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public InputNumberEntity CarHeaterDepTimeMinutes => new(_app, new string[]{"input_number.car_heater_dep_time_minutes"});
+        public InputNumberEntity CarHeaterDepTimeHour => new(_app, new string[]{"input_number.car_heater_dep_time_hour"});
     }
 
     public partial class GroupEntities
@@ -589,281 +994,59 @@ namespace Netdaemon.Generated.Reactive
 
         public GroupEntity Climate => new(_app, new string[]{"group.climate"});
         public GroupEntity KameraUppe => new(_app, new string[]{"group.kamera_uppe"});
+        public GroupEntity Kodis => new(_app, new string[]{"group.kodis"});
+        public GroupEntity Cameras => new(_app, new string[]{"group.cameras"});
         public GroupEntity PeopleStatus => new(_app, new string[]{"group.people_status"});
-        public GroupEntity Chromecasts => new(_app, new string[]{"group.chromecasts"});
-        public GroupEntity SystemMetrix => new(_app, new string[]{"group.system_metrix"});
-        public GroupEntity Dummy => new(_app, new string[]{"group.dummy"});
-        public GroupEntity MelkersDevices => new(_app, new string[]{"group.melkers_devices"});
+        public GroupEntity TomasDevices => new(_app, new string[]{"group.tomas_devices"});
+        public GroupEntity ElinsDevices => new(_app, new string[]{"group.elins_devices"});
         public GroupEntity Presence => new(_app, new string[]{"group.presence"});
         public GroupEntity LowBatteryDevices => new(_app, new string[]{"group.low_battery_devices"});
-        public GroupEntity Googlehomes => new(_app, new string[]{"group.googlehomes"});
-        public GroupEntity ElinsDevices => new(_app, new string[]{"group.elins_devices"});
-        public GroupEntity SallysDevices => new(_app, new string[]{"group.sallys_devices"});
+        public GroupEntity Chromecasts => new(_app, new string[]{"group.chromecasts"});
+        public GroupEntity MelkersDevices => new(_app, new string[]{"group.melkers_devices"});
+        public GroupEntity SystemMetrix => new(_app, new string[]{"group.system_metrix"});
         public GroupEntity Remotes => new(_app, new string[]{"group.remotes"});
-        public GroupEntity TomasDevices => new(_app, new string[]{"group.tomas_devices"});
-        public GroupEntity Cameras => new(_app, new string[]{"group.cameras"});
-        public GroupEntity Kodis => new(_app, new string[]{"group.kodis"});
+        public GroupEntity SallysDevices => new(_app, new string[]{"group.sallys_devices"});
+        public GroupEntity Dummy => new(_app, new string[]{"group.dummy"});
+        public GroupEntity Googlehomes => new(_app, new string[]{"group.googlehomes"});
     }
 
-    public partial class DeviceTrackerEntities
+    public partial class PersonEntities
     {
         private readonly NetDaemonRxApp _app;
-        public DeviceTrackerEntities(NetDaemonRxApp app)
+        public PersonEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public DeviceTrackerEntity HuaweiMate20Pro3c5327 => new(_app, new string[]{"device_tracker.huawei_mate_20_pro_3c5327"});
-        public DeviceTrackerEntity GoogleMaps110786808112177763666 => new(_app, new string[]{"device_tracker.google_maps_110786808112177763666"});
-        public DeviceTrackerEntity SallyHuaweiWifi => new(_app, new string[]{"device_tracker.sally_huawei_wifi"});
-        public DeviceTrackerEntity Dafang => new(_app, new string[]{"device_tracker.dafang"});
-        public DeviceTrackerEntity ElinsIpad2 => new(_app, new string[]{"device_tracker.elins_ipad_2"});
-        public DeviceTrackerEntity MelkerPresence => new(_app, new string[]{"device_tracker.melker_presence"});
-        public DeviceTrackerEntity GalaxywatchBc7b => new(_app, new string[]{"device_tracker.galaxywatch_bc7b"});
-        public DeviceTrackerEntity Ipad => new(_app, new string[]{"device_tracker.ipad"});
-        public DeviceTrackerEntity Piserver6 => new(_app, new string[]{"device_tracker.piserver_6"});
-        public DeviceTrackerEntity ElinGalaxyWifiOld => new(_app, new string[]{"device_tracker.elin_galaxy_wifi_old"});
-        public DeviceTrackerEntity TomasGalaxyWifi => new(_app, new string[]{"device_tracker.tomas_galaxy_wifi"});
-        public DeviceTrackerEntity HuaweiMate10LiteD2b0a => new(_app, new string[]{"device_tracker.huawei_mate_10_lite_d2b0a"});
-        public DeviceTrackerEntity TomasGamlaPad => new(_app, new string[]{"device_tracker.tomas_gamla_pad"});
-        public DeviceTrackerEntity Raspberrypi3 => new(_app, new string[]{"device_tracker.raspberrypi_3"});
-        public DeviceTrackerEntity Xboxsystemos => new(_app, new string[]{"device_tracker.xboxsystemos"});
-        public DeviceTrackerEntity Hpg2e024 => new(_app, new string[]{"device_tracker.hpg2e024"});
-        public DeviceTrackerEntity SonoffTest => new(_app, new string[]{"device_tracker.sonoff_test"});
-        public DeviceTrackerEntity TomasIpad => new(_app, new string[]{"device_tracker.tomas_ipad"});
-        public DeviceTrackerEntity SmG975f => new(_app, new string[]{"device_tracker.sm_g975f"});
-        public DeviceTrackerEntity Unifi04D3B0632d29Default => new(_app, new string[]{"device_tracker.unifi_04_d3_b0_63_2d_29_default"});
-        public DeviceTrackerEntity TomasIpad2 => new(_app, new string[]{"device_tracker.tomas_ipad_2"});
-        public DeviceTrackerEntity XboxSystemos => new(_app, new string[]{"device_tracker.xbox_systemos"});
-        public DeviceTrackerEntity GoogleMaps113728439587103002947 => new(_app, new string[]{"device_tracker.google_maps_113728439587103002947"});
-        public DeviceTrackerEntity GoogleHomeMini2 => new(_app, new string[]{"device_tracker.google_home_mini_2"});
-        public DeviceTrackerEntity ElinGalaxyWifi => new(_app, new string[]{"device_tracker.elin_galaxy_wifi"});
-        public DeviceTrackerEntity ElinsIpad3 => new(_app, new string[]{"device_tracker.elins_ipad_3"});
-        public DeviceTrackerEntity Esp12Test => new(_app, new string[]{"device_tracker.esp_12_test"});
-        public DeviceTrackerEntity E5cg81709hj => new(_app, new string[]{"device_tracker.5cg81709hj"});
-        public DeviceTrackerEntity EspA82880 => new(_app, new string[]{"device_tracker.esp_a82880"});
-        public DeviceTrackerEntity Elinsipad => new(_app, new string[]{"device_tracker.elinsipad"});
-        public DeviceTrackerEntity YeelinkLightColor1Miio867704 => new(_app, new string[]{"device_tracker.yeelink_light_color1_miio867704"});
-        public DeviceTrackerEntity NestAudio => new(_app, new string[]{"device_tracker.nest_audio"});
-        public DeviceTrackerEntity Piserver8 => new(_app, new string[]{"device_tracker.piserver_8"});
-        public DeviceTrackerEntity Tomass8 => new(_app, new string[]{"device_tracker.tomass8"});
-        public DeviceTrackerEntity Piserver5 => new(_app, new string[]{"device_tracker.piserver_5"});
-        public DeviceTrackerEntity WledWled2 => new(_app, new string[]{"device_tracker.wled_wled_2"});
-        public DeviceTrackerEntity GoogleHomeMini3 => new(_app, new string[]{"device_tracker.google_home_mini_3"});
-        public DeviceTrackerEntity Tomasgps => new(_app, new string[]{"device_tracker.tomasgps"});
-        public DeviceTrackerEntity Unifi2c2617B78551Default => new(_app, new string[]{"device_tracker.unifi_2c_26_17_b7_85_51_default"});
-        public DeviceTrackerEntity TomasIpad4 => new(_app, new string[]{"device_tracker.tomas_ipad_4"});
-        public DeviceTrackerEntity Tomaspc => new(_app, new string[]{"device_tracker.tomaspc"});
-        public DeviceTrackerEntity GoogleMaps115932713534918928318 => new(_app, new string[]{"device_tracker.google_maps_115932713534918928318"});
-        public DeviceTrackerEntity Uppe => new(_app, new string[]{"device_tracker.uppe"});
-        public DeviceTrackerEntity Chromecast3 => new(_app, new string[]{"device_tracker.chromecast_3"});
-        public DeviceTrackerEntity UnifiC417Fe4d8f42Default => new(_app, new string[]{"device_tracker.unifi_c4_17_fe_4d_8f_42_default"});
-        public DeviceTrackerEntity GalaxyTabA3 => new(_app, new string[]{"device_tracker.galaxy_tab_a_3"});
-        public DeviceTrackerEntity E5cg709284w => new(_app, new string[]{"device_tracker.5cg709284w"});
-        public DeviceTrackerEntity GoogleHomeMini4 => new(_app, new string[]{"device_tracker.google_home_mini_4"});
-        public DeviceTrackerEntity WledWled => new(_app, new string[]{"device_tracker.wled_wled"});
-        public DeviceTrackerEntity EmelieIphone => new(_app, new string[]{"device_tracker.emelie_iphone"});
-        public DeviceTrackerEntity Tomasipad => new(_app, new string[]{"device_tracker.tomasipad"});
-        public DeviceTrackerEntity ElinGalaxyWifiOldOold => new(_app, new string[]{"device_tracker.elin_galaxy_wifi_old_oold"});
-        public DeviceTrackerEntity SallyIphone => new(_app, new string[]{"device_tracker.sally_iphone"});
-        public DeviceTrackerEntity GoogleHome => new(_app, new string[]{"device_tracker.google_home"});
-        public DeviceTrackerEntity EspKamera12 => new(_app, new string[]{"device_tracker.esp_kamera_1_2"});
-        public DeviceTrackerEntity GoogleHomeMini => new(_app, new string[]{"device_tracker.google_home_mini"});
-        public DeviceTrackerEntity GoogleHomeMini5 => new(_app, new string[]{"device_tracker.google_home_mini_5"});
-        public DeviceTrackerEntity Chromecast5 => new(_app, new string[]{"device_tracker.chromecast_5"});
-        public DeviceTrackerEntity Chromecast4 => new(_app, new string[]{"device_tracker.chromecast_4"});
-        public DeviceTrackerEntity MelkerHuaweiWifi => new(_app, new string[]{"device_tracker.melker_huawei_wifi"});
-        public DeviceTrackerEntity UnifiAcFdCe031c4aDefault => new(_app, new string[]{"device_tracker.unifi_ac_fd_ce_03_1c_4a_default"});
-        public DeviceTrackerEntity E1921681104F83f512eB4E6 => new(_app, new string[]{"device_tracker.192_168_1_104_f8_3f_51_2e_b4_e6"});
-        public DeviceTrackerEntity Melkergps => new(_app, new string[]{"device_tracker.melkergps"});
-        public DeviceTrackerEntity Chromecast => new(_app, new string[]{"device_tracker.chromecast"});
-        public DeviceTrackerEntity ElgatoKeyLightAirAcae => new(_app, new string[]{"device_tracker.elgato_key_light_air_acae"});
-        public DeviceTrackerEntity UnifiE0D4E80330F9Default => new(_app, new string[]{"device_tracker.unifi_e0_d4_e8_03_30_f9_default"});
-        public DeviceTrackerEntity TomasIpad6 => new(_app, new string[]{"device_tracker.tomas_ipad_6"});
-        public DeviceTrackerEntity Sonoff1 => new(_app, new string[]{"device_tracker.sonoff1"});
-        public DeviceTrackerEntity Unifi0024E451550aDefault => new(_app, new string[]{"device_tracker.unifi_00_24_e4_51_55_0a_default"});
-        public DeviceTrackerEntity NintendoWiiU => new(_app, new string[]{"device_tracker.nintendo_wii_u"});
-        public DeviceTrackerEntity Piserver3 => new(_app, new string[]{"device_tracker.piserver_3"});
-        public DeviceTrackerEntity SallyPresence => new(_app, new string[]{"device_tracker.sally_presence"});
-        public DeviceTrackerEntity Raspberrypi => new(_app, new string[]{"device_tracker.raspberrypi"});
-        public DeviceTrackerEntity GalaxyS8 => new(_app, new string[]{"device_tracker.galaxy_s8"});
-        public DeviceTrackerEntity Sallygps => new(_app, new string[]{"device_tracker.sallygps"});
-        public DeviceTrackerEntity EfraimsIphone => new(_app, new string[]{"device_tracker.efraims_iphone"});
-        public DeviceTrackerEntity E0024E451550a => new(_app, new string[]{"device_tracker.00_24_e4_51_55_0a"});
-        public DeviceTrackerEntity ElgatoKeyLightAirA847 => new(_app, new string[]{"device_tracker.elgato_key_light_air_a847"});
-        public DeviceTrackerEntity EspKamera1 => new(_app, new string[]{"device_tracker.esp_kamera_1"});
-        public DeviceTrackerEntity Piserver2 => new(_app, new string[]{"device_tracker.piserver_2"});
-        public DeviceTrackerEntity GalaxyTabA2 => new(_app, new string[]{"device_tracker.galaxy_tab_a_2"});
-        public DeviceTrackerEntity Piserver => new(_app, new string[]{"device_tracker.piserver"});
-        public DeviceTrackerEntity GoogleMaps118123190245690142371 => new(_app, new string[]{"device_tracker.google_maps_118123190245690142371"});
-        public DeviceTrackerEntity NintendoWiiU2 => new(_app, new string[]{"device_tracker.nintendo_wii_u_2"});
-        public DeviceTrackerEntity Ipad2 => new(_app, new string[]{"device_tracker.ipad_2"});
-        public DeviceTrackerEntity Googlehome2 => new(_app, new string[]{"device_tracker.googlehome_2"});
-        public DeviceTrackerEntity NestAudio2 => new(_app, new string[]{"device_tracker.nest_audio_2"});
-        public DeviceTrackerEntity TomasIpad3 => new(_app, new string[]{"device_tracker.tomas_ipad_3"});
-        public DeviceTrackerEntity SmG986b => new(_app, new string[]{"device_tracker.sm_g986b"});
-        public DeviceTrackerEntity Octopi => new(_app, new string[]{"device_tracker.octopi"});
-        public DeviceTrackerEntity Samsunggalaxys7 => new(_app, new string[]{"device_tracker.samsunggalaxys7"});
-        public DeviceTrackerEntity GalaxyTabA => new(_app, new string[]{"device_tracker.galaxy_tab_a"});
-        public DeviceTrackerEntity SallyIphone2 => new(_app, new string[]{"device_tracker.sally_iphone_2"});
-        public DeviceTrackerEntity Chromecast2 => new(_app, new string[]{"device_tracker.chromecast_2"});
-        public DeviceTrackerEntity Nere => new(_app, new string[]{"device_tracker.nere"});
-        public DeviceTrackerEntity TomasPresence => new(_app, new string[]{"device_tracker.tomas_presence"});
-        public DeviceTrackerEntity Piserver7 => new(_app, new string[]{"device_tracker.piserver_7"});
-        public DeviceTrackerEntity E5cg8292f67 => new(_app, new string[]{"device_tracker.5cg8292f67"});
-        public DeviceTrackerEntity SamsungGalaxyS7 => new(_app, new string[]{"device_tracker.samsung_galaxy_s7"});
-        public DeviceTrackerEntity Googlehome3 => new(_app, new string[]{"device_tracker.googlehome_3"});
-        public DeviceTrackerEntity ElinsIpad => new(_app, new string[]{"device_tracker.elins_ipad"});
-        public DeviceTrackerEntity EspD6983d => new(_app, new string[]{"device_tracker.esp_d6983d"});
-        public DeviceTrackerEntity Harmony => new(_app, new string[]{"device_tracker.harmony"});
-        public DeviceTrackerEntity GalaxyS10 => new(_app, new string[]{"device_tracker.galaxy_s10"});
-        public DeviceTrackerEntity Raspberrypi2 => new(_app, new string[]{"device_tracker.raspberrypi_2"});
-        public DeviceTrackerEntity TomasIpad5 => new(_app, new string[]{"device_tracker.tomas_ipad_5"});
-        public DeviceTrackerEntity Piserver4 => new(_app, new string[]{"device_tracker.piserver_4"});
-        public DeviceTrackerEntity GoogleMapsTomash277hassioGmailCom => new(_app, new string[]{"device_tracker.google_maps_tomash277hassio_gmail_com"});
-        public DeviceTrackerEntity Shelly1 => new(_app, new string[]{"device_tracker.shelly_1"});
-        public DeviceTrackerEntity MelkerGalaxyWifi => new(_app, new string[]{"device_tracker.melker_galaxy_wifi"});
-        public DeviceTrackerEntity ElinPresence => new(_app, new string[]{"device_tracker.elin_presence"});
-        public DeviceTrackerEntity Unifi862c82A4F469Default => new(_app, new string[]{"device_tracker.unifi_86_2c_82_a4_f4_69_default"});
-        public DeviceTrackerEntity TomasGalaxyWifiOld => new(_app, new string[]{"device_tracker.tomas_galaxy_wifi_old"});
+        public PersonEntity Melker => new(_app, new string[]{"person.melker"});
+        public PersonEntity Elin => new(_app, new string[]{"person.elin"});
+        public PersonEntity Sally => new(_app, new string[]{"person.sally"});
+        public PersonEntity Tomas => new(_app, new string[]{"person.tomas"});
     }
 
-    public partial class LightEntities
+    public partial class ScriptEntities
     {
         private readonly NetDaemonRxApp _app;
-        public LightEntities(NetDaemonRxApp app)
+        public ScriptEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public LightEntity JulbelysningVardagsrumV => new(_app, new string[]{"light.julbelysning_vardagsrum_v"});
-        public LightEntity SovrumFonster => new(_app, new string[]{"light.sovrum_fonster"});
-        public LightEntity MelkersRum => new(_app, new string[]{"light.melkers_rum"});
-        public LightEntity SallysRumFonster => new(_app, new string[]{"light.sallys_rum_fonster"});
-        public LightEntity SovrumByra => new(_app, new string[]{"light.sovrum_byra"});
-        public LightEntity JulbelysningTomasRum => new(_app, new string[]{"light.julbelysning_tomas_rum"});
-        public LightEntity TvrumFonsterVanster => new(_app, new string[]{"light.tvrum_fonster_vanster"});
-        public LightEntity TvrumBakgrundTv => new(_app, new string[]{"light.tvrum_bakgrund_tv"});
-        public LightEntity HallByra => new(_app, new string[]{"light.hall_byra"});
-        public LightEntity HallDorr => new(_app, new string[]{"light.hall_dorr"});
-        public LightEntity JulbelysningVardagsrumH => new(_app, new string[]{"light.julbelysning_vardagsrum_h"});
-        public LightEntity VardagsrumFonsterHoger => new(_app, new string[]{"light.vardagsrum_fonster_hoger"});
-        public LightEntity Vardagsrum => new(_app, new string[]{"light.vardagsrum"});
-        public LightEntity JulbelysningSovrum => new(_app, new string[]{"light.julbelysning_sovrum"});
-        public LightEntity Farstukvisten => new(_app, new string[]{"light.farstukvisten"});
-        public LightEntity JulbelysningKokV => new(_app, new string[]{"light.julbelysning_kok_v"});
-        public LightEntity TomasRumFonster => new(_app, new string[]{"light.tomas_rum_fonster"});
-        public LightEntity MelkersRumFonster => new(_app, new string[]{"light.melkers_rum_fonster"});
-        public LightEntity Ambient => new(_app, new string[]{"light.ambient"});
-        public LightEntity Sovrum => new(_app, new string[]{"light.sovrum"});
-        public LightEntity TvrumFonsterHoger => new(_app, new string[]{"light.tvrum_fonster_hoger"});
-        public LightEntity KokLillaFonster => new(_app, new string[]{"light.kok_lilla_fonster"});
-        public LightEntity TvrumVagg => new(_app, new string[]{"light.tvrum_vagg"});
-        public LightEntity SallysRum => new(_app, new string[]{"light.sallys_rum"});
-        public LightEntity JulbelysningKokH => new(_app, new string[]{"light.julbelysning_kok_h"});
-        public LightEntity TomasRum => new(_app, new string[]{"light.tomas_rum"});
-        public LightEntity FarstukvistLed => new(_app, new string[]{"light.farstukvist_led"});
-        public LightEntity VardagsrumFonsterVanster => new(_app, new string[]{"light.vardagsrum_fonster_vanster"});
-        public LightEntity Tvrummet => new(_app, new string[]{"light.tvrummet"});
-        public LightEntity JulbelysningTvrummet => new(_app, new string[]{"light.julbelysning_tvrummet"});
-        public LightEntity Kok => new(_app, new string[]{"light.kok"});
-        public LightEntity VardagsrumFonsterMitten => new(_app, new string[]{"light.vardagsrum_fonster_mitten"});
-        public LightEntity KokFonster => new(_app, new string[]{"light.kok_fonster"});
-        public LightEntity GymLed => new(_app, new string[]{"light.gym_led"});
-    }
-
-    public partial class SwitchEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public SwitchEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public SwitchEntity TvrummetTv => new(_app, new string[]{"switch.tvrummet_tv"});
-        public SwitchEntity NetdaemonTv => new(_app, new string[]{"switch.netdaemon_tv"});
-        public SwitchEntity Ac29bc0cfe6 => new(_app, new string[]{"switch.ac_29bc0cfe_6"});
-        public SwitchEntity NetdaemonMagicCube => new(_app, new string[]{"switch.netdaemon_magic_cube"});
-        public SwitchEntity NetdaemonWelcomeHome => new(_app, new string[]{"switch.netdaemon_welcome_home"});
-        public SwitchEntity Ac67bc0cfe4 => new(_app, new string[]{"switch.ac_67bc0cfe_4"});
-        public SwitchEntity JulbelysningKokH => new(_app, new string[]{"switch.julbelysning_kok_h"});
-        public SwitchEntity Ac294734615 => new(_app, new string[]{"switch.ac_2947346_15"});
-        public SwitchEntity Ac294734616 => new(_app, new string[]{"switch.ac_2947346_16"});
-        public SwitchEntity NetdaemonRoomSpecific => new(_app, new string[]{"switch.netdaemon_room_specific"});
-        public SwitchEntity Film => new(_app, new string[]{"switch.film"});
-        public SwitchEntity Ac18ce36211 => new(_app, new string[]{"switch.ac_18ce362_11"});
-        public SwitchEntity Ac36bc0cfe8 => new(_app, new string[]{"switch.ac_36bc0cfe_8"});
-        public SwitchEntity Tv => new(_app, new string[]{"switch.tv"});
-        public SwitchEntity JulbelysningVardagsrumH => new(_app, new string[]{"switch.julbelysning_vardagsrum_h"});
-        public SwitchEntity MotorvarmareHoger => new(_app, new string[]{"switch.motorvarmare_hoger"});
-        public SwitchEntity NetdaemonLightManager => new(_app, new string[]{"switch.netdaemon_light_manager"});
-        public SwitchEntity NetdaemonCalendarTrash => new(_app, new string[]{"switch.netdaemon_calendar_trash"});
-        public SwitchEntity ComputerTomas => new(_app, new string[]{"switch.computer_tomas"});
-        public SwitchEntity Ac2bc0cfe1 => new(_app, new string[]{"switch.ac_2bc0cfe_1"});
-        public SwitchEntity Ac18ce36212 => new(_app, new string[]{"switch.ac_18ce362_12"});
-        public SwitchEntity NetdaemonMotion => new(_app, new string[]{"switch.netdaemon_motion"});
-        public SwitchEntity Ac55bc0cfe7 => new(_app, new string[]{"switch.ac_55bc0cfe_7"});
-        public SwitchEntity NetdaemonHacsNotifyOnUpdate => new(_app, new string[]{"switch.netdaemon_hacs_notify_on_update"});
-        public SwitchEntity Zigbee2mqttMainJoin => new(_app, new string[]{"switch.zigbee2mqtt_main_join"});
-        public SwitchEntity JulbelysningTvrummet => new(_app, new string[]{"switch.julbelysning_tvrummet"});
-        public SwitchEntity Switch8MelkersTv => new(_app, new string[]{"switch.switch8_melkers_tv"});
-        public SwitchEntity ADiod => new(_app, new string[]{"switch.a_diod"});
-        public SwitchEntity NetdaemonHouseStateManager => new(_app, new string[]{"switch.netdaemon_house_state_manager"});
-        public SwitchEntity JulbelysningVardagsrumV => new(_app, new string[]{"switch.julbelysning_vardagsrum_v"});
-        public SwitchEntity JulbelysningKokV => new(_app, new string[]{"switch.julbelysning_kok_v"});
-        public SwitchEntity Ac81bc0cfe1 => new(_app, new string[]{"switch.ac_81bc0cfe_1"});
-        public SwitchEntity Ac44bc0cfe1 => new(_app, new string[]{"switch.ac_44bc0cfe_1"});
-        public SwitchEntity NetdaemonFrys => new(_app, new string[]{"switch.netdaemon_frys"});
-        public SwitchEntity NetdaemonWebhook => new(_app, new string[]{"switch.netdaemon_webhook"});
-        public SwitchEntity MelkersRumFonster => new(_app, new string[]{"switch.melkers_rum_fonster"});
-        public SwitchEntity Ac51bc0cfe4 => new(_app, new string[]{"switch.ac_51bc0cfe_4"});
-        public SwitchEntity Sonoff1Relay => new(_app, new string[]{"switch.sonoff1_relay"});
-        public SwitchEntity Ac51bc0cfe8 => new(_app, new string[]{"switch.ac_51bc0cfe_8"});
-        public SwitchEntity Kodi => new(_app, new string[]{"switch.kodi"});
-        public SwitchEntity Ac93bc0cfe2 => new(_app, new string[]{"switch.ac_93bc0cfe_2"});
-        public SwitchEntity Ac52bc0cfe1 => new(_app, new string[]{"switch.ac_52bc0cfe_1"});
-        public SwitchEntity ShellyRelay => new(_app, new string[]{"switch.shelly_relay"});
-        public SwitchEntity SallysRumFonster => new(_app, new string[]{"switch.sallys_rum_fonster"});
-        public SwitchEntity TvrumVagg => new(_app, new string[]{"switch.tvrum_vagg"});
-        public SwitchEntity NetdaemonMotorvarmare => new(_app, new string[]{"switch.netdaemon_motorvarmare"});
-        public SwitchEntity Ac34bc0cfe6 => new(_app, new string[]{"switch.ac_34bc0cfe_6"});
-        public SwitchEntity Ac15bc0cfe1 => new(_app, new string[]{"switch.ac_15bc0cfe_1"});
-        public SwitchEntity JulbelysningTomasRum => new(_app, new string[]{"switch.julbelysning_tomas_rum"});
-        public SwitchEntity Ac50bc0cfe8 => new(_app, new string[]{"switch.ac_50bc0cfe_8"});
-        public SwitchEntity Ac294734614 => new(_app, new string[]{"switch.ac_2947346_14"});
-        public SwitchEntity Ac39bc0cfe7 => new(_app, new string[]{"switch.ac_39bc0cfe_7"});
-        public SwitchEntity MotorvarmareHogerOld => new(_app, new string[]{"switch.motorvarmare_hoger_old"});
-    }
-
-    public partial class AutomationEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public AutomationEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public AutomationEntity SetThemeAtStartup => new(_app, new string[]{"automation.set_theme_at_startup"});
-        public AutomationEntity Zigbee2mqttLogLevel => new(_app, new string[]{"automation.zigbee2mqtt_log_level"});
-        public AutomationEntity ZigbeeJoinEnabled => new(_app, new string[]{"automation.zigbee_join_enabled"});
-        public AutomationEntity Automation3 => new(_app, new string[]{"automation.automation_3"});
-        public AutomationEntity ZigbeeJoinDisabled => new(_app, new string[]{"automation.zigbee_join_disabled"});
-    }
-
-    public partial class ZoneEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public ZoneEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public ZoneEntity Garn => new(_app, new string[]{"zone.garn"});
-        public ZoneEntity Svarmor => new(_app, new string[]{"zone.svarmor"});
-        public ZoneEntity Sjukhuset => new(_app, new string[]{"zone.sjukhuset"});
-        public ZoneEntity Vardinge => new(_app, new string[]{"zone.vardinge"});
-        public ZoneEntity Spv => new(_app, new string[]{"zone.spv"});
-        public ZoneEntity Home => new(_app, new string[]{"zone.home"});
+        public ScriptEntity Setnightmode => new(_app, new string[]{"script.setnightmode"});
+        public ScriptEntity CleaningScene => new(_app, new string[]{"script.cleaning_scene"});
+        public ScriptEntity TvOffScene => new(_app, new string[]{"script.tv_off_scene"});
+        public ScriptEntity TvScene => new(_app, new string[]{"script.tv_scene"});
+        public ScriptEntity ColorScene => new(_app, new string[]{"script.color_scene"});
+        public ScriptEntity NightScene => new(_app, new string[]{"script.night_scene"});
+        public ScriptEntity EveningScene => new(_app, new string[]{"script.evening_scene"});
+        public ScriptEntity Notify => new(_app, new string[]{"script.notify"});
+        public ScriptEntity Zigbee2mqttRename => new(_app, new string[]{"script.zigbee2mqtt_rename"});
+        public ScriptEntity FilmScene => new(_app, new string[]{"script.film_scene"});
+        public ScriptEntity MorningScene => new(_app, new string[]{"script.morning_scene"});
+        public ScriptEntity E1586350051032 => new(_app, new string[]{"script.1586350051032"});
+        public ScriptEntity Zigbee2mqttRemove => new(_app, new string[]{"script.zigbee2mqtt_remove"});
+        public ScriptEntity DayScene => new(_app, new string[]{"script.day_scene"});
+        public ScriptEntity NotifyGreet => new(_app, new string[]{"script.notify_greet"});
     }
 
     public partial class SunEntities
@@ -877,173 +1060,31 @@ namespace Netdaemon.Generated.Reactive
         public SunEntity Sun => new(_app, new string[]{"sun.sun"});
     }
 
-    public partial class ScriptEntities
+    public partial class ZoneEntities
     {
         private readonly NetDaemonRxApp _app;
-        public ScriptEntities(NetDaemonRxApp app)
+        public ZoneEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public ScriptEntity NightScene => new(_app, new string[]{"script.night_scene"});
-        public ScriptEntity TvOffScene => new(_app, new string[]{"script.tv_off_scene"});
-        public ScriptEntity EveningScene => new(_app, new string[]{"script.evening_scene"});
-        public ScriptEntity Zigbee2mqttRemove => new(_app, new string[]{"script.zigbee2mqtt_remove"});
-        public ScriptEntity Notify => new(_app, new string[]{"script.notify"});
-        public ScriptEntity CleaningScene => new(_app, new string[]{"script.cleaning_scene"});
-        public ScriptEntity Zigbee2mqttRename => new(_app, new string[]{"script.zigbee2mqtt_rename"});
-        public ScriptEntity E1586350051032 => new(_app, new string[]{"script.1586350051032"});
-        public ScriptEntity NotifyGreet => new(_app, new string[]{"script.notify_greet"});
-        public ScriptEntity FilmScene => new(_app, new string[]{"script.film_scene"});
-        public ScriptEntity Setnightmode => new(_app, new string[]{"script.setnightmode"});
-        public ScriptEntity DayScene => new(_app, new string[]{"script.day_scene"});
-        public ScriptEntity MorningScene => new(_app, new string[]{"script.morning_scene"});
-        public ScriptEntity ColorScene => new(_app, new string[]{"script.color_scene"});
-        public ScriptEntity TvScene => new(_app, new string[]{"script.tv_scene"});
+        public ZoneEntity Sjukhuset => new(_app, new string[]{"zone.sjukhuset"});
+        public ZoneEntity Vardinge => new(_app, new string[]{"zone.vardinge"});
+        public ZoneEntity Home => new(_app, new string[]{"zone.home"});
+        public ZoneEntity Garn => new(_app, new string[]{"zone.garn"});
+        public ZoneEntity Svarmor => new(_app, new string[]{"zone.svarmor"});
+        public ZoneEntity Spv => new(_app, new string[]{"zone.spv"});
     }
 
-    public partial class BinarySensorEntities
+    public partial class TimerEntities
     {
         private readonly NetDaemonRxApp _app;
-        public BinarySensorEntities(NetDaemonRxApp app)
+        public TimerEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public BinarySensorEntity Ac67bc0cfe4 => new(_app, new string[]{"binary_sensor.ac_67bc0cfe_4"});
-        public BinarySensorEntity Ac29bc0cfe6 => new(_app, new string[]{"binary_sensor.ac_29bc0cfe_6"});
-        public BinarySensorEntity Ac52bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_52bc0cfe_1"});
-        public BinarySensorEntity VardagsrumPir => new(_app, new string[]{"binary_sensor.vardagsrum_pir"});
-        public BinarySensorEntity TrappPir => new(_app, new string[]{"binary_sensor.trapp_pir"});
-        public BinarySensorEntity FarstukvistLedUpdateAvailable => new(_app, new string[]{"binary_sensor.farstukvist_led_update_available"});
-        public BinarySensorEntity MotorvarmareHogerUpdateAvailableOld => new(_app, new string[]{"binary_sensor.motorvarmare_hoger_update_available_old"});
-        public BinarySensorEntity MotorvarmareHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.motorvarmare_hoger_update_available"});
-        public BinarySensorEntity MelkersFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.melkers_fonster_update_available"});
-        public BinarySensorEntity SallysFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.sallys_fonster_update_available"});
-        public BinarySensorEntity TvrumBakgrundTvUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_bakgrund_tv_update_available"});
-        public BinarySensorEntity VardagsrumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_pir_update_available"});
-        public BinarySensorEntity HallDorr => new(_app, new string[]{"binary_sensor.hall_dorr"});
-        public BinarySensorEntity TvrumRullgardinHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_rullgardin_hoger_update_available"});
-        public BinarySensorEntity TvrumHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_hoger_update_available"});
-        public BinarySensorEntity SwInput => new(_app, new string[]{"binary_sensor.sw_input"});
-        public BinarySensorEntity TomasRumUpdateAvailable => new(_app, new string[]{"binary_sensor.tomas_rum_update_available"});
-        public BinarySensorEntity Kamera3MotionDetected => new(_app, new string[]{"binary_sensor.kamera_3_motion_detected"});
-        public BinarySensorEntity Ac44bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_44bc0cfe_1"});
-        public BinarySensorEntity SovrumPir => new(_app, new string[]{"binary_sensor.sovrum_pir"});
-        public BinarySensorEntity Ac93bc0cfe2 => new(_app, new string[]{"binary_sensor.ac_93bc0cfe_2"});
-        public BinarySensorEntity KokFonsterLillaUpdateAvailable => new(_app, new string[]{"binary_sensor.kok_fonster_lilla_update_available"});
-        public BinarySensorEntity Ac72bc0cfe2 => new(_app, new string[]{"binary_sensor.ac_72bc0cfe_2"});
-        public BinarySensorEntity SovrumFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_fonster_update_available"});
-        public BinarySensorEntity Ac18ce36212 => new(_app, new string[]{"binary_sensor.ac_18ce362_12"});
-        public BinarySensorEntity SnapshotsStale => new(_app, new string[]{"binary_sensor.snapshots_stale"});
-        public BinarySensorEntity HallByraUpdateAvailable => new(_app, new string[]{"binary_sensor.hall_byra_update_available"});
-        public BinarySensorEntity TvrumRullgardinVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_rullgardin_vanster_update_available"});
-        public BinarySensorEntity Ac39bc0cfe7 => new(_app, new string[]{"binary_sensor.ac_39bc0cfe_7"});
-        public BinarySensorEntity Sonoff1Button => new(_app, new string[]{"binary_sensor.sonoff1_button"});
-        public BinarySensorEntity Ac51bc0cfe4 => new(_app, new string[]{"binary_sensor.ac_51bc0cfe_4"});
-        public BinarySensorEntity TvrumPir => new(_app, new string[]{"binary_sensor.tvrum_pir"});
-        public BinarySensorEntity Ac50bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_50bc0cfe_8"});
-        public BinarySensorEntity MelkersRumPirOccupancyUpdateAvailable => new(_app, new string[]{"binary_sensor.melkers_rum_pir_occupancy_update_available"});
-        public BinarySensorEntity SovrumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_pir_update_available"});
-        public BinarySensorEntity Ac55bc0cfe7 => new(_app, new string[]{"binary_sensor.ac_55bc0cfe_7"});
-        public BinarySensorEntity SweRecyclingVattjom => new(_app, new string[]{"binary_sensor.swe_recycling_vattjom"});
-        public BinarySensorEntity GymLedUpdateAvailable => new(_app, new string[]{"binary_sensor.gym_led_update_available"});
-        public BinarySensorEntity Ac294734616 => new(_app, new string[]{"binary_sensor.ac_2947346_16"});
-        public BinarySensorEntity KokFonsterUpdateAvailable => new(_app, new string[]{"binary_sensor.kok_fonster_update_available"});
-        public BinarySensorEntity VardagsrumMittenUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_mitten_update_available"});
-        public BinarySensorEntity Ac63bc0cfe9 => new(_app, new string[]{"binary_sensor.ac_63bc0cfe_9"});
-        public BinarySensorEntity SallysRumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.sallys_rum_pir_update_available"});
-        public BinarySensorEntity MelkersRumPirOccupancy => new(_app, new string[]{"binary_sensor.melkers_rum_pir_occupancy"});
-        public BinarySensorEntity TomasRumPir => new(_app, new string[]{"binary_sensor.tomas_rum_pir"});
-        public BinarySensorEntity Ac294734615 => new(_app, new string[]{"binary_sensor.ac_2947346_15"});
-        public BinarySensorEntity Ac18ce36211 => new(_app, new string[]{"binary_sensor.ac_18ce362_11"});
-        public BinarySensorEntity HallDorrUpdateAvailable => new(_app, new string[]{"binary_sensor.hall_dorr_update_available"});
-        public BinarySensorEntity VardagsrumHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_hoger_update_available"});
-        public BinarySensorEntity SallysRumPir => new(_app, new string[]{"binary_sensor.sallys_rum_pir"});
-        public BinarySensorEntity Updater => new(_app, new string[]{"binary_sensor.updater"});
-        public BinarySensorEntity JulbelysningKokHUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_kok_h_update_available"});
-        public BinarySensorEntity JulbelysningTomasRumUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_tomas_rum_update_available"});
-        public BinarySensorEntity Ac36bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_36bc0cfe_8"});
-        public BinarySensorEntity KokPir => new(_app, new string[]{"binary_sensor.kok_pir"});
-        public BinarySensorEntity TvrumVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrum_vanster_update_available"});
-        public BinarySensorEntity Ac81bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_81bc0cfe_1"});
-        public BinarySensorEntity SmG986bIsCharging => new(_app, new string[]{"binary_sensor.sm_g986b_is_charging"});
-        public BinarySensorEntity Ac2bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_2bc0cfe_1"});
-        public BinarySensorEntity TvrummVaggUpdateAvailable => new(_app, new string[]{"binary_sensor.tvrumm_vagg_update_available"});
-        public BinarySensorEntity Ac51bc0cfe8 => new(_app, new string[]{"binary_sensor.ac_51bc0cfe_8"});
-        public BinarySensorEntity TomasRumPirUpdateAvailable => new(_app, new string[]{"binary_sensor.tomas_rum_pir_update_available"});
-        public BinarySensorEntity JulbelysningHogerUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_hoger_update_available"});
-        public BinarySensorEntity Ac34bc0cfe6 => new(_app, new string[]{"binary_sensor.ac_34bc0cfe_6"});
-        public BinarySensorEntity Ac15bc0cfe1 => new(_app, new string[]{"binary_sensor.ac_15bc0cfe_1"});
-        public BinarySensorEntity SovrumByraUpdateAvailable => new(_app, new string[]{"binary_sensor.sovrum_byra_update_available"});
-        public BinarySensorEntity Ac294734614 => new(_app, new string[]{"binary_sensor.ac_2947346_14"});
-        public BinarySensorEntity SweRecyclingMatfors => new(_app, new string[]{"binary_sensor.swe_recycling_matfors"});
-        public BinarySensorEntity JulbelysningVardagsrumVUpdateAvailable => new(_app, new string[]{"binary_sensor.julbelysning_vardagsrum_v_update_available"});
-        public BinarySensorEntity VardagsrumVansterUpdateAvailable => new(_app, new string[]{"binary_sensor.vardagsrum_vanster_update_available"});
-    }
-
-    public partial class RemoteEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public RemoteEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public RemoteEntity Tvrummet => new(_app, new string[]{"remote.tvrummet"});
-    }
-
-    public partial class CameraEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public CameraEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public CameraEntity Kamera3 => new(_app, new string[]{"camera.kamera_3"});
-        public CameraEntity KameraStream => new(_app, new string[]{"camera.kamera_stream"});
-        public CameraEntity FramsidanProfile000Mainstream2 => new(_app, new string[]{"camera.framsidan_profile000_mainstream_2"});
-        public CameraEntity FramsidanProfile000Mainstream => new(_app, new string[]{"camera.framsidan_profile000_mainstream"});
-        public CameraEntity MyCamera => new(_app, new string[]{"camera.my_camera"});
-    }
-
-    public partial class InputTextEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public InputTextEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public InputTextEntity Zigbee2mqttRemove => new(_app, new string[]{"input_text.zigbee2mqtt_remove"});
-        public InputTextEntity Zigbee2mqttNewName => new(_app, new string[]{"input_text.zigbee2mqtt_new_name"});
-        public InputTextEntity Zigbee2mqttOldName => new(_app, new string[]{"input_text.zigbee2mqtt_old_name"});
-    }
-
-    public partial class PersonEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public PersonEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public PersonEntity Elin => new(_app, new string[]{"person.elin"});
-        public PersonEntity Sally => new(_app, new string[]{"person.sally"});
-        public PersonEntity Melker => new(_app, new string[]{"person.melker"});
-        public PersonEntity Tomas => new(_app, new string[]{"person.tomas"});
-    }
-
-    public partial class LockEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public LockEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public LockEntity LasUppe => new(_app, new string[]{"lock.las_uppe"});
+        public TimerEntity ZigbeePermitJoin => new(_app, new string[]{"timer.zigbee_permit_join"});
     }
 
     public partial class InputBooleanEntities
@@ -1058,71 +1099,28 @@ namespace Netdaemon.Generated.Reactive
         public InputBooleanEntity ScheduleOnWeekends => new(_app, new string[]{"input_boolean.schedule_on_weekends"});
     }
 
-    public partial class SceneEntities
+    public partial class InputTextEntities
     {
         private readonly NetDaemonRxApp _app;
-        public SceneEntities(NetDaemonRxApp app)
+        public InputTextEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public SceneEntity Natt => new(_app, new string[]{"scene.natt"});
-        public SceneEntity Morgon => new(_app, new string[]{"scene.morgon"});
-        public SceneEntity Dag => new(_app, new string[]{"scene.dag"});
-        public SceneEntity Stadning => new(_app, new string[]{"scene.stadning"});
-        public SceneEntity Kvall => new(_app, new string[]{"scene.kvall"});
+        public InputTextEntity Zigbee2mqttOldName => new(_app, new string[]{"input_text.zigbee2mqtt_old_name"});
+        public InputTextEntity Zigbee2mqttRemove => new(_app, new string[]{"input_text.zigbee2mqtt_remove"});
+        public InputTextEntity Zigbee2mqttNewName => new(_app, new string[]{"input_text.zigbee2mqtt_new_name"});
     }
 
-    public partial class InputSelectEntities
+    public partial class LockEntities
     {
         private readonly NetDaemonRxApp _app;
-        public InputSelectEntities(NetDaemonRxApp app)
+        public LockEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public InputSelectEntity Zigbee2mqttLogLevel => new(_app, new string[]{"input_select.zigbee2mqtt_log_level"});
-        public InputSelectEntity HouseModeSelectTest => new(_app, new string[]{"input_select.house_mode_select_test"});
-        public InputSelectEntity HouseModeSelect => new(_app, new string[]{"input_select.house_mode_select"});
-    }
-
-    public partial class ProximityEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public ProximityEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public ProximityEntity ProxHomeElin => new(_app, new string[]{"proximity.prox_home_elin"});
-        public ProximityEntity ProxHomeSally => new(_app, new string[]{"proximity.prox_home_sally"});
-        public ProximityEntity ProxHomeMelker => new(_app, new string[]{"proximity.prox_home_melker"});
-        public ProximityEntity ProxHomeTomas => new(_app, new string[]{"proximity.prox_home_tomas"});
-    }
-
-    public partial class CalendarEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public CalendarEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public CalendarEntity SundsvallsFotoklubb => new(_app, new string[]{"calendar.sundsvalls_fotoklubb"});
-        public CalendarEntity Tomash277GmailCom => new(_app, new string[]{"calendar.tomash277_gmail_com"});
-        public CalendarEntity TaUtSopor => new(_app, new string[]{"calendar.ta_ut_sopor"});
-        public CalendarEntity FamiljenHellstrom => new(_app, new string[]{"calendar.familjen_hellstrom"});
-    }
-
-    public partial class TimerEntities
-    {
-        private readonly NetDaemonRxApp _app;
-        public TimerEntities(NetDaemonRxApp app)
-        {
-            _app = app;
-        }
-
-        public TimerEntity ZigbeePermitJoin => new(_app, new string[]{"timer.zigbee_permit_join"});
+        public LockEntity LasUppe => new(_app, new string[]{"lock.las_uppe"});
     }
 
     public partial class CoverEntities
@@ -1138,15 +1136,64 @@ namespace Netdaemon.Generated.Reactive
         public CoverEntity TvrumRullgardinHoger => new(_app, new string[]{"cover.tvrum_rullgardin_hoger"});
     }
 
-    public partial class InputNumberEntities
+    public partial class InputSelectEntities
     {
         private readonly NetDaemonRxApp _app;
-        public InputNumberEntities(NetDaemonRxApp app)
+        public InputSelectEntities(NetDaemonRxApp app)
         {
             _app = app;
         }
 
-        public InputNumberEntity CarHeaterDepTimeHour => new(_app, new string[]{"input_number.car_heater_dep_time_hour"});
-        public InputNumberEntity CarHeaterDepTimeMinutes => new(_app, new string[]{"input_number.car_heater_dep_time_minutes"});
+        public InputSelectEntity HouseModeSelect => new(_app, new string[]{"input_select.house_mode_select"});
+        public InputSelectEntity HouseModeSelectTest => new(_app, new string[]{"input_select.house_mode_select_test"});
+        public InputSelectEntity Zigbee2mqttLogLevel => new(_app, new string[]{"input_select.zigbee2mqtt_log_level"});
+    }
+
+    public partial class SceneEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public SceneEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public SceneEntity Kvall => new(_app, new string[]{"scene.kvall"});
+        public SceneEntity Stadning => new(_app, new string[]{"scene.stadning"});
+        public SceneEntity Dag => new(_app, new string[]{"scene.dag"});
+        public SceneEntity Natt => new(_app, new string[]{"scene.natt"});
+        public SceneEntity Morgon => new(_app, new string[]{"scene.morgon"});
+    }
+
+    public partial class WeatherEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public WeatherEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public WeatherEntity SmhiHemma => new(_app, new string[]{"weather.smhi_hemma"});
+    }
+
+    public partial class RemoteEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public RemoteEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public RemoteEntity Tvrummet => new(_app, new string[]{"remote.tvrummet"});
+    }
+
+    public partial class PersistentNotificationEntities
+    {
+        private readonly NetDaemonRxApp _app;
+        public PersistentNotificationEntities(NetDaemonRxApp app)
+        {
+            _app = app;
+        }
+
+        public PersistentNotificationEntity SupervisorIssuePwnedCoreMariadb => new(_app, new string[]{"persistent_notification.supervisor_issue_pwned_core_mariadb"});
     }
 }

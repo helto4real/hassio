@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
 using NetDaemon.Common.Reactive;
-using Netdaemon.Generated.Reactive;
+using NetDaemon.Generated.Reactive;
 using NetDaemon.Common;
 using System.Threading;
 
@@ -137,7 +137,7 @@ public class TVManager : GeneratedAppBase
                             {
                                 // Idle timeout went by without any change in state turn off TV
                                 Log($"TV been idle for {_idleTimeout} minutes, turning off");
-                                RunScript("tv_off_scene");
+                               // RunScript("tv_off_scene");
                             }
                             // If the state did has changed after we waited just run to completion
                         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Reactive.Linq;
 using NetDaemon.Common.Reactive;
-using Netdaemon.Generated.Reactive;
+using NetDaemon.Generated.Reactive;
 // using Netdaemon.Generated.Extensions;
 
 /// <summary>

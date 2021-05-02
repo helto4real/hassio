@@ -36,7 +36,6 @@ from homeassistant.const import (
     CONF_LATITUDE, CONF_LONGITUDE, CONF_NAME, CONF_RADIUS)
 from homeassistant.util import Throttle
 import homeassistant.util.dt as dt_util
-from homeassistant.components.rest.sensor import RestData
 
 __version__ = '1.0.0'
 

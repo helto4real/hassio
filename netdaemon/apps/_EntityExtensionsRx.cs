@@ -5,7 +5,7 @@ using System.Linq;
 using NetDaemon.Common;
 using NetDaemon.Common.Reactive;
 
-namespace Netdaemon.Generated.Reactive
+namespace NetDaemon.Generated.Reactive
 {
     public class GeneratedAppBase : NetDaemonRxApp
     {
