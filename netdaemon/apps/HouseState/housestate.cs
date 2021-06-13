@@ -123,8 +123,8 @@ public class HouseStateManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 (
-                    (e.New?.State is double && e.New.State <= 20.0 ||
-                    e.New?.State is long && e.New.State <= 20) //&&
+                    (e.New?.State is double && e.New.State <= 25.0 ||
+                    e.New?.State is long && e.New.State <= 25) //&&
                     // (e.Old?.State is double && e.Old.State > 20.0 ||
                     // e.Old?.State is long && e.Old.State > 20) 
                 ) &&
@@ -149,8 +149,10 @@ public class HouseStateManager : NetDaemonRxApp
             .StateChanges
             .Where(e =>
                 (
-                    (e.New?.State is double && e.New.State >= 25.0 ||
-                    e.New?.State is long && e.New.State >= 25) //&&
+                    (e.New?.State is double && e.New.State >= 30.0 ||
+                    e.New?.State is long && e.New.State >= 30) &&
+                    DateTime.Now.Hour > 5 && DateTime.Now.Hour < 10
+                    //&&
                     // (e.Old?.State is double && e.Old.State < 25.0 ||
                     // e.Old?.State is long && e.Old.State < 25)
                 ) &&

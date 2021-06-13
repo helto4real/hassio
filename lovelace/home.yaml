@@ -170,7 +170,7 @@ cards:
               top: 10.5%
             tap_action: toggle
             type: state-icon
-          - entity: switch.switch4_tomas_fan
+          - entity: light.elgato_key_light
             style:
               left: 92.2%
               top: 20.5%

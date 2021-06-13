@@ -21,7 +21,7 @@ camera:
   # - platform: local_file
   #   file_path: /config/motion/kamera_3_latest.jpg
   #   name: "Live view"
-amcrest:
+# amcrest:
   # - host: !secret camera_1_ip
   #   username: !secret camera_user
   #   password: !secret camera_password
@@ -30,12 +30,12 @@ amcrest:
   #   username: !secret camera_user
   #   password: !secret camera_password
   #   name: kamera_2
-  - host: !secret camera_3_ip
-    username: !secret camera_user
-    password: !secret camera_password
-    name: kamera_3
-    binary_sensors:
-      - motion_detected
+  # - host: !secret camera_3_ip
+  #   username: !secret camera_user
+  #   password: !secret camera_password
+  #   name: kamera_3
+  #   binary_sensors:
+  #     - motion_detected
   # - host: !secret camera_4_ip
   #   username: !secret camera_user
   #   password: !secret camera_password

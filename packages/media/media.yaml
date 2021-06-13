@@ -1,10 +1,10 @@
 
 # Harmony multi
-remote:
-  - platform: harmony
-    name: TVRUMMET
-    host: !secret harmony
-    activity: TV
+# remote:
+#   - platform: harmony
+#     name: TVRUMMET
+#     host: !secret harmony
+#     activity: TV
 
 switch:
   - platform: template

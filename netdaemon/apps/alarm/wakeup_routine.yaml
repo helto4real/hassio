@@ -1,0 +1,3 @@
+alarm:
+    class: WakeupRoutineManager
+    alarm_sensor: sensor.sovrum_alarms

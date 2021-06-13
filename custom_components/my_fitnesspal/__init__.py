@@ -147,7 +147,7 @@ class MyFitnessPalDataUpdateCoordinator(DataUpdateCoordinator):
         total_sugar = info.totals.get("sugar", 0)
         total_protein = info.totals.get("protein", 0)
         water = info.water
-        _, weight = list(weights.items())[0] if len(weights) > 0 else 0
+        _, weight = list(weights.items())[0] if len(weights) > 0 else 0,0
 
         cardio_calories_burned = 0
         for exercise in info.exercises[0]:

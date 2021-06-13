@@ -25,6 +25,26 @@ public class LightManager : GeneratedAppBase
         InitializeNightLights();
 
         InitializeTimeOfDayScenes();
+
+        // handle keylights
+        Entity("binary_sensor.tomas_rum_pir")
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "off" &&
+                e.Old?.State == "on" &&
+                ElgatoKeyLightsOn
+            )
+            .NDSameStateFor(TimeSpan.FromMinutes(30))
+            .Subscribe(s =>  Entity("light.elgato_key_light").TurnOff(new { transition = 0 }));
+        
+        Entity("binary_sensor.tomas_rum_pir")
+            .StateChanges
+            .Where(e =>
+                e.New?.State == "on" &&
+                e.Old?.State == "off" &&
+                !ElgatoKeyLightsOn
+            )
+            .Subscribe(s => Entity("light.elgato_key_light").TurnOn(new { transition = 0 }));
     }
 
     /// <summary>
@@ -36,6 +56,11 @@ public class LightManager : GeneratedAppBase
     ///     Returns true if TV is currently on
     /// </summary>
     public bool IsTvOn => State(RemoteTvRummet!)?.State == "on";
+
+    /// <summary>
+    ///     Returns true if TV is currently on
+    /// </summary>
+    public bool ElgatoKeyLightsOn => State("light.elgato_key_light")?.State == "on";
 
     /// <summary>
     ///     Initialize the scenes to call depending on time of day

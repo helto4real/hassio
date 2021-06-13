@@ -1,5 +1,11 @@
 light:
   - platform: group
+    name: elgato_key_light
+    entities:
+      - light.elgato_vanster
+      - light.elgato_hoger
+
+  - platform: group
     name: ambient
     entities:
       - light.vardagsrum
