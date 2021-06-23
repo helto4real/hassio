@@ -161,7 +161,7 @@ async def async_setup_entry(hass: "HomeAssistant", config_entry: "ConfigEntry") 
 async def async_unload_entry(hass: "HomeAssistant", entry: "ConfigEntry") -> bool:
     """Handle removal of an entry."""
     unloaded = False
-    if entry.state == "loaded":
+    if str(entry.state) in ["ConfigEntryState.LOADED", "loaded"]:
         unloaded = all(
             await asyncio.gather(
                 *[

@@ -11,6 +11,7 @@ from .const import (
     DOMAIN,
     LOGGER,
     PLATFORM_SWITCH,
+    STATE_ON_VALUES,
 )
 from .entity import NetDaemonEntity
 
@@ -46,7 +47,7 @@ class NetDaemonSwitch(NetDaemonEntity, SwitchEntity):
     def is_on(self):
         """Return the state of the switch."""
         state = str(self._coordinator.data[self.entity_id][ATTR_STATE]).lower()
-        return state in ["true", "on", "1"]
+        return state in STATE_ON_VALUES
 
     async def async_turn_on(self, **kwargs):
         """Turn the device on."""

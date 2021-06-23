@@ -60,17 +60,18 @@ class NetDaemonClient:
         """Update an entity."""
         entity_id = data[ATTR_ENTITY_ID]
         if entity_id not in self._entities:
-            LOGGER.error("Entity ID %s is not managed by the netdaemon integration")
+            LOGGER.error("Entity ID %s is not managed by the netdaemon integration", entity_id)
             return
         self._entities[entity_id].update(data)
         await self.store.async_save(self._entities)
 
     async def entity_remove(self, data) -> None:
         """Remove an entity."""
-        if data[ATTR_ENTITY_ID] not in self._entities:
-            LOGGER.error("Entity ID %s is not managed by the netdaemon integration")
+        entity_id = data[ATTR_ENTITY_ID]
+        if entity_id not in self._entities:
+            LOGGER.error("Entity ID %s is not managed by the netdaemon integration", entity_id)
             return
-        LOGGER.info("Removing entity %s", data)
+        LOGGER.info("Removing entity %s", entity_id)
         del self._entities[data[ATTR_ENTITY_ID]]
         registry: entity_registry.EntityRegistry = (
             await entity_registry.async_get_registry(self.hass)

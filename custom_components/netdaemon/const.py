@@ -3,7 +3,7 @@ import logging
 
 LOGGER: logging.Logger = logging.getLogger(__package__)
 
-INTEGRATION_VERSION = "21.09.0"
+INTEGRATION_VERSION = "21.22.0"
 DOMAIN = "netdaemon"
 NAME = "NetDaemon"
 MINIMUM_HA_VERSION = "2020.12.0"
@@ -58,6 +58,8 @@ PLATFORMS = [
     PLATFORM_SENSOR,
     PLATFORM_SWITCH,
 ]
+
+STATE_ON_VALUES = set(["true", "on", "1"])
 
 STARTUP = f"""
 -------------------------------------------------------------------

@@ -10,6 +10,7 @@ from .const import (
     DOMAIN,
     LOGGER,
     PLATFORM_BINARY_SENSOR,
+    STATE_ON_VALUES,
 )
 from .entity import NetDaemonEntity
 
@@ -46,4 +47,5 @@ class NetDaemonBinarySensor(NetDaemonEntity, BinarySensorEntity):
     @property
     def is_on(self):
         """Return the state of the switch."""
-        return self._coordinator.data[self.entity_id][ATTR_STATE]
+        state = str(self._coordinator.data[self.entity_id][ATTR_STATE]).lower()
+        return state in STATE_ON_VALUES

@@ -27,7 +27,7 @@ entity_create:
       description: The attributes of the entity
 
 entity_update:
-  description: Create an entity
+  description: Update an entity
   fields:
     entity_id:
       description: The entity ID of the entity
@@ -44,7 +44,7 @@ entity_update:
       description: The attributes of the entity
 
 entity_remove:
-  description: Create an entity
+  description: Remove an entity
   fields:
     entity_id:
       description: The entity ID of the entity
