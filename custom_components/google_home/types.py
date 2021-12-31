@@ -51,12 +51,11 @@ class GoogleHomeTimerDict(TypedDict):
 class DeviceAttributes(TypedDict):
     """Typed dict for device attributes"""
 
+    device_id: str | None
     device_name: str
     auth_token: str | None
     ip_address: str | None
-    hardware: str | None
     available: bool
-    integration: str
 
 
 class AlarmsAttributes(TypedDict):
@@ -65,7 +64,6 @@ class AlarmsAttributes(TypedDict):
     next_alarm_status: str
     alarm_volume: float
     alarms: list[GoogleHomeAlarmDict]
-    integration: str
 
 
 class TimersAttributes(TypedDict):
@@ -73,7 +71,6 @@ class TimersAttributes(TypedDict):
 
     next_timer_status: str
     timers: list[GoogleHomeTimerDict]
-    integration: str
 
 
 class DeviceInfo(TypedDict):
@@ -82,12 +79,20 @@ class DeviceInfo(TypedDict):
     identifiers: set[tuple[str, str]]
     name: str
     manufacturer: str
+    model: str
+
+
+class ConfigFlowDict(TypedDict):
+    """Typed dict for config flow handler"""
+
+    username: str
+    password: str
 
 
 class OptionsFlowDict(TypedDict):
     """Typed dict for options flow handler"""
 
-    data_collection: bool
+    update_interval: int
 
 
 JsonDict = Mapping[

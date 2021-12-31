@@ -1,6 +1,8 @@
 register_service:
   description: Register a new service for netdaemon, used by the daemon and not to be used by users
   fields:
+    service:
+      description: The name of the service to register
     class:
       description: The class that implements the service call
     method:

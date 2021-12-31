@@ -65,7 +65,7 @@ class NetDaemonEntity(CoordinatorEntity):
         }
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Return attributes for the sensor."""
         attributes = {"integration": DOMAIN}
         if self.entity_id and self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]:

@@ -1,3 +1,3 @@
-automower:
-  username: !secret husqvarna_user
-  password: !secret husqvarna_pass
+# automower:
+#   username: !secret husqvarna_user
+#   password: !secret husqvarna_pass

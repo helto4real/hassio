@@ -2,12 +2,12 @@
 from __future__ import annotations
 
 import logging
-from typing import Callable, Iterable
 
 from homeassistant.components.number import NumberEntity
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import PERCENTAGE
+from homeassistant.const import ENTITY_CATEGORY_CONFIG, PERCENTAGE
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from .api import GlocaltokensApiClient
@@ -30,7 +30,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: ConfigEntry,
-    async_add_devices: Callable[[Iterable[NumberEntity]], None],
+    async_add_devices: AddEntitiesCallback,
 ) -> bool:
     """Setup switch platform."""
     client: GlocaltokensApiClient = hass.data[DOMAIN][entry.entry_id][DATA_CLIENT]
@@ -43,9 +43,7 @@ async def async_setup_entry(
         if device.auth_token and device.available:
             numbers.append(
                 AlarmVolumeNumber(
-                    coordinator,
-                    client,
-                    device.name,
+                    coordinator, client, device.device_id, device.name, device.hardware
                 )
             )
 
@@ -58,15 +56,13 @@ async def async_setup_entry(
 class AlarmVolumeNumber(GoogleHomeBaseEntity, NumberEntity):
     """Google Home Alarm Volume Number entity."""
 
+    _attr_unit_of_measurement = PERCENTAGE
+    _attr_entity_category = ENTITY_CATEGORY_CONFIG
+
     @property
     def label(self) -> str:
         """Label to use for name and unique id."""
         return LABEL_ALARM_VOLUME
-
-    @property
-    def unit_of_measurement(self) -> str | None:
-        """The unit of measurement for the entity"""
-        return PERCENTAGE
 
     @property
     def icon(self) -> str:
@@ -77,29 +73,29 @@ class AlarmVolumeNumber(GoogleHomeBaseEntity, NumberEntity):
         volume = device.get_alarm_volume()
         if volume == 0:
             return ICON_ALARM_VOLUME_OFF
-        if volume <= 0.3:
+        if volume <= 30:
             return ICON_ALARM_VOLUME_LOW
-        if volume <= 0.6:
+        if volume <= 60:
             return ICON_ALARM_VOLUME_MID
         return ICON_ALARM_VOLUME_HIGH
 
     @property
-    def min_value(self) -> float:
+    def min_value(self) -> int:
         """Return the minimum value for the volume"""
         return 0
 
     @property
-    def max_value(self) -> float:
+    def max_value(self) -> int:
         """Return the minimum value for the volume"""
+        return 100
+
+    @property
+    def step(self) -> int:
+        """Return the step value for the volume"""
         return 1
 
     @property
-    def step(self) -> float:
-        """Return the step value for the volume"""
-        return 0.01
-
-    @property
-    def value(self) -> float:
+    def value(self) -> int:
         """Return the current volume value"""
         device = self.get_device()
 
@@ -109,7 +105,7 @@ class AlarmVolumeNumber(GoogleHomeBaseEntity, NumberEntity):
         volume = device.get_alarm_volume()
         return volume
 
-    async def async_set_value(self, value: float) -> None:
+    async def async_set_value(self, value: int) -> None:  # type: ignore
         """Sets the alarm volume"""
         device = self.get_device()
         if device is None:

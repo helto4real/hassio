@@ -27,9 +27,10 @@ light:
     entity_id: switch.julbelysning_tvrummet
   # Ej klar
 
-  # - platform: switch
-  #   name: julbelysning_vardagsrum_m
-  #   entity_id: switch.julbelysning_vardagsrum_m
+  - platform: switch
+    name: hall_byra
+    entity_id: switch.hall_byra
+    
   - platform: switch
     name: julbelysning_tomas_rum
     entity_id: switch.julbelysning_tomas_rum

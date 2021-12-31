@@ -1,0 +1,11 @@
+magic_cube:
+    class: MagicCubeRemoteControlManager
+    RemoteTVRummet: remote.tvrummet
+    MaranzDeviceId: 14329974
+    # TvMediaPlayers:
+    #     - media_player.shield_tv
+# tv:
+#     class: TVManager
+#     # RemoteTVRummet: remote.tvrummet
+#     # TvMediaPlayers:
+#     #     - media_player.shield_tv

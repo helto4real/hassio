@@ -21,11 +21,15 @@ class GoogleHomeBaseEntity(CoordinatorEntity, ABC):
         self,
         coordinator: DataUpdateCoordinator,
         client: GlocaltokensApiClient,
+        device_id: str,
         device_name: str,
+        device_model: str,
     ):
         super().__init__(coordinator)
         self.client = client
+        self.device_id = device_id
         self.device_name = device_name
+        self.device_model = device_model
 
     @property
     @abstractmethod
@@ -41,14 +45,15 @@ class GoogleHomeBaseEntity(CoordinatorEntity, ABC):
     @property
     def unique_id(self) -> str:
         """Return a unique ID to use for this entity."""
-        return f"{self.device_name}/{self.label}"
+        return f"{self.device_id}/{self.label}"
 
     @property
     def device_info(self) -> DeviceInfo:
         return {
-            "identifiers": {(DOMAIN, self.device_name)},
+            "identifiers": {(DOMAIN, self.device_id)},
             "name": f"{DEFAULT_NAME} {self.device_name}",
             "manufacturer": MANUFACTURER,
+            "model": self.device_model,
         }
 
     def get_device(self) -> GoogleHomeDevice | None:
@@ -57,6 +62,6 @@ class GoogleHomeBaseEntity(CoordinatorEntity, ABC):
         matched_devices: list[GoogleHomeDevice] = [
             device
             for device in self.coordinator.data
-            if device.name == self.device_name
+            if device.device_id == self.device_id
         ]
         return matched_devices[0] if matched_devices else None

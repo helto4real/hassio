@@ -19,27 +19,27 @@ light:
   - platform: group
     name: vardagsrum
     entities:
-      - light.vardagsrum_fonster_mitten
-      - light.vardagsrum_fonster_vanster
-      - light.vardagsrum_fonster_hoger
-      # - light.julbelysning_vardagsrum_h
-      # - light.julbelysning_vardagsrum_v
+      # - light.vardagsrum_fonster_mitten
+      # - light.vardagsrum_fonster_vanster
+      # - light.vardagsrum_fonster_hoger
+      - light.julbelysning_vardagsrum_h
+      - light.julbelysning_vardagsrum_v
       - light.hall_dorr
       - light.hall_byra
 
   - platform: group
     name: kok
     entities:
-      - light.kok_fonster
-      - light.kok_lilla_fonster
-      # - light.julbelysning_kok_h
-      # - light.julbelysning_kok_v
+      # - light.kok_fonster
+      # - light.kok_lilla_fonster
+      - light.julbelysning_kok_h
+      - light.julbelysning_kok_v
 
   - platform: group
     name: tomas_rum
     entities:
-      - light.tomas_rum_fonster
-      # - light.julbelysning_tomas_rum
+      # - light.tomas_rum_fonster
+      - light.julbelysning_tomas_rum
 
   - platform: group
     name: melkers_rum
@@ -59,9 +59,9 @@ light:
   - platform: group
     name: tvrummet
     entities:
-      - light.tvrum_fonster_hoger
-      - light.tvrum_fonster_vanster
-      # - light.julbelysning_tvrummet
+      # - light.tvrum_fonster_hoger
+      # - light.tvrum_fonster_vanster
+      - light.julbelysning_tvrummet
       - light.tvrum_vagg
 
   - platform: group

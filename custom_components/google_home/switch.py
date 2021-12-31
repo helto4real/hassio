@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable, Iterable
+from typing import Any
 
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import ENTITY_CATEGORY_CONFIG
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     DATA_CLIENT,
@@ -23,7 +25,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: ConfigEntry,
-    async_add_devices: Callable[[Iterable[SwitchEntity]], None],
+    async_add_devices: AddEntitiesCallback,
 ) -> bool:
     """Setup switch platform."""
     client = hass.data[DOMAIN][entry.entry_id][DATA_CLIENT]
@@ -36,7 +38,9 @@ async def async_setup_entry(
                 DoNotDisturbSwitch(
                     coordinator,
                     client,
+                    device.device_id,
                     device.name,
+                    device.hardware,
                 )
             )
 
@@ -49,15 +53,13 @@ async def async_setup_entry(
 class DoNotDisturbSwitch(GoogleHomeBaseEntity, SwitchEntity):
     """Google Home Do Not Disturb switch."""
 
+    _attr_icon = ICON_DO_NOT_DISTURB
+    _attr_entity_category = ENTITY_CATEGORY_CONFIG
+
     @property
     def label(self) -> str:
         """Label to use for name and unique id."""
         return LABEL_DO_NOT_DISTURB
-
-    @property
-    def icon(self) -> str:
-        """Return the icon of the sensor."""
-        return ICON_DO_NOT_DISTURB
 
     @property
     def is_on(self) -> bool:

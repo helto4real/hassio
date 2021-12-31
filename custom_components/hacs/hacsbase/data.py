@@ -1,22 +1,21 @@
 """Data handler for HACS."""
-import os
 import asyncio
+import os
 
-from custom_components.hacs.const import INTEGRATION_VERSION
+from homeassistant.core import callback
+
 from custom_components.hacs.helpers.classes.manifest import HacsManifest
-from custom_components.hacs.helpers.functions.logger import getLogger
 from custom_components.hacs.helpers.functions.register_repository import (
     register_repository,
 )
 from custom_components.hacs.helpers.functions.store import (
     async_load_from_store,
-    async_save_to_store_default_encoder,
     async_save_to_store,
+    async_save_to_store_default_encoder,
     get_store_for_key,
 )
 from custom_components.hacs.share import get_hacs
-
-from homeassistant.core import callback
+from custom_components.hacs.utils.logger import getLogger
 
 
 def update_repository_from_storage(repository, storage_data):
@@ -26,9 +25,7 @@ def update_repository_from_storage(repository, storage_data):
     if repository.data.installed:
         return
 
-    repository.logger.debug(
-        "%s Should be installed but is not... Fixing that!", repository
-    )
+    repository.logger.debug("%s Should be installed but is not... Fixing that!", repository)
     repository.data.installed = True
 
 
@@ -56,6 +53,8 @@ class HacsData:
                 "view": self.hacs.configuration.frontend_mode,
                 "compact": self.hacs.configuration.frontend_compact,
                 "onboarding_done": self.hacs.configuration.onboarding_done,
+                "archived_repositories": self.hacs.common.archived_repositories,
+                "renamed_repositories": self.hacs.common.renamed_repositories,
             },
         )
         await self._async_store_content_and_repos()
@@ -132,8 +131,9 @@ class HacsData:
         self.hacs.configuration.frontend_mode = hacs.get("view", "Grid")
         self.hacs.configuration.frontend_compact = hacs.get("compact", False)
         self.hacs.configuration.onboarding_done = hacs.get("onboarding_done", False)
+        self.hacs.common.archived_repositories = hacs.get("archived_repositories", [])
+        self.hacs.common.renamed_repositories = hacs.get("renamed_repositories", {})
 
-        # Repositories
         hass = self.hacs.hass
         stores = {}
 
@@ -141,12 +141,20 @@ class HacsData:
             await self.register_unknown_repositories(repositories)
 
             for entry, repo_data in repositories.items():
+                if entry == "0":
+                    # Ignore repositories with ID 0
+                    self.logger.error("Found repository with ID %s - %s", entry, repo_data)
+                    continue
                 if self.async_restore_repository(entry, repo_data):
                     stores[entry] = get_store_for_key(hass, f"hacs/{entry}.hacs")
 
             def _load_from_storage():
                 for entry, store in stores.items():
                     if os.path.exists(store.path) and (data := store.load()):
+                        if (full_name := data.get("full_name")) and (
+                            renamed := self.hacs.common.renamed_repositories.get(full_name)
+                        ) is not None:
+                            data["full_name"] = renamed
                         update_repository_from_storage(self.hacs.get_by_id(entry), data)
 
             await hass.async_add_executor_job(_load_from_storage)
@@ -161,7 +169,7 @@ class HacsData:
         register_tasks = [
             register_repository(repo_data["full_name"], repo_data["category"], False)
             for entry, repo_data in repositories.items()
-            if not self.hacs.is_known(entry)
+            if entry != "0" and not self.hacs.is_known(entry)
         ]
         if register_tasks:
             await asyncio.gather(*register_tasks)
@@ -176,9 +184,7 @@ class HacsData:
         self.hacs.async_set_repository_id(repository, entry)
         repository.data.authors = repository_data.get("authors", [])
         repository.data.description = repository_data.get("description")
-        repository.releases.last_release_object_downloads = repository_data.get(
-            "downloads"
-        )
+        repository.releases.last_release_object_downloads = repository_data.get("downloads")
         repository.data.last_updated = repository_data.get("last_updated")
         repository.data.etag_repository = repository_data.get("etag_repository")
         repository.data.topics = repository_data.get("topics", [])
@@ -202,8 +208,8 @@ class HacsData:
         if repository.data.installed:
             repository.status.first_install = False
 
-        if repository_data["full_name"] == "hacs/integration":
-            repository.data.installed_version = INTEGRATION_VERSION
+        if full_name == "hacs/integration":
+            repository.data.installed_version = self.hacs.version
             repository.data.installed = True
 
         return True

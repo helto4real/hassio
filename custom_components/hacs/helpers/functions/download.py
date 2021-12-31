@@ -1,20 +1,22 @@
 """Helpers to download repository content."""
+from __future__ import annotations
+
+import asyncio
 import os
 import pathlib
 import tempfile
 import zipfile
 
 import async_timeout
-import backoff
-from queueman import QueueManager, concurrent
 
-from custom_components.hacs.helpers.classes.exceptions import HacsException
+from custom_components.hacs.exceptions import HacsException
 from custom_components.hacs.helpers.functions.filters import (
     filter_content_return_one_of_type,
 )
-from custom_components.hacs.helpers.functions.logger import getLogger
-from custom_components.hacs.helpers.functions.save import async_save_file
 from custom_components.hacs.share import get_hacs
+from custom_components.hacs.utils.decorator import concurrent
+from custom_components.hacs.utils.logger import getLogger
+from custom_components.hacs.utils.queue_manager import QueueManager
 
 _LOGGER = getLogger()
 
@@ -26,34 +28,38 @@ class FileInformation:
         self.name = name
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=5)
-async def async_download_file(url):
+async def async_download_file(url: str) -> bytes | None:
     """Download files, and return the content."""
-    hacs = get_hacs()
     if url is None:
-        return
+        return None
+
+    hacs = get_hacs()
+    tries_left = 5
 
     if "tags/" in url:
         url = url.replace("tags/", "")
 
     _LOGGER.debug("Downloading %s", url)
 
-    result = None
+    while tries_left > 0:
+        try:
+            with async_timeout.timeout(60):
+                request = await hacs.session.get(url)
 
-    with async_timeout.timeout(60, loop=hacs.hass.loop):
-        request = await hacs.session.get(url)
+                # Make sure that we got a valid result
+                if request.status == 200:
+                    return await request.read()
 
-        # Make sure that we got a valid result
-        if request.status == 200:
-            result = await request.read()
-        else:
-            raise HacsException(
-                "Got status code {} when trying to download {}".format(
-                    request.status, url
+                raise HacsException(
+                    f"Got status code {request.status} when trying to download {url}"
                 )
-            )
+        except Exception as exception:
+            _LOGGER.debug("Download failed - %s", exception)
+            tries_left -= 1
+            await asyncio.sleep(1)
+            continue
 
-    return result
+    return None
 
 
 def should_try_releases(repository):
@@ -92,18 +98,14 @@ def gather_files_to_download(repository):
         for treefile in tree:
             if treefile.filename == repository.data.file_name:
                 files.append(
-                    FileInformation(
-                        treefile.download_url, treefile.full_path, treefile.filename
-                    )
+                    FileInformation(treefile.download_url, treefile.full_path, treefile.filename)
                 )
         return files
 
     if category == "plugin":
         for treefile in tree:
             if treefile.path in ["", "dist"]:
-                if remotelocation == "dist" and not treefile.filename.startswith(
-                    "dist"
-                ):
+                if remotelocation == "dist" and not treefile.filename.startswith("dist"):
                     continue
                 if not remotelocation:
                     if not treefile.filename.endswith(".js"):
@@ -122,17 +124,13 @@ def gather_files_to_download(repository):
     if repository.data.content_in_root:
         if not repository.data.filename:
             if category == "theme":
-                tree = filter_content_return_one_of_type(
-                    repository.tree, "", "yaml", "full_path"
-                )
+                tree = filter_content_return_one_of_type(repository.tree, "", "yaml", "full_path")
 
     for path in tree:
         if path.is_directory:
             continue
         if path.full_path.startswith(repository.content.path.remote):
-            files.append(
-                FileInformation(path.download_url, path.full_path, path.filename)
-            )
+            files.append(FileInformation(path.download_url, path.full_path, path.filename))
     return files
 
 
@@ -142,9 +140,7 @@ async def download_zip_files(repository, validate):
     queue = QueueManager()
     try:
         for release in repository.releases.objects:
-            repository.logger.info(
-                f"ref: {repository.ref}  ---  tag: {release.tag_name}"
-            )
+            repository.logger.info(f"ref: {repository.ref}  ---  tag: {release.tag_name}")
             if release.tag_name == repository.ref.split("/")[1]:
                 contents = release.assets
 
@@ -170,7 +166,7 @@ async def async_download_zip_file(repository, content, validate):
             validate.errors.append(f"[{content.name}] was not downloaded.")
             return
 
-        result = await async_save_file(
+        result = await repository.hacs.async_save_file(
             f"{tempfile.gettempdir()}/{repository.data.filename}", filecontent
         )
         with zipfile.ZipFile(
@@ -226,9 +222,7 @@ async def dowload_repository_content(repository, content):
         else:
             _content_path = content.path
             if not repository.data.content_in_root:
-                _content_path = _content_path.replace(
-                    f"{repository.content.path.remote}", ""
-                )
+                _content_path = _content_path.replace(f"{repository.content.path.remote}", "")
 
             local_directory = f"{repository.content.path.local}/{_content_path}"
             local_directory = local_directory.split("/")
@@ -240,7 +234,7 @@ async def dowload_repository_content(repository, content):
 
         local_file_path = (f"{local_directory}/{content.name}").replace("//", "/")
 
-        result = await async_save_file(local_file_path, filecontent)
+        result = await repository.hacs.async_save_file(local_file_path, filecontent)
         if result:
             repository.logger.info(f"Download of {content.name} completed")
             return

@@ -2,6 +2,7 @@
 import os
 
 from .base import HacsBase
+from .utils.queue_manager import QueueManager
 
 SHARE = {
     "hacs": None,
@@ -37,10 +38,7 @@ def get_factory():
 
 def get_queue():
     if SHARE["queue"] is None:
-        from queueman import QueueManager
-
         SHARE["queue"] = QueueManager()
-
     return SHARE["queue"]
 
 
@@ -56,9 +54,7 @@ def get_removed(repository):
         removed_repo.repository = repository
         SHARE["removed_repositories"].append(removed_repo)
     filter_repos = [
-        x
-        for x in SHARE["removed_repositories"]
-        if x.repository.lower() == repository.lower()
+        x for x in SHARE["removed_repositories"] if x.repository.lower() == repository.lower()
     ]
 
     return filter_repos.pop() or None

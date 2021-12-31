@@ -236,7 +236,8 @@ class AutomowerDevice(VacuumEntity):
         _LOGGER.debug("Initializing device: %s", meta['name'])
         self._id = meta['id']
         self._name = meta['name']
-        self._model = meta['model']
+        """Husqvarna API stoppped returning model number, HA prior to 2021.9 defaulted to none."""
+        self._model = None
         self._state = None
         self._mower_status = None
         self._stored_timestamp = None

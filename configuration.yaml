@@ -32,10 +32,11 @@ system_health:
 
 http:
   #  api_password: !secret http_password
-  ip_ban_enabled: True
+  ip_ban_enabled: true
   login_attempts_threshold: 7
-  use_x_forwarded_for: False
-  trusted_proxies: !secret hassioip
+  use_x_forwarded_for: true
+  trusted_proxies: 
+    - !secret docker_ip
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -56,8 +57,8 @@ conversation:
 stream:
 
 recorder:
-  purge_interval: 1
-  purge_keep_days: 7
+  purge_interval: 2
+  purge_keep_days: 10
   db_url: !secret maria_db_url
   include:
     domains:
@@ -73,6 +74,8 @@ recorder:
       - device_tracker.melker_presence
       - device_tracker.sally_presence
       - sensor.occupancy
+      # lawn mover
+      - vacuum.carl_greger
 
       # sensors of interest
       - sensor.utetemp_temperature
@@ -127,7 +130,8 @@ influxdb:
       - device_tracker.sally_presence
 
       - sensor.occupancy
-
+      # lawn mover
+      - vacuum.carl_greger
       # sensors of interest
       - sensor.frysnere_temperature #Frys nere
       - binary_sensor.hall_dorr

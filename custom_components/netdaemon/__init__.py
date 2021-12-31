@@ -10,6 +10,7 @@ from .client import NetDaemonClient
 from .const import (
     ATTR_CLASS,
     ATTR_CLIENT,
+    ATTR_SERVICE,
     ATTR_COORDINATOR,
     ATTR_ENTITY_ID,
     ATTR_METHOD,
@@ -60,12 +61,16 @@ async def async_setup_entry(hass: "HomeAssistant", config_entry: "ConfigEntry") 
     # Services
     async def handle_register_service(call):
         """Register custom services."""
-        daemon_class = call.data.get(ATTR_CLASS, DEFAULT_CLASS)
-        daemon_method = call.data.get(ATTR_METHOD, DEFAULT_METHOD)
 
-        LOGGER.info("Register service %s_%s", daemon_class, daemon_method)
+        service_name = call.data.get(ATTR_SERVICE)
+        if not service_name:
+            daemon_class = call.data.get(ATTR_CLASS, DEFAULT_CLASS)
+            daemon_method = call.data.get(ATTR_METHOD, DEFAULT_METHOD)
+            service_name = f"{daemon_class}_{daemon_method}"
+
+        LOGGER.info("Register service %s", service_name)
         hass.services.async_register(
-            DOMAIN, f"{daemon_class}_{daemon_method}", netdaemon_noop
+            DOMAIN, service_name, netdaemon_noop
         )
 
     async def netdaemon_noop(_call):
