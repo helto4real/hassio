@@ -53,24 +53,10 @@ public class TVManager : GeneratedAppBase
     /// </summary>
     public override void Initialize()
     {
-        // Set up the state management
-
-        // When chromecast is going off
-        // Entities("media_player.tv_nere")
-        //     .StateChanges
-        //     .Where(e => e.New?.State == "off" && e.Old?.State is object )
-        //     .Subscribe(s =>
-        //    {
-        //        if (TvIsOn)
-        //        {
-        //            Log('TV is off, turnin off shield and tv')
-        //            RunScript("tv_off_scene");
-        //        }
-        //    });
         // When state change on my media players, call OnMediaStateChanged
         Entities(TvMediaPlayers!)
             .StateChanges
-            .Subscribe(s => 
+            .Subscribe(s =>
             {
                 OnMediaStateChanged(s.New, s.Old);
             });
@@ -83,7 +69,7 @@ public class TVManager : GeneratedAppBase
                 e.New?.State == "on")
             .Subscribe(s =>
             {
-                LogDebug("TV remote status change from {from} to {to}", s.Old?.State, s.New?.State); 
+                LogDebug("TV remote status change from {from} to {to}", s.Old?.State, s.New?.State);
                 OnTVTurnedOn();
             });
 
@@ -92,7 +78,7 @@ public class TVManager : GeneratedAppBase
         Entity(RemoteTVRummet!)
             .StateAllChanges
             .Where(e => e.New?.Attribute?.current_activity != e.Old?.Attribute?.current_activity)
-            .Subscribe(s => 
+            .Subscribe(s =>
             {
                 LogDebug("TV remote activity change from {from} to {to}", s.Old?.Attribute?.current_activity, s.New?.Attribute?.current_activity);
                 OnTvActivityChange(s.New);
@@ -137,7 +123,7 @@ public class TVManager : GeneratedAppBase
                             {
                                 // Idle timeout went by without any change in state turn off TV
                                 Log($"TV been idle for {_idleTimeout} minutes, turning off");
-                               // RunScript("tv_off_scene");
+                                // RunScript("tv_off_scene");
                             }
                             // If the state did has changed after we waited just run to completion
                         }
@@ -177,7 +163,7 @@ public class TVManager : GeneratedAppBase
             // We had just turned on tv with this RunScript and have a media player paused
             // First delay and wait for the TV to get ready
             LogDebug("TV is turning on.. Wait 9 seconds to complete...");
-            RunIn(TimeSpan.FromSeconds(9), ()=>
+            RunIn(TimeSpan.FromSeconds(9), () =>
             {
                 _isTurningOnTV = false;
                 if (!MediaIsPlaying)

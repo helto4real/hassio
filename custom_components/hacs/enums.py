@@ -3,6 +3,13 @@
 from enum import Enum
 
 
+class HacsGitHubRepo(str, Enum):
+    """HacsGitHubRepo."""
+
+    DEFAULT = "hacs/default"
+    INTEGRATION = "hacs/integration"
+
+
 class HacsCategory(str, Enum):
     APPDAEMON = "appdaemon"
     INTEGRATION = "integration"
@@ -15,6 +22,26 @@ class HacsCategory(str, Enum):
 
     def __str__(self):
         return str(self.value)
+
+
+class HacsDispatchEvent(str, Enum):
+    """HacsDispatchEvent."""
+
+    CONFIG = "hacs_dispatch_config"
+    ERROR = "hacs_dispatch_error"
+    RELOAD = "hacs_dispatch_reload"
+    REPOSITORY = "hacs_dispatch_repository"
+    REPOSITORY_DOWNLOAD_PROGRESS = "hacs_dispatch_repository_download_progress"
+    STAGE = "hacs_dispatch_stage"
+    STARTUP = "hacs_dispatch_startup"
+    STATUS = "hacs_dispatch_status"
+
+
+class RepositoryFile(str, Enum):
+    """Repository file names."""
+
+    HACS_JSON = "hacs.json"
+    MAINIFEST_JSON = "manifest.json"
 
 
 class ConfigurationType(str, Enum):
@@ -37,15 +64,6 @@ class HacsStage(str, Enum):
     WAITING = "waiting"
     RUNNING = "running"
     BACKGROUND = "background"
-
-
-class HacsSetupTask(str, Enum):
-    WEBSOCKET = "WebSocket API"
-    FRONTEND = "Frontend"
-    SENSOR = "Sensor"
-    HACS_REPO = "Hacs Repository"
-    CATEGORIES = "Additional categories"
-    CLEAR_STORAGE = "Clear storage"
 
 
 class HacsDisabledReason(str, Enum):

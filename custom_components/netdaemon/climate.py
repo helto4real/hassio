@@ -62,21 +62,15 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         """Return the list of supported features."""
         if not self.entity_id:
             return 0
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_SUPPORTED_FEATURES, 0)
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_SUPPORTED_FEATURES, 0)
 
     @property
     def temperature_unit(self) -> str:
         """Return the unit of measurement used by the platform."""
         if not self.entity_id:
             return TEMP_CELSIUS
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_TEMPERATURE_UNIT, TEMP_CELSIUS)
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(
+            ATTR_TEMPERATURE_UNIT, TEMP_CELSIUS
         )
 
     @property
@@ -87,40 +81,28 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         """
         if not self.entity_id:
             return "off"
-        return self._coordinator.data[self.entity_id].get(ATTR_STATE, "off")
+        return self._data_point(ATTR_STATE, "off")
 
     @property
     def current_temperature(self) -> float:
         """Return the current temperature."""
         if not self.entity_id:
             return 0.0
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_CURRENT_TEMPERATURE, 0.0)
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_CURRENT_TEMPERATURE, 0.0)
 
     @property
     def target_temperature(self) -> float:
         """Return the temperature we try to reach."""
         if not self.entity_id:
             return 0.0
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_TEMPERATURE, 0.0)
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_TEMPERATURE, 0.0)
 
     @property
     def target_humidity(self) -> int:
         """Return the humidity we try to reach."""
         if not self.entity_id:
             return 0
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_HUMIDITY, 0)
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_HUMIDITY, 0)
 
     @property
     def hvac_modes(self) -> list[str]:
@@ -131,11 +113,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         if not self.entity_id:
             return ["off"]
 
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_HVAC_MODES, ["off"])
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_HVAC_MODES, ["off"])
 
     @property
     def fan_modes(self) -> list[str]:
@@ -146,11 +124,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         if not self.entity_id:
             return ["off"]
 
-        return (
-            self._coordinator.data[self.entity_id]
-            .get(ATTR_ATTRIBUTES, {})
-            .get(ATTR_FAN_MODES, ["off"])
-        )
+        return self._data_point(ATTR_ATTRIBUTES, {}).get(ATTR_FAN_MODES, ["off"])
 
     async def async_set_temperature(self, **kwargs) -> None:
         """Set new target temperature."""
@@ -158,7 +132,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
             LOGGER.error("Setting target temperature on non existing climate entity")
             return
         temperature = kwargs.get(ATTR_TEMPERATURE)
-        attributes = self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]
+        attributes = self._data_point(ATTR_ATTRIBUTES, {})
         attributes[ATTR_TEMPERATURE] = temperature
         await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(
             {
@@ -173,7 +147,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         if not self.entity_id:
             LOGGER.error("Setting target humidity on non existing climate entity")
             return
-        attributes = self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]
+        attributes = self._data_point(ATTR_ATTRIBUTES, {})
         attributes[ATTR_HUMIDITY] = humidity
         await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(
             {
@@ -188,7 +162,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
         if not self.entity_id:
             LOGGER.error("Setting target humidity on non existing climate entity")
             return
-        attributes = self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]
+        attributes = self._data_point(ATTR_ATTRIBUTES, {})
         attributes[ATTR_FAN_MODE] = fan_mode
         await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(
             {
@@ -204,7 +178,7 @@ class NetDaemonClimateEntity(NetDaemonEntity, ClimateEntity):
             LOGGER.error("Setting hvac mode on non existing climate entity")
             return
 
-        attributes = self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]
+        attributes = self._data_point(ATTR_ATTRIBUTES, {})
         attributes[ATTR_HVAC_MODE] = hvac_mode
         LOGGER.debug("Set hwac_mode %s %s", self.entity_id, hvac_mode)
         await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(

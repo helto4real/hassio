@@ -5,17 +5,26 @@ google_assistant:
     light.tomas_rum:
       name: "tomas rum"
       expose: true
+    switch.tv:
+      name: "tv system"
+      expose: true
+      room: tv rummet
     cover.tvrum:
       name: "rullgardin"
       expose: true
+      room: tv rummet
     light.tvrummet:
       name: "tv rummet"
       expose: true
+      room: tv rummet
     light.vardagsrum:
       name: vardagsrummet
       expose: true
     light.kok:
       name: köket
+      expose: true
+    light.kok_diskbank:
+      name: diskbänken
       expose: true
     light.sovrum:
       name: sovrummet
@@ -35,20 +44,8 @@ google_assistant:
     switch.computer_tomas:
       name: "tomas dator"
       expose: true
-    switch.kaffebryggaren:
-      name: kaffebryggaren
-      expose: true
     switch.motorvarmare_hoger:
       name: "motorvärmaren"
-      expose: true
-    switch.kodi:
-      name: "kodi"
-      expose: true
-    switch.tv:
-      name: "tv"
-      expose: true
-    switch.film:
-      name: "film"
       expose: true
     scene.dag:
       name: "dag"

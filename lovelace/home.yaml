@@ -98,29 +98,24 @@ cards:
               left: 35.42%
               top: 44.45%
             type: state-icon
-          - entity: lock.las_uppe
-            style:
-              left: 52.0%
-              top: 10.5%
-            type: state-icon
           - entity: binary_sensor.hall_dorr
             style:
               left: 47.5%
               top: 10.5%
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_h #light.vardagsrum_fonster_hoger #light.julbelysning_vardagsrum_h
+          - entity: light.vardagsrum_fonster_hoger #light.julbelysning_vardagsrum_h
             style:
               left: 17.9%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_h #light.vardagsrum_fonster_mitten #light.julbelysning_vardagsrum_h
+          - entity: light.vardagsrum_fonster_mitten #light.julbelysning_vardagsrum_h
             style:
               left: 38.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_vardagsrum_v #light.vardagsrum_fonster_vanster #light.julbelysning_vardagsrum_v
+          - entity: light.vardagsrum_fonster_vanster #light.julbelysning_vardagsrum_v
             style:
               left: 60.5%
               top: 89.45%
@@ -202,16 +197,28 @@ cards:
               left: 70.2%
               top: 89.45%
             type: state-icon
-          - entity: light.julbelysning_kok_h #light.kok_fonster
+          - entity: light.kok_fonster #light.julbelysning_kok_h #light.kok_fonster
             style:
               left: 78.2%
               top: 89.45%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_kok_v #light.kok_lilla_fonster
+          - entity: light.kok_lilla_fonster #light.julbelysning_kok_v #light.kok_lilla_fonster
             style:
               left: 92.4%
               top: 58.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.kok_vitrinskap #light.julbelysning_kok_v #light.kok_lilla_fonster
+            style:
+              left: 92.4%
+              top: 78.8%
+            tap_action: toggle
+            type: state-icon
+          - entity: light.kok_diskbank #light.julbelysning_kok_v #light.kok_lilla_fonster
+            style:
+              left: 92.4%
+              top: 88.8%
             tap_action: toggle
             type: state-icon
           - entity: media_player.kok
@@ -250,7 +257,12 @@ cards:
               left: 25.6%
               top: 90.2%
             type: state-icon
-          - entity: light.julbelysning_tvrummet #light.tvrum_fonster_hoger #light.julbelysning_tvrummet
+          - entity: sensor.tvrum_temp_temperature #light.tvrum_fonster_hoger #light.julbelysning_tvrummet
+            style:
+              left: 49.2%
+              top: 68%
+            type: state-label
+          - entity: light.tvrum_fonster_hoger #light.tvrum_fonster_hoger #light.julbelysning_tvrummet
             style:
               left: 49.2%
               top: 90.2%
@@ -262,7 +274,7 @@ cards:
               top: 90.2%
             tap_action: toggle
             type: state-icon
-          - entity: light.julbelysning_tvrummet #light.tvrum_fonster_vanster #light.julbelysning_tvrummet
+          - entity: light.tvrum_fonster_vanster #light.tvrum_fonster_vanster #light.julbelysning_tvrummet
             style:
               left: 59.8%
               top: 90.2%

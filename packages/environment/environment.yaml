@@ -15,10 +15,10 @@ sensor:
     sensors:
       temp_outside:
           friendly_name: "Temperature outside"
-          value_template: "{{ states('sensor.ute_temp') | round(0) }}"
+          value_template: "{{ states('sensor.ute_temp_temperature') | round(0, 'floor', default) }}"
       hum_outside:
           friendly_name: "Humidity outside"
-          value_template: "{{ states('sensor.ute_hum') | round(0) }}"
+          value_template: "{{ states('sensor.ute_temp_humidity') | round(0, 'floor', default) }}"
 
 group:
   # För givare och väder

@@ -75,7 +75,7 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
         self._state = self._stop_cmd
         self._previous_state = self._state
         self._current_cover_position = 0
-        print("Initialized cover [{}]".format(self.name))
+        _LOGGER.debug("Initialized cover [%s]", self.name)
 
     @property
     def supported_features(self):
@@ -227,6 +227,11 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
 
             # store the time of the last movement change
             self._timer_start = time.time()
+
+        # Keep record in last_state as long as not during connection/re-connection,
+        # as last state will be used to restore the previous state
+        if (self._state is not None) and (not self._device.is_connecting):
+            self._last_state = self._state
 
 
 async_setup_entry = partial(async_setup_entry, DOMAIN, LocaltuyaCover, flow_schema)

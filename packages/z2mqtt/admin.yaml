@@ -46,33 +46,33 @@ timer:
     name: Time remaining
     duration: 440
 
-sensor:
-  # Sensor for monitoring the bridge state
-  - platform: mqtt
-    name: Zigbee2mqtt Bridge state
-    state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireless
-  # Sensor for Showing the Zigbee2mqtt Version
-  - platform: mqtt
-    name: Zigbee2mqtt Version
-    state_topic: "zigbee2mqtt/bridge/config"
-    value_template: "{{ value_json.version }}"
-    icon: mdi:zigbee
-  # Sensor for Showing the Coordinator Version
-  - platform: mqtt
-    name: Coordinator Version
-    state_topic: "zigbee2mqtt/bridge/config"
-    value_template: "{{ value_json.coordinator }}"
-    icon: mdi:chip
+# sensor:
+#   # Sensor for monitoring the bridge state
+#   - platform: mqtt
+#     name: Zigbee2mqtt Bridge state
+#     state_topic: "zigbee2mqtt/bridge/state"
+#     icon: mdi:router-wireless
+#   # Sensor for Showing the Zigbee2mqtt Version
+#   - platform: mqtt
+#     name: Zigbee2mqtt Version
+#     state_topic: "zigbee2mqtt/bridge/config"
+#     value_template: "{{ value_json.version }}"
+#     icon: mdi:zigbee
+#   # Sensor for Showing the Coordinator Version
+#   - platform: mqtt
+#     name: Coordinator Version
+#     state_topic: "zigbee2mqtt/bridge/config"
+#     value_template: "{{ value_json.coordinator }}"
+#     icon: mdi:chip
 
-# Switch for enabling joining
-switch:
-  - platform: mqtt
-    name: "Zigbee2mqtt Main join"
-    state_topic: "zigbee2mqtt/bridge/config/permit_join"
-    command_topic: "zigbee2mqtt/bridge/config/permit_join"
-    payload_on: "true"
-    payload_off: "false"
+# # Switch for enabling joining
+# switch:
+#   - platform: mqtt
+#     name: "Zigbee2mqtt Main join"
+#     state_topic: "zigbee2mqtt/bridge/config/permit_join"
+#     command_topic: "zigbee2mqtt/bridge/config/permit_join"
+#     payload_on: "true"
+#     payload_off: "false"
 
 automation:
   # Automation for sending MQTT message on input select change

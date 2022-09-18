@@ -13,7 +13,15 @@ camera:
     scan_interval: 5
     still_image_url: !secret dafang_still
     stream_source: !secret dafang
-
+  - platform: xiaomi_cloud_map_extractor
+    name: roborock_map
+    host: !secret xiaomi_vacuum_host
+    token: !secret xiaomi_vacuum_token
+    username: !secret xiaomi_cloud_username
+    password: !secret xiaomi_cloud_password
+    draw: ['all']
+    attributes:
+      - calibration_points 
   # - platform: generic
   #   name: cam1
   #   still_image_url: !secret cam1_still
@@ -87,3 +95,4 @@ group:
 #     file_out:
 #         - "/config/motion/{{ camera_entity.split('.')[1] }}_latest.jpg"
 #         # - "/config/motion/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+

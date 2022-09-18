@@ -46,21 +46,27 @@ class NetDaemonSwitch(NetDaemonEntity, SwitchEntity):
     @property
     def is_on(self):
         """Return the state of the switch."""
-        state = str(self._coordinator.data[self.entity_id][ATTR_STATE]).lower()
+        state = str(self._data_point(ATTR_STATE)).lower()
         return state in STATE_ON_VALUES
 
     async def async_turn_on(self, **kwargs):
         """Turn the device on."""
-        await self._async_toggle()
+        await self._turn_on()
 
     async def async_turn_off(self, **kwargs):
         """Turn the device off."""
-        await self._async_toggle()
+        await self._turn_off()
 
-    async def _async_toggle(self) -> None:
+    async def _turn_on(self) -> None:
         """Toggle the switch entity."""
-        current = self._coordinator.data[self.entity_id][ATTR_STATE]
         await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(
-            {ATTR_ENTITY_ID: self.entity_id, ATTR_STATE: not current}
+            {ATTR_ENTITY_ID: self.entity_id, ATTR_STATE: True}
+        )
+        self.async_write_ha_state()
+
+    async def _turn_off(self) -> None:
+        """Toggle the switch entity."""
+        await self.hass.data[DOMAIN][ATTR_CLIENT].entity_update(
+            {ATTR_ENTITY_ID: self.entity_id, ATTR_STATE: False}
         )
         self.async_write_ha_state()

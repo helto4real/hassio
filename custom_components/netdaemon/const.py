@@ -3,10 +3,10 @@ import logging
 
 LOGGER: logging.Logger = logging.getLogger(__package__)
 
-INTEGRATION_VERSION = "21.50.0"
+INTEGRATION_VERSION = "22.05.0"
 DOMAIN = "netdaemon"
 NAME = "NetDaemon"
-MINIMUM_HA_VERSION = "2020.12.0"
+MINIMUM_HA_VERSION = "2021.7.0"
 STORAGE_VERSION = "1"
 
 ND_ID = "86ec6a70-b2b8-427d-8fcf-3f14331dddd7"
@@ -23,6 +23,7 @@ ATTR_ICON = "icon"
 ATTR_UNIT = "unit"
 ATTR_ATTRIBUTES = "attributes"
 ATTR_VERSION = "version"
+ATTR_OPTIONS = "options"
 ATTR_TARGET_TEMPERATURE = "target_temperature"
 ATTR_TARGET_HUMIDITY = "target_humidity"
 ATTR_TEMPERATURE_UNIT = "temperature_unit"
@@ -58,12 +59,14 @@ SERVICE_ENTITY_REMOVE = "entity_remove"
 PLATFORM_BINARY_SENSOR = "binary_sensor"
 PLATFORM_SENSOR = "sensor"
 PLATFORM_SWITCH = "switch"
+PLATFORM_SELECT = "select"
 PLATFORM_CLIMATE = "climate"
 
 PLATFORMS = [
     PLATFORM_BINARY_SENSOR,
     PLATFORM_SENSOR,
     PLATFORM_SWITCH,
+    PLATFORM_SELECT,
     PLATFORM_CLIMATE,
 ]
 

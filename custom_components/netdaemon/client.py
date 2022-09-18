@@ -11,6 +11,7 @@ from .const import (
     ATTR_ICON,
     ATTR_STATE,
     ATTR_UNIT,
+    ATTR_OPTIONS,
     LOGGER,
     STORAGE_VERSION,
 )
@@ -52,6 +53,7 @@ class NetDaemonClient:
             ATTR_STATE: data.get(ATTR_STATE),
             ATTR_ICON: data.get(ATTR_ICON),
             ATTR_UNIT: data.get(ATTR_UNIT),
+            ATTR_OPTIONS: data.get(ATTR_OPTIONS),
             ATTR_ATTRIBUTES: data.get(ATTR_ATTRIBUTES, {}),
         }
         await self.store.async_save(self._entities)

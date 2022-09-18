@@ -1,0 +1,5 @@
+GlobalConfig:
+  MorningTime: 05:00:00
+  DayTime: 09:00:00
+  NightTimeWeekends: 23:40:00
+  NightTimeWeekdays: 22:40:00

@@ -42,4 +42,4 @@ class NetDaemonSensor(NetDaemonEntity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self._coordinator.data[self.entity_id][ATTR_STATE]
+        return self._data_point(ATTR_STATE)

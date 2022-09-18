@@ -1,4 +1,6 @@
 """NetDaemon entity."""
+from awesomeversion import AwesomeVersion
+from homeassistant.const import __version__ as HA_VERSION
 from homeassistant.core import callback
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
@@ -29,6 +31,16 @@ class NetDaemonEntity(CoordinatorEntity):
         self._coordinator = coordinator
         self._name = name
 
+    def _data_point(self, key, default=None):
+        if not self.entity_id:
+            return None
+        if not self._coordinator.data:
+            return None
+        if not self.available:
+            return None
+
+        return self._coordinator.data.get(self.entity_id, {}).get(key, default)
+
     @property
     def name(self):
         """Return the name of the sensor."""
@@ -42,37 +54,44 @@ class NetDaemonEntity(CoordinatorEntity):
     @property
     def unit_of_measurement(self):
         """Return the unit of measurement."""
-        if not self.entity_id:
-            return None
-        return self._coordinator.data[self.entity_id][ATTR_UNIT]
+        return self._data_point(ATTR_UNIT)
+
+    @property
+    def available(self) -> bool:
+        return super().available and self.entity_id in self._coordinator.data
 
     @property
     def icon(self):
         """Return the icon."""
-        if not self.entity_id:
-            return None
-        return self._coordinator.data[self.entity_id][ATTR_ICON]
+        return self._data_point(ATTR_ICON)
 
     @property
     def device_info(self):
         """Return device information about NetDaemon."""
-        return {
+        info = {
             "identifiers": {(DOMAIN, ND_ID)},
             "name": NAME,
             "sw_version": INTEGRATION_VERSION,
             "manufacturer": "netdaemon.xyz",
-            "entry_type": "service",
         }
+        # LEGACY can be removed when min HA version is 2021.12
+        if AwesomeVersion(HA_VERSION) >= "2021.12.0b0":
+            # pylint: disable=import-outside-toplevel
+            from homeassistant.helpers.device_registry import DeviceEntryType
+
+            info["entry_type"] = DeviceEntryType.SERVICE
+        else:
+            info["entry_type"] = "service"
+        return info
 
     @property
     def extra_state_attributes(self):
         """Return attributes for the sensor."""
         attributes = {"integration": DOMAIN}
-        if self.entity_id and self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]:
-            for attr in self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES]:
-                attributes[attr] = self._coordinator.data[self.entity_id][
-                    ATTR_ATTRIBUTES
-                ][attr]
+        for attr in self._data_point(ATTR_ATTRIBUTES, {}):
+            attributes[attr] = self._coordinator.data[self.entity_id][ATTR_ATTRIBUTES][
+                attr
+            ]
         return attributes
 
     @callback

@@ -11,7 +11,7 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Stockholm
   external_url: https://hassio.hellstrom.space
-  internal_url: http://192.168.1.195:8123
+  internal_url: http://192.168.1.7:8123
   # Customization file
   customize: !include customize.yaml
   packages: !include_dir_named packages
@@ -35,15 +35,21 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 7
   use_x_forwarded_for: true
-  trusted_proxies: 
-    - !secret docker_ip
+  trusted_proxies:
+    - 10.10.20.243 
+    - 10.10.20.10
+    - 10.10.20.11
+    - 10.10.20.5
+    - 10.10.20.3
+    - 10.10.20.4
+    - 127.0.0.1
 
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
+# updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
 
@@ -57,7 +63,6 @@ conversation:
 stream:
 
 recorder:
-  purge_interval: 2
   purge_keep_days: 10
   db_url: !secret maria_db_url
   include:
@@ -150,6 +155,7 @@ influxdb:
       - sensor.temp_outside
       - sensor.light_outside
       - sensor.vardagsrum_temp
+      - sensor.tvrum_temp_temperature
       - switch.motorvarmare_hoger
 # Enables  map showing the location of tracked devices
 map:
@@ -183,6 +189,8 @@ tts:
 
 hassio:
 
+media_source:
+
 lovelace:
   mode: yaml
   resources:
@@ -212,6 +220,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
       type: module
+    - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
 
 # hacs:
 #   token: !secret github_token_hacs
@@ -233,16 +243,6 @@ person:
     id: melkertracker
     device_trackers:
       - device_tracker.melker_presence
-
-# mqtt:
-#   broker: !secret mqqtt_broker
-#   discovery: false
-#   discovery_prefix: homeassistant
-#   username: !secret mqtt_user
-#   password: !secret mqtt_password
-
-# netdaemon:
-#cloud:
 
 # zone: !include zones.yaml
 group: !include groups.yaml

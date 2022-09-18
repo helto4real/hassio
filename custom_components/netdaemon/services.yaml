@@ -25,6 +25,8 @@ entity_create:
       example: "mdi:rocket-launch-outline"
     unit:
       description: The unit of measurement for the entity
+    options:
+      description: List of options for a select entity
     attributes:
       description: The attributes of the entity
 
@@ -42,6 +44,8 @@ entity_update:
       example: "mdi:rocket-launch-outline"
     unit:
       description: The unit of measurement for the entity
+    options:
+      description: List of options for a select entity
     attributes:
       description: The attributes of the entity
 

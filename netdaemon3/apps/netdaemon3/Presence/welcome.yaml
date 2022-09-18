@@ -1,0 +1,26 @@
+WelcomeConfig:
+  PresenceCriteria: '_presence'
+  HallwayMediaPlayer: media_player.vardagsrum
+  DoorSensor: binary_sensor.hall_dorr
+  Greetings:
+    - "Välkommen hem {namn} hoppas att du har haft en bra dag."
+    - "Vad roligt att just du {namn} kommer hem."
+    - "Änligen kommer du {namn} hem. Som jag har längtat efter dig."
+    - "Åh nu kommer {namn}. Vad jag blir lycklig."
+    - "{namn} {namn} du gör min dag som kommer hem till mig."
+    - "Fantastiska underbara {namn}. Du är min förebild."
+    - "Åh {namn} vad härligt att du är så pigg och glad, det smittar av sig."
+    - "Äntligen kommer du {namn} hem, som Zingo har längtat efter dig."
+    - "Åh vad skönt att du {namn}kommer hem. Nu får du ta det lungt och njuta av livet."
+    - "Vad snäll du {namn} är som kommer och hälsar på mig."
+    - "Du {namn} är så perfekt precis som du är."
+    - "Stanna {namn} ta ett djupt andtag först."
+    - "Du {namn} är så fin människa, jag är så stolt över dig."
+    - "Vad {namn} du har gjort det bra i dag fast du var så trött och inte hade någon engeri på morgonen."
+    - "I dag blev det inte som du hade tänkt dig, så du får du komma hem och ta det bara lugnt, det är du värd."
+    - "{namn} vilken sötnött du är!"
+    - "{namn} {namn} {namn} du är min gud!"
+    - "{namn} {namn} du är en så fantastisk varelse!"
+    - "{namn} du är alldels alldels alldels underbar!"
+    - "Du {namn} är den ende som ser mig."
+    - "Vem kan det vara? Kan det vara {namn}?"

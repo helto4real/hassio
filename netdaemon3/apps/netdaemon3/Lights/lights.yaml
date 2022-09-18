@@ -1,0 +1,12 @@
+LightsConfiguration:
+  LivingRoomPirs:
+    - binary_sensor.trapp_pir
+    - binary_sensor.vardagsrum_pir
+  TvRoomPirs:
+    - binary_sensor.trapp_pir
+    - binary_sensor.tvrum_pir
+  KitchenPir: binary_sensor.kok_pir
+  TomasRoomPir: binary_sensor.tomas_rum_pir
+  RemoteTvRummet: remote.tvrummet
+  ElgatoKeyLight: light.elgato_key_light
+  HouseModeSelect: input_select.house_mode_select

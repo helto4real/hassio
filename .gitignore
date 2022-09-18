@@ -5,6 +5,8 @@ google_calendars.yaml
 # file types
 *.json
 *.log
+*.log.*
+*.log
 *.pyc
 *.conf
 *.db

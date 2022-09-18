@@ -33,11 +33,11 @@ switch:
           data:
             entity_id: remote.tvrummet
             activity: "PowerOff"
-  - platform: computer
-    entities:
-      tomas:
-        mac: !secret tomas_pc_mac
-        ip: !secret tomas_pc_ip
+  # - platform: computer
+  #   entities:
+  #     tomas:
+  #       mac: !secret tomas_pc_mac
+  #       ip: !secret tomas_pc_ip
 
 media_player:
   # - platform: kodi
@@ -45,12 +45,12 @@ media_player:
   #   username: !secret kodi_tv_nere_username
   #   password: !secret kodi_tv_nere_password
   #  name: kodi_tv_nere
-  - platform: androidtv
-    name: Shield TV
-    host: 192.168.1.22
-    apps:
-      com.hbo_android_tv: HBO Nordic
-      se.cmore.bonnier: C MORE
+  # - platform: androidtv
+  #   name: Shield TV
+  #   host: 192.168.1.22
+  #   apps:
+  #     com.hbo_android_tv: HBO Nordic
+  #     se.cmore.bonnier: C MORE
 group:
   # Remote controls
   remotes:
